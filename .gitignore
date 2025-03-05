@@ -1,82 +1,81 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# Result files
+app/results/**/*.xlsx
+app/results/**/*.csv
+app/results/**/*.json
 
-# Virtual Environment
-venv/
-env/
-ENV/
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Project specific
+# Model files and weights
 checkpoints/
 *.pth
 *.pt
-*.onnx
-*.trt
-*.engine
-*.weights
-
-# Large data files
-pic/higher-resolution/
-pic/lower-resolution/
-results/predictions/
-results/visualizations/
-*.jpg
-*.png
-*.jpeg
-*.gif
-*.mp4
-
-# Logs and databases
-*.log
-*.sqlite
-logs/
-*.db
-
-# Temporary files
-.DS_Store
-.coverage
-coverage.xml
-htmlcov/
-.pytest_cache/
-.hypothesis/
-
-# Model specific
-model_zoo/
-pretrained/
 *.h5
-*.hdf5
-*.pkl
+*.onnx
+*.weights
+*.cfg
+*.pb
+*.tflite
+*.mlmodel
+*.caffemodel
+*.prototxt
+*.model
+model_weights/
+trained_models/
+
+# Ignore all binary files by default
 *.bin
+*.exe
+*.dll
+*.so
+*.dylib
 
-# Documentation
-docs/_build/
-site/
+# Ignore compressed files
+*.zip
+*.gz
+*.tar
+*.7z
+*.rar
 
-# Performance profiling
-*.prof
-*.stats
+# Ignore system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Additional Python related
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Additional IDE files
+*.iml
+.idea_modules/
+*.sublime-workspace
+*.sublime-project
+.settings/
+.project
+.classpath
+
+# Additional temp files
+*.bak
+*.tmp
+*~
+.*.swp
+.*.swo
+
+# Build and dist
+build/
+dist/
+_build/
+.build/
+*.spec
+
+# Python virtual environment
+venv/
+env/
+.env/
+.venv/
+ENV/

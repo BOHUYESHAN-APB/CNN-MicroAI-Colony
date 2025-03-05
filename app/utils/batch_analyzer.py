@@ -43,6 +43,11 @@ class BatchAnalyzer:
                     progress_callback: Optional[Callable] = None) -> Dict[str, Any]:
         """Run batch analysis on images"""
         try:
+            # Validate number of runs
+            min_runs = self.config.get('analysis.batch.min_runs', 10)
+            max_runs = self.config.get('analysis.batch.max_runs', 10000)
+            num_runs = max(min(num_runs, max_runs), min_runs)
+            
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             results_by_image = {}
             total_progress = len(image_paths) * num_runs
