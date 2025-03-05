@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+checkpoints/
+*.pth
+*.pt
+*.onnx
+*.trt
+*.engine
+*.weights
+
+# Large data files
+pic/higher-resolution/
+pic/lower-resolution/
+results/predictions/
+results/visualizations/
+*.jpg
+*.png
+*.jpeg
+*.gif
+*.mp4
+
+# Logs and databases
+*.log
+*.sqlite
+logs/
+*.db
+
+# Temporary files
+.DS_Store
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.hypothesis/
+
+# Model specific
+model_zoo/
+pretrained/
+*.h5
+*.hdf5
+*.pkl
+*.bin
+
+# Documentation
+docs/_build/
+site/
+
+# Performance profiling
+*.prof
+*.stats
