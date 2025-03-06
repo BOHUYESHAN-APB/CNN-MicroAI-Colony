@@ -225,9 +225,18 @@ class ResultViewer(QDialog):
             
     def _get_first_valid_result(self) -> Optional[Dict[str, Any]]:
         """Get first valid result from results dictionary"""
-        for result in self.results.values():
+        logger.info(f"Looking for valid result in {len(self.results)} results")
+        for path, result in self.results.items():
+            logger.info(f"Checking result for {path}")
+            logger.info(f"Result keys: {list(result.keys())}")
             if 'error' not in result:
+                logger.info(f"Found valid result for {path}")
+                if 'dataframe' in result:
+                    logger.info(f"DataFrame columns: {list(result['dataframe'].columns)}")
+                if 'statistics' in result:
+                    logger.info(f"Statistics keys: {list(result['statistics'].keys())}")
                 return result
+        logger.warning("No valid results found")
         return None
 
     def populate_table(self):
@@ -315,22 +324,73 @@ class ResultViewer(QDialog):
     def populate_summary_table(self):
         """Populate summary table for multiple images"""
         try:
+            logger.info("Populating summary table...")
+            if not self.results:
+                raise ValueError("No results available")
+
             # Prepare summary data
             rows = []
             for path, result in self.results.items():
-                if 'error' in result or 'statistics' not in result:
-                    continue
+                try:
+                    # Get statistics
+                    stats = None
+                    if 'statistics' in result:
+                        stats = result['statistics']
+                        logger.info("Found statistics in result")
+                    elif 'dataframe' in result and 'statistics' in result['dataframe'].columns:
+                        stats = result['dataframe']['statistics'].iloc[0]
+                        logger.info("Found statistics in DataFrame")
                     
-                stats = result['statistics']['count_stats']
-                rows.append({
-                    'image': Path(path).stem,
-                    'mean': stats['mean'],
-                    'std': stats['std'],
-                    'cv': stats['cv'],
-                    'min': stats['min'],
-                    'max': stats['max'],
-                    'median': stats['median']
-                })
+                    # Parse JSON if needed
+                    if isinstance(stats, str):
+                        stats = json.loads(stats)
+                        logger.info("Parsed statistics from JSON string")
+                    
+                    if not isinstance(stats, dict):
+                        logger.info(f"Invalid statistics format: {type(stats)}")
+                        continue
+                    
+                    # Get count_stats
+                    if 'count_stats' not in stats:
+                        logger.info("No count_stats found")
+                        continue
+                        
+                    count_stats = stats['count_stats']
+                    if not isinstance(count_stats, dict):
+                        logger.info(f"Invalid count_stats format: {type(count_stats)}")
+                        continue
+                    
+                    # Check required fields
+                    required_stats = ['mean', 'std', 'cv', 'min', 'max', 'median']
+                    missing_stats = [key for key in required_stats if key not in count_stats]
+                    if missing_stats:
+                        logger.info(f"Missing required stats: {missing_stats}")
+                        continue
+                    
+                    # Add data
+                    rows.append({
+                        'image': Path(path).stem,
+                        'mean': float(count_stats['mean']),
+                        'std': float(count_stats['std']),
+                        'cv': float(count_stats['cv']),
+                        'min': float(count_stats['min']),
+                        'max': float(count_stats['max']),
+                        'median': float(count_stats['median'])
+                    })
+                    logger.info(f"Successfully added summary data for {path}")
+                        
+                    rows.append({
+                        'image': Path(path).stem,
+                        'mean': stats['mean'],
+                        'std': stats['std'],
+                        'cv': stats['cv'],
+                        'min': stats['min'],
+                        'max': stats['max'],
+                        'median': stats['median']
+                    })
+                except Exception as e:
+                    logger.debug(f"Error processing {path}: {str(e)}")
+                    continue
                 
             if not rows:
                 raise ValueError("No valid results to show")
@@ -448,6 +508,14 @@ class ResultViewer(QDialog):
     def create_plots(self, df: pd.DataFrame):
         """Create analysis visualizations for single image"""
         try:
+            if df is None or df.empty:
+                raise ValueError("No data available for plotting")
+            
+            # Add run_number if it doesn't exist
+            if 'run_number' not in df.columns:
+                df = df.copy()
+                df['run_number'] = range(1, len(df) + 1)
+            
             # Create figure
             fig = plt.figure(figsize=(12, 10))
             gs = GridSpec(2, 2, figure=fig)
@@ -498,19 +566,64 @@ class ResultViewer(QDialog):
     def create_comparison_plots(self):
         """Create comparison plots for multiple images"""
         try:
+            logger.info("Creating comparison plots...")
+            logger.info(f"Processing {len(self.results)} results")
+
             # Collect data
             data = []
+            
+            # Process results
             for path, result in self.results.items():
-                if 'error' in result or 'statistics' not in result:
+                logger.info(f"Checking result for {path}")
+                try:
+                    # Get statistics
+                    stats = None
+                    if 'statistics' in result:
+                        stats = result['statistics']
+                        logger.info("Found statistics in result")
+                    elif 'dataframe' in result and 'statistics' in result['dataframe'].columns:
+                        stats = result['dataframe']['statistics'].iloc[0]
+                        logger.info("Found statistics in DataFrame")
+                    
+                    # Parse JSON if needed
+                    if isinstance(stats, str):
+                        stats = json.loads(stats)
+                        logger.info("Parsed statistics from JSON string")
+                    
+                    if not isinstance(stats, dict):
+                        logger.info(f"Invalid statistics format: {type(stats)}")
+                        continue
+                    
+                    # Get count_stats
+                    if 'count_stats' not in stats:
+                        logger.info("No count_stats found")
+                        continue
+                        
+                    count_stats = stats['count_stats']
+                    if not isinstance(count_stats, dict):
+                        logger.info(f"Invalid count_stats format: {type(count_stats)}")
+                        continue
+                    
+                    # Check required fields
+                    required_stats = ['mean', 'median', 'std', 'cv']
+                    missing_stats = [key for key in required_stats if key not in count_stats]
+                    if missing_stats:
+                        logger.info(f"Missing required stats: {missing_stats}")
+                        continue
+                    
+                    # Add data point
+                    data.append({
+                        'image': Path(path).stem,
+                        'mean': float(count_stats['mean']),
+                        'median': float(count_stats['median']),
+                        'std': float(count_stats['std']),
+                        'cv': float(count_stats['cv'])
+                    })
+                    logger.info(f"Successfully added data for {path}")
+                    
+                except Exception as e:
+                    logger.error(f"Error processing {path}: {e}")
                     continue
-                stats = result['statistics']['count_stats']
-                data.append({
-                    'image': Path(path).stem,
-                    'mean': stats['mean'],
-                    'median': stats['median'],
-                    'std': stats['std'],
-                    'cv': stats['cv']
-                })
                 
             if not data:
                 raise ValueError("No valid data for comparison plots")
@@ -538,11 +651,13 @@ class ResultViewer(QDialog):
             
             # Standard deviation and CV comparison
             ax2 = fig.add_subplot(gs[0, 1])
-            ax2.plot(df['image'], df['std'], 'o-', label=i18n.get('results.std'))
+            x = range(len(df))
+            ax2.plot(x, df['std'], 'o-', label=i18n.get('results.std'))
             ax2_cv = ax2.twinx()
-            ax2_cv.plot(df['image'], df['cv'], 'o-', color='red', 
+            ax2_cv.plot(x, df['cv'], 'o-', color='red',
                        label=i18n.get('results.cv'))
             
+            ax2.set_xticks(x)
             ax2.set_xticklabels(df['image'], rotation=45, ha='right')
             ax2.set_title(i18n.get('results.plot.std_cv_comparison'), **font_config)
             ax2.set_ylabel(i18n.get('results.std'), **font_config)
@@ -734,3 +849,4 @@ class ResultViewer(QDialog):
                 
             with open(file_path, 'w', encoding='utf-8') as f:
                 json.dump(export_data, f, indent=2, ensure_ascii=False)
+
