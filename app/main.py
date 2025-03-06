@@ -4,6 +4,10 @@ from pathlib import Path
 from datetime import datetime
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
+# Add project root to Python path
+project_root = Path(__file__).parent.parent
+sys.path.append(str(project_root))
+
 # Configure basic logging first
 def setup_logging():
     """Setup logging configuration"""

@@ -175,7 +175,11 @@ class SettingsDialog(QDialog):
         """Apply current settings"""
         try:
             # General settings
-            self.config.set('app.language', self.lang_combo.currentText())
+            new_lang = self.lang_combo.currentText()
+            if new_lang != self.config.get('app.language'):
+                self.config.set('app.language', new_lang)
+                i18n.set_language(new_lang)
+                
             self.config.set('project.auto_save', self.autosave_check.isChecked())
             
             # Analysis settings
@@ -191,6 +195,15 @@ class SettingsDialog(QDialog):
             
             self.config.save()
             
+            # Trigger UI update if language changed
+            new_lang = self.lang_combo.currentText()
+            if new_lang != self.config.get('app.language'):
+                # Notify parent window to update UI
+                if self.parent():
+                    self.parent().retranslate_ui()
+                # Update this dialog's UI
+                self.retranslate_ui()
+
             # Show success message
             QMessageBox.information(
                 self,
@@ -217,6 +230,40 @@ class SettingsDialog(QDialog):
             self.dir_edit.setText(dir_path)
             self.config.set('paths.base_dir', dir_path)
             
+    def retranslate_ui(self):
+        """Update interface language"""
+        self.setWindowTitle(i18n.get('dialogs.settings'))
+        
+        # Update tab names
+        self.tab_widget.setTabText(0, i18n.get('settings.general'))
+        self.tab_widget.setTabText(1, i18n.get('settings.analysis'))
+        self.tab_widget.setTabText(2, i18n.get('settings.export'))
+        
+        # Update general tab
+        for group in self.findChildren(QGroupBox):
+            if group.title() == i18n.get('settings.language', lang='en'):
+                group.setTitle(i18n.get('settings.language'))
+            elif group.title() == i18n.get('settings.output_dir', lang='en'):
+                group.setTitle(i18n.get('settings.output_dir'))
+            elif group.title() == i18n.get('settings.project', lang='en'):
+                group.setTitle(i18n.get('settings.project'))
+                
+        # Update buttons and checkboxes
+        for button in self.findChildren(QPushButton):
+            if button.text() == i18n.get('buttons.browse', lang='en'):
+                button.setText(i18n.get('buttons.browse'))
+                
+        self.autosave_check.setText(i18n.get('settings.autosave'))
+        self.plots_check.setText(i18n.get('settings.create_plots'))
+        self.export_enable.setText(i18n.get('settings.enable_auto_export'))
+        
+        # Update batch group
+        batch_group = None
+        for group in self.findChildren(QGroupBox):
+            if group.title() == i18n.get('settings.batch_analysis', lang='en'):
+                group.setTitle(i18n.get('settings.batch_analysis'))
+                break
+    
     def accept(self):
         """Handle dialog acceptance"""
         try:

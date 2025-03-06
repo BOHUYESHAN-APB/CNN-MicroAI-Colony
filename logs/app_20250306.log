@@ -1,0 +1,518 @@
+2025-03-06 00:02:28,879 - root - INFO - Logging initialized
+2025-03-06 00:02:28,887 - root - INFO - Application directories created
+2025-03-06 00:02:29,101 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 00:02:29,181 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 00:02:29,183 - root - INFO - Configuration initialized
+2025-03-06 00:02:38,375 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 00:02:39,258 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 00:02:39,259 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 00:02:39,259 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 00:02:40,100 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 00:02:40,106 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 00:02:40,107 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 00:02:40,107 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 00:02:45,521 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 00:02:45,521 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 00:02:45,523 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 00:02:46,121 - app.gui.result_viewer - ERROR - Failed to setup UI: 'ResultViewer' object has no attribute 'setup_multi_image_view'
+2025-03-06 00:02:46,122 - app.gui.main_window - ERROR - Failed to show results: 'ResultViewer' object has no attribute 'setup_multi_image_view'
+2025-03-06 00:02:48,438 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 00:24:48,119 - root - INFO - Logging initialized
+2025-03-06 00:24:48,137 - root - INFO - Application directories created
+2025-03-06 00:24:48,226 - app.config - INFO - Using defaults configuration from: c:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 00:24:48,259 - app.config - INFO - Copied default config to: c:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 00:24:48,260 - root - INFO - Configuration initialized
+2025-03-06 00:24:52,992 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 00:24:53,027 - root - ERROR - Failed to initialize application: unmatched '}' (result_viewer.py, line 794)
+2025-03-06 00:24:53,028 - root - ERROR - Application failed to start: Failed to initialize application: unmatched '}' (result_viewer.py, line 794)
+2025-03-06 09:51:24,768 - root - INFO - Logging initialized
+2025-03-06 09:51:24,770 - root - INFO - Application directories created
+2025-03-06 09:51:24,827 - app.config - INFO - Using defaults configuration from: c:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 09:51:24,842 - app.config - INFO - Copied default config to: c:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 09:51:24,844 - root - INFO - Configuration initialized
+2025-03-06 09:51:28,506 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 09:51:28,527 - root - ERROR - Failed to initialize application: unmatched '}' (result_viewer.py, line 794)
+2025-03-06 09:51:28,527 - root - ERROR - Application failed to start: Failed to initialize application: unmatched '}' (result_viewer.py, line 794)
+2025-03-06 09:55:23,026 - root - INFO - Logging initialized
+2025-03-06 09:55:23,029 - root - INFO - Application directories created
+2025-03-06 09:55:23,076 - app.config - INFO - Using defaults configuration from: c:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 09:55:23,095 - app.config - INFO - Copied default config to: c:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 09:55:23,095 - root - INFO - Configuration initialized
+2025-03-06 09:55:25,704 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 09:55:25,722 - root - ERROR - Failed to initialize application: unmatched '}' (result_viewer.py, line 794)
+2025-03-06 09:55:25,722 - root - ERROR - Application failed to start: Failed to initialize application: unmatched '}' (result_viewer.py, line 794)
+2025-03-06 10:01:02,947 - root - INFO - Logging initialized
+2025-03-06 10:01:02,949 - root - INFO - Application directories created
+2025-03-06 10:01:02,989 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:01:03,004 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 10:01:03,006 - root - INFO - Configuration initialized
+2025-03-06 10:01:05,281 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 10:01:05,605 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 10:01:05,605 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 10:01:05,605 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 10:01:05,801 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:01:05,803 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 10:01:05,803 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 10:01:05,804 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 10:01:09,550 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:01:09,550 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:01:09,550 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:01:10,233 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:01:10,235 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:01:10,235 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:01:10,326 - app.gui.result_viewer - ERROR - Failed to create plots: 'run_number'
+2025-03-06 10:01:10,326 - app.gui.result_viewer - ERROR - Failed to update detail plots: 'run_number'
+2025-03-06 10:01:10,368 - app.gui.result_viewer - ERROR - Failed to create plots: 'run_number'
+2025-03-06 10:01:10,368 - app.gui.result_viewer - ERROR - Failed to create plots: 'run_number'
+2025-03-06 10:01:18,059 - app.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 10:01:19,275 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_100118\plots
+2025-03-06 10:01:19,397 - app.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 10:01:20,533 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_100118\plots
+2025-03-06 10:01:20,600 - app.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 10:01:21,736 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_100118\plots
+2025-03-06 10:01:21,845 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:01:21,845 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:01:21,847 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:01:47,387 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:03:34,125 - root - INFO - Logging initialized
+2025-03-06 10:03:34,137 - root - INFO - Application directories created
+2025-03-06 10:03:34,185 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:03:34,208 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 10:03:34,208 - root - INFO - Configuration initialized
+2025-03-06 10:03:36,587 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 10:03:36,859 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 10:03:36,860 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 10:03:36,860 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 10:03:37,080 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:03:37,081 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 10:03:37,081 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 10:03:37,082 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 10:03:39,382 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:03:39,383 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:03:39,383 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:03:40,020 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:03:40,021 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:03:40,021 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:03:50,910 - app.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 10:03:52,094 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_100350\plots
+2025-03-06 10:03:52,197 - app.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 10:03:53,439 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_100350\plots
+2025-03-06 10:03:53,503 - app.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 10:03:54,650 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_100350\plots
+2025-03-06 10:03:54,773 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:03:54,773 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:03:54,773 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:04:02,333 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:10:35,978 - root - INFO - Logging initialized
+2025-03-06 10:10:35,980 - root - INFO - Application directories created
+2025-03-06 10:10:36,024 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:10:36,041 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 10:10:36,041 - root - INFO - Configuration initialized
+2025-03-06 10:10:38,454 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 10:10:38,725 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 10:10:38,726 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 10:10:38,726 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 10:10:38,913 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:10:38,914 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 10:10:38,915 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 10:10:38,915 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 10:10:41,951 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:10:41,952 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:10:41,952 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:10:42,867 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:10:42,869 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:10:42,871 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:10:52,592 - app.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 10:10:53,829 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_101052\plots
+2025-03-06 10:10:53,964 - app.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 10:10:55,140 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_101052\plots
+2025-03-06 10:10:55,192 - app.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 10:10:56,403 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_101052\plots
+2025-03-06 10:10:56,507 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:10:56,507 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:10:56,507 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:11:03,196 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:16:03,999 - root - INFO - Logging initialized
+2025-03-06 10:16:04,002 - root - INFO - Application directories created
+2025-03-06 10:16:04,046 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:16:04,062 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 10:16:04,063 - root - INFO - Configuration initialized
+2025-03-06 10:16:06,511 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 10:16:06,809 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 10:16:06,809 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 10:16:06,810 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 10:16:07,073 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:16:07,075 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 10:16:07,076 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 10:16:07,076 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 10:16:10,327 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:16:10,327 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:16:10,328 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:16:12,347 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:16:12,349 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:16:12,349 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:16:12,349 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:16:12,351 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:16:12,351 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg: no statistics
+2025-03-06 10:16:12,351 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:16:12,352 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:16:12,352 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg: no statistics
+2025-03-06 10:16:12,352 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:16:12,353 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:16:12,353 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg: no statistics
+2025-03-06 10:16:12,353 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:16:12,353 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:16:12,732 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:16:12,732 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:16:12,733 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:16:12,733 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:16:12,733 - app.gui.result_viewer - INFO - DataFrame columns: ['count', 'confidence', 'boxes', 'scores', 'statistics']
+2025-03-06 10:16:21,243 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:19:07,074 - root - INFO - Logging initialized
+2025-03-06 10:19:07,079 - root - INFO - Application directories created
+2025-03-06 10:19:07,144 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:19:07,177 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 10:19:07,177 - root - INFO - Configuration initialized
+2025-03-06 10:19:13,908 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 10:19:15,014 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 10:19:15,014 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 10:19:15,015 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 10:19:15,568 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:19:15,575 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 10:19:15,576 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 10:19:15,576 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 10:19:18,902 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:19:18,902 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:19:18,903 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:19:20,008 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 138.0, 'std': 0.0, 'cv': 0.0, 'min': 138.0, 'max': 138.0, 'median': 138.0, 'q1': 138.0, 'q3': 138.0}, 'confidence_stats': {'mean': 0.908213913384891, 'std': 0.0, 'min': 0.908213913384891, 'max': 0.908213913384891}}
+2025-03-06 10:19:20,009 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 190.0, 'std': 0.0, 'cv': 0.0, 'min': 190.0, 'max': 190.0, 'median': 190.0, 'q1': 190.0, 'q3': 190.0}, 'confidence_stats': {'mean': 0.9880421938450719, 'std': 0.0, 'min': 0.9880421938450719, 'max': 0.9880421938450719}}
+2025-03-06 10:19:20,010 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 81.0, 'std': 0.0, 'cv': 0.0, 'min': 81.0, 'max': 81.0, 'median': 81.0, 'q1': 81.0, 'q3': 81.0}, 'confidence_stats': {'mean': 0.8001775518089618, 'std': 0.0, 'min': 0.8001775518089618, 'max': 0.8001775518089618}}
+2025-03-06 10:19:20,011 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:19:20,018 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:19:20,019 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:19:20,019 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:19:20,019 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:19:20,020 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 138.0, 'std': 0.0, 'cv': 0.0, 'min': 138.0, 'max': 138.0, 'median': 138.0, 'q1': 138.0, 'q3': 138.0}, 'confidence_stats': {'mean': 0.908213913384891, 'std': 0.0, 'min': 0.908213913384891, 'max': 0.908213913384891}}
+2025-03-06 10:19:20,020 - app.gui.result_viewer - INFO - Count stats: {'count_stats': {'mean': 138.0, 'std': 0.0, 'cv': 0.0, 'min': 138.0, 'max': 138.0, 'median': 138.0, 'q1': 138.0, 'q3': 138.0}, 'confidence_stats': {'mean': 0.908213913384891, 'std': 0.0, 'min': 0.908213913384891, 'max': 0.908213913384891}}
+2025-03-06 10:19:20,020 - app.gui.result_viewer - INFO - Count stats keys: ['count_stats', 'confidence_stats']
+2025-03-06 10:19:20,020 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg: missing required stats ['mean', 'median', 'std', 'cv']
+2025-03-06 10:19:20,021 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:19:20,021 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:19:20,021 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 190.0, 'std': 0.0, 'cv': 0.0, 'min': 190.0, 'max': 190.0, 'median': 190.0, 'q1': 190.0, 'q3': 190.0}, 'confidence_stats': {'mean': 0.9880421938450719, 'std': 0.0, 'min': 0.9880421938450719, 'max': 0.9880421938450719}}
+2025-03-06 10:19:20,023 - app.gui.result_viewer - INFO - Count stats: {'count_stats': {'mean': 190.0, 'std': 0.0, 'cv': 0.0, 'min': 190.0, 'max': 190.0, 'median': 190.0, 'q1': 190.0, 'q3': 190.0}, 'confidence_stats': {'mean': 0.9880421938450719, 'std': 0.0, 'min': 0.9880421938450719, 'max': 0.9880421938450719}}
+2025-03-06 10:19:20,023 - app.gui.result_viewer - INFO - Count stats keys: ['count_stats', 'confidence_stats']
+2025-03-06 10:19:20,023 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg: missing required stats ['mean', 'median', 'std', 'cv']
+2025-03-06 10:19:20,024 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:19:20,024 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:19:20,025 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 81.0, 'std': 0.0, 'cv': 0.0, 'min': 81.0, 'max': 81.0, 'median': 81.0, 'q1': 81.0, 'q3': 81.0}, 'confidence_stats': {'mean': 0.8001775518089618, 'std': 0.0, 'min': 0.8001775518089618, 'max': 0.8001775518089618}}
+2025-03-06 10:19:20,025 - app.gui.result_viewer - INFO - Count stats: {'count_stats': {'mean': 81.0, 'std': 0.0, 'cv': 0.0, 'min': 81.0, 'max': 81.0, 'median': 81.0, 'q1': 81.0, 'q3': 81.0}, 'confidence_stats': {'mean': 0.8001775518089618, 'std': 0.0, 'min': 0.8001775518089618, 'max': 0.8001775518089618}}
+2025-03-06 10:19:20,026 - app.gui.result_viewer - INFO - Count stats keys: ['count_stats', 'confidence_stats']
+2025-03-06 10:19:20,026 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg: missing required stats ['mean', 'median', 'std', 'cv']
+2025-03-06 10:19:20,026 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:19:20,027 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:19:20,742 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:19:20,743 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:19:20,743 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:19:20,744 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:19:20,744 - app.gui.result_viewer - INFO - DataFrame columns: ['count', 'confidence', 'boxes', 'scores', 'statistics']
+2025-03-06 10:19:28,394 - app.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 10:19:30,396 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_101928\plots
+2025-03-06 10:19:30,591 - app.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 10:19:32,685 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_101928\plots
+2025-03-06 10:19:32,760 - app.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 10:19:34,751 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_101928\plots
+2025-03-06 10:19:34,928 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:19:34,929 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:19:34,929 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:19:38,680 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg: no statistics column
+2025-03-06 10:19:38,680 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg: no statistics column
+2025-03-06 10:19:38,680 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg: no statistics column
+2025-03-06 10:19:38,680 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:19:38,682 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:19:38,682 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:19:38,682 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:19:38,684 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:19:38,684 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg: no statistics column
+2025-03-06 10:19:38,684 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:19:38,684 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:19:38,684 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg: no statistics column
+2025-03-06 10:19:38,685 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:19:38,685 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:19:38,685 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg: no statistics column
+2025-03-06 10:19:38,685 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:19:38,686 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:19:39,124 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:19:39,125 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:19:39,126 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:19:39,126 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:19:39,126 - app.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 10:19:39,127 - app.gui.result_viewer - INFO - Statistics keys: ['count_stats', 'confidence_stats']
+2025-03-06 10:19:47,137 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:21:37,238 - root - INFO - Logging initialized
+2025-03-06 10:21:37,242 - root - INFO - Application directories created
+2025-03-06 10:21:37,300 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:21:37,333 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 10:21:37,333 - root - INFO - Configuration initialized
+2025-03-06 10:21:41,767 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 10:21:42,366 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 10:21:42,367 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 10:21:42,368 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 10:21:42,987 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:21:42,999 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 10:21:43,000 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 10:21:43,001 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 10:21:55,157 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:21:55,158 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:21:55,158 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:21:56,768 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 165.0, 'std': 0.0, 'cv': 0.0, 'min': 165.0, 'max': 165.0, 'median': 165.0, 'q1': 165.0, 'q3': 165.0}, 'confidence_stats': {'mean': 0.9252798347826375, 'std': 0.0, 'min': 0.9252798347826375, 'max': 0.9252798347826375}}
+2025-03-06 10:21:56,769 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 121.0, 'std': 0.0, 'cv': 0.0, 'min': 121.0, 'max': 121.0, 'median': 121.0, 'q1': 121.0, 'q3': 121.0}, 'confidence_stats': {'mean': 0.9620753290894939, 'std': 0.0, 'min': 0.9620753290894939, 'max': 0.9620753290894939}}
+2025-03-06 10:21:56,769 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 188.0, 'std': 0.0, 'cv': 0.0, 'min': 188.0, 'max': 188.0, 'median': 188.0, 'q1': 188.0, 'q3': 188.0}, 'confidence_stats': {'mean': 0.9231649406313741, 'std': 0.0, 'min': 0.9231649406313741, 'max': 0.9231649406313741}}
+2025-03-06 10:21:56,770 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:21:56,772 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:21:56,772 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:21:56,772 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:21:56,772 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:21:56,773 - app.gui.result_viewer - ERROR - Failed to create comparison plots: cannot access local variable 'stats' where it is not associated with a value
+2025-03-06 10:21:56,773 - app.gui.result_viewer - ERROR - Failed to create comparison plots: cannot access local variable 'stats' where it is not associated with a value
+2025-03-06 10:21:57,257 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:21:57,258 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:21:57,259 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:21:57,259 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:21:57,259 - app.gui.result_viewer - INFO - DataFrame columns: ['count', 'confidence', 'boxes', 'scores', 'statistics']
+2025-03-06 10:22:04,412 - app.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 10:22:06,211 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_102204\plots
+2025-03-06 10:22:06,374 - app.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 10:22:08,297 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_102204\plots
+2025-03-06 10:22:08,370 - app.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 10:22:10,249 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_102204\plots
+2025-03-06 10:22:10,444 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:22:10,444 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:22:10,445 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:22:15,374 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg: no statistics column
+2025-03-06 10:22:15,376 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg: no statistics column
+2025-03-06 10:22:15,376 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg: no statistics column
+2025-03-06 10:22:15,376 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:22:15,378 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:22:15,378 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:22:15,379 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:22:15,379 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:22:15,380 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg: no statistics column
+2025-03-06 10:22:15,380 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:22:15,381 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:22:15,381 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg: no statistics column
+2025-03-06 10:22:15,381 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:22:15,381 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:22:15,383 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg: no statistics column
+2025-03-06 10:22:15,383 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:22:15,383 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:22:16,008 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:22:16,008 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:22:16,009 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:22:16,009 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:22:16,009 - app.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 10:22:16,010 - app.gui.result_viewer - INFO - Statistics keys: ['count_stats', 'confidence_stats']
+2025-03-06 10:22:26,042 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:28:49,523 - root - INFO - Logging initialized
+2025-03-06 10:28:49,528 - root - INFO - Application directories created
+2025-03-06 10:28:49,622 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:28:49,650 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 10:28:49,650 - root - INFO - Configuration initialized
+2025-03-06 10:28:55,115 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 10:28:55,687 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 10:28:55,688 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 10:28:55,689 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 10:28:55,968 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:28:55,971 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 10:28:55,972 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 10:28:55,972 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 10:29:05,240 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:29:05,241 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:29:05,241 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:29:06,134 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 61.0, 'std': 0.0, 'cv': 0.0, 'min': 61.0, 'max': 61.0, 'median': 61.0, 'q1': 61.0, 'q3': 61.0}, 'confidence_stats': {'mean': 0.8613178638730183, 'std': 0.0, 'min': 0.8613178638730183, 'max': 0.8613178638730183}}
+2025-03-06 10:29:06,135 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 144.0, 'std': 0.0, 'cv': 0.0, 'min': 144.0, 'max': 144.0, 'median': 144.0, 'q1': 144.0, 'q3': 144.0}, 'confidence_stats': {'mean': 0.8233290782894234, 'std': 0.0, 'min': 0.8233290782894234, 'max': 0.8233290782894234}}
+2025-03-06 10:29:06,135 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 78.0, 'std': 0.0, 'cv': 0.0, 'min': 78.0, 'max': 78.0, 'median': 78.0, 'q1': 78.0, 'q3': 78.0}, 'confidence_stats': {'mean': 0.8038818879747561, 'std': 0.0, 'min': 0.8038818879747561, 'max': 0.8038818879747561}}
+2025-03-06 10:29:06,136 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:29:06,137 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:29:06,137 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:29:06,137 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:29:06,138 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:29:06,138 - app.gui.result_viewer - ERROR - Failed to create comparison plots: cannot access local variable 'stats' where it is not associated with a value
+2025-03-06 10:29:06,138 - app.gui.result_viewer - ERROR - Failed to create comparison plots: cannot access local variable 'stats' where it is not associated with a value
+2025-03-06 10:29:06,604 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:29:06,605 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:29:06,605 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:29:06,606 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:29:06,606 - app.gui.result_viewer - INFO - DataFrame columns: ['count', 'confidence', 'boxes', 'scores', 'statistics']
+2025-03-06 10:29:28,672 - app.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 10:29:30,426 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_102928\plots
+2025-03-06 10:29:30,592 - app.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 10:29:32,187 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_102928\plots
+2025-03-06 10:29:32,245 - app.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 10:29:33,996 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_102928\plots
+2025-03-06 10:29:34,141 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:29:34,141 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:29:34,142 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:29:36,307 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg: no statistics column
+2025-03-06 10:29:36,307 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg: no statistics column
+2025-03-06 10:29:36,307 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg: no statistics column
+2025-03-06 10:29:36,308 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:29:36,309 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:29:36,309 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:29:36,312 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:29:36,313 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:29:36,313 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg: no statistics column
+2025-03-06 10:29:36,313 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:29:36,313 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:29:36,313 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg: no statistics column
+2025-03-06 10:29:36,314 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:29:36,314 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:29:36,314 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg: no statistics column
+2025-03-06 10:29:36,315 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:29:36,315 - app.gui.result_viewer - ERROR - Failed to create comparison plots: No valid data for comparison plots
+2025-03-06 10:29:36,644 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:29:36,645 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:29:36,645 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:29:36,645 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:29:36,645 - app.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 10:29:36,646 - app.gui.result_viewer - INFO - Statistics keys: ['count_stats', 'confidence_stats']
+2025-03-06 10:29:41,260 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:39:18,541 - root - INFO - Logging initialized
+2025-03-06 10:39:18,547 - root - INFO - Application directories created
+2025-03-06 10:39:18,647 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:39:18,683 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 10:39:18,684 - root - INFO - Configuration initialized
+2025-03-06 10:39:23,381 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 10:39:23,814 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 10:39:23,815 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 10:39:23,815 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 10:39:24,177 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:39:24,181 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 10:39:24,183 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 10:39:24,183 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 10:39:26,401 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:39:26,402 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:39:26,402 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:39:27,136 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 128.0, 'std': 0.0, 'cv': 0.0, 'min': 128.0, 'max': 128.0, 'median': 128.0, 'q1': 128.0, 'q3': 128.0}, 'confidence_stats': {'mean': 0.8627835701918969, 'std': 0.0, 'min': 0.8627835701918969, 'max': 0.8627835701918969}}
+2025-03-06 10:39:27,136 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 163.0, 'std': 0.0, 'cv': 0.0, 'min': 163.0, 'max': 163.0, 'median': 163.0, 'q1': 163.0, 'q3': 163.0}, 'confidence_stats': {'mean': 0.8088263358551352, 'std': 0.0, 'min': 0.8088263358551352, 'max': 0.8088263358551352}}
+2025-03-06 10:39:27,137 - app.gui.result_viewer - INFO - Statistics: {'count_stats': {'mean': 54.0, 'std': 0.0, 'cv': 0.0, 'min': 54.0, 'max': 54.0, 'median': 54.0, 'q1': 54.0, 'q3': 54.0}, 'confidence_stats': {'mean': 0.8947068083294182, 'std': 0.0, 'min': 0.8947068083294182, 'max': 0.8947068083294182}}
+2025-03-06 10:39:27,137 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:39:27,140 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:39:27,140 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:39:27,140 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:39:27,141 - app.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 10:39:27,141 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:39:27,141 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:39:27,142 - app.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 10:39:27,142 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:39:27,142 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:39:27,143 - app.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 10:39:27,143 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:39:27,890 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:39:27,891 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:39:27,891 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:39:27,891 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:39:27,892 - app.gui.result_viewer - INFO - DataFrame columns: ['count', 'confidence', 'boxes', 'scores', 'statistics']
+2025-03-06 10:39:45,200 - app.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 10:39:47,851 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_103945\plots
+2025-03-06 10:39:48,074 - app.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 10:39:50,476 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_103945\plots
+2025-03-06 10:39:50,542 - app.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 10:39:52,492 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_103945\plots
+2025-03-06 10:39:52,642 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:39:52,642 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:39:52,642 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:39:55,020 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg: no statistics column
+2025-03-06 10:39:55,020 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg: no statistics column
+2025-03-06 10:39:55,021 - app.gui.result_viewer - INFO - Skipping C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg: no statistics column
+2025-03-06 10:39:55,021 - app.gui.result_viewer - ERROR - Failed to populate summary: No valid results to show
+2025-03-06 10:39:55,023 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:39:55,023 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:39:55,023 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:39:55,024 - app.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 10:39:55,024 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:39:55,024 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:39:55,024 - app.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 10:39:55,024 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:39:55,025 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:39:55,025 - app.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 10:39:55,025 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:39:55,659 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:39:55,659 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:39:55,659 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:39:55,660 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:39:55,660 - app.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 10:39:55,660 - app.gui.result_viewer - INFO - Statistics keys: ['count_stats', 'confidence_stats']
+2025-03-06 10:40:01,663 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:47:37,163 - root - INFO - Logging initialized
+2025-03-06 10:47:37,166 - root - INFO - Application directories created
+2025-03-06 10:47:37,244 - app.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:47:37,267 - app.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app\config\config.yaml
+2025-03-06 10:47:37,267 - root - INFO - Configuration initialized
+2025-03-06 10:47:42,078 - app.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 10:47:42,825 - app.gui.main_window - INFO - Starting in demo mode
+2025-03-06 10:47:42,827 - app.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 10:47:42,829 - app.gui.main_window - INFO - Model initialized successfully
+2025-03-06 10:47:43,530 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml
+2025-03-06 10:47:43,537 - app.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 10:47:43,539 - app.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 10:47:43,540 - app.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 10:47:46,121 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:47:46,122 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:47:46,123 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:47:48,812 - app.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 10:47:48,818 - app.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 10:47:48,818 - app.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:47:48,819 - app.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 10:47:48,820 - app.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:47:48,821 - app.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 10:47:48,821 - app.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:47:48,833 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:47:48,834 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:47:48,834 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:47:48,835 - app.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 10:47:48,835 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:47:48,835 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:47:48,837 - app.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 10:47:48,837 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:47:48,837 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:47:48,837 - app.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 10:47:48,838 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:47:49,629 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:47:49,629 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:47:49,630 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 10:47:49,630 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:47:49,630 - app.gui.result_viewer - INFO - DataFrame columns: ['count', 'confidence', 'boxes', 'scores', 'statistics']
+2025-03-06 10:47:57,822 - app.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 10:47:59,631 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_104757\plots
+2025-03-06 10:47:59,836 - app.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 10:48:01,803 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_104757\plots
+2025-03-06 10:48:01,859 - app.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 10:48:03,593 - app.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_104757\plots
+2025-03-06 10:48:03,785 - app.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 10:48:03,786 - app.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 10:48:03,787 - app.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 10:48:06,821 - app.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 10:48:06,821 - app.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 10:48:06,822 - app.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:48:06,822 - app.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 10:48:06,822 - app.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:48:06,823 - app.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 10:48:06,823 - app.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:48:06,824 - app.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 10:48:06,824 - app.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 10:48:06,824 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:48:06,825 - app.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 10:48:06,825 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:48:06,825 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:48:06,825 - app.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 10:48:06,825 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 10:48:06,825 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:48:06,827 - app.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 10:48:06,827 - app.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 10:48:07,415 - app.gui.result_viewer - INFO - Looking for valid result in 3 results
+2025-03-06 10:48:07,416 - app.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:48:07,416 - app.gui.result_viewer - INFO - Result keys: ['dataframe', 'statistics', 'output_dir']
+2025-03-06 10:48:07,416 - app.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 10:48:07,416 - app.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 10:48:07,417 - app.gui.result_viewer - INFO - Statistics keys: ['count_stats', 'confidence_stats']
+2025-03-06 10:48:13,576 - app.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app\config\defaults\defaults.yaml

@@ -184,10 +184,10 @@ class BatchAnalyzer:
             # Create figure
             fig = plt.figure(figsize=(12, 10))
             gs = GridSpec(2, 2, figure=fig)
-            font_config = {'fontproperties': font_prop} if font_prop else {}
             
             # Count distribution
             ax1 = fig.add_subplot(gs[0, 0])
+            font_config = {'fontproperties': font_prop} if font_prop else {}
             ax1.hist(df['count'], bins=30, alpha=0.7, color='skyblue')
             ax1.set_title(i18n.get('results.plot.count_distribution'), **font_config)
             ax1.set_xlabel(i18n.get('results.colony_count'), **font_config)
