@@ -88,7 +88,18 @@ class MainWindow(BaseWindow):
         super().__init__(config)
         self.model = None
         self.current_results = None
-        self.analyzer = BatchAnalyzer(config, self.path_manager)
+        
+        # Load config using ConfigManager
+        from app_pyside6.config.config_manager import ConfigManager
+        from app_pyside6.config import get_config_paths
+        
+        config_paths = get_config_paths()
+        self.config_manager = ConfigManager(config_paths['defaults'])
+        if config_paths['user'].exists():
+            self.config_manager.update_from_file(config_paths['user'])
+        self.config = self.config_manager.config
+        
+        self.analyzer = BatchAnalyzer(self.config, self.path_manager)
         self.batch_thread = None
         self.setup_ui()
         self.init_model()
@@ -399,8 +410,13 @@ class MainWindow(BaseWindow):
         """Show settings dialog"""
         dialog = SettingsDialog(self.config, self)
         if dialog.exec_():
+            # Update both UI and model with new settings
             self.load_settings()
             self.retranslate_ui()
+            
+            # Update model configuration if needed
+            if self.model:
+                self.model.update_config(self.config)
 
     def add_images(self):
         """Add images to project"""
@@ -447,32 +463,22 @@ class MainWindow(BaseWindow):
     def init_model(self):
         """Initialize model"""
         try:
-            if self.config.get('model.demo_mode', False):
+            # Initialize model based on current config
+            if not self.config.get('model.demo_mode', True):
+                self.model = ModelInference(self.config)
+                logger.info("Model initialized successfully")
+            else:
                 logger.info("Starting in demo mode")
                 self.model = ModelInference(self.config)
-            else:
-                self.model = ModelInference(self.config)
-            logger.info("Model initialized successfully")
         except Exception as e:
             logger.error(f"Model initialization failed: {e}")
             QMessageBox.critical(
                 self,
                 i18n.get('errors.model_init_failed'),
-                str(e)
+                str(e) + "\n\n" + i18n.get('errors.model_init_failed_solution')
             )
-            self.config.set('model.demo_mode', True)
-            self.config.save()
-            try:
-                self.model = ModelInference(self.config)
-                logger.info("Fallback to demo mode successful")
-                QMessageBox.information(
-                    self,
-                    i18n.get('info.demo_mode'),
-                    i18n.get('info.demo_mode_message')
-                )
-            except Exception as retry_error:
-                logger.critical(f"Demo mode fallback failed: {retry_error}")
-                raise
+            # Do NOT automatically switch to demo mode here.
+            # Give user a chance to fix the issue through settings.
 
     def process_images(self):
         """Process selected images"""
@@ -683,7 +689,8 @@ class MainWindow(BaseWindow):
             self.batch_thread.deleteLater()
             
         # Save application state
-        self.config.save()
+        if hasattr(self, 'config_manager'):
+            self.config_manager.save()
         
         super().closeEvent(event)
         
