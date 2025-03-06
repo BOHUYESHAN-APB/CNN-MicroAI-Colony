@@ -1,305 +1,154 @@
-# 使用指南 / Usage Guide
+# Usage Guide
 
-[中文](#使用说明) | [English](#usage-instructions)
+## Getting Started
 
-## 使用说明
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/CNN-.git
+   cd CNN-
+   ```
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/macOS
+   venv\Scripts\activate     # Windows
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### 1. 存储空间检查和优化
-
-#### 1.1 运行分析脚本
-```shell
-# Windows系统:
-python scripts\analyze_repo.py .
-
-# Linux/macOS系统:
-python scripts/analyze_repo.py .
-```
-
-分析脚本会生成以下内容：
-- analysis_report.txt - 分析报告
-- cleanup_script.{bat|sh} - 清理脚本
-- backup/ - 备份目录
-
-#### 1.2 检查分析报告
-```shell
-# Windows系统:
-type analysis_report.txt
-
-# Linux/macOS系统:
-cat analysis_report.txt
-```
-
-报告包含：
-- 文件大小统计
-- 文件分类信息
-- 清理建议
-
-#### 1.3 执行安全清理
-Windows系统:
-```batch
-:: 1. 创建备份
-mkdir backup
-robocopy . backup /MIR /XD backup
-
-:: 2. 检查清理脚本内容
-type cleanup_script.bat
-
-:: 3. 执行清理
-:: 在CMD中运行:
-cleanup_script.bat
-
-:: 或在PowerShell中运行:
-.\cleanup_script.bat
-```
-
-Linux/macOS系统:
+### Running the Application
+Navigate to the `app` directory and run:
 ```bash
-# 1. 创建备份
-mkdir -p backup
-rsync -av --exclude 'backup' . backup/
-
-# 2. 检查清理脚本内容
-cat cleanup_script.sh
-
-# 3. 执行清理
-bash cleanup_script.sh
+python -m app.main
 ```
 
-### 2. 开发环境设置
+## New Version (app/)
 
-#### 2.1 环境准备
-Windows系统:
-```batch
-:: 创建虚拟环境
-python -m venv venv
+This version utilizes PySide6 and the PyOneDark theme for a modern and efficient user interface.
 
-:: 激活环境
-# CMD中运行:
-venv\Scripts\activate.bat
+### Key Features:
+- **Modern UI**: Sleek, dark-themed interface designed for ease of use.
+- **Performance**: Optimized for speed and responsiveness.
+- **Cross-Platform**: Consistent experience across Windows, macOS, and Linux.
+- **Customizable**: Theme and layout options for personalized use.
 
-# PowerShell中运行:
-.\venv\Scripts\Activate.ps1
+## Basic Operations
 
-:: 安装依赖
-pip install -r requirements.txt
-```
+### Importing Images
+- **Drag and Drop**: Drag image files or folders directly onto the main window.
+- **File Menu**: Use the "Open File" or "Open Folder" options.
+- **Clipboard**: Copy and paste images from the clipboard.
 
-Linux/macOS系统:
-```bash
-# 创建虚拟环境
-python -m venv venv
+### Analysis Modes
+- **Single Image Analysis**: Process individual images for detailed results.
+- **Batch Analysis**: Analyze multiple images simultaneously for efficiency.
+- **Real-time Analysis** (Future): Process live camera feed for immediate feedback.
 
-# 激活环境
-source venv/bin/activate
+### Viewing Results
+- **Interactive Charts**: Visualize data with customizable plots.
+- **Data Table**: View detailed results in a sortable table.
+- **Statistics**: Access key metrics and summary information.
+- **Comparison View**: Compare results across multiple images.
 
-# 安装依赖
-pip install -r requirements.txt
-```
+### Exporting Data
+- **CSV**: Export raw data in comma-separated values format.
+- **Excel**: Generate detailed reports with statistics and charts.
+- **JSON**: Export data in a structured, machine-readable format.
+- **Plots**: Save individual charts or combined figures.
 
-#### 2.2 开发工具配置
-- 安装VSCode扩展
-  - Python
-  - Pylint
-  - autopep8
-- 配置git
-  - 设置.gitignore
-  - 配置git lfs（大文件存储）
+## Advanced Features
 
-### 3. 常见问题处理
+### Analysis Settings
+- **Detection Threshold**: Adjust sensitivity for colony detection.
+- **Processing Parameters**: Fine-tune image processing algorithms.
+- **Batch Processing**: Configure settings for batch analysis.
 
-#### 3.1 文件恢复
-```shell
-# 从Git恢复
-git checkout [file_path]
+### Result Management
+- **History**: View and manage previous analysis results.
+- **Database Storage**: Store results in a local database for later retrieval.
+- **Batch Import/Export**: Manage large datasets efficiently.
 
-# 从备份恢复
-# Windows CMD:
-robocopy backup [file_path] [destination]
+### Customization
+- **Layout**: Rearrange and resize interface components.
+- **Shortcuts**: Define custom keyboard shortcuts for common actions.
+- **File Associations**: Set the application as the default for supported image types.
+- **Export Templates**: Customize report formats.
 
-# Windows PowerShell:
-Copy-Item backup\[file_path] [destination]
+## Tips and Tricks
 
-# Linux/macOS:
-rsync -av backup/[file_path] [destination]
-```
+### Performance Optimization
+- **GPU Acceleration**: Enable GPU processing for faster analysis.
+- **Batch Processing**: Utilize batch mode for large datasets.
+- **Memory Management**: Adjust settings to optimize memory usage.
 
-#### 3.2 清理后环境修复
-1. 重新安装依赖：
-```shell
-pip install -r requirements.txt
-```
+### Result Accuracy
+- **Image Quality**: Ensure high-quality images for optimal results.
+- **Parameter Tuning**: Experiment with settings to improve detection accuracy.
+- **Troubleshooting**: Address common issues with image processing.
 
-2. 下载模型文件：
-```shell
-python scripts/download_models.py
-```
+### Data Management
+- **Regular Backups**: Protect your data with regular backups.
+- **Result Organization**: Implement a system for organizing and managing results.
+- **Storage Space**: Monitor and manage disk space usage.
 
-### 4. 其他资源
+## Troubleshooting
 
-#### 4.1 有用的脚本
-- `scripts/analyze_repo.py` - 仓库分析工具
-- `scripts/download_models.py` - 模型下载工具
-- `scripts/cleanup.py` - 其他清理工具
+### Common Issues
+1. **Application Startup Failure**:
+   - Check system requirements.
+   - Verify installation integrity.
+2. **Detection Anomalies**:
+   - Adjust image quality.
+   - Fine-tune analysis parameters.
+3. **Export Errors**:
+   - Ensure sufficient disk space.
+   - Check file permissions.
+4. **Performance Problems**:
+   - Enable GPU acceleration.
+   - Optimize batch processing settings.
 
-#### 4.2 文档
-- `docs/` 中的技术规格
-- `api_docs/` 中的API文档
-- `CONTRIBUTING.md` 中的贡献指南
+### Getting Help
+- **Log Files**: Check application logs for detailed error messages.
+- **Issue Reporting**: Submit bug reports via GitHub Issues.
+- **Contact Support**: Reach out to the development team for assistance.
 
-#### 4.3 支持
-如有问题或疑问：
-- 在GitHub上创建issue
-- 查看现有文档
-- 联系维护者
+## Best Practices
 
----
+### Workflow
+1. **Image Acquisition**: Follow standardized protocols for image capture.
+2. **Pre-Analysis**: Prepare images and configure settings.
+3. **Result Validation**: Verify analysis results for accuracy.
+4. **Data Management**: Organize and back up your data regularly.
 
-## Usage Instructions
+### Efficiency
+- **Keyboard Shortcuts**: Utilize shortcuts for common operations.
+- **Batch Processing**: Process multiple images simultaneously.
+- **Templates**: Use templates for consistent reporting.
+- **Automation**: Automate repetitive tasks with scripts.
 
-### 1. Storage Space Check and Optimization
+### Quality Control
+- **Regular Calibration**: Ensure consistent results with periodic calibration.
+- **Result Verification**: Implement a process for validating analysis results.
+- **Data Backup**: Protect your data with regular backups.
+- **Version Updates**: Stay up-to-date with the latest software releases.
 
-#### 1.1 Run Analysis Script
-```shell
-# On Windows:
-python scripts\analyze_repo.py .
+## Appendix
 
-# On Linux/macOS:
-python scripts/analyze_repo.py .
-```
+### Keyboard Shortcuts
+- **Ctrl+O**: Open File
+- **Ctrl+S**: Save Results
+- **Ctrl+P**: Print Report
+- **F5**: Refresh View
 
-The analysis script generates:
-- analysis_report.txt - Analysis report
-- cleanup_script.{bat|sh} - Cleanup script
-- backup/ - Backup directory
+### File Formats
+- **Supported Image Formats**: JPG, PNG
+- **Export File Formats**: CSV, Excel, JSON, PDF, PNG
+- **Configuration File**: YAML
 
-#### 1.2 Check Analysis Report
-```shell
-# On Windows:
-type analysis_report.txt
-
-# On Linux/macOS:
-cat analysis_report.txt
-```
-
-Report includes:
-- File size statistics
-- File categorization
-- Cleanup recommendations
-
-#### 1.3 Execute Safe Cleanup
-Windows:
-```batch
-:: 1. Create backup
-mkdir backup
-robocopy . backup /MIR /XD backup
-
-:: 2. Check cleanup script content
-type cleanup_script.bat
-
-:: 3. Execute cleanup
-:: In CMD:
-cleanup_script.bat
-
-:: Or in PowerShell:
-.\cleanup_script.bat
-```
-
-Linux/macOS:
-```bash
-# 1. Create backup
-mkdir -p backup
-rsync -av --exclude 'backup' . backup/
-
-# 2. Check cleanup script content
-cat cleanup_script.sh
-
-# 3. Execute cleanup
-bash cleanup_script.sh
-```
-
-### 2. Development Environment Setup
-
-#### 2.1 Environment Preparation
-Windows:
-```batch
-:: Create virtual environment
-python -m venv venv
-
-:: Activate environment
-# In CMD:
-venv\Scripts\activate.bat
-
-# In PowerShell:
-.\venv\Scripts\Activate.ps1
-
-:: Install dependencies
-pip install -r requirements.txt
-```
-
-Linux/macOS:
-```bash
-# Create virtual environment
-python -m venv venv
-
-# Activate environment
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-#### 2.2 Development Tools Configuration
-- Install VSCode extensions
-  - Python
-  - Pylint
-  - autopep8
-- Configure git
-  - Set up .gitignore
-  - Configure git lfs (Large File Storage)
-
-### 3. Common Issues Resolution
-
-#### 3.1 File Recovery
-```shell
-# Recover from Git
-git checkout [file_path]
-
-# Recover from backup
-# Windows CMD:
-robocopy backup [file_path] [destination]
-
-# Windows PowerShell:
-Copy-Item backup\[file_path] [destination]
-
-# Linux/macOS:
-rsync -av backup/[file_path] [destination]
-```
-
-#### 3.2 Post-cleanup Environment Recovery
-1. Reinstall dependencies:
-```shell
-pip install -r requirements.txt
-```
-
-2. Download model files:
-```shell
-python scripts/download_models.py
-```
-
-### 4. Additional Resources
-
-#### 4.1 Useful Scripts
-- `scripts/analyze_repo.py` - Repository analysis tool
-- `scripts/download_models.py` - Model download utility
-- `scripts/cleanup.py` - Additional cleanup utilities
-
-#### 4.2 Documentation
-- Technical specifications in `docs/`
-- API documentation in `api_docs/`
-- Contribution guidelines in `CONTRIBUTING.md`
-
-#### 4.3 Support
-For issues and questions:
-- Create an issue on GitHub
-- Check existing documentation
-- Contact maintainers
+### System Requirements
+- **Operating System**: Windows 10/11 (64-bit), macOS 10.15+, Linux (Ubuntu 20.04+)
+- **Hardware**: 8GB+ RAM, 500MB Disk Space, (Optional) CUDA-compatible GPU
+- **Dependencies**: Python 3.9+, PySide6, PyOneDark, and other libraries listed in `requirements.txt`

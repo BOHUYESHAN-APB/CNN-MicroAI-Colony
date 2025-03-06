@@ -1,0 +1,42 @@
+app:
+  name: "Colony Detection"
+  version: "1.0.0"
+  theme: "dark"
+  language: "en"
+
+ui:
+  style: "PyOneDark"
+  animations: true
+  font:
+    family: "MiSans VF"
+    size: 10
+    weight: "normal"
+
+display:
+  window:
+    width: 1280
+    height: 800
+    maximized: false
+  toolbar:
+    position: "top"
+    style: "icon_text"
+  sidebar:
+    width: 250
+    visible: true
+
+paths:
+  models: "checkpoints"
+  output: "results"
+  temp: "temp"
+  
+analysis:
+  mode: "auto"
+  batch_size: 4
+  confidence_threshold: 0.5
+  nms_threshold: 0.3
+  max_detections: 1000
+  
+export:
+  format: "csv"
+  include_plots: true
+  dpi: 300

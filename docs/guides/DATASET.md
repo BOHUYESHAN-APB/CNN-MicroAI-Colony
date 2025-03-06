@@ -1,61 +1,61 @@
-# Dataset Information
+# Dataset Description
 
 ## Demo Model Dataset
 
-The demo model included in this software was trained using the AGAR dataset:
+The demo model included in this software is trained using the AGAR dataset:
 
-- **Dataset Name**: AGAR (Annotated Germ-colonies for Automated Recognition)
-- **License**: Creative Commons Attribution-NonCommercial 2.0 Generic (CC BY-NC 2.0)
+- **Dataset Name**: AGAR (Annotated Germs for Automated Recognition Dataset)
+- **License**: Creative Commons Attribution-NonCommercial 2.0 Generic License (CC BY-NC 2.0)
 - **Source**: https://agar.neurosys.com/
-- **Usage**: Academic research and demonstration purposes only
+- **Usage**: For academic research and demonstration purposes only
 
 ### Dataset Details
-- High-resolution microscopy images of bacterial colonies
+- High-resolution microscopic images of bacterial colonies
 - Multiple culture conditions and growth stages
-- Detailed annotations for colony counts and positions
+- Detailed annotations of colony counts and locations
 
 ## Production Dataset
 
-The production dataset is developed and maintained by the undergraduate team from College of Agriculture and Biotechnology, Yunnan Agricultural University:
+The production dataset is developed and maintained by the undergraduate team at the College of Agriculture and Biotechnology, Yunnan Agricultural University:
 
-### Data Collection Standards
-- Resolution: Support for both 20MP and 8MP images
+### Data Acquisition Standards
+- Resolution: Supports 20MP and 8MP images
 - Background: Standardized Pantone color calibration board
-- Lighting: Multiple conditions (bright field, dark field, fluorescent)
+- Lighting: Multiple conditions (brightfield, darkfield, fluorescence)
 
 ### Data Categories
 1. **Bacterial Colonies**
-   - Standard cultivation plates
+   - Standard culture plates
    - Different growth stages
    - Multiple bacterial species
 
-2. **Drug Susceptibility Testing**
-   - Inhibition zone measurements
+2. **Antimicrobial Susceptibility Testing**
+   - Inhibition zone measurement
    - Multiple antibiotic types
-   - Time series observations
+   - Time-series observation
 
 3. **Morphological Features**
-   - Colony shapes and patterns
-   - Color variations
+   - Colony shape and patterns
+   - Color changes
    - Growth characteristics
 
-### Future Extensions
+### Future Expansion
 1. **Wild Fungi Identification**
    - Macroscopic morphology
    - Habitat information
    - Safety classification
 
-2. **Clinical Microbial Analysis**
+2. **Clinical Microbiology Analysis**
    - Pathogen identification
    - Antibiotic resistance patterns
    - Growth rate analysis
 
-## Data Collection Guidelines
+## Data Acquisition Guidelines
 
-### Image Capture Requirements
+### Image Acquisition Requirements
 1. **Equipment**
-   - High-resolution camera (20MP) for laboratory use
-   - Portable camera (8MP) for field work
+   - High-resolution camera for laboratory use (20MP)
+   - Portable camera for fieldwork (8MP)
    - Standard color calibration board
 
 2. **Environment**
@@ -70,7 +70,7 @@ The production dataset is developed and maintained by the undergraduate team fro
 
 ### Quality Control
 1. **Image Quality**
-   - Focus and clarity check
+   - Focus and clarity checks
    - Color calibration verification
    - Resolution validation
 
@@ -83,20 +83,20 @@ The production dataset is developed and maintained by the undergraduate team fro
 
 ### Demo Dataset
 - Freely available for academic research
-- Subject to CC BY-NC 2.0 license terms
+- Compliance with CC BY-NC 2.0 license terms
 - Citation required for academic use
 
 ### Production Dataset
 - Patent pending
 - Restricted access
-- Commercial licensing required
+- Commercial license required
 
 ## Future Development
 
 1. **Dataset Expansion**
-   - Additional bacterial species
+   - Increasing bacterial species
    - More growth conditions
-   - Varied environmental factors
+   - Diverse environmental factors
 
 2. **Standardization**
    - Protocol documentation
@@ -107,3 +107,6 @@ The production dataset is developed and maintained by the undergraduate team fro
    - Cloud database development
    - API access implementation
    - Collaborative research support
+
+## New Version Notes
+The new version (app/) uses PySide6 and the PyOneDark theme, providing a more modern user interface and improved performance.
