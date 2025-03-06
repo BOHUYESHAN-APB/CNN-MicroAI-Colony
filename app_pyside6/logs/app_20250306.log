@@ -1,0 +1,4 @@
+2025-03-06 12:29:08,444 - root - INFO - Logging initialized
+2025-03-06 12:29:08,445 - root - INFO - Application directories created
+2025-03-06 12:29:08,445 - root - ERROR - Failed to initialize application: attempted relative import with no known parent package
+2025-03-06 12:29:08,445 - root - ERROR - Application failed to start: Failed to initialize application: attempted relative import with no known parent package
