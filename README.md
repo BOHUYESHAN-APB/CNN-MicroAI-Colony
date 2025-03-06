@@ -1,37 +1,56 @@
 # 菌落检测分析系统
 
+## 版本说明
+目前项目包含两个版本：
+
+### PyQt5版本 (app-pyqt/)
+- 当前活跃开发版本
+- 仅用于研究和学习用途
+- 频繁更新维护
+- 基于PyQt5框架开发
+
+### PySide6版本 (app-pyside6/)
+- 正在开发中
+- 面向商业应用的长期维护版本
+- 基于PySide6框架开发
+- 计划包含更多高级特性和优化
+
 ## 项目说明
 基于深度学习的微生物菌落检测与计数系统，支持多种培养基类型和成像条件，提供精确的菌落计数和分析功能。
 
 ## 目录结构
 ```
 CNN-/
-├── app/                    # 应用程序主目录
-│   ├── config/            # 配置文件
-│   ├── database/          # 数据库管理
-│   ├── font/             # 字体资源
-│   ├── gui/              # 图形界面
-│   ├── models/           # 模型定义
-│   ├── resources/        # 资源文件
-│   │   └── i18n/        # 国际化文件
-│   ├── templates/        # 报告模板
-│   └── utils/           # 工具函数
-├── checkpoints/          # 模型检查点
-├── docs/                 # 文档目录
-├── pic/                  # 示例图片
+├── app-pyqt/              # PyQt5版本（研究用途）
+│   ├── config/           # 配置文件
+│   ├── database/         # 数据库管理
+│   ├── font/            # 字体资源
+│   ├── gui/             # 图形界面
+│   ├── models/          # 模型定义
+│   ├── resources/       # 资源文件
+│   │   └── i18n/       # 国际化文件
+│   ├── templates/       # 报告模板
+│   └── utils/          # 工具函数
+├── app-pyside6/         # PySide6版本（开发中）
+├── release/            # 发布版本目录
+├── checkpoints/        # 模型检查点
+├── docs/              # 文档目录
+├── pic/               # 示例图片
 │   ├── higher-resolution/
 │   └── lower-resolution/
-├── scripts/             # 维护脚本
-└── src/                 # 源代码
-    ├── data/           # 数据处理
-    ├── models/         # 模型实现
-    └── ops/            # 算子实现
+├── scripts/           # 维护脚本
+└── src/              # 源代码
+    ├── data/         # 数据处理
+    ├── models/       # 模型实现
+    └── ops/          # 算子实现
 ```
 
 ## 技术栈
 - **深度学习框架**: PyTorch 1.9+
 - **图像处理**: OpenCV 4.5+
-- **GUI框架**: PyQt5
+- **GUI框架**: 
+  - 研究版本: PyQt5
+  - 商业版本: PySide6 (开发中)
 - **数据处理**: NumPy, Pandas
 - **可视化**: Matplotlib
 - **国际化**: Qt Linguist
@@ -89,19 +108,26 @@ git clone https://github.com/your-username/CNN-.git
 cd CNN-
 ```
 
-2. 创建虚拟环境
+2. 选择版本目录
+```bash
+cd app-pyqt  # 研究版本
+# 或
+cd app-pyside6  # 商业版本（开发中）
+```
+
+3. 创建虚拟环境
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
 ```
 
-3. 安装依赖
+4. 安装依赖
 ```bash
 pip install -r requirements.txt
 ```
 
-4. 下载模型
+5. 下载模型
 ```bash
 python scripts/download_models.py
 ```
@@ -110,7 +136,7 @@ python scripts/download_models.py
 
 ### 启动应用
 ```bash
-python app/main.py
+python main.py  # 在对应版本目录下运行
 ```
 
 ### 基本操作
@@ -125,6 +151,17 @@ python app/main.py
 - 批量处理上限：100张图片
 - 单个文件大小限制：20MB
 
+## 数据来源说明
+
+### 训练数据
+PIC文件夹中的示例图像来源于 [agar.neurosys.com](https://agar.neurosys.com/)，这些数据遵循 CC-BY-NC（Creative Commons Attribution-NonCommercial）协议。根据该协议：
+
+1. 必须给出适当的署名
+2. 仅限非商业用途使用
+3. 基于该数据的衍生作品必须采用相同方式共享
+
+我们感谢 agar.neurosys.com 提供的宝贵数据集用于模型的初始训练和演示。
+
 ## 许可协议
 
 本项目采用双重许可证模式：
@@ -137,20 +174,12 @@ python app/main.py
 3. 必须保留原始版权声明
 4. 不提供任何担保
 
-### 商业许可证（暂定模板/未实施）
-对于商业用途，将需要获取商业许可证。[查看商业许可详情](docs/legal/COMMERCIAL_LICENSE.md)
-
-商业许可将包括：
-- 豁免AGPL-3.0开源要求
-- 允许闭源使用和修改
-- 提供技术支持和定制服务
-- 专利授权
-
-**注意**：商业许可系统目前正在开发中，尚未实施。暂不接受商业用途申请。具体条款和定价策略将根据实际需求进行调整。
-
-联系方式（待更新）：
-- 邮箱：[commercial@example.com](mailto:commercial@example.com)
-- 电话：+86-XXX-XXXX-XXXX
+### 商业许可证
+对于商业用途，请等待PySide6版本发布。商业版本将提供：
+- 更稳定的性能
+- 长期技术支持
+- 定制开发服务
+- 商业友好的许可条款
 
 ## 字体许可声明
 
