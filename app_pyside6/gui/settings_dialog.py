@@ -221,14 +221,26 @@ class SettingsDialog(QDialog):
             
     def browse_output_dir(self):
         """Browse for output directory"""
-        dir_path = QFileDialog.getExistingDirectory(
-            self,
-            i18n.get('dialogs.select_output'),
-            str(Path.home())
-        )
-        if dir_path:
-            self.dir_edit.setText(dir_path)
-            self.config.set('paths.base_dir', dir_path)
+        try:
+            current_dir = self.dir_edit.text()
+            dir_path = QFileDialog.getExistingDirectory(
+                self,
+                i18n.get('dialogs.select_output_dir'),
+                current_dir
+            )
+            
+            if dir_path:
+                self.dir_edit.setText(dir_path)
+                # 修改这里：直接更新字典而不是使用set方法
+                self.config['paths']['base_dir'] = dir_path
+                
+        except Exception as e:
+            logger.error(f"Failed to browse output directory: {e}")
+            QMessageBox.warning(
+                self,
+                i18n.get('errors.error'),
+                i18n.get('errors.browse_dir_failed')
+            )
             
     def retranslate_ui(self):
         """Update interface language"""

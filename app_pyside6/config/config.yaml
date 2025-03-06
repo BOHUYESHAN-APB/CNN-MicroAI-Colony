@@ -29,14 +29,20 @@ logging:
 model:
   batch_size: 1
   checkpoint_dir: checkpoints
+  confidence_threshold: 0.5
   demo_mode: true
   device: cuda
+  preprocess:
+    edge_high: 150
+    edge_low: 50
+    min_area: 50
+    watershed_thresh: 0.7
 paths:
   base_dir: C:\Users\ETPau\Desktop\MicroAI Detect
 project:
   auto_save: true
-  current: C:\Users\ETPau\Desktop\MicroAI Detect\1
-  name: '1'
+  current: C:\Users\ETPau\Desktop\MicroAI Detect\2
+  name: '2'
 ui:
   window:
     height: 800

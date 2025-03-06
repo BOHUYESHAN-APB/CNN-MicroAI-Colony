@@ -69,8 +69,6 @@ class ConfigManager:
                 current = current[k]
             return current
         except (KeyError, TypeError):
-            if default is not None:
-                return default
             # Try to get from default config
             try:
                 current = self.default_config
