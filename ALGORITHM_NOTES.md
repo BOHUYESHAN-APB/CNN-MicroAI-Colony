@@ -1,71 +1,73 @@
 # Algorithm Design Notes
 
-## Detection Method Comparison
+## Comparison of Detection Methods
 
-### 1. Different Architecture Analysis
+### 1. Analysis of Different Architectures
 
 #### YOLOv7
-##### Core Characteristics:
+##### Key Features:
 - Single-stage detector
 - End-to-end training
 - Direct prediction of bounding boxes and class probabilities
-- Real-time detection optimized (100+ FPS on GPU)
+- Optimized for real-time detection (100+ FPS on GPU)
 
 ##### Advantages:
 - High speed for real-time applications
-- Good balance of accuracy and speed (~10% AP improvement over YOLOv5)
+- Good balance between accuracy and speed (approx. 10% AP improvement over YOLOv5)
 - Flexible training and dynamic resolution adjustment
 
 ##### Limitations:
-- Lower precision for microscopic objects
-- High memory consumption (~70MB model size)
+- Lower accuracy for microscopic object detection
+- High memory consumption (model size around 70MB)
 
 #### OpenCV (Traditional Methods)
-##### Core Characteristics:
-- Non-deep learning approach (Haar cascade, HOG+SVM, template matching)
+##### Key Features:
+- Non-deep learning methods (Haar cascades, HOG+SVM, template matching)
 - Lightweight computation
 - CPU-based processing
 
 ##### Advantages:
 - Low resource requirements (no GPU needed)
-- Simple API for rapid prototyping
-- Pre-trained models available
+- Simple API, suitable for rapid prototyping
+- Can directly use pre-trained models
 
 ##### Limitations:
 - Limited accuracy in complex scenarios
-- Single-purpose functionality
+- Single functionality
 - Poor scalability
 
-#### Faster R-CNN with ResNet50
-##### Core Characteristics:
+#### Faster R-CNN based on ResNet50
+##### Key Features:
 - Two-stage detector
 - ResNet50 backbone for feature extraction
 - Region Proposal Network (RPN)
-- Designed for high precision
+- Designed for high accuracy
 
 ##### Advantages:
-- Excellent accuracy, especially for small objects
+- Excellent accuracy, especially for small object detection
 - Strong feature extraction capability
 - Good interpretability
 
 ##### Limitations:
-- Higher computational cost (~200ms/img)
-- Large memory footprint (~200MB)
-- GPU required for efficient processing
+- High computational cost (approx. 200ms per image)
+- Large memory footprint (approx. 200MB)
+- Requires GPU for efficient processing
 
 ## System Integration Strategy
 
 ### 1. Implementation Goals
-- Combine advantages of multiple methods
+- Combine the advantages of multiple methods
 - Balance performance and resource consumption
-- Enable flexible deployment options
+- Achieve flexible deployment options
 
 ### 2. Architecture Design
 ```plaintext
 +-------------------+     +-------------------+     +-------------------+
 |  ResNet50         |     | Faster R-CNN      |     | OpenCV            |
-| (Base Feature     | →   | (Object           | →   | (Post-processing  |
-|  Extraction)      |     |  Detection)       |     |  Optimization)    |
+| (Base Feature     | →   | (Object Detection)| →   | (Post-processing  |
+|  Extraction)      |     | Region Proposal   |     |  Optimization)    |
+| Deep Residual     |     | Network           |     | Traditional Image |
+| Learning          |     |                   |     | Processing        |
 +-------------------+     +-------------------+     +-------------------+
 ```
 
@@ -76,7 +78,7 @@
        # UV spectrum enhancement
        uv_enhanced = enhance_uv_spectrum(image)
        
-       # Multi-spectral fusion
+       # Multispectral fusion
        fused = spectral_fusion(image, uv_enhanced)
        
        # Image normalization
@@ -91,7 +93,7 @@
    - Attention mechanism: CBAM module integration
 
 ### 4. Deployment and Optimization
-1. **Deployment Solutions**
+1. **Deployment Options**
    - ONNX format export
    - TensorRT acceleration
    - OpenVINO support
@@ -101,25 +103,28 @@
    - GPU memory optimization
    - CPU task allocation
 
-## Patent Technology Integration
+## Integration of Patented Technologies
 
 ### 1. Core Technical Components
-#### Multi-spectral Image Fusion
-- Support for UV/IR imaging
-- Enhanced colony edge detection
-- Feature-level multi-modal fusion
+#### Multispectral Image Fusion
+- Supports ultraviolet/infrared imaging
+- Enhances colony edge detection
+- Multimodal fusion at the feature level
 
 #### Dynamic Feature Selection
-- CBAM attention mechanism integration
-- Optimized feature extraction
-- Enhanced complex background discrimination
+- Introduces CBAM attention mechanism
+- Optimizes feature extraction process
+- Enhances discrimination against complex backgrounds
 
-#### Small Sample Optimization
+#### Small Sample Optimization Strategy
 - Transfer learning application
 - Online Hard Example Mining (OHEM)
-- Enhanced model generalization
+- Enhances model generalization ability
 
-## References and Acknowledgments
+## New Version Notes
+The new version (app/) uses PySide6 and the PyOneDark theme, providing a more modern user interface and improved performance.
+
+## References and Acknowledgements
 
 ### Core Algorithm References
 
@@ -145,18 +150,18 @@
 }
 ```
 
-### Acknowledgments
+### Acknowledgements
 
-This project builds upon the groundbreaking work of several researchers and organizations:
+This project builds upon the pioneering work of many researchers and institutions:
 
-- **Microsoft Research Asia (MSRA) team**:
+- **Microsoft Research Asia (MSRA) Team**:
   - Kaiming He
   - Xiangyu Zhang
   - Shaoqing Ren
   - Jian Sun
 
-- **Fast/Faster R-CNN contributors**:
+- **Fast/Faster R-CNN Contributors**:
   - Ross Girshick (Microsoft Research)
   - Original Fast R-CNN team
 
-Special thanks to all open-source contributors who have made their implementations and improvements publicly available, enabling further research and development in computer vision and object detection.
+Special thanks to all open-source contributors whose publicly shared implementations and improvements have provided valuable resources for research and development in the fields of computer vision and object detection.
