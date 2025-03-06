@@ -103,6 +103,27 @@ class SettingsDialog(QDialog):
         batch_layout.addRow("Max Runs", self.max_runs_spin)
         batch_layout.addRow(i18n.get('settings.default_runs'), self.default_runs_spin)
         
+        # Model settings
+        model_group = QGroupBox(i18n.get('settings.model'))
+        model_layout = QFormLayout()
+        
+        # Demo mode toggle
+        self.demo_mode_check = QCheckBox(i18n.get('settings.demo_mode'))
+        model_layout.addRow("", self.demo_mode_check)
+        
+        # Model checkpoint directory
+        self.model_dir_layout = QHBoxLayout()
+        self.model_dir_edit = QLineEdit()
+        self.model_dir_edit.setReadOnly(True)
+        self.model_dir_layout.addWidget(self.model_dir_edit)
+        self.model_dir_btn = QPushButton(i18n.get('buttons.browse'))
+        self.model_dir_btn.clicked.connect(self.browse_model_dir)
+        self.model_dir_layout.addWidget(self.model_dir_btn)
+        model_layout.addRow(i18n.get('settings.model_dir'), self.model_dir_layout)
+        
+        model_group.setLayout(model_layout)
+        layout.addWidget(model_group)
+        
         # Create plots
         self.plots_check = QCheckBox(i18n.get('settings.create_plots'))
         batch_layout.addRow("", self.plots_check)
@@ -151,6 +172,17 @@ class SettingsDialog(QDialog):
             self.dir_edit.setText(str(self.config.get('paths.base_dir', '')))
             self.autosave_check.setChecked(self.config.get('project.auto_save', True))
             
+            # Model settings
+            self.demo_mode_check.setChecked(self.config.get('model.demo_mode', True))
+            self.model_dir_edit.setText(str(self.config.get('model.checkpoint_dir', '')))
+            
+            # Update model directory controls
+            self.model_dir_edit.setEnabled(not self.demo_mode_check.isChecked())
+            self.model_dir_btn.setEnabled(not self.demo_mode_check.isChecked())
+            
+            # Connect demo mode toggle
+            self.demo_mode_check.stateChanged.connect(self._on_demo_mode_changed)
+            
             # Analysis settings
             self.min_runs_spin.setValue(self.config.get('analysis.batch.min_runs', 10))
             self.max_runs_spin.setValue(self.config.get('analysis.batch.max_runs', 10000))
@@ -187,6 +219,11 @@ class SettingsDialog(QDialog):
             self.config.set('analysis.batch.max_runs', self.max_runs_spin.value())
             self.config.set('analysis.batch.default_runs', self.default_runs_spin.value())
             self.config.set('analysis.batch.create_plots', self.plots_check.isChecked())
+            
+            # Model settings
+            self.config.set('model.demo_mode', self.demo_mode_check.isChecked())
+            if not self.demo_mode_check.isChecked():
+                self.config.set('model.checkpoint_dir', self.model_dir_edit.text())
             
             # Export settings
             self.config.set('analysis.auto_export.enabled', self.export_enable.isChecked())
@@ -272,3 +309,23 @@ class SettingsDialog(QDialog):
         except Exception as e:
             logger.error(f"Failed to save settings: {e}")
             super().reject()
+            
+    def browse_model_dir(self):
+        """Browse for model checkpoint directory"""
+        dir_path = QFileDialog.getExistingDirectory(
+            self,
+            i18n.get('dialogs.select_model'),
+            str(Path.home())
+        )
+        if dir_path:
+            self.model_dir_edit.setText(dir_path)
+            self.config.set('model.checkpoint_dir', dir_path)
+            
+    def _on_demo_mode_changed(self, state):
+        """Handle demo mode checkbox state change"""
+        is_demo = bool(state)
+        self.model_dir_edit.setEnabled(not is_demo)
+        self.model_dir_btn.setEnabled(not is_demo)
+        if is_demo:
+            self.model_dir_edit.clear()
+            self.config.set('model.checkpoint_dir', '')

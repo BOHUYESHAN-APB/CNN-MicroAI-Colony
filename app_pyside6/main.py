@@ -97,7 +97,7 @@ def main():
         window.show()
         
         # Start event loop
-        return app.exec_()
+        return app.exec()
         
     except Exception as e:
         error_msg = f"Application failed to start: {str(e)}"
