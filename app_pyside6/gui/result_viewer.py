@@ -11,9 +11,9 @@ from matplotlib.gridspec import GridSpec
 import json
 
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QTableWidget,
-                           QTableWidgetItem, QLabel, QPushButton, QTabWidget,
-                           QWidget, QMessageBox, QHeaderView, QComboBox,
-                           QFileDialog, QSplitter)
+                            QTableWidgetItem, QLabel, QPushButton, QTabWidget,
+                            QWidget, QMessageBox, QHeaderView, QComboBox,
+                            QFileDialog, QSplitter, QSizePolicy)
 from PySide6.QtCore import Qt
 
 from app_pyside6.utils.i18n import i18n
@@ -50,34 +50,37 @@ class ResultViewer(QDialog):
         """Initialize user interface"""
         layout = QVBoxLayout(self)
         
-        # Create main splitter
-        self.splitter = QSplitter(Qt.Horizontal)
-        layout.addWidget(self.splitter)
-        
-        # Left side: tab widget for data and statistics
+        # Center tab widget
         self.tab_widget = QTabWidget()
-        self.splitter.addWidget(self.tab_widget)
+        layout.addWidget(self.tab_widget)
         
         # Add tabs based on mode
         if len(self.results) > 1:
             self.setup_multi_image_view()
         else:
-            self.setup_single_image_view()
+            # For single image view, use splitter to show details and plots
+            details_container = QWidget()
+            details_layout = QHBoxLayout(details_container)
             
-        # Right side: plots
-        if self.batch_mode:
-            try:
-                result = self._get_first_valid_result()
-                figure = self.create_plots(result['dataframe'])
-                canvas = FigureCanvas(figure)
-                canvas.setMinimumWidth(400)
-                self.splitter.addWidget(canvas)
-                self.plot_figure = figure
-            except Exception as e:
-                logger.error(f"Failed to create plots: {e}")
-                error_label = QLabel(str(e))
-                error_label.setStyleSheet("color: red;")
-                self.splitter.addWidget(error_label)
+            # Create splitter for single image view
+            details_splitter = QSplitter(Qt.Horizontal)
+            details_layout.addWidget(details_splitter)
+            
+            # Add data widget to splitter
+            self.setup_single_image_view(details_splitter)
+            
+            # Right side widget will be empty initially
+            right_widget = QWidget()
+            right_layout = QVBoxLayout(right_widget)
+            
+            # Add a button to show/hide plots
+            show_plots_btn = QPushButton(i18n.get('buttons.show_plots'))
+            show_plots_btn.clicked.connect(lambda: self.toggle_detail_plots(details_splitter))
+            right_layout.addWidget(show_plots_btn)
+            
+            details_splitter.addWidget(right_widget)
+            
+            self.tab_widget.addTab(details_container, i18n.get('results.details'))
             
         # Add export buttons
         button_layout = QHBoxLayout()
@@ -111,18 +114,28 @@ class ResultViewer(QDialog):
         summary_tab = QWidget()
         summary_layout = QVBoxLayout(summary_tab)
         
-        # Add summary table
-        self.summary_table = QTableWidget()
-        self.populate_summary_table()
-        summary_layout.addWidget(self.summary_table)
-        
         # Add comparison plots
         try:
-            comparison_figure = self.create_comparison_plots()
-            comparison_canvas = FigureCanvas(comparison_figure)
-            comparison_canvas.setMinimumHeight(400)
-            summary_layout.addWidget(comparison_canvas)
-            self.comparison_figure = comparison_figure
+            # Create an expandable widget container for comparison plots
+            plot_widget = QWidget()
+            plot_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            plot_layout = QVBoxLayout(plot_widget)
+            
+            self.comparison_figure = self.create_comparison_plots()
+            comparison_canvas = FigureCanvas(self.comparison_figure)
+            plot_layout.addWidget(comparison_canvas)
+            summary_layout.addWidget(plot_widget, stretch=3)  # Give plot more space
+            
+            # Add summary table below plots
+            table_widget = QWidget()
+            table_widget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+            table_layout = QVBoxLayout(table_widget)
+            
+            self.summary_table = QTableWidget()
+            self.populate_summary_table()
+            self.summary_table.setMaximumHeight(200)
+            table_layout.addWidget(self.summary_table)
+            summary_layout.addWidget(table_widget, stretch=1)  # Give table less space
         except Exception as e:
             logger.error(f"Failed to create comparison plots: {e}")
             error_label = QLabel(str(e))
@@ -169,13 +182,21 @@ class ResultViewer(QDialog):
         if self.image_selector.count() > 0:
             self.update_details_view()
 
-    def setup_single_image_view(self):
+    def setup_single_image_view(self, splitter: QSplitter):
         """Setup view for single image results"""
         result = list(self.results.values())[0]
         if 'error' in result:
             self.show_error(result['error'])
             return
             
+        # Create container for tables
+        tables_widget = QWidget()
+        tables_layout = QVBoxLayout(tables_widget)
+        
+        # Create tabs for data and statistics
+        tables_tab = QTabWidget()
+        tables_layout.addWidget(tables_tab)
+        
         # Data table tab
         data_tab = QWidget()
         data_layout = QVBoxLayout(data_tab)
@@ -196,7 +217,7 @@ class ResultViewer(QDialog):
         data_layout.addWidget(self.table)
         data_tab.setLayout(data_layout)
         
-        self.tab_widget.addTab(data_tab, i18n.get('results.data_table'))
+        tables_tab.addTab(data_tab, i18n.get('results.data_table'))
         
         # Add statistics tab
         stats_tab = QWidget()
@@ -210,7 +231,10 @@ class ResultViewer(QDialog):
             stats_layout.addWidget(QLabel(i18n.get('errors.no_stats')))
             
         stats_tab.setLayout(stats_layout)
-        self.tab_widget.addTab(stats_tab, i18n.get('results.statistics'))
+        tables_tab.addTab(stats_tab, i18n.get('results.statistics'))
+        
+        # Add tables widget to splitter
+        splitter.addWidget(tables_widget)
 
     def show_error(self, message: str):
         """Show error message in dialog"""
@@ -368,7 +392,7 @@ class ResultViewer(QDialog):
                         continue
                     
                     # Add data
-                    rows.append({
+                    row_data = {
                         'image': Path(path).stem,
                         'mean': float(count_stats['mean']),
                         'std': float(count_stats['std']),
@@ -376,18 +400,9 @@ class ResultViewer(QDialog):
                         'min': float(count_stats['min']),
                         'max': float(count_stats['max']),
                         'median': float(count_stats['median'])
-                    })
+                    }
+                    rows.append(row_data)
                     logger.info(f"Successfully added summary data for {path}")
-                        
-                    rows.append({
-                        'image': Path(path).stem,
-                        'mean': stats['mean'],
-                        'std': stats['std'],
-                        'cv': stats['cv'],
-                        'min': stats['min'],
-                        'max': stats['max'],
-                        'median': stats['median']
-                    })
                 except Exception as e:
                     logger.debug(f"Error processing {path}: {str(e)}")
                     continue
@@ -639,7 +654,7 @@ class ResultViewer(QDialog):
             ax1 = fig.add_subplot(gs[0, 0])
             x = range(len(df))
             width = 0.35
-            ax1.bar([i - width/2 for i in x], df['mean'], width, 
+            ax1.bar([i - width/2 for i in x], df['mean'], width,
                     label=i18n.get('results.mean'), color='skyblue')
             ax1.bar([i + width/2 for i in x], df['median'], width,
                     label=i18n.get('results.median'), color='lightcoral')
@@ -655,7 +670,7 @@ class ResultViewer(QDialog):
             ax2.plot(x, df['std'], 'o-', label=i18n.get('results.std'))
             ax2_cv = ax2.twinx()
             ax2_cv.plot(x, df['cv'], 'o-', color='red',
-                       label=i18n.get('results.cv'))
+                        label=i18n.get('results.cv'))
             
             ax2.set_xticks(x)
             ax2.set_xticklabels(df['image'], rotation=45, ha='right')
@@ -677,39 +692,92 @@ class ResultViewer(QDialog):
             logger.error(f"Failed to create comparison plots: {e}")
             raise
 
-    def save_plots(self):
-        """Save plots to image file"""
-        if not self.plot_figure and not self.comparison_figure:
-            QMessageBox.warning(
-                self,
-                i18n.get('errors.no_plots'),
-                i18n.get('errors.no_plots_message')
-            )
+    def toggle_detail_plots(self, splitter: QSplitter):
+        """Toggle the visibility of detail plots"""
+        # Get the right widget (second widget in splitter)
+        right_widget = splitter.widget(1)
+        if not right_widget:
             return
             
         try:
-            file_path, _ = QFileDialog.getSaveFileName(
-                self,
-                i18n.get('dialogs.save_plots'),
-                "",
-                "PNG Files (*.png);;PDF Files (*.pdf)"
-            )
+            # If plots are not shown, create and show them
+            if not self.plot_figure:
+                result = self._get_first_valid_result()
+                self.plot_figure = self.create_plots(result['dataframe'])
+                canvas = FigureCanvas(self.plot_figure)
+                canvas.setMinimumWidth(400)
+                
+                # Create new widget for plots
+                plots_widget = QWidget()
+                plots_layout = QVBoxLayout(plots_widget)
+                plots_layout.addWidget(canvas)
+                
+                # Replace the right widget with plots
+                old_widget = splitter.widget(1)
+                splitter.replaceWidget(1, plots_widget)
+                old_widget.deleteLater()
+                
+            # If plots are shown, remove them
+            else:
+                # Create new widget with show button
+                new_widget = QWidget()
+                layout = QVBoxLayout(new_widget)
+                show_plots_btn = QPushButton(i18n.get('buttons.show_plots'))
+                show_plots_btn.clicked.connect(lambda: self.toggle_detail_plots(splitter))
+                layout.addWidget(show_plots_btn)
+                
+                # Clean up matplotlib objects before replacing widget
+                plt.close(self.plot_figure)
+                self.plot_figure = None
+                
+                # Replace plots with button widget
+                old_widget = splitter.widget(1)
+                splitter.replaceWidget(1, new_widget)
+                old_widget.deleteLater()
+                
+        except Exception as e:
+            logger.error(f"Failed to toggle plots: {e}")
+            self.show_error(str(e))
+
+    def save_plots(self):
+        """Save plots to image file"""
+        # Get current tab
+        current_tab = self.tab_widget.tabText(self.tab_widget.currentIndex())
+        
+        # Check if we have plots to save
+        if current_tab == i18n.get('results.summary'):
+            if not self.comparison_figure:
+                QMessageBox.warning(
+                    self,
+                    i18n.get('errors.no_plots'),
+                    i18n.get('errors.no_comparison_plots')
+                )
+                return
+        else:  # Details tab
+            if not self.plot_figure:
+                QMessageBox.warning(
+                    self,
+                    i18n.get('errors.no_plots'),
+                    i18n.get('errors.no_detail_plots')
+                )
+                return
             
-            if file_path:
-                figures_to_save = []
-                if self.plot_figure:
-                    figures_to_save.append(self.plot_figure)
-                if self.comparison_figure:
-                    figures_to_save.append(self.comparison_figure)
-                    
-                base_path = Path(file_path)
-                if len(figures_to_save) == 1:
-                    figures_to_save[0].savefig(file_path, dpi=300, bbox_inches='tight')
+        file_path, _ = QFileDialog.getSaveFileName(
+            self,
+            i18n.get('dialogs.save_plots'),
+            "",
+            "PNG Files (*.png);;PDF Files (*.pdf)"
+        )
+        
+        if file_path:
+            try:
+                # Save based on current tab
+                if current_tab == i18n.get('results.summary'):
+                    # Save comparison plots from summary view
+                    self.comparison_figure.savefig(file_path, dpi=300, bbox_inches='tight')
                 else:
-                    # Save multiple figures with suffixes
-                    for i, fig in enumerate(figures_to_save, 1):
-                        save_path = base_path.parent / f"{base_path.stem}_{i}{base_path.suffix}"
-                        fig.savefig(save_path, dpi=300, bbox_inches='tight')
+                    # Save detail plots from details view
+                    self.plot_figure.savefig(file_path, dpi=300, bbox_inches='tight')
                 
                 QMessageBox.information(
                     self,
@@ -717,13 +785,26 @@ class ResultViewer(QDialog):
                     i18n.get('dialogs.plots_saved')
                 )
                 
+            except Exception as e:
+                logger.error(f"Failed to save plots: {e}")
+                QMessageBox.critical(
+                    self,
+                    i18n.get('errors.save_failed'),
+                    str(e)
+                )
+
+    def closeEvent(self, event):
+        """Handle window close event"""
+        try:
+            # Clean up matplotlib figures
+            if self.plot_figure:
+                plt.close(self.plot_figure)
+            if self.comparison_figure:
+                plt.close(self.comparison_figure)
+            plt.close('all')
         except Exception as e:
-            logger.error(f"Failed to save plots: {e}")
-            QMessageBox.critical(
-                self,
-                i18n.get('errors.save_failed'),
-                str(e)
-            )
+            logger.error(f"Error during cleanup: {e}")
+        super().closeEvent(event)
 
     def export_results(self):
         """Export results to file"""

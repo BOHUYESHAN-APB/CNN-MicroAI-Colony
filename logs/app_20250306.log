@@ -855,3 +855,401 @@
 2025-03-06 13:10:24,045 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
 2025-03-06 13:10:24,045 - app_pyside6.gui.result_viewer - INFO - Statistics keys: ['confidence_stats', 'count_stats']
 2025-03-06 13:10:34,930 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 13:37:05,366 - root - INFO - Logging initialized
+2025-03-06 13:37:05,381 - root - INFO - Application directories created
+2025-03-06 13:37:05,444 - app_pyside6.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 13:37:05,452 - app_pyside6.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\config.yaml
+2025-03-06 13:37:05,453 - root - INFO - Configuration initialized
+2025-03-06 13:37:07,370 - app_pyside6.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 13:37:07,461 - app_pyside6.gui.main_window - INFO - Starting in demo mode
+2025-03-06 13:37:07,461 - app_pyside6.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 13:37:07,462 - app_pyside6.gui.main_window - INFO - Model initialized successfully
+2025-03-06 13:37:07,663 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 13:37:07,666 - app_pyside6.gui.image_list_widget - INFO - Image loaded: 2021041310020608608.jpg
+2025-03-06 13:37:07,666 - app_pyside6.gui.image_list_widget - INFO - Image loaded: 2121.jpg
+2025-03-06 13:37:07,667 - app_pyside6.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 13:37:07,667 - app_pyside6.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 13:37:07,667 - app_pyside6.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 13:39:05,497 - app_pyside6.gui.image_list_widget - INFO - Processing complete: 2021041310020608608.jpg
+2025-03-06 13:39:05,497 - app_pyside6.gui.image_list_widget - INFO - Processing complete: 2121.jpg
+2025-03-06 13:39:05,497 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 13:39:05,497 - app_pyside6.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 13:39:05,497 - app_pyside6.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 13:39:06,471 - app_pyside6.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 13:39:06,471 - app_pyside6.gui.result_viewer - INFO - Processing 5 results
+2025-03-06 13:39:06,471 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:06,471 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,471 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:06,471 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2121.jpg
+2025-03-06 13:39:06,472 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,472 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2121.jpg
+2025-03-06 13:39:06,472 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\OIP-C.jpg
+2025-03-06 13:39:06,472 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,472 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\OIP-C.jpg
+2025-03-06 13:39:06,472 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\R-C.jpg
+2025-03-06 13:39:06,472 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,473 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\R-C.jpg
+2025-03-06 13:39:06,473 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\t019872959c62f44875.jpg
+2025-03-06 13:39:06,473 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,473 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\t019872959c62f44875.jpg
+2025-03-06 13:39:06,601 - app_pyside6.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 13:39:06,601 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,601 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:06,601 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,601 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2121.jpg
+2025-03-06 13:39:06,601 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,602 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\OIP-C.jpg
+2025-03-06 13:39:06,602 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,602 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\R-C.jpg
+2025-03-06 13:39:06,602 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 13:39:06,602 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\t019872959c62f44875.jpg
+2025-03-06 13:39:06,860 - app_pyside6.gui.result_viewer - INFO - Looking for valid result in 5 results
+2025-03-06 13:39:06,860 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:06,860 - app_pyside6.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 13:39:06,860 - app_pyside6.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:06,860 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['count', 'confidence', 'boxes', 'scores', 'statistics']
+2025-03-06 13:39:38,327 - app_pyside6.utils.batch_analyzer - INFO - Processing image: 2021041310020608608
+2025-03-06 13:39:39,463 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_133938\plots
+2025-03-06 13:39:39,910 - app_pyside6.utils.batch_analyzer - INFO - Processing image: 2121
+2025-03-06 13:39:41,000 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_133938\plots
+2025-03-06 13:39:41,025 - app_pyside6.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 13:39:42,126 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_133938\plots
+2025-03-06 13:39:42,156 - app_pyside6.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 13:39:43,335 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_133938\plots
+2025-03-06 13:39:43,361 - app_pyside6.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 13:39:44,490 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_133938\plots
+2025-03-06 13:39:44,598 - app_pyside6.gui.image_list_widget - INFO - Processing complete: 2021041310020608608.jpg
+2025-03-06 13:39:44,599 - app_pyside6.gui.image_list_widget - INFO - Processing complete: 2121.jpg
+2025-03-06 13:39:44,599 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 13:39:44,599 - app_pyside6.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 13:39:44,599 - app_pyside6.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Processing 5 results
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2121.jpg
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2121.jpg
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\OIP-C.jpg
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\OIP-C.jpg
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\R-C.jpg
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\R-C.jpg
+2025-03-06 13:39:48,401 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\t019872959c62f44875.jpg
+2025-03-06 13:39:48,402 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,402 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\t019872959c62f44875.jpg
+2025-03-06 13:39:48,488 - app_pyside6.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2121.jpg
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\OIP-C.jpg
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\R-C.jpg
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:39:48,489 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\t019872959c62f44875.jpg
+2025-03-06 13:39:48,731 - app_pyside6.gui.result_viewer - INFO - Looking for valid result in 5 results
+2025-03-06 13:39:48,731 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:48,731 - app_pyside6.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir', 'statistics']
+2025-03-06 13:39:48,731 - app_pyside6.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:39:48,731 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 13:39:48,731 - app_pyside6.gui.result_viewer - INFO - Statistics keys: ['confidence_stats', 'count_stats']
+2025-03-06 13:40:11,528 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 13:41:25,523 - root - INFO - Logging initialized
+2025-03-06 13:41:25,526 - root - INFO - Application directories created
+2025-03-06 13:41:25,595 - app_pyside6.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 13:41:25,604 - app_pyside6.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\config.yaml
+2025-03-06 13:41:25,605 - root - INFO - Configuration initialized
+2025-03-06 13:41:28,189 - app_pyside6.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 13:41:28,286 - app_pyside6.gui.main_window - INFO - Starting in demo mode
+2025-03-06 13:41:28,288 - app_pyside6.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 13:41:28,288 - app_pyside6.gui.main_window - INFO - Model initialized successfully
+2025-03-06 13:41:28,549 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 13:41:28,551 - app_pyside6.gui.image_list_widget - INFO - Image loaded: 2021041310020608608.jpg
+2025-03-06 13:41:28,553 - app_pyside6.gui.image_list_widget - INFO - Image loaded: 2121.jpg
+2025-03-06 13:41:28,553 - app_pyside6.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 13:41:28,553 - app_pyside6.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 13:41:28,554 - app_pyside6.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 13:41:57,384 - app_pyside6.utils.batch_analyzer - INFO - Processing image: 2021041310020608608
+2025-03-06 13:41:58,885 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_134157\plots
+2025-03-06 13:41:59,453 - app_pyside6.utils.batch_analyzer - INFO - Processing image: 2121
+2025-03-06 13:42:00,539 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_134157\plots
+2025-03-06 13:42:00,578 - app_pyside6.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 13:42:01,777 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_134157\plots
+2025-03-06 13:42:01,814 - app_pyside6.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 13:42:02,890 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_134157\plots
+2025-03-06 13:42:02,928 - app_pyside6.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 13:42:04,008 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\3\results\batch\20250306_134157\plots
+2025-03-06 13:42:04,132 - app_pyside6.gui.image_list_widget - INFO - Processing complete: 2021041310020608608.jpg
+2025-03-06 13:42:04,132 - app_pyside6.gui.image_list_widget - INFO - Processing complete: 2121.jpg
+2025-03-06 13:42:04,133 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 13:42:04,133 - app_pyside6.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 13:42:04,133 - app_pyside6.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Processing 5 results
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2121.jpg
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2121.jpg
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\OIP-C.jpg
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\OIP-C.jpg
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\R-C.jpg
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,265 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\R-C.jpg
+2025-03-06 13:42:06,266 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\t019872959c62f44875.jpg
+2025-03-06 13:42:06,266 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,266 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\t019872959c62f44875.jpg
+2025-03-06 13:42:06,366 - app_pyside6.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 13:42:06,366 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,366 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:42:06,368 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,368 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2121.jpg
+2025-03-06 13:42:06,368 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,368 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\OIP-C.jpg
+2025-03-06 13:42:06,368 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,368 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\R-C.jpg
+2025-03-06 13:42:06,368 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 13:42:06,368 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\t019872959c62f44875.jpg
+2025-03-06 13:42:06,701 - app_pyside6.gui.result_viewer - INFO - Looking for valid result in 5 results
+2025-03-06 13:42:06,702 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:42:06,702 - app_pyside6.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir', 'statistics']
+2025-03-06 13:42:06,702 - app_pyside6.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\3\PIC\2021041310020608608.jpg
+2025-03-06 13:42:06,702 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 13:42:06,702 - app_pyside6.gui.result_viewer - INFO - Statistics keys: ['confidence_stats', 'count_stats']
+2025-03-06 13:43:04,920 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 13:43:04,922 - app_pyside6.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 13:43:10,834 - app_pyside6.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 13:43:11,993 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\1\results\batch\20250306_134310\plots
+2025-03-06 13:43:12,021 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 13:43:14,902 - app_pyside6.gui.result_viewer - INFO - Looking for valid result in 1 results
+2025-03-06 13:43:14,902 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 13:43:14,902 - app_pyside6.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir', 'statistics']
+2025-03-06 13:43:14,902 - app_pyside6.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 13:43:14,902 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 13:43:14,902 - app_pyside6.gui.result_viewer - INFO - Statistics keys: ['confidence_stats', 'count_stats']
+2025-03-06 13:43:14,910 - app_pyside6.gui.result_viewer - INFO - Looking for valid result in 1 results
+2025-03-06 13:43:14,911 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 13:43:14,911 - app_pyside6.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir', 'statistics']
+2025-03-06 13:43:14,911 - app_pyside6.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 13:43:14,911 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 13:43:14,911 - app_pyside6.gui.result_viewer - INFO - Statistics keys: ['confidence_stats', 'count_stats']
+2025-03-06 13:43:14,912 - app_pyside6.gui.result_viewer - INFO - Looking for valid result in 1 results
+2025-03-06 13:43:14,914 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 13:43:14,914 - app_pyside6.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir', 'statistics']
+2025-03-06 13:43:14,914 - app_pyside6.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 13:43:14,914 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 13:43:14,914 - app_pyside6.gui.result_viewer - INFO - Statistics keys: ['confidence_stats', 'count_stats']
+2025-03-06 13:43:14,916 - app_pyside6.gui.result_viewer - INFO - Looking for valid result in 1 results
+2025-03-06 13:43:14,916 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 13:43:14,916 - app_pyside6.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir', 'statistics']
+2025-03-06 13:43:14,916 - app_pyside6.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 13:43:14,916 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['run_number', 'count', 'confidence']
+2025-03-06 13:43:14,916 - app_pyside6.gui.result_viewer - INFO - Statistics keys: ['confidence_stats', 'count_stats']
+2025-03-06 13:54:53,919 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:18:45,764 - root - INFO - Logging initialized
+2025-03-06 14:18:45,766 - root - INFO - Application directories created
+2025-03-06 14:18:45,853 - app_pyside6.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:18:45,861 - app_pyside6.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\config.yaml
+2025-03-06 14:18:45,863 - root - INFO - Configuration initialized
+2025-03-06 14:18:48,811 - app_pyside6.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 14:18:48,976 - app_pyside6.gui.main_window - INFO - Starting in demo mode
+2025-03-06 14:18:48,976 - app_pyside6.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 14:18:48,976 - app_pyside6.gui.main_window - INFO - Model initialized successfully
+2025-03-06 14:18:49,239 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:18:49,242 - app_pyside6.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 14:18:56,651 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 14:18:58,753 - app_pyside6.gui.result_viewer - INFO - Looking for valid result in 1 results
+2025-03-06 14:18:58,753 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 14:18:58,753 - app_pyside6.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 14:18:58,754 - app_pyside6.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 14:18:58,754 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['count', 'confidence', 'boxes', 'scores', 'statistics']
+2025-03-06 14:19:02,783 - app_pyside6.gui.result_viewer - INFO - Looking for valid result in 1 results
+2025-03-06 14:19:02,784 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 14:19:02,784 - app_pyside6.gui.result_viewer - INFO - Result keys: ['dataframe', 'output_dir']
+2025-03-06 14:19:02,784 - app_pyside6.gui.result_viewer - INFO - Found valid result for C:\Users\ETPau\Desktop\MicroAI Detect\1\PIC\OIP-C.jpg
+2025-03-06 14:19:02,784 - app_pyside6.gui.result_viewer - INFO - DataFrame columns: ['count', 'confidence', 'boxes', 'scores', 'statistics']
+2025-03-06 14:19:11,527 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:19:11,529 - app_pyside6.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 14:19:11,531 - app_pyside6.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 14:19:11,531 - app_pyside6.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 14:19:13,258 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 14:19:13,258 - app_pyside6.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 14:19:13,259 - app_pyside6.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 14:19:14,202 - app_pyside6.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 14:19:14,202 - app_pyside6.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 14:19:14,202 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:19:14,202 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:19:14,202 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:19:14,204 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:19:14,204 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:19:14,204 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:19:14,204 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:19:14,204 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:19:14,205 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:19:14,323 - app_pyside6.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 14:19:14,323 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:19:14,324 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:19:14,324 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:19:14,324 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:19:14,324 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:19:14,325 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:19:20,671 - app_pyside6.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 14:19:21,948 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_141920\plots
+2025-03-06 14:19:22,626 - app_pyside6.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 14:19:23,779 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_141920\plots
+2025-03-06 14:19:23,818 - app_pyside6.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 14:19:25,048 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_141920\plots
+2025-03-06 14:19:25,229 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 14:19:25,231 - app_pyside6.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 14:19:25,232 - app_pyside6.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 14:19:27,771 - app_pyside6.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 14:19:27,771 - app_pyside6.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 14:19:27,772 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:19:27,772 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:19:27,772 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:19:27,772 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:19:27,772 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:19:27,772 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:19:27,773 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:19:27,773 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:19:27,773 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:19:27,946 - app_pyside6.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 14:19:27,947 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:19:27,947 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:19:27,947 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:19:27,947 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:19:27,949 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:19:27,949 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:19:35,886 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:36:31,344 - root - INFO - Logging initialized
+2025-03-06 14:36:31,348 - root - INFO - Application directories created
+2025-03-06 14:36:31,434 - app_pyside6.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:36:31,445 - app_pyside6.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\config.yaml
+2025-03-06 14:36:31,446 - root - INFO - Configuration initialized
+2025-03-06 14:36:34,150 - app_pyside6.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 14:36:34,327 - app_pyside6.gui.main_window - INFO - Starting in demo mode
+2025-03-06 14:36:34,327 - app_pyside6.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 14:36:34,327 - app_pyside6.gui.main_window - INFO - Model initialized successfully
+2025-03-06 14:36:34,642 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:36:34,649 - app_pyside6.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 14:36:34,650 - app_pyside6.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 14:36:34,650 - app_pyside6.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 14:36:37,650 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 14:36:37,650 - app_pyside6.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 14:36:37,651 - app_pyside6.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 14:36:38,527 - app_pyside6.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 14:36:38,529 - app_pyside6.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 14:36:38,529 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:36:38,529 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:36:38,529 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:36:38,529 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:36:38,530 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:36:38,530 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:36:38,530 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:36:38,530 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:36:38,530 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:36:38,749 - app_pyside6.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 14:36:38,749 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:36:38,751 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:36:38,751 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:36:38,752 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:36:38,752 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:36:38,753 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:36:39,148 - app_pyside6.gui.main_window - ERROR - Failed to show results: 'ResultViewer' object has no attribute 'export_results'
+2025-03-06 14:36:45,244 - app_pyside6.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 14:36:46,697 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_143645\plots
+2025-03-06 14:36:47,626 - app_pyside6.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 14:36:49,048 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_143645\plots
+2025-03-06 14:36:49,092 - app_pyside6.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 14:36:50,473 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_143645\plots
+2025-03-06 14:36:50,594 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 14:36:50,594 - app_pyside6.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 14:36:50,595 - app_pyside6.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 14:36:53,063 - app_pyside6.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 14:36:53,064 - app_pyside6.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 14:36:53,064 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:36:53,064 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:36:53,064 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:36:53,064 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:36:53,066 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:36:53,066 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:36:53,066 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:36:53,066 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:36:53,067 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:36:53,239 - app_pyside6.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 14:36:53,240 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:36:53,240 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:36:53,240 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:36:53,240 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:36:53,240 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:36:53,241 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:36:53,588 - app_pyside6.gui.main_window - ERROR - Failed to show results: 'ResultViewer' object has no attribute 'export_results'
+2025-03-06 14:36:58,839 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:49:44,718 - root - INFO - Logging initialized
+2025-03-06 14:49:44,720 - root - INFO - Application directories created
+2025-03-06 14:49:44,807 - app_pyside6.config - INFO - Using defaults configuration from: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:49:44,817 - app_pyside6.config - INFO - Copied default config to: C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\config.yaml
+2025-03-06 14:49:44,818 - root - INFO - Configuration initialized
+2025-03-06 14:49:48,523 - app_pyside6.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-06 14:49:48,720 - app_pyside6.gui.main_window - INFO - Starting in demo mode
+2025-03-06 14:49:48,722 - app_pyside6.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-06 14:49:48,722 - app_pyside6.gui.main_window - INFO - Model initialized successfully
+2025-03-06 14:49:48,983 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-06 14:49:48,987 - app_pyside6.gui.image_list_widget - INFO - Image loaded: OIP-C.jpg
+2025-03-06 14:49:48,988 - app_pyside6.gui.image_list_widget - INFO - Image loaded: R-C.jpg
+2025-03-06 14:49:48,989 - app_pyside6.gui.image_list_widget - INFO - Image loaded: t019872959c62f44875.jpg
+2025-03-06 14:49:55,669 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 14:49:55,669 - app_pyside6.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 14:49:55,670 - app_pyside6.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 14:49:56,732 - app_pyside6.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 14:49:56,732 - app_pyside6.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 14:49:56,732 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:49:56,735 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:49:56,735 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:49:56,735 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:49:56,737 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:49:56,737 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:49:56,737 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:49:56,738 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:49:56,738 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:49:56,958 - app_pyside6.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 14:49:56,959 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:49:56,960 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:49:56,961 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:49:56,962 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:49:56,962 - app_pyside6.gui.result_viewer - INFO - Found statistics in DataFrame
+2025-03-06 14:49:56,964 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:50:05,093 - app_pyside6.utils.batch_analyzer - INFO - Processing image: OIP-C
+2025-03-06 14:50:06,390 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_145005\plots
+2025-03-06 14:50:07,183 - app_pyside6.utils.batch_analyzer - INFO - Processing image: R-C
+2025-03-06 14:50:08,395 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_145005\plots
+2025-03-06 14:50:08,424 - app_pyside6.utils.batch_analyzer - INFO - Processing image: t019872959c62f44875
+2025-03-06 14:50:09,642 - app_pyside6.utils.batch_analyzer - INFO - Plots created in C:\Users\ETPau\Desktop\MicroAI Detect\2\results\batch\20250306_145005\plots
+2025-03-06 14:50:09,733 - app_pyside6.gui.image_list_widget - INFO - Processing complete: OIP-C.jpg
+2025-03-06 14:50:09,734 - app_pyside6.gui.image_list_widget - INFO - Processing complete: R-C.jpg
+2025-03-06 14:50:09,734 - app_pyside6.gui.image_list_widget - INFO - Processing complete: t019872959c62f44875.jpg
+2025-03-06 14:50:12,961 - app_pyside6.gui.result_viewer - INFO - Creating comparison plots...
+2025-03-06 14:50:12,961 - app_pyside6.gui.result_viewer - INFO - Processing 3 results
+2025-03-06 14:50:12,961 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:50:12,961 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:50:12,962 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:50:12,962 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:50:12,962 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:50:12,962 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:50:12,962 - app_pyside6.gui.result_viewer - INFO - Checking result for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:50:12,963 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:50:12,963 - app_pyside6.gui.result_viewer - INFO - Successfully added data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:50:13,080 - app_pyside6.gui.result_viewer - INFO - Populating summary table...
+2025-03-06 14:50:13,080 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:50:13,080 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\OIP-C.jpg
+2025-03-06 14:50:13,080 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:50:13,082 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\R-C.jpg
+2025-03-06 14:50:13,082 - app_pyside6.gui.result_viewer - INFO - Found statistics in result
+2025-03-06 14:50:13,082 - app_pyside6.gui.result_viewer - INFO - Successfully added summary data for C:\Users\ETPau\Desktop\MicroAI Detect\2\PIC\t019872959c62f44875.jpg
+2025-03-06 14:50:26,864 - app_pyside6.config.config_manager - INFO - Configuration saved to C:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
