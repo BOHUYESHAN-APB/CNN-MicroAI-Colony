@@ -42,7 +42,7 @@ class ResultVisualizer(QWidget):
         layout = QVBoxLayout()
         
         # Actions group
-        action_group = QGroupBox(self.tr("Result Actions"))
+        self.action_group = QGroupBox(self.tr("Result Actions"))
         action_layout = QHBoxLayout()
         
         self.btn_export_all = QPushButton(self.tr("Export All"))
@@ -58,8 +58,8 @@ class ResultVisualizer(QWidget):
         action_layout.addWidget(self.btn_clear)
         
         action_layout.addStretch()
-        action_group.setLayout(action_layout)
-        layout.addWidget(action_group)
+        self.action_group.setLayout(action_layout)
+        layout.addWidget(self.action_group)
 
         # Progress bar for export operations
         self.progress_layout = QHBoxLayout()
@@ -293,3 +293,26 @@ class ResultVisualizer(QWidget):
         self.mdi_area.closeAllSubWindows()
         self.btn_export_all.setEnabled(False)
         self.btn_clear.setEnabled(False)
+
+    def retranslateUi(self):
+        """Retranslate UI elements."""
+        self.action_group.setTitle(self.tr("Result Actions"))
+        self.btn_export_all.setText(self.tr("Export All"))
+        self.btn_export_all.setToolTip(self.tr("Export all analysis results"))
+        self.btn_clear.setText(self.tr("Clear Results"))
+        self.btn_clear.setToolTip(self.tr("Clear all analysis results"))
+        self.progress_label.setText(self.tr("Export Progress:"))
+        # Update existing subwindow titles
+        for window in self.mdi_area.subWindowList():
+            if window.windowTitle() == "Single Image Analysis":
+                window.setWindowTitle(self.tr("Single Image Analysis"))
+            elif window.windowTitle() == "Batch Analysis Results":
+                window.setWindowTitle(self.tr("Batch Analysis Results"))
+            # Find and retranslate widgets within each subwindow
+            for widget in window.widget().findChildren(QWidget):
+                if hasattr(widget, 'setText') and widget.text():
+                    widget.setText(self.tr(widget.text()))
+                if hasattr(widget, 'setTitle') and widget.title():
+                    widget.setTitle(self.tr(widget.title()))
+                if hasattr(widget, 'setToolTip') and widget.toolTip():
+                    widget.setToolTip(self.tr(widget.toolTip()))

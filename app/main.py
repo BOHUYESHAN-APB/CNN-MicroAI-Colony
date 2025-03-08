@@ -7,10 +7,12 @@ from datetime import datetime
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from PySide6.QtWidgets import QApplication, QStyleFactory, QMessageBox
-from PySide6.QtCore import Qt, QCoreApplication
+from PySide6.QtWidgets import QApplication, QMessageBox
+from PySide6.QtCore import Qt, QCoreApplication, QTranslator
 from PySide6.QtGui import QFont, QGuiApplication
 from app.gui.main_window import MainWindow
+from app.gui.settings_dialog import SettingsDialog
+from app.gui.about_dialog import AboutDialog
 
 from app.utils.config import init_config, ConfigManager
 from app.utils.path_manager import create_app_dirs
@@ -56,10 +58,10 @@ def main():
                            Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
         
         # Set application properties
-        app.setApplicationName("Colony Detection")
+        app.setApplicationName("MicroAI-Colony")
         app.setApplicationVersion("1.0.0")
-        app.setOrganizationName("Colony Detection Team")
-        app.setOrganizationDomain("example.com")
+        app.setOrganizationName("MicroAI Team")
+        app.setOrganizationDomain("github.com/BOHUYESHAN-APB")
         
         logger.info(f"Application started: {app.applicationName()} {app.applicationVersion()}")
         logger.info(f"Platform: {sys.platform}, Python: {sys.version}")
@@ -106,17 +108,22 @@ def main():
             logger.info("Configuration initialized")
 
             # Initialize translations
-            init_translations()
-            i18n = I18NManager()
-            logger.info(f"Translations initialized. Current locale: {i18n.get_current_locale()}")
+            i18n = init_translations()
+            locale_code = i18n.get_current_locale()
+            
+            translator = QTranslator()
+            if translator.load(str(Path(__file__).parent / "resources" / "i18n" / f"{locale_code}.qm")):
+                app.installTranslator(translator)
+                logger.info(f"Installed Qt translation for {locale_code}")
+            else:
+                logger.error(f"Failed to load translation for {locale_code}")
+            logger.info(f"Translations initialized. Current locale: {locale_code}")
+
         except Exception as e:
             error_msg = f"Failed to initialize application components: {str(e)}"
             logger.error(error_msg)
             show_error_dialog("Initialization Error", error_msg)
             return 1
-
-        # Apply modern style fusion as base
-        app.setStyle("Fusion")
 
         # Apply theme
         theme_file = Path(__file__).parent / 'resources' / 'themes' / 'py_onedark.qss'
@@ -143,14 +150,39 @@ def main():
                     window_config.get("width", 1200),
                     window_config.get("height", 800)
                 )
+            
+            # Connect settings dialog's language change signal
+            def on_language_changed(locale):
+                logger.info(f"Language change requested: {locale}")
                 
+                # Re-initialize translator with new locale
+                new_translator = QTranslator()
+                qm_path = str(Path(__file__).parent / "resources" / "i18n" / f"{locale}.qm")
+                logger.info(f"Attempting to load QM file from: {qm_path}")
+                if new_translator.load(qm_path):
+                    QCoreApplication.installTranslator(new_translator)
+                    logger.info(f"Installed Qt translation for {locale}")
+                    
+                    # Retranslate UI in all windows/dialogs
+                    window.retranslateUi()
+                    if hasattr(window, 'settings_dialog'):
+                        window.settings_dialog.retranslateUi()
+                    if hasattr(window, 'about_dialog'):
+                        window.about_dialog.retranslateUi()
+                else:
+                    logger.error(f"Failed to load translation for {locale}")
+            
+            window.settings_dialog = SettingsDialog(window)  # Create instance
+            window.settings_dialog.language_changed.connect(on_language_changed)
+            
             # Show window and center it on screen
             window.show()
-            screen = QGuiApplication.primaryScreen().geometry()
-            window.move(
-                (screen.width() - window.width()) // 2,
-                (screen.height() - window.height()) // 2
-            )
+            if QGuiApplication.primaryScreen() is not None:  # Check if primaryScreen() exists
+                screen = QGuiApplication.primaryScreen().geometry()
+                window.move(
+                    (screen.width() - window.width()) // 2,
+                    (screen.height() - window.height()) // 2
+                )
             
             logger.info("Main window initialized and shown")
             

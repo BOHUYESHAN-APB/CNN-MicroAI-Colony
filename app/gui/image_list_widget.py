@@ -3,14 +3,14 @@ import json
 import shutil
 from PySide6.QtWidgets import (
     QWidget, QListWidget, QLabel, QPushButton,
-    QVBoxLayout, QHBoxLayout, QMessageBox,
-    QFileDialog, QListWidgetItem, QFrame,
-    QGroupBox
+    QVBoxLayout, QHBoxLayout, QMessageBox, QFileDialog, 
+    QListWidgetItem, QFrame, QGroupBox
 )
 from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtGui import QPixmap, QImage
 
 import logging
+from ..utils.i18n import get_i18n
 logger = logging.getLogger(__name__)
 
 class ImageBrowser(QWidget):
@@ -19,6 +19,7 @@ class ImageBrowser(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.i18n = get_i18n()
         logger.info("Initializing ImageBrowser")
         # Initialize attributes
         self.project_dir = None
@@ -29,16 +30,16 @@ class ImageBrowser(QWidget):
         logger.info("Preview label initialized")
 
         # Create buttons
-        self.btn_import = QPushButton(self.tr("Import Images"))
-        self.btn_import.setToolTip(self.tr("Import images for analysis"))
+        self.btn_import = QPushButton(self.i18n.get_string("image_browser.import_images", "Import Images"))
+        self.btn_import.setToolTip(self.i18n.get_string("image_browser.import_images_tooltip", "Import images for analysis"))
         logger.info("btn_import created")
         
-        self.btn_remove = QPushButton(self.tr("Remove Selected"))
-        self.btn_remove.setToolTip(self.tr("Remove selected images"))
+        self.btn_remove = QPushButton(self.i18n.get_string("image_browser.remove_selected", "Remove Selected"))
+        self.btn_remove.setToolTip(self.i18n.get_string("image_browser.remove_selected_tooltip", "Remove selected images"))
         logger.info("btn_remove created")
         
-        self.btn_clear = QPushButton(self.tr("Clear All"))
-        self.btn_clear.setToolTip(self.tr("Clear all images"))
+        self.btn_clear = QPushButton(self.i18n.get_string("image_browser.clear_all", "Clear All"))
+        self.btn_clear.setToolTip(self.i18n.get_string("image_browser.clear_all_tooltip", "Clear all images"))
         logger.info("btn_clear created")
         logger.info("Buttons created")
 
@@ -53,38 +54,38 @@ class ImageBrowser(QWidget):
         logger.info("QHBoxLayout created")
 
         # Create button group
-        button_group = QGroupBox(self.tr("Actions"))
+        self.button_group = QGroupBox(self.i18n.get_string("image_browser.actions", "Actions"))
         button_layout = QVBoxLayout()
         button_layout.addWidget(self.btn_import)
         button_layout.addWidget(self.btn_remove)
         button_layout.addWidget(self.btn_clear)
-        button_group.setLayout(button_layout)
+        self.button_group.setLayout(button_layout)
         logger.info("Button group created")
         
         # Create image list group
-        list_group = QGroupBox(self.tr("Image List"))
+        self.list_group = QGroupBox(self.i18n.get_string("image_browser.image_list", "Image List"))
         list_layout = QVBoxLayout()
         list_layout.addWidget(self.list_widget)
-        list_group.setLayout(list_layout)
+        self.list_group.setLayout(list_layout)
         logger.info("List group created")
         
         # Left panel
         left_panel = QVBoxLayout()
         logger.info("QVBoxLayout created")
-        left_panel.addWidget(button_group)
-        left_panel.addWidget(list_group)
+        left_panel.addWidget(self.button_group)
+        left_panel.addWidget(self.list_group)
         logger.info("Groups added to left panel")
 
         # Preview group
-        preview_group = QGroupBox(self.tr("Preview"))
+        self.preview_group = QGroupBox(self.i18n.get_string("image_browser.preview", "Preview"))
         preview_layout = QVBoxLayout()
         preview_layout.addWidget(self.preview_label)
-        preview_group.setLayout(preview_layout)
+        self.preview_group.setLayout(preview_layout)
 
         # Layout setup
         layout.addLayout(left_panel, 30)
         logger.info("Left panel added to layout")
-        layout.addWidget(preview_group, 70)
+        layout.addWidget(self.preview_group, 70)
         logger.info("Preview group added to layout")
         self.setLayout(layout)
         logger.info("Layout set")
@@ -92,7 +93,7 @@ class ImageBrowser(QWidget):
         # Initial button states and preview
         self._update_button_states()
         logger.info("Button states updated")
-        self.preview_label.setText(self.tr("No image selected")) # Set initial text directly
+        self.preview_label.setText(self.i18n.get_string("image_browser.no_image_selected", "No image selected"))  # Set initial text directly
         logger.info("UI setup complete")
 
         # Connect signals
@@ -108,7 +109,7 @@ class ImageBrowser(QWidget):
         self.project_dir = project_dir
         self.list_widget.clear()
         self.preview_label.clear()
-        self.preview_label.setText(self.tr("No image selected"))
+        self.preview_label.setText(self.i18n.get_string("image_browser.no_image_selected", "No image selected"))
         self._update_button_states()
 
     def _get_image_list(self):
@@ -120,14 +121,20 @@ class ImageBrowser(QWidget):
             if path and os.path.exists(path):
                 image_paths.append(path)
         return image_paths
+    
+    def retranslateUi(self):
+        """Retranslate UI elements."""
+        self.button_group.setTitle(self.i18n.get_string("image_browser.actions", "Actions"))
+        self.list_group.setTitle(self.i18n.get_string("image_browser.image_list", "Image List"))
+        self.preview_group.setTitle(self.i18n.get_string("image_browser.preview", "Preview"))
+        self.btn_import.setText(self.i18n.get_string("image_browser.import_images", "Import Images"))
+        self.btn_import.setToolTip(self.i18n.get_string("image_browser.import_images_tooltip", "Import images for analysis"))
+        self.btn_remove.setText(self.i18n.get_string("image_browser.remove_selected", "Remove Selected"))
+        self.btn_remove.setToolTip(self.i18n.get_string("image_browser.remove_selected_tooltip", "Remove selected images"))
+        self.btn_clear.setText(self.i18n.get_string("image_browser.clear_all", "Clear All"))
+        self.btn_clear.setToolTip(self.i18n.get_string("image_browser.clear_all_tooltip", "Clear all images"))
+        self.preview_label.setText(self.i18n.get_string("image_browser.no_image_selected", "No image selected"))
 
-    def retranslate_ui(self):
-        logger.info("Retranslating ImageBrowser UI")
-        self.btn_import.setText(self.tr("Import Images"))
-        self.btn_remove.setText(self.tr("Remove Selected"))
-        self.btn_clear.setText(self.tr("Clear All"))
-        self.preview_label.setText(self.tr("No image selected"))
-        logger.info("ImageBrowser UI retranslated")
 
     def _update_button_states(self):
         """Update button enabled states based on current selection"""
@@ -141,16 +148,16 @@ class ImageBrowser(QWidget):
     def import_images(self):
         """Open file dialog to import images"""
         if not self.project_dir:
-            QMessageBox.warning(self, self.tr("Warning"), 
-                              self.tr("Please create or open a project first"))
+            QMessageBox.warning(self, self.i18n.get_string("image_browser.warning", "Warning"), 
+                              self.i18n.get_string("image_browser.project_not_selected", "Please create or open a project first"))
             return
 
         file_dialog = QFileDialog()
         file_paths, _ = file_dialog.getOpenFileNames(
             self,
-            self.tr("Select Images"),
+            self.i18n.get_string("image_browser.select_images", "Select Images"),
             "",
-            self.tr("Images (*.png *.jpg *.jpeg *.tiff *.bmp)")
+            self.i18n.get_string("image_browser.images_filter", "Images (*.png *.jpg *.jpeg *.tiff *.bmp)")
         )
 
         if file_paths:
@@ -178,7 +185,7 @@ class ImageBrowser(QWidget):
         
         if self.list_widget.count() == 0:
             self.preview_label.clear()
-            self.preview_label.setText(self.tr("No image selected"))
+            self.preview_label.setText(self.i18n.get_string("image_browser.no_image_selected", "No image selected"))
 
     @Slot()
     def _confirm_clear(self):
@@ -188,8 +195,8 @@ class ImageBrowser(QWidget):
 
         reply = QMessageBox.question(
             self,
-            self.tr("Confirmation"),
-            self.tr("Are you sure you want to remove all images?"),
+            self.i18n.get_string("image_browser.confirmation", "Confirmation"),
+            self.i18n.get_string("image_browser.confirm_clear", "Are you sure you want to remove all images?"),
             QMessageBox.Yes | QMessageBox.No
         )
 
@@ -198,7 +205,7 @@ class ImageBrowser(QWidget):
             self._update_button_states()
             self.images_changed.emit([])
             self.preview_label.clear()
-            self.preview_label.setText(self.tr("No image selected"))
+            self.preview_label.setText(self.i18n.get_string("image_browser.no_image_selected", "No image selected"))
 
     @Slot(QListWidgetItem)
     def _display_image(self, item):
@@ -210,8 +217,8 @@ class ImageBrowser(QWidget):
         if not os.path.exists(image_path):
             QMessageBox.warning(
                 self,
-                self.tr("Error"),
-                self.tr("Image file not found: {}").format(image_path)
+                self.i18n.get_string("image_browser.error", "Error"),
+                self.i18n.get_string("image_browser.image_not_found", "Image file not found: {}").format(image_path)
             )
             return
 
@@ -219,8 +226,8 @@ class ImageBrowser(QWidget):
         if pixmap.isNull():
             QMessageBox.warning(
                 self,
-                self.tr("Error"),
-                self.tr("Failed to load image: {}").format(image_path)
+                self.i18n.get_string("image_browser.error", "Error"),
+                self.i18n.get_string("image_browser.failed_to_load", "Failed to load image: {}").format(image_path)
             )
             return
 
@@ -241,5 +248,5 @@ class ImageBrowser(QWidget):
             self._display_image(selected_items[0])
         else:
             self.preview_label.clear()
-            self.preview_label.setText(self.tr("No image selected"))
+            self.preview_label.setText(self.i18n.get_string("image_browser.no_image_selected", "No image selected"))
         self._update_button_states()
