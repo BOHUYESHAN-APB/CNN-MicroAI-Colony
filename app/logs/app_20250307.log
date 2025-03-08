@@ -1,0 +1,2333 @@
+2025-03-07 09:30:04,471 - __main__ - INFO - Logging initialized
+2025-03-07 09:30:04,472 - __main__ - ERROR - Application failed to start: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 46, in main
+    create_app_dirs()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\utils\path_manager.py", line 9, in create_app_dirs
+    config = ConfigManager.load()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\utils\config.py", line 55, in load
+    create_user_config()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\utils\config.py", line 37, in create_user_config
+    config = json.load(f)
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\AppData\Local\Programs\Python\Python311\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-03-07 09:31:04,831 - __main__ - INFO - Logging initialized
+2025-03-07 09:31:04,849 - __main__ - INFO - Application directories created
+2025-03-07 09:31:04,851 - __main__ - INFO - Configuration initialized
+2025-03-07 09:34:20,494 - __main__ - INFO - Logging initialized
+2025-03-07 09:34:20,499 - __main__ - INFO - Application directories created
+2025-03-07 09:34:20,500 - __main__ - INFO - Configuration initialized
+2025-03-07 09:37:44,158 - __main__ - INFO - Logging initialized
+2025-03-07 09:37:44,168 - __main__ - INFO - Application directories created
+2025-03-07 09:37:44,169 - __main__ - INFO - Configuration initialized
+2025-03-07 09:44:41,347 - __main__ - INFO - Logging initialized
+2025-03-07 09:44:41,364 - __main__ - INFO - Application directories created
+2025-03-07 09:44:41,365 - __main__ - INFO - Configuration initialized
+2025-03-07 09:54:30,045 - __main__ - INFO - Logging initialized
+2025-03-07 09:54:30,050 - __main__ - INFO - Application directories created
+2025-03-07 09:54:30,052 - __main__ - INFO - Configuration initialized
+2025-03-07 10:01:22,205 - __main__ - INFO - Logging initialized
+2025-03-07 10:01:22,210 - __main__ - INFO - Application directories created
+2025-03-07 10:01:22,212 - __main__ - INFO - Configuration initialized
+2025-03-07 10:05:58,082 - __main__ - INFO - Logging initialized
+2025-03-07 10:05:58,099 - __main__ - INFO - Application directories created
+2025-03-07 10:05:58,100 - __main__ - INFO - Configuration initialized
+2025-03-07 10:09:05,829 - __main__ - INFO - Logging initialized
+2025-03-07 10:09:05,848 - __main__ - INFO - Application directories created
+2025-03-07 10:09:05,850 - __main__ - INFO - Configuration initialized
+2025-03-07 10:09:33,718 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:11:02,536 - __main__ - INFO - Logging initialized
+2025-03-07 10:11:02,542 - __main__ - INFO - Application directories created
+2025-03-07 10:11:02,544 - __main__ - INFO - Configuration initialized
+2025-03-07 10:11:59,379 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:11:59,380 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:11:59,383 - analysis_core - INFO - Analysis finished
+2025-03-07 10:12:10,546 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:12:10,548 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:12:10,550 - analysis_core - INFO - Analysis finished
+2025-03-07 10:12:13,995 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:12:13,995 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:12:13,999 - analysis_core - INFO - Analysis finished
+2025-03-07 10:12:17,526 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:12:17,527 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:12:17,529 - analysis_core - INFO - Analysis finished
+2025-03-07 10:12:39,734 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:14:45,028 - __main__ - INFO - Logging initialized
+2025-03-07 10:14:45,034 - __main__ - INFO - Application directories created
+2025-03-07 10:14:45,036 - __main__ - INFO - Configuration initialized
+2025-03-07 10:15:47,989 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:15:47,990 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:15:47,992 - analysis_core - INFO - Analysis finished
+2025-03-07 10:15:50,783 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:15:50,785 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:15:50,787 - analysis_core - INFO - Analysis finished
+2025-03-07 10:15:55,595 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:15:55,596 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:15:55,599 - analysis_core - INFO - Analysis finished
+2025-03-07 10:15:55,745 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:15:55,745 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:15:55,750 - analysis_core - INFO - Analysis finished
+2025-03-07 10:15:55,906 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:15:55,907 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:15:55,910 - analysis_core - INFO - Analysis finished
+2025-03-07 10:15:56,068 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:15:56,069 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:15:56,076 - analysis_core - INFO - Analysis finished
+2025-03-07 10:15:56,217 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:15:56,218 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:15:56,223 - analysis_core - INFO - Analysis finished
+2025-03-07 10:15:56,369 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:15:56,370 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:15:56,375 - analysis_core - INFO - Analysis finished
+2025-03-07 10:15:58,415 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:18:01,575 - __main__ - INFO - Logging initialized
+2025-03-07 10:18:01,581 - __main__ - INFO - Application directories created
+2025-03-07 10:18:01,583 - __main__ - INFO - Configuration initialized
+2025-03-07 10:19:25,003 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:23:52,185 - __main__ - INFO - Logging initialized
+2025-03-07 10:23:52,203 - __main__ - INFO - Application directories created
+2025-03-07 10:23:52,205 - __main__ - INFO - Configuration initialized
+2025-03-07 10:23:52,253 - __main__ - ERROR - Application failed to start: 'ImageBrowser' object has no attribute 'project_dir'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 64, in main
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 29, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 20, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 54, in _setup_ui
+    self._update_button_states()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 67, in _update_button_states
+    has_project = self.project_dir is not None
+                  ^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute 'project_dir'
+2025-03-07 10:39:18,497 - __main__ - INFO - Logging initialized
+2025-03-07 10:39:18,502 - __main__ - INFO - Application directories created
+2025-03-07 10:39:18,504 - __main__ - INFO - Configuration initialized
+2025-03-07 10:41:17,060 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:41:17,062 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:41:17,070 - analysis_core - INFO - Analysis finished
+2025-03-07 10:41:26,497 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:41:26,498 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:41:26,501 - analysis_core - INFO - Analysis finished
+2025-03-07 10:41:28,477 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:41:28,478 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:41:28,482 - analysis_core - INFO - Analysis finished
+2025-03-07 10:42:08,011 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:44:21,388 - __main__ - INFO - Logging initialized
+2025-03-07 10:44:21,392 - __main__ - INFO - Application directories created
+2025-03-07 10:44:21,394 - __main__ - INFO - Configuration initialized
+2025-03-07 10:47:41,746 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:47:41,749 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:47:41,754 - analysis_core - INFO - Analysis finished
+2025-03-07 10:47:43,642 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:47:43,642 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:47:43,645 - analysis_core - INFO - Analysis finished
+2025-03-07 10:48:06,118 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:48:06,118 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:48:06,122 - analysis_core - INFO - Analysis finished
+2025-03-07 10:48:08,188 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 10:48:08,189 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 10:48:08,192 - analysis_core - INFO - Analysis finished
+2025-03-07 10:48:12,149 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:09:51,907 - __main__ - INFO - Logging initialized
+2025-03-07 11:09:51,915 - __main__ - INFO - Application directories created
+2025-03-07 11:09:51,916 - __main__ - INFO - Configuration initialized
+2025-03-07 11:10:17,686 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:17,688 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:17,927 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:19,267 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:19,267 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:19,471 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:27,941 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:27,941 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:28,147 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:29,347 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:29,348 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:29,553 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:29,970 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:29,971 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:30,176 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:30,494 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:30,495 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:30,702 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:31,705 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:31,706 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:31,911 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:32,256 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:32,257 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:32,467 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:40,039 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:40,039 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:40,244 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:40,663 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:40,664 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:40,869 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:41,099 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:41,100 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:41,310 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:41,471 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:41,471 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:41,677 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:41,804 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:41,805 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:42,010 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:42,146 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:42,147 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:42,357 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:42,463 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:42,463 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:42,676 - analysis_core - INFO - Analysis finished
+2025-03-07 11:10:42,766 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:10:42,767 - analysis_core - INFO - Starting analysis of 1 images...
+2025-03-07 11:10:42,978 - analysis_core - INFO - Analysis finished
+2025-03-07 11:11:24,316 - analysis_core - INFO - Cleaning up analysis core resources...
+2025-03-07 11:48:19,451 - root - INFO - Logging initialized
+2025-03-07 11:48:19,454 - root - INFO - Application directories created
+2025-03-07 11:48:19,454 - root - INFO - Configuration initialized
+2025-03-07 11:48:19,577 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:07:29,532 - root - INFO - Logging initialized
+2025-03-07 12:07:29,534 - root - INFO - Application directories created
+2025-03-07 12:07:29,535 - root - INFO - Configuration initialized
+2025-03-07 12:07:29,656 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:07:29,656 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:09:29,839 - root - INFO - Logging initialized
+2025-03-07 12:09:29,841 - root - INFO - Application directories created
+2025-03-07 12:09:29,841 - root - INFO - Configuration initialized
+2025-03-07 12:09:29,891 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 12:09:29,891 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 12:09:29,891 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 12:09:29,891 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 12:09:29,891 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:09:29,892 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:09:29,894 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:09:29,894 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:09:29,894 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 12:10:49,006 - root - INFO - Logging initialized
+2025-03-07 12:10:49,008 - root - INFO - Application directories created
+2025-03-07 12:10:49,009 - root - INFO - Configuration initialized
+2025-03-07 12:10:49,059 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 12:10:49,059 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 12:10:49,059 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 12:10:49,060 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 12:10:49,064 - utils.i18n - DEBUG - Sample 'en' translation: 'Import Images' �� 'Import Images'
+2025-03-07 12:10:49,065 - utils.i18n - DEBUG - Sample 'en' translation: 'Remove Selected' �� 'Remove Selected'
+2025-03-07 12:10:49,065 - utils.i18n - DEBUG - Sample 'en' translation: 'Clear All' �� 'Clear All'
+2025-03-07 12:10:49,068 - utils.i18n - DEBUG - Sample 'zh_CN' translation: 'Import Images' �� '����ͼƬ'
+2025-03-07 12:10:49,068 - utils.i18n - DEBUG - Sample 'zh_CN' translation: 'Remove Selected' �� '�Ƴ���ѡ'
+2025-03-07 12:10:49,068 - utils.i18n - DEBUG - Sample 'zh_CN' translation: 'Clear All' �� '���ȫ��'
+2025-03-07 12:10:49,068 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 12:10:49,070 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:10:49,072 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 12:10:49,072 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 12:10:49,072 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 12:10:49,072 - utils.i18n - INFO - Initialized: True
+2025-03-07 12:10:49,072 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 12:10:49,073 - utils.i18n - INFO - =====================
+2025-03-07 12:10:49,073 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:10:49,077 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 12:13:00,428 - root - INFO - Logging initialized
+2025-03-07 12:13:00,430 - root - INFO - Application directories created
+2025-03-07 12:13:00,431 - root - INFO - Configuration initialized
+2025-03-07 12:13:00,478 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 12:13:00,478 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 12:13:00,478 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 12:13:00,479 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 12:13:00,480 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 12:13:00,480 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 12:13:00,480 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 12:13:00,481 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 12:13:00,481 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 12:13:00,481 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 12:13:00,481 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 12:13:00,481 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 12:13:00,481 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 12:13:00,481 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:13:00,482 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:13:00,482 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 12:13:00,482 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 12:13:00,482 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 12:13:00,483 - utils.i18n - INFO - Initialized: True
+2025-03-07 12:13:00,483 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 12:13:00,483 - utils.i18n - INFO - =====================
+2025-03-07 12:13:00,483 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:13:00,483 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:13:00,483 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 12:27:07,490 - root - INFO - Logging initialized
+2025-03-07 12:27:07,492 - root - INFO - Application directories created
+2025-03-07 12:27:07,493 - root - INFO - Configuration initialized
+2025-03-07 12:27:07,549 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 12:27:07,549 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 12:27:07,549 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 12:27:07,551 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 12:27:07,551 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 12:27:07,552 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 12:27:07,552 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 12:27:07,552 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 12:27:07,552 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 12:27:07,553 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 12:27:07,553 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 12:27:07,553 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 12:27:07,553 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 12:27:07,553 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:27:07,553 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:27:07,554 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 12:27:07,554 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 12:27:07,554 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 12:27:07,554 - utils.i18n - INFO - Initialized: True
+2025-03-07 12:27:07,554 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 12:27:07,554 - utils.i18n - INFO - =====================
+2025-03-07 12:27:07,554 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:27:07,556 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:27:07,556 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 12:28:29,166 - root - INFO - Logging initialized
+2025-03-07 12:28:29,169 - root - INFO - Application directories created
+2025-03-07 12:28:29,169 - root - INFO - Configuration initialized
+2025-03-07 12:28:29,231 - root - INFO - Screen \\.\DISPLAY1: 1920x1080 DPI: 1.0
+2025-03-07 12:28:29,231 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 12:28:29,232 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 12:28:29,232 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 12:28:29,234 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 12:28:29,235 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 12:28:29,235 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 12:28:29,235 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 12:28:29,235 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 12:28:29,236 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 12:28:29,236 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 12:28:29,236 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 12:28:29,236 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 12:28:29,236 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 12:28:29,236 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:28:29,236 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:28:29,237 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 12:28:29,237 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 12:28:29,237 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 12:28:29,237 - utils.i18n - INFO - Initialized: True
+2025-03-07 12:28:29,238 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 12:28:29,238 - utils.i18n - INFO - =====================
+2025-03-07 12:28:29,238 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:28:29,238 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:28:29,238 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 12:43:15,810 - root - INFO - Logging initialized
+2025-03-07 12:43:15,811 - root - INFO - Application directories created
+2025-03-07 12:43:15,813 - root - INFO - Configuration initialized
+2025-03-07 12:43:15,877 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 12:43:15,878 - root - INFO - Resolution: 1920x1080
+2025-03-07 12:43:15,878 - root - INFO - Logical DPI: 96.0
+2025-03-07 12:43:15,878 - root - INFO - Physical DPI: 141.6
+2025-03-07 12:43:15,878 - root - INFO - Scaling factor: 1.00x
+2025-03-07 12:43:15,880 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 12:43:15,881 - root - WARNING - Error configuring appearance: AA_DisableWindowContextHelpButton
+2025-03-07 12:43:15,881 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 12:43:15,881 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 12:43:15,881 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 12:43:15,882 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 12:43:15,883 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 12:43:15,883 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 12:43:15,884 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 12:43:15,884 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 12:43:15,884 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 12:43:15,885 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 12:43:15,885 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 12:43:15,885 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 12:43:15,885 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 12:43:15,885 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:43:15,885 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:43:15,886 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 12:43:15,886 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 12:43:15,887 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 12:43:15,887 - utils.i18n - INFO - Initialized: True
+2025-03-07 12:43:15,887 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 12:43:15,887 - utils.i18n - INFO - =====================
+2025-03-07 12:43:15,888 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 12:43:15,888 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 12:43:15,888 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:20:20,047 - root - INFO - Logging initialized
+2025-03-07 13:20:20,049 - root - INFO - Application directories created
+2025-03-07 13:20:20,050 - root - INFO - Configuration initialized
+2025-03-07 13:20:20,147 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:20:20,147 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:20:20,147 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:20:20,148 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:20:20,148 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:20:20,150 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:20:20,161 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:20:20,161 - root - INFO - Application appearance configured
+2025-03-07 13:20:20,163 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:20:20,163 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:20:20,163 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:20:20,164 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:20:20,165 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:20:20,166 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:20:20,166 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:20:20,166 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:20:20,166 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 13:20:20,167 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 13:20:20,167 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 13:20:20,167 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 13:20:20,167 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:20:20,167 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:20:20,167 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:20:20,168 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:20:20,168 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:20:20,168 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:20:20,168 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:20:20,168 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 13:20:20,168 - utils.i18n - INFO - =====================
+2025-03-07 13:20:20,168 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:20:20,169 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:20:20,169 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:40:59,875 - root - INFO - Logging initialized
+2025-03-07 13:40:59,896 - root - INFO - Application directories created
+2025-03-07 13:40:59,897 - root - INFO - Configuration initialized
+2025-03-07 13:40:59,958 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:40:59,958 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:40:59,958 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:40:59,958 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:40:59,958 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:40:59,959 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:40:59,964 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:40:59,965 - root - INFO - Application appearance configured
+2025-03-07 13:40:59,965 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:40:59,965 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:40:59,965 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:40:59,966 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:40:59,966 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:40:59,966 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:40:59,966 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:40:59,966 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:40:59,967 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 13:40:59,967 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 13:40:59,967 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 13:40:59,967 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 13:40:59,967 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:40:59,967 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:40:59,967 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:40:59,967 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:40:59,967 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:40:59,967 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:40:59,967 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:40:59,969 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 13:40:59,969 - utils.i18n - INFO - =====================
+2025-03-07 13:40:59,969 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:40:59,969 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:40:59,969 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:41:51,264 - root - INFO - Logging initialized
+2025-03-07 13:41:51,277 - root - INFO - Application directories created
+2025-03-07 13:41:51,279 - root - INFO - Configuration initialized
+2025-03-07 13:41:51,344 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:41:51,344 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:41:51,345 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:41:51,345 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:41:51,345 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:41:51,346 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:41:51,354 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:41:51,354 - root - INFO - Application appearance configured
+2025-03-07 13:41:51,355 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:41:51,355 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:41:51,355 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:41:51,357 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:41:51,358 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:41:51,358 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:41:51,358 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:41:51,358 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:41:51,360 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 13:41:51,360 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 13:41:51,360 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 13:41:51,360 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 13:41:51,361 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:41:51,361 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:41:51,361 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:41:51,362 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:41:51,362 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:41:51,362 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:41:51,363 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:41:51,363 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 13:41:51,364 - utils.i18n - INFO - =====================
+2025-03-07 13:41:51,365 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:41:51,366 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:41:51,366 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:43:38,040 - root - INFO - Logging initialized
+2025-03-07 13:43:38,055 - root - INFO - Application directories created
+2025-03-07 13:43:38,056 - root - INFO - Configuration initialized
+2025-03-07 13:43:38,115 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:43:38,116 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:43:38,116 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:43:38,116 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:43:38,116 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:43:38,118 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:43:38,122 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:43:38,123 - root - INFO - Application appearance configured
+2025-03-07 13:43:38,123 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:43:38,123 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:43:38,123 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:43:38,124 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:43:38,126 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:43:38,126 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:43:38,126 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:43:38,126 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:43:38,126 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 13:43:38,127 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 13:43:38,127 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 13:43:38,127 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 13:43:38,127 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:43:38,127 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:43:38,127 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:43:38,127 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:43:38,127 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:43:38,128 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:43:38,128 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:43:38,128 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 13:43:38,129 - utils.i18n - INFO - =====================
+2025-03-07 13:43:38,129 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:43:38,129 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:43:38,130 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:44:50,277 - root - INFO - Logging initialized
+2025-03-07 13:44:50,279 - root - INFO - Application directories created
+2025-03-07 13:44:50,280 - root - INFO - Configuration initialized
+2025-03-07 13:44:50,341 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:44:50,341 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:44:50,343 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:44:50,343 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:44:50,343 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:44:50,344 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:44:50,350 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:44:50,350 - root - INFO - Application appearance configured
+2025-03-07 13:44:50,350 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:44:50,350 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:44:50,350 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:44:50,351 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:44:50,352 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:44:50,352 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:44:50,353 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:44:50,353 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:44:50,353 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 13:44:50,353 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 13:44:50,353 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 13:44:50,353 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 13:44:50,354 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:44:50,354 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:44:50,354 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:44:50,354 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:44:50,354 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:44:50,356 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:44:50,356 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:44:50,356 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 13:44:50,356 - utils.i18n - INFO - =====================
+2025-03-07 13:44:50,356 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:44:50,357 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:44:50,357 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:45:32,809 - root - INFO - Logging initialized
+2025-03-07 13:45:32,825 - root - INFO - Application directories created
+2025-03-07 13:45:32,825 - root - INFO - Configuration initialized
+2025-03-07 13:45:32,909 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:45:32,910 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:45:32,910 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:45:32,911 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:45:32,911 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:45:32,912 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:45:32,923 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:45:32,924 - root - INFO - Application appearance configured
+2025-03-07 13:45:32,926 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:45:32,926 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:45:32,926 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:45:32,928 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:45:32,929 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:45:32,930 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:45:32,930 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:45:32,930 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:45:32,930 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 13:45:32,931 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 13:45:32,931 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 13:45:32,931 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 13:45:32,931 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:45:32,931 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:45:32,931 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:45:32,932 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:45:32,932 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:45:32,933 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:45:32,933 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:45:32,933 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 13:45:32,933 - utils.i18n - INFO - =====================
+2025-03-07 13:45:32,934 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:45:32,934 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:45:32,934 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:46:37,602 - root - INFO - Logging initialized
+2025-03-07 13:46:37,603 - root - INFO - Application directories created
+2025-03-07 13:46:37,604 - root - INFO - Configuration initialized
+2025-03-07 13:46:37,681 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:46:37,681 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:46:37,682 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:46:37,682 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:46:37,683 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:46:37,684 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:46:37,693 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:46:37,694 - root - INFO - Application appearance configured
+2025-03-07 13:46:37,695 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:46:37,695 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:46:37,695 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:46:37,696 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:46:37,699 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:46:37,699 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:46:37,699 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:46:37,699 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:46:37,700 - utils.i18n - INFO - Loaded 51 translations for zh_CN
+2025-03-07 13:46:37,701 - utils.i18n - DEBUG - Sample translation for zh_CN: Import Images -> 导入图片
+2025-03-07 13:46:37,701 - utils.i18n - DEBUG - Sample translation for zh_CN: Remove Selected -> 移除所选
+2025-03-07 13:46:37,701 - utils.i18n - DEBUG - Sample translation for zh_CN: Clear All -> 清除全部
+2025-03-07 13:46:37,702 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:46:37,702 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:46:37,702 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:46:37,703 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:46:37,703 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:46:37,703 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:46:37,704 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:46:37,704 - utils.i18n - INFO - Loaded strings for current locale: 51
+2025-03-07 13:46:37,704 - utils.i18n - INFO - =====================
+2025-03-07 13:46:37,704 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:46:37,705 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:46:37,705 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:57:09,512 - root - INFO - Logging initialized
+2025-03-07 13:57:09,526 - root - INFO - Application directories created
+2025-03-07 13:57:09,528 - root - INFO - Configuration initialized
+2025-03-07 13:57:09,578 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:57:09,578 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:57:09,578 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:57:09,578 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:57:09,580 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:57:09,580 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:57:09,585 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:57:09,585 - root - INFO - Application appearance configured
+2025-03-07 13:57:09,586 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:57:09,586 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:57:09,586 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:57:09,587 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:57:09,588 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:57:09,588 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:57:09,588 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:57:09,588 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:57:09,588 - utils.i18n - INFO - Loaded 60 translations for zh_CN
+2025-03-07 13:57:09,588 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 13:57:09,588 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 13:57:09,588 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 13:57:09,589 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:57:09,589 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:57:09,589 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:57:09,589 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:57:09,589 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:57:09,589 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:57:09,590 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:57:09,590 - utils.i18n - INFO - Loaded strings for current locale: 60
+2025-03-07 13:57:09,590 - utils.i18n - INFO - =====================
+2025-03-07 13:57:09,590 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:57:09,590 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:57:09,591 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:58:22,599 - root - INFO - Logging initialized
+2025-03-07 13:58:22,612 - root - INFO - Application directories created
+2025-03-07 13:58:22,613 - root - INFO - Configuration initialized
+2025-03-07 13:58:22,662 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:58:22,663 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:58:22,663 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:58:22,664 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:58:22,664 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:58:22,664 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:58:22,669 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:58:22,670 - root - INFO - Application appearance configured
+2025-03-07 13:58:22,670 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:58:22,670 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:58:22,671 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:58:22,672 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:58:22,673 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:58:22,673 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:58:22,673 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:58:22,673 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:58:22,673 - utils.i18n - INFO - Loaded 69 translations for zh_CN
+2025-03-07 13:58:22,673 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 13:58:22,673 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 13:58:22,674 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 13:58:22,674 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:58:22,674 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:58:22,674 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:58:22,674 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:58:22,674 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:58:22,676 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:58:22,676 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:58:22,676 - utils.i18n - INFO - Loaded strings for current locale: 69
+2025-03-07 13:58:22,676 - utils.i18n - INFO - =====================
+2025-03-07 13:58:22,676 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:58:22,677 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:58:22,677 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 13:59:40,128 - root - INFO - Logging initialized
+2025-03-07 13:59:40,144 - root - INFO - Application directories created
+2025-03-07 13:59:40,145 - root - INFO - Configuration initialized
+2025-03-07 13:59:40,198 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 13:59:40,199 - root - INFO - Resolution: 1920x1080
+2025-03-07 13:59:40,199 - root - INFO - Logical DPI: 96.0
+2025-03-07 13:59:40,199 - root - INFO - Physical DPI: 141.6
+2025-03-07 13:59:40,200 - root - INFO - Scaling factor: 1.00x
+2025-03-07 13:59:40,200 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 13:59:40,206 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 13:59:40,207 - root - INFO - Application appearance configured
+2025-03-07 13:59:40,207 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 13:59:40,207 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 13:59:40,207 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 13:59:40,208 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 13:59:40,209 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 13:59:40,209 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 13:59:40,210 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 13:59:40,210 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 13:59:40,210 - utils.i18n - INFO - Loaded 91 translations for zh_CN
+2025-03-07 13:59:40,210 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 13:59:40,210 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 13:59:40,210 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 13:59:40,211 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 13:59:40,211 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:59:40,211 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:59:40,211 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 13:59:40,211 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 13:59:40,211 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 13:59:40,213 - utils.i18n - INFO - Initialized: True
+2025-03-07 13:59:40,213 - utils.i18n - INFO - Loaded strings for current locale: 91
+2025-03-07 13:59:40,213 - utils.i18n - INFO - =====================
+2025-03-07 13:59:40,213 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 13:59:40,213 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 13:59:40,214 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:01:14,440 - root - INFO - Logging initialized
+2025-03-07 14:01:14,452 - root - INFO - Application directories created
+2025-03-07 14:01:14,454 - root - INFO - Configuration initialized
+2025-03-07 14:01:14,509 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:01:14,510 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:01:14,510 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:01:14,510 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:01:14,510 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:01:14,511 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:01:14,516 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:01:14,517 - root - INFO - Application appearance configured
+2025-03-07 14:01:14,517 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:01:14,517 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:01:14,517 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:01:14,519 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:01:14,520 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:01:14,520 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:01:14,520 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:01:14,520 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:01:14,521 - utils.i18n - INFO - Loaded 118 translations for zh_CN
+2025-03-07 14:01:14,521 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:01:14,521 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:01:14,521 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:01:14,521 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:01:14,521 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:01:14,521 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:01:14,521 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:01:14,522 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:01:14,522 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:01:14,522 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:01:14,522 - utils.i18n - INFO - Loaded strings for current locale: 118
+2025-03-07 14:01:14,524 - utils.i18n - INFO - =====================
+2025-03-07 14:01:14,524 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:01:14,524 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:01:14,524 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:02:41,473 - root - INFO - Logging initialized
+2025-03-07 14:02:41,489 - root - INFO - Application directories created
+2025-03-07 14:02:41,489 - root - INFO - Configuration initialized
+2025-03-07 14:02:41,549 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:02:41,549 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:02:41,550 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:02:41,550 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:02:41,550 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:02:41,550 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:02:41,557 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:02:41,557 - root - INFO - Application appearance configured
+2025-03-07 14:02:41,558 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:02:41,558 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:02:41,558 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:02:41,558 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:02:41,559 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:02:41,561 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:02:41,561 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:02:41,561 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:02:41,561 - utils.i18n - INFO - Loaded 141 translations for zh_CN
+2025-03-07 14:02:41,561 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:02:41,562 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:02:41,562 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:02:41,562 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:02:41,562 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:02:41,562 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:02:41,562 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:02:41,563 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:02:41,563 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:02:41,563 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:02:41,563 - utils.i18n - INFO - Loaded strings for current locale: 141
+2025-03-07 14:02:41,563 - utils.i18n - INFO - =====================
+2025-03-07 14:02:41,564 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:02:41,564 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:02:41,564 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:04:11,373 - root - INFO - Logging initialized
+2025-03-07 14:04:11,387 - root - INFO - Application directories created
+2025-03-07 14:04:11,388 - root - INFO - Configuration initialized
+2025-03-07 14:04:11,447 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:04:11,447 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:04:11,447 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:04:11,448 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:04:11,448 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:04:11,448 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:04:11,454 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:04:11,454 - root - INFO - Application appearance configured
+2025-03-07 14:04:11,454 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:04:11,454 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:04:11,454 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:04:11,455 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:04:11,457 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:04:11,457 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:04:11,457 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:04:11,457 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:04:11,458 - utils.i18n - INFO - Loaded 163 translations for zh_CN
+2025-03-07 14:04:11,458 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:04:11,458 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:04:11,458 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:04:11,458 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:04:11,459 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:04:11,459 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:04:11,459 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:04:11,459 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:04:11,459 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:04:11,461 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:04:11,461 - utils.i18n - INFO - Loaded strings for current locale: 163
+2025-03-07 14:04:11,461 - utils.i18n - INFO - =====================
+2025-03-07 14:04:11,461 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:04:11,462 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:04:11,462 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:05:43,471 - root - INFO - Logging initialized
+2025-03-07 14:05:43,473 - root - INFO - Application directories created
+2025-03-07 14:05:43,473 - root - INFO - Configuration initialized
+2025-03-07 14:05:43,529 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:05:43,529 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:05:43,530 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:05:43,530 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:05:43,530 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:05:43,530 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:05:43,536 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:05:43,536 - root - INFO - Application appearance configured
+2025-03-07 14:05:43,536 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:05:43,536 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:05:43,536 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:05:43,537 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:05:43,539 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:05:43,539 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:05:43,539 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:05:43,539 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:05:43,540 - utils.i18n - INFO - Loaded 187 translations for zh_CN
+2025-03-07 14:05:43,540 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:05:43,540 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:05:43,540 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:05:43,541 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:05:43,541 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:05:43,541 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:05:43,541 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:05:43,541 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:05:43,541 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:05:43,542 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:05:43,542 - utils.i18n - INFO - Loaded strings for current locale: 187
+2025-03-07 14:05:43,542 - utils.i18n - INFO - =====================
+2025-03-07 14:05:43,542 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:05:43,542 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:05:43,542 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:07:24,033 - root - INFO - Logging initialized
+2025-03-07 14:07:24,035 - root - INFO - Application directories created
+2025-03-07 14:07:24,036 - root - INFO - Configuration initialized
+2025-03-07 14:07:24,110 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:07:24,111 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:07:24,111 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:07:24,111 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:07:24,111 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:07:24,112 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:07:24,118 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:07:24,118 - root - INFO - Application appearance configured
+2025-03-07 14:07:24,118 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:07:24,118 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:07:24,119 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:07:24,119 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:07:24,121 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:07:24,121 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:07:24,121 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:07:24,121 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:07:24,121 - utils.i18n - INFO - Loaded 223 translations for zh_CN
+2025-03-07 14:07:24,122 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:07:24,122 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:07:24,122 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:07:24,122 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:07:24,122 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:07:24,122 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:07:24,124 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:07:24,124 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:07:24,124 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:07:24,125 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:07:24,125 - utils.i18n - INFO - Loaded strings for current locale: 223
+2025-03-07 14:07:24,125 - utils.i18n - INFO - =====================
+2025-03-07 14:07:24,125 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:07:24,126 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:07:24,126 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:09:49,231 - root - INFO - Logging initialized
+2025-03-07 14:09:49,246 - root - INFO - Application directories created
+2025-03-07 14:09:49,247 - root - INFO - Configuration initialized
+2025-03-07 14:09:49,301 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:09:49,302 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:09:49,302 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:09:49,302 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:09:49,302 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:09:49,304 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:09:49,308 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:09:49,310 - root - INFO - Application appearance configured
+2025-03-07 14:09:49,310 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:09:49,310 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:09:49,310 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:09:49,311 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:09:49,313 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:09:49,313 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:09:49,313 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:09:49,313 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:09:49,314 - utils.i18n - INFO - Loaded 225 translations for zh_CN
+2025-03-07 14:09:49,314 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:09:49,314 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:09:49,314 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:09:49,314 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:09:49,314 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:09:49,314 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:09:49,315 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:09:49,315 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:09:49,315 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:09:49,315 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:09:49,316 - utils.i18n - INFO - Loaded strings for current locale: 225
+2025-03-07 14:09:49,316 - utils.i18n - INFO - =====================
+2025-03-07 14:09:49,316 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:09:49,316 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:09:49,317 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:12:30,659 - root - INFO - Logging initialized
+2025-03-07 14:12:30,668 - root - INFO - Application directories created
+2025-03-07 14:12:30,669 - root - INFO - Configuration initialized
+2025-03-07 14:12:30,726 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:12:30,727 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:12:30,727 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:12:30,728 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:12:30,728 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:12:30,729 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:12:30,736 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:12:30,737 - root - INFO - Application appearance configured
+2025-03-07 14:12:30,737 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:12:30,737 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:12:30,737 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:12:30,738 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:12:30,739 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:12:30,739 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:12:30,739 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:12:30,739 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:12:30,740 - utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 14:12:30,740 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:12:30,740 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:12:30,740 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:12:30,740 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:12:30,740 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:12:30,742 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:12:30,742 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:12:30,742 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:12:30,743 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:12:30,743 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:12:30,743 - utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 14:12:30,743 - utils.i18n - INFO - =====================
+2025-03-07 14:12:30,743 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:12:30,744 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:12:30,744 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:16:46,590 - root - INFO - Logging initialized
+2025-03-07 14:16:46,592 - root - INFO - Application directories created
+2025-03-07 14:16:46,593 - root - INFO - Configuration initialized
+2025-03-07 14:16:46,645 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:16:46,646 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:16:46,646 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:16:46,646 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:16:46,647 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:16:46,647 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:16:46,651 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:16:46,652 - root - INFO - Application appearance configured
+2025-03-07 14:16:46,652 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:16:46,652 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:16:46,652 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:16:46,654 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:16:46,655 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:16:46,655 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:16:46,655 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:16:46,655 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:16:46,656 - utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 14:16:46,656 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:16:46,656 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:16:46,656 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:16:46,656 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:16:46,656 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:16:46,656 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:16:46,656 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:16:46,656 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:16:46,656 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:16:46,658 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:16:46,658 - utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 14:16:46,658 - utils.i18n - INFO - =====================
+2025-03-07 14:16:46,658 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:16:46,659 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:16:46,659 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:17:13,530 - root - INFO - Logging initialized
+2025-03-07 14:17:13,534 - root - INFO - Application directories created
+2025-03-07 14:17:13,535 - root - INFO - Configuration initialized
+2025-03-07 14:17:13,599 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:17:13,600 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:17:13,600 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:17:13,600 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:17:13,600 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:17:13,601 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:17:13,607 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:17:13,607 - root - INFO - Application appearance configured
+2025-03-07 14:17:13,607 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:17:13,607 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:17:13,607 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:17:13,608 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:17:13,609 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:17:13,609 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:17:13,610 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:17:13,610 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:17:13,610 - utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 14:17:13,610 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:17:13,610 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:17:13,610 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:17:13,612 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:17:13,612 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:17:13,612 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:17:13,612 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:17:13,613 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:17:13,613 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:17:13,613 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:17:13,613 - utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 14:17:13,614 - utils.i18n - INFO - =====================
+2025-03-07 14:17:13,614 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:17:13,614 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:17:13,614 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:17:25,805 - root - INFO - Logging initialized
+2025-03-07 14:17:25,806 - root - INFO - Application directories created
+2025-03-07 14:17:25,807 - root - INFO - Configuration initialized
+2025-03-07 14:17:25,856 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:17:25,857 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:17:25,857 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:17:25,857 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:17:25,857 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:17:25,857 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:17:25,864 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:17:25,864 - root - INFO - Application appearance configured
+2025-03-07 14:17:25,864 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:17:25,864 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:17:25,864 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:17:25,865 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:17:25,866 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:17:25,867 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:17:25,867 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:17:25,867 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:17:25,867 - utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 14:17:25,867 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:17:25,867 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:17:25,867 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:17:25,868 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:17:25,868 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:17:25,868 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:17:25,868 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:17:25,868 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:17:25,868 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:17:25,868 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:17:25,869 - utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 14:17:25,869 - utils.i18n - INFO - =====================
+2025-03-07 14:17:25,869 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:17:25,869 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:17:25,869 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:17:37,350 - root - INFO - Logging initialized
+2025-03-07 14:17:37,352 - root - INFO - Application directories created
+2025-03-07 14:17:37,353 - root - INFO - Configuration initialized
+2025-03-07 14:17:37,409 - root - INFO - Primary screen: \\.\DISPLAY1
+2025-03-07 14:17:37,409 - root - INFO - Resolution: 1920x1080
+2025-03-07 14:17:37,410 - root - INFO - Logical DPI: 96.0
+2025-03-07 14:17:37,410 - root - INFO - Physical DPI: 141.6
+2025-03-07 14:17:37,410 - root - INFO - Scaling factor: 1.00x
+2025-03-07 14:17:37,411 - root - INFO - System font: Microsoft YaHei UI, 9pt
+2025-03-07 14:17:37,415 - root - INFO - Using font: Microsoft YaHei UI, 9pt
+2025-03-07 14:17:37,417 - root - INFO - Application appearance configured
+2025-03-07 14:17:37,417 - root - DEBUG - System locale detected: zh_CN
+2025-03-07 14:17:37,417 - root - DEBUG - Selected target locale: zh_CN
+2025-03-07 14:17:37,417 - utils.i18n - DEBUG - Initializing I18nManager...
+2025-03-07 14:17:37,418 - utils.i18n - DEBUG - Looking for translations in: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\i18n
+2025-03-07 14:17:37,419 - utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:17:37,419 - utils.i18n - DEBUG - Sample translation for en: Import Images -> Import Images
+2025-03-07 14:17:37,419 - utils.i18n - DEBUG - Sample translation for en: Remove Selected -> Remove Selected
+2025-03-07 14:17:37,419 - utils.i18n - DEBUG - Sample translation for en: Clear All -> Clear All
+2025-03-07 14:17:37,421 - utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 14:17:37,421 - utils.i18n - DEBUG - Sample translation for zh_CN: Colony Detection -> 菌落检测
+2025-03-07 14:17:37,421 - utils.i18n - DEBUG - Sample translation for zh_CN: About -> 关于
+2025-03-07 14:17:37,421 - utils.i18n - DEBUG - Sample translation for zh_CN: Close -> 关闭
+2025-03-07 14:17:37,421 - utils.i18n - DEBUG - I18nManager initialized successfully
+2025-03-07 14:17:37,421 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:17:37,421 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:17:37,421 - utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:17:37,422 - utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:17:37,422 - utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:17:37,422 - utils.i18n - INFO - Initialized: True
+2025-03-07 14:17:37,422 - utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 14:17:37,422 - utils.i18n - INFO - =====================
+2025-03-07 14:17:37,423 - utils.i18n - DEBUG - Attempting to set locale to: zh_CN
+2025-03-07 14:17:37,423 - utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:17:37,423 - root - DEBUG - Available translations: ['en', 'zh_CN']
+2025-03-07 14:58:46,129 - __main__ - INFO - Logging initialized
+2025-03-07 14:58:46,132 - __main__ - INFO - Application directories created
+2025-03-07 14:58:46,133 - __main__ - INFO - Configuration initialized
+2025-03-07 14:58:46,198 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 14:58:46,200 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 14:58:46,200 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 14:58:46,200 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:58:46,201 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 14:58:46,201 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 14:58:46,201 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 14:58:46,201 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 14:58:46,201 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 14:58:46,201 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 14:58:46,201 - app.utils.i18n - INFO - =====================
+2025-03-07 14:58:46,201 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 14:58:46,220 - __main__ - ERROR - Application failed to start: name 'MainWindow' is not defined
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 54, in main
+    window = MainWindow()
+             ^^^^^^^^^^
+NameError: name 'MainWindow' is not defined
+2025-03-07 15:26:31,330 - __main__ - INFO - Logging initialized
+2025-03-07 15:26:31,338 - __main__ - INFO - Application directories created
+2025-03-07 15:26:31,340 - __main__ - INFO - Configuration initialized
+2025-03-07 15:26:31,464 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 15:26:31,466 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 15:26:31,466 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 15:26:31,466 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:26:31,468 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 15:26:31,468 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 15:26:31,469 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 15:26:31,469 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:26:31,469 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 15:26:31,469 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 15:26:31,471 - app.utils.i18n - INFO - =====================
+2025-03-07 15:26:31,471 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 15:28:49,842 - __main__ - INFO - Logging initialized
+2025-03-07 15:28:49,846 - __main__ - INFO - Application directories created
+2025-03-07 15:28:49,848 - __main__ - INFO - Configuration initialized
+2025-03-07 15:28:49,908 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 15:28:49,909 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 15:28:49,910 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 15:28:49,910 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:28:49,910 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 15:28:49,911 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 15:28:49,911 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 15:28:49,911 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:28:49,911 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 15:28:49,913 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 15:28:49,913 - app.utils.i18n - INFO - =====================
+2025-03-07 15:28:49,913 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 15:47:59,121 - __main__ - INFO - Logging initialized
+2025-03-07 15:47:59,126 - __main__ - INFO - Application directories created
+2025-03-07 15:47:59,127 - __main__ - INFO - Configuration initialized
+2025-03-07 15:47:59,283 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 15:47:59,284 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 15:47:59,285 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 15:47:59,285 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:47:59,287 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 15:47:59,287 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 15:47:59,288 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 15:47:59,288 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:47:59,288 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 15:47:59,289 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 15:47:59,289 - app.utils.i18n - INFO - =====================
+2025-03-07 15:47:59,289 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 15:49:43,223 - __main__ - INFO - Logging initialized
+2025-03-07 15:49:43,226 - __main__ - INFO - Application directories created
+2025-03-07 15:49:43,229 - __main__ - INFO - Configuration initialized
+2025-03-07 15:49:43,291 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 15:49:43,292 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 15:49:43,292 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 15:49:43,292 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:49:43,293 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 15:49:43,295 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 15:49:43,295 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 15:49:43,295 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:49:43,295 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 15:49:43,296 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 15:49:43,296 - app.utils.i18n - INFO - =====================
+2025-03-07 15:49:43,296 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 15:56:46,359 - __main__ - INFO - Logging initialized
+2025-03-07 15:56:46,362 - __main__ - INFO - Application directories created
+2025-03-07 15:56:46,363 - __main__ - INFO - Configuration initialized
+2025-03-07 15:56:46,446 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 15:56:46,447 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 15:56:46,447 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 15:56:46,447 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:56:46,448 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 15:56:46,448 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 15:56:46,448 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 15:56:46,448 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 15:56:46,448 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 15:56:46,448 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 15:56:46,450 - app.utils.i18n - INFO - =====================
+2025-03-07 15:56:46,450 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 15:56:46,450 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 15:56:46,451 - __main__ - INFO - Theme applied successfully
+2025-03-07 16:03:23,106 - __main__ - INFO - Logging initialized
+2025-03-07 16:03:23,109 - __main__ - INFO - Application directories created
+2025-03-07 16:03:23,111 - __main__ - INFO - Configuration initialized
+2025-03-07 16:03:23,163 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 16:03:23,164 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 16:03:23,164 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 16:03:23,164 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:03:23,164 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 16:03:23,165 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 16:03:23,165 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 16:03:23,165 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:03:23,165 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 16:03:23,165 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 16:03:23,165 - app.utils.i18n - INFO - =====================
+2025-03-07 16:03:23,166 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 16:03:23,166 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 16:03:23,166 - __main__ - INFO - Theme applied successfully
+2025-03-07 16:03:23,167 - __main__ - INFO - Creating main window...
+2025-03-07 16:03:23,168 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 16:03:23,168 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 16:03:23,170 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 16:29:46,892 - __main__ - INFO - Logging initialized
+2025-03-07 16:29:46,896 - __main__ - INFO - Application directories created
+2025-03-07 16:29:46,898 - __main__ - INFO - Configuration initialized
+2025-03-07 16:29:47,015 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 16:29:47,016 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 16:29:47,016 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 16:29:47,016 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:29:47,017 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 16:29:47,017 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 16:29:47,019 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 16:29:47,019 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:29:47,019 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 16:29:47,019 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 16:29:47,019 - app.utils.i18n - INFO - =====================
+2025-03-07 16:29:47,019 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 16:29:47,021 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 16:29:47,023 - __main__ - INFO - Theme applied successfully
+2025-03-07 16:29:47,023 - __main__ - INFO - Creating main window...
+2025-03-07 16:29:47,032 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 16:29:47,032 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 16:29:47,035 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 16:38:32,110 - __main__ - INFO - Logging initialized
+2025-03-07 16:38:32,113 - __main__ - INFO - Application directories created
+2025-03-07 16:38:32,115 - __main__ - INFO - Configuration initialized
+2025-03-07 16:38:32,182 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 16:38:32,183 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 16:38:32,183 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 16:38:32,184 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:38:32,184 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 16:38:32,185 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 16:38:32,185 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 16:38:32,185 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:38:32,185 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 16:38:32,186 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 16:38:32,186 - app.utils.i18n - INFO - =====================
+2025-03-07 16:38:32,186 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 16:38:32,186 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 16:38:32,188 - __main__ - INFO - Theme applied successfully
+2025-03-07 16:38:32,188 - __main__ - INFO - Creating main window...
+2025-03-07 16:38:32,189 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 16:38:32,189 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 16:38:32,190 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 16:42:03,554 - __main__ - INFO - Logging initialized
+2025-03-07 16:42:03,578 - __main__ - INFO - Application directories created
+2025-03-07 16:42:03,579 - __main__ - INFO - Configuration initialized
+2025-03-07 16:42:03,641 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 16:42:03,642 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 16:42:03,642 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 16:42:03,642 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:42:03,643 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 16:42:03,643 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 16:42:03,643 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 16:42:03,643 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:42:03,643 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 16:42:03,644 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 16:42:03,644 - app.utils.i18n - INFO - =====================
+2025-03-07 16:42:03,644 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 16:42:03,645 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 16:42:03,646 - __main__ - INFO - Theme applied successfully
+2025-03-07 16:42:03,646 - __main__ - INFO - Creating main window...
+2025-03-07 16:42:03,647 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 16:42:03,647 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 16:42:03,648 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 16:49:33,695 - __main__ - INFO - Logging initialized
+2025-03-07 16:49:33,705 - __main__ - INFO - Application directories created
+2025-03-07 16:49:33,707 - __main__ - INFO - Configuration initialized
+2025-03-07 16:49:33,754 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 16:49:33,755 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 16:49:33,755 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 16:49:33,755 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:49:33,757 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 16:49:33,757 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 16:49:33,757 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 16:49:33,757 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:49:33,757 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 16:49:33,758 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 16:49:33,758 - app.utils.i18n - INFO - =====================
+2025-03-07 16:49:33,758 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 16:49:33,758 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 16:49:33,759 - __main__ - INFO - Theme applied successfully
+2025-03-07 16:49:33,759 - __main__ - INFO - Creating main window...
+2025-03-07 16:49:33,761 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 16:49:33,761 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 16:49:33,762 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 16:51:59,549 - __main__ - INFO - Logging initialized
+2025-03-07 16:51:59,565 - __main__ - INFO - Application directories created
+2025-03-07 16:51:59,566 - __main__ - INFO - Configuration initialized
+2025-03-07 16:51:59,621 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 16:51:59,622 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 16:51:59,622 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 16:51:59,623 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:51:59,623 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 16:51:59,623 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 16:51:59,623 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 16:51:59,623 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:51:59,623 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 16:51:59,624 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 16:51:59,624 - app.utils.i18n - INFO - =====================
+2025-03-07 16:51:59,624 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 16:51:59,625 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 16:51:59,626 - __main__ - INFO - Theme applied successfully
+2025-03-07 16:51:59,626 - __main__ - INFO - Creating main window...
+2025-03-07 16:51:59,628 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 16:51:59,628 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 16:51:59,629 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 16:53:01,320 - __main__ - INFO - Logging initialized
+2025-03-07 16:53:01,330 - __main__ - INFO - Application directories created
+2025-03-07 16:53:01,331 - __main__ - INFO - Configuration initialized
+2025-03-07 16:53:01,387 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 16:53:01,388 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 16:53:01,388 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 16:53:01,388 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:53:01,389 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 16:53:01,389 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 16:53:01,390 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 16:53:01,390 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:53:01,390 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 16:53:01,390 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 16:53:01,390 - app.utils.i18n - INFO - =====================
+2025-03-07 16:53:01,390 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 16:53:01,391 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 16:53:01,391 - __main__ - INFO - Theme applied successfully
+2025-03-07 16:53:01,391 - __main__ - INFO - Creating main window...
+2025-03-07 16:53:01,393 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 16:53:01,394 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 16:53:01,394 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 16:54:08,203 - __main__ - INFO - Logging initialized
+2025-03-07 16:54:08,219 - __main__ - INFO - Application directories created
+2025-03-07 16:54:08,221 - __main__ - INFO - Configuration initialized
+2025-03-07 16:54:08,271 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 16:54:08,273 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 16:54:08,273 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 16:54:08,273 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:54:08,274 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 16:54:08,274 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 16:54:08,274 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 16:54:08,275 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 16:54:08,275 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 16:54:08,275 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 16:54:08,275 - app.utils.i18n - INFO - =====================
+2025-03-07 16:54:08,276 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 16:54:08,276 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 16:54:08,277 - __main__ - INFO - Theme applied successfully
+2025-03-07 16:54:08,277 - __main__ - INFO - Creating main window...
+2025-03-07 16:54:08,278 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 16:54:08,278 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 16:54:08,279 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:01:42,198 - __main__ - INFO - Logging initialized
+2025-03-07 17:01:42,205 - __main__ - INFO - Application directories created
+2025-03-07 17:01:42,208 - __main__ - INFO - Configuration initialized
+2025-03-07 17:01:42,383 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:01:42,385 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:01:42,385 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:01:42,385 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:01:42,387 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:01:42,391 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:01:42,391 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:01:42,391 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:01:42,391 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:01:42,391 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:01:42,392 - app.utils.i18n - INFO - =====================
+2025-03-07 17:01:42,395 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:01:42,400 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:01:42,407 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:01:42,407 - __main__ - INFO - Creating main window...
+2025-03-07 17:01:42,428 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:01:42,429 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:01:42,431 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:02:02,560 - __main__ - INFO - Logging initialized
+2025-03-07 17:02:02,565 - __main__ - INFO - Application directories created
+2025-03-07 17:02:02,567 - __main__ - INFO - Configuration initialized
+2025-03-07 17:02:02,673 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:02:02,674 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:02:02,674 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:02:02,676 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:02:02,676 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:02:02,676 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:02:02,677 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:02:02,677 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:02:02,677 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:02:02,677 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:02:02,677 - app.utils.i18n - INFO - =====================
+2025-03-07 17:02:02,678 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:02:02,679 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:02:02,679 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:02:02,681 - __main__ - INFO - Creating main window...
+2025-03-07 17:02:02,682 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:02:02,682 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:02:02,683 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:03:30,291 - __main__ - INFO - Logging initialized
+2025-03-07 17:03:30,296 - __main__ - INFO - Application directories created
+2025-03-07 17:03:30,297 - __main__ - INFO - Configuration initialized
+2025-03-07 17:03:30,386 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:03:30,388 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:03:30,388 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:03:30,388 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:03:30,389 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:03:30,389 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:03:30,389 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:03:30,390 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:03:30,390 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:03:30,390 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:03:30,390 - app.utils.i18n - INFO - =====================
+2025-03-07 17:03:30,391 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:03:30,391 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:03:30,392 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:03:30,394 - __main__ - INFO - Creating main window...
+2025-03-07 17:03:30,395 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:03:30,395 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:03:30,397 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:39:26,857 - __main__ - INFO - Logging initialized
+2025-03-07 17:39:26,861 - __main__ - INFO - Application directories created
+2025-03-07 17:39:26,862 - __main__ - INFO - Configuration initialized
+2025-03-07 17:39:26,991 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:39:26,993 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:39:26,994 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:39:26,994 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:39:26,996 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:39:26,996 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:39:26,996 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:39:26,997 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:39:26,997 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:39:26,998 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:39:26,998 - app.utils.i18n - INFO - =====================
+2025-03-07 17:39:26,998 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:39:27,000 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:39:27,002 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:39:27,002 - __main__ - INFO - Creating main window...
+2025-03-07 17:39:27,013 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:39:27,013 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:39:27,015 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:43:42,752 - __main__ - INFO - Logging initialized
+2025-03-07 17:43:42,755 - __main__ - INFO - Application directories created
+2025-03-07 17:43:42,757 - __main__ - INFO - Configuration initialized
+2025-03-07 17:43:42,826 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:43:42,827 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:43:42,827 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:43:42,828 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:43:42,828 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:43:42,828 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:43:42,829 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:43:42,829 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:43:42,829 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:43:42,829 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:43:42,830 - app.utils.i18n - INFO - =====================
+2025-03-07 17:43:42,830 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:43:42,831 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:43:42,832 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:43:42,832 - __main__ - INFO - Creating main window...
+2025-03-07 17:43:42,834 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:43:42,834 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:43:42,835 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:44:48,294 - __main__ - INFO - Logging initialized
+2025-03-07 17:44:48,311 - __main__ - INFO - Application directories created
+2025-03-07 17:44:48,312 - __main__ - INFO - Configuration initialized
+2025-03-07 17:44:48,366 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:44:48,367 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:44:48,367 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:44:48,367 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:44:48,368 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:44:48,368 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:44:48,369 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:44:48,369 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:44:48,369 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:44:48,369 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:44:48,370 - app.utils.i18n - INFO - =====================
+2025-03-07 17:44:48,370 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:44:48,371 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:44:48,371 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:44:48,371 - __main__ - INFO - Creating main window...
+2025-03-07 17:44:48,373 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:44:48,373 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:44:48,373 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:44:48,373 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 17:44:48,374 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 17:51:58,879 - __main__ - INFO - Logging initialized
+2025-03-07 17:51:58,882 - __main__ - INFO - Application directories created
+2025-03-07 17:51:58,884 - __main__ - INFO - Configuration initialized
+2025-03-07 17:51:59,019 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:51:59,020 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:51:59,020 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:51:59,021 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:51:59,022 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:51:59,022 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:51:59,022 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:51:59,024 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:51:59,024 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:51:59,024 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:51:59,024 - app.utils.i18n - INFO - =====================
+2025-03-07 17:51:59,025 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:51:59,027 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:51:59,030 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:51:59,030 - __main__ - INFO - Creating main window...
+2025-03-07 17:51:59,041 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:51:59,041 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:51:59,042 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:51:59,044 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 17:51:59,053 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 17:53:29,496 - __main__ - INFO - Logging initialized
+2025-03-07 17:53:29,501 - __main__ - INFO - Application directories created
+2025-03-07 17:53:29,503 - __main__ - INFO - Configuration initialized
+2025-03-07 17:53:29,636 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:53:29,637 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:53:29,638 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:53:29,638 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:53:29,640 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:53:29,640 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:53:29,641 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:53:29,641 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:53:29,641 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:53:29,642 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:53:29,642 - app.utils.i18n - INFO - =====================
+2025-03-07 17:53:29,642 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:53:29,645 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:53:29,647 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:53:29,648 - __main__ - INFO - Creating main window...
+2025-03-07 17:53:29,660 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:53:29,660 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:53:29,661 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:53:29,662 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 17:53:29,675 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 17:55:13,064 - __main__ - INFO - Logging initialized
+2025-03-07 17:55:13,067 - __main__ - INFO - Application directories created
+2025-03-07 17:55:13,068 - __main__ - INFO - Configuration initialized
+2025-03-07 17:55:13,133 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:55:13,134 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:55:13,134 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:55:13,134 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:55:13,135 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:55:13,135 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:55:13,135 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:55:13,135 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:55:13,137 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:55:13,137 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:55:13,137 - app.utils.i18n - INFO - =====================
+2025-03-07 17:55:13,137 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:55:13,138 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:55:13,139 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:55:13,139 - __main__ - INFO - Creating main window...
+2025-03-07 17:55:13,140 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:55:13,142 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:55:13,143 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:55:13,143 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 17:55:13,144 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 17:56:44,535 - __main__ - INFO - Logging initialized
+2025-03-07 17:56:44,538 - __main__ - INFO - Application directories created
+2025-03-07 17:56:44,540 - __main__ - INFO - Configuration initialized
+2025-03-07 17:56:44,598 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:56:44,599 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:56:44,600 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:56:44,600 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:56:44,600 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:56:44,601 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:56:44,601 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:56:44,601 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:56:44,601 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:56:44,601 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:56:44,603 - app.utils.i18n - INFO - =====================
+2025-03-07 17:56:44,603 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:56:44,604 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:56:44,604 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:56:44,605 - __main__ - INFO - Creating main window...
+2025-03-07 17:56:44,606 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:56:44,606 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:56:44,607 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:56:44,607 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 17:56:44,608 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 17:57:56,140 - __main__ - INFO - Logging initialized
+2025-03-07 17:57:56,145 - __main__ - INFO - Application directories created
+2025-03-07 17:57:56,151 - __main__ - INFO - Configuration initialized
+2025-03-07 17:57:56,267 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:57:56,273 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:57:56,276 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:57:56,277 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:57:56,278 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:57:56,280 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:57:56,280 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:57:56,281 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:57:56,281 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:57:56,282 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:57:56,282 - app.utils.i18n - INFO - =====================
+2025-03-07 17:57:56,283 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:57:56,284 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:57:56,286 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:57:56,287 - __main__ - INFO - Creating main window...
+2025-03-07 17:57:56,289 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:57:56,291 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:57:56,293 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:57:56,294 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 17:57:56,297 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 17:59:42,163 - __main__ - INFO - Logging initialized
+2025-03-07 17:59:42,168 - __main__ - INFO - Application directories created
+2025-03-07 17:59:42,170 - __main__ - INFO - Configuration initialized
+2025-03-07 17:59:42,238 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 17:59:42,239 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 17:59:42,240 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 17:59:42,240 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:59:42,240 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 17:59:42,241 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 17:59:42,241 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 17:59:42,241 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 17:59:42,241 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 17:59:42,242 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 17:59:42,242 - app.utils.i18n - INFO - =====================
+2025-03-07 17:59:42,242 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 17:59:42,243 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 17:59:42,245 - __main__ - INFO - Theme applied successfully
+2025-03-07 17:59:42,245 - __main__ - INFO - Creating main window...
+2025-03-07 17:59:42,246 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 17:59:42,247 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 17:59:42,248 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 17:59:42,248 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 17:59:42,249 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 17:59:42,253 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 17:59:42,254 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 17:59:42,254 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 17:59:42,255 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 17:59:42,255 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 17:59:42,256 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 17:59:42,257 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 17:59:42,259 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 17:59:42,259 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 17:59:42,261 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 17:59:42,261 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 17:59:42,262 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-07 17:59:42,263 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 17:59:42,265 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 17:59:42,271 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 17:59:42,273 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-07 18:00:45,174 - __main__ - INFO - Logging initialized
+2025-03-07 18:00:45,178 - __main__ - INFO - Application directories created
+2025-03-07 18:00:45,180 - __main__ - INFO - Configuration initialized
+2025-03-07 18:00:45,240 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 18:00:45,241 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 18:00:45,241 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 18:00:45,241 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:00:45,242 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 18:00:45,242 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 18:00:45,242 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 18:00:45,243 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:00:45,243 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 18:00:45,243 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 18:00:45,243 - app.utils.i18n - INFO - =====================
+2025-03-07 18:00:45,244 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 18:00:45,245 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 18:00:45,245 - __main__ - INFO - Theme applied successfully
+2025-03-07 18:00:45,245 - __main__ - INFO - Creating main window...
+2025-03-07 18:00:45,246 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 18:00:45,247 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 18:00:45,248 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 18:00:45,248 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 18:00:45,250 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 18:00:45,250 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 18:00:45,250 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 18:00:45,251 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 18:00:45,251 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 18:00:45,251 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 18:00:45,251 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 18:00:45,251 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 18:00:45,251 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 18:00:45,253 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 18:00:45,253 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 18:00:45,253 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 18:00:45,254 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-07 18:00:45,254 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 18:00:45,254 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 18:00:45,255 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 18:00:45,255 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-07 18:03:25,793 - __main__ - INFO - Logging initialized
+2025-03-07 18:03:25,810 - __main__ - INFO - Application directories created
+2025-03-07 18:03:25,812 - __main__ - INFO - Configuration initialized
+2025-03-07 18:03:25,873 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 18:03:25,875 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 18:03:25,875 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 18:03:25,875 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:03:25,876 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 18:03:25,877 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 18:03:25,877 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 18:03:25,877 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:03:25,877 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 18:03:25,877 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 18:03:25,877 - app.utils.i18n - INFO - =====================
+2025-03-07 18:03:25,877 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 18:03:25,878 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 18:03:25,880 - __main__ - INFO - Theme applied successfully
+2025-03-07 18:03:25,880 - __main__ - INFO - Creating main window...
+2025-03-07 18:03:25,881 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 18:03:25,881 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 18:03:25,883 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 18:03:25,883 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 18:03:25,884 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 18:03:25,885 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 18:03:25,885 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 18:03:25,885 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 18:03:25,886 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 18:03:25,886 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 18:03:25,886 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 18:03:25,886 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 18:03:25,887 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 18:03:25,887 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 18:03:25,887 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 18:03:25,887 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 18:03:25,888 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-07 18:03:25,888 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 18:03:25,888 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 18:03:25,890 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 18:03:25,890 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-07 18:05:25,177 - __main__ - INFO - Logging initialized
+2025-03-07 18:05:25,180 - __main__ - INFO - Application directories created
+2025-03-07 18:05:25,182 - __main__ - INFO - Configuration initialized
+2025-03-07 18:05:25,242 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 18:05:25,243 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 18:05:25,243 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 18:05:25,243 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:05:25,244 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 18:05:25,244 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 18:05:25,244 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 18:05:25,244 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:05:25,244 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 18:05:25,245 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 18:05:25,245 - app.utils.i18n - INFO - =====================
+2025-03-07 18:05:25,245 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 18:05:25,247 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 18:05:25,247 - __main__ - INFO - Theme applied successfully
+2025-03-07 18:05:25,248 - __main__ - INFO - Creating main window...
+2025-03-07 18:05:25,249 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 18:05:25,249 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 18:05:25,250 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 18:05:25,250 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 18:05:25,252 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 18:05:25,252 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 18:05:25,253 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 18:05:25,253 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 18:05:25,253 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 18:05:25,254 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 18:05:25,254 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 18:05:25,254 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 18:05:25,254 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 18:05:25,255 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 18:05:25,255 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 18:05:25,255 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 18:05:25,257 - app.gui.main_window - ERROR - Failed to initialize MainWindow: 'ImageBrowser' object has no attribute 'import_images'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 69, in _setup_ui
+    self.btn_import.clicked.connect(self.import_images)
+                                    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute 'import_images'
+2025-03-07 18:05:25,259 - __main__ - ERROR - Failed to create main window: 'ImageBrowser' object has no attribute 'import_images'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 69, in main
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 69, in _setup_ui
+    self.btn_import.clicked.connect(self.import_images)
+                                    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute 'import_images'
+2025-03-07 18:05:25,261 - __main__ - ERROR - Application failed to start: 'ImageBrowser' object has no attribute 'import_images'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 69, in main
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 69, in _setup_ui
+    self.btn_import.clicked.connect(self.import_images)
+                                    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute 'import_images'
+2025-03-07 18:06:21,992 - __main__ - INFO - Logging initialized
+2025-03-07 18:06:22,009 - __main__ - INFO - Application directories created
+2025-03-07 18:06:22,011 - __main__ - INFO - Configuration initialized
+2025-03-07 18:06:22,073 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 18:06:22,073 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 18:06:22,074 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 18:06:22,074 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:06:22,074 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 18:06:22,076 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 18:06:22,077 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 18:06:22,077 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:06:22,077 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 18:06:22,077 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 18:06:22,077 - app.utils.i18n - INFO - =====================
+2025-03-07 18:06:22,079 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 18:06:22,079 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 18:06:22,080 - __main__ - INFO - Theme applied successfully
+2025-03-07 18:06:22,080 - __main__ - INFO - Creating main window...
+2025-03-07 18:06:22,081 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 18:06:22,082 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 18:06:22,084 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 18:06:22,084 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 18:06:22,085 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 18:06:22,086 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 18:06:22,086 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 18:06:22,087 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 18:06:22,087 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 18:06:22,087 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 18:06:22,088 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 18:06:22,088 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 18:06:22,088 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 18:06:22,090 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 18:06:22,090 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 18:06:22,090 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 18:06:22,091 - app.gui.main_window - ERROR - Failed to initialize MainWindow: 'ImageBrowser' object has no attribute 'import_images'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 69, in _setup_ui
+    self.btn_import.clicked.connect(self.import_images)
+                                    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute 'import_images'
+2025-03-07 18:06:22,093 - __main__ - ERROR - Failed to create main window: 'ImageBrowser' object has no attribute 'import_images'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 69, in main
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 69, in _setup_ui
+    self.btn_import.clicked.connect(self.import_images)
+                                    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute 'import_images'
+2025-03-07 18:06:22,095 - __main__ - ERROR - Application failed to start: 'ImageBrowser' object has no attribute 'import_images'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 69, in main
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 69, in _setup_ui
+    self.btn_import.clicked.connect(self.import_images)
+                                    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute 'import_images'
+2025-03-07 18:07:38,352 - __main__ - INFO - Logging initialized
+2025-03-07 18:07:38,368 - __main__ - INFO - Application directories created
+2025-03-07 18:07:38,369 - __main__ - INFO - Configuration initialized
+2025-03-07 18:07:38,428 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 18:07:38,429 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 18:07:38,429 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 18:07:38,429 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:07:38,430 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 18:07:38,430 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 18:07:38,430 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 18:07:38,431 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:07:38,431 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 18:07:38,431 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 18:07:38,431 - app.utils.i18n - INFO - =====================
+2025-03-07 18:07:38,431 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 18:07:38,433 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 18:07:38,433 - __main__ - INFO - Theme applied successfully
+2025-03-07 18:07:38,434 - __main__ - INFO - Creating main window...
+2025-03-07 18:07:38,435 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 18:07:38,435 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 18:07:38,437 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 18:07:38,437 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 18:07:38,439 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 18:07:38,439 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 18:07:38,439 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 18:07:38,440 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 18:07:38,440 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 18:07:38,440 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 18:07:38,440 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 18:07:38,441 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 18:07:38,441 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 18:07:38,441 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 18:07:38,443 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 18:07:38,443 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 18:07:38,443 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 18:07:38,443 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 18:07:38,444 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 18:07:38,445 - app.gui.main_window - ERROR - Failed to initialize MainWindow: 'ImageBrowser' object has no attribute '_update_button_states'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 77, in _setup_ui
+    self._update_button_states()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute '_update_button_states'
+2025-03-07 18:07:38,446 - __main__ - ERROR - Failed to create main window: 'ImageBrowser' object has no attribute '_update_button_states'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 69, in main
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 77, in _setup_ui
+    self._update_button_states()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute '_update_button_states'
+2025-03-07 18:07:38,448 - __main__ - ERROR - Application failed to start: 'ImageBrowser' object has no attribute '_update_button_states'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 69, in main
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 77, in _setup_ui
+    self._update_button_states()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute '_update_button_states'
+2025-03-07 18:09:07,389 - __main__ - INFO - Logging initialized
+2025-03-07 18:09:07,405 - __main__ - INFO - Application directories created
+2025-03-07 18:09:07,407 - __main__ - INFO - Configuration initialized
+2025-03-07 18:09:07,465 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 18:09:07,466 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 18:09:07,466 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 18:09:07,467 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:09:07,467 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 18:09:07,467 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 18:09:07,467 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 18:09:07,468 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:09:07,468 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 18:09:07,468 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 18:09:07,468 - app.utils.i18n - INFO - =====================
+2025-03-07 18:09:07,468 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 18:09:07,469 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 18:09:07,470 - __main__ - INFO - Theme applied successfully
+2025-03-07 18:09:07,470 - __main__ - INFO - Creating main window...
+2025-03-07 18:09:07,471 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 18:09:07,471 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 18:09:07,472 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 18:09:07,473 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 18:09:07,473 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 18:09:07,475 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 18:09:07,476 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 18:09:07,476 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 18:09:07,476 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 18:09:07,476 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 18:09:07,477 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 18:09:07,477 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 18:09:07,477 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 18:09:07,477 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 18:09:07,478 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 18:09:07,478 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 18:09:07,478 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 18:09:07,479 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 18:09:07,479 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 18:09:07,480 - app.gui.main_window - ERROR - Failed to initialize MainWindow: 'ImageBrowser' object has no attribute '_update_button_states'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 77, in _setup_ui
+    self._update_button_states()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute '_update_button_states'
+2025-03-07 18:09:07,480 - __main__ - ERROR - Failed to create main window: 'ImageBrowser' object has no attribute '_update_button_states'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 69, in main
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 77, in _setup_ui
+    self._update_button_states()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute '_update_button_states'
+2025-03-07 18:09:07,483 - __main__ - ERROR - Application failed to start: 'ImageBrowser' object has no attribute '_update_button_states'
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 69, in main
+    window = MainWindow()
+             ^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\main_window.py", line 33, in __init__
+    self.image_browser = ImageBrowser()
+                         ^^^^^^^^^^^^^^
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 40, in __init__
+    self._setup_ui()
+  File "C:\Users\ETPau\Documents\GitHub\CNN-\app\gui\image_list_widget.py", line 77, in _setup_ui
+    self._update_button_states()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ImageBrowser' object has no attribute '_update_button_states'
+2025-03-07 18:11:56,049 - __main__ - INFO - Logging initialized
+2025-03-07 18:11:56,053 - __main__ - INFO - Application directories created
+2025-03-07 18:11:56,055 - __main__ - INFO - Configuration initialized
+2025-03-07 18:11:56,111 - app.utils.i18n - INFO - Loaded 51 translations for en
+2025-03-07 18:11:56,113 - app.utils.i18n - INFO - Loaded 277 translations for zh_CN
+2025-03-07 18:11:56,113 - app.utils.i18n - INFO - Total loaded translations: 328
+2025-03-07 18:11:56,113 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:11:56,113 - app.utils.i18n - INFO - Set locale to zh_CN
+2025-03-07 18:11:56,114 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 18:11:56,114 - app.utils.i18n - INFO - Current locale: zh_CN
+2025-03-07 18:11:56,114 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:11:56,114 - app.utils.i18n - INFO - Initialized: True
+2025-03-07 18:11:56,115 - app.utils.i18n - INFO - Loaded strings for current locale: 277
+2025-03-07 18:11:56,115 - app.utils.i18n - INFO - =====================
+2025-03-07 18:11:56,115 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 18:11:56,115 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 18:11:56,116 - __main__ - INFO - Theme applied successfully
+2025-03-07 18:11:56,116 - __main__ - INFO - Creating main window...
+2025-03-07 18:11:56,119 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 18:11:56,119 - app.gui.main_window - INFO - Creating ProjectManager
+2025-03-07 18:11:56,120 - app.gui.main_window - INFO - Creating ImageBrowser
+2025-03-07 18:11:56,120 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 18:11:56,122 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 18:11:56,122 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 18:11:56,123 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 18:11:56,123 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 18:11:56,123 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 18:11:56,124 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 18:11:56,124 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 18:11:56,124 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 18:11:56,124 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 18:11:56,125 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 18:11:56,125 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 18:11:56,125 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 18:11:56,125 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 18:11:56,126 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 18:11:56,126 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 18:11:56,128 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-07 18:11:56,129 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-07 18:11:56,130 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-07 18:11:56,130 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-07 18:11:56,130 - app.gui.main_window - INFO - Creating AnalysisCore
+2025-03-07 18:11:56,131 - app.gui.main_window - INFO - Creating ResultVisualizer
+2025-03-07 18:56:18,696 - __main__ - INFO - Logging initialized
+2025-03-07 18:56:18,703 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-07 18:56:18,703 - __main__ - INFO - Application directories created
+2025-03-07 18:56:18,703 - __main__ - ERROR - Application failed to start: name 'init_config' is not defined
+Traceback (most recent call last):
+  File "c:\Users\ETPau\Documents\GitHub\CNN-\app\main.py", line 45, in main
+    init_config()
+    ^^^^^^^^^^^
+NameError: name 'init_config' is not defined
+2025-03-07 18:58:39,864 - __main__ - INFO - Logging initialized
+2025-03-07 18:58:39,866 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-07 18:58:39,866 - __main__ - INFO - Application directories created
+2025-03-07 18:58:39,866 - app.utils.config - INFO - Loading configuration
+2025-03-07 18:58:39,867 - app.utils.config - INFO - No config file found, using defaults
+2025-03-07 18:58:39,869 - app.utils.config - INFO - Configuration saved successfully
+2025-03-07 18:58:39,869 - app.utils.config - INFO - Loading configuration
+2025-03-07 18:58:39,871 - app.utils.config - INFO - Configuration loaded from file
+2025-03-07 18:58:39,871 - __main__ - INFO - Configuration initialized
+2025-03-07 18:58:39,999 - app.utils.i18n - INFO - Loading translations
+2025-03-07 18:58:40,003 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-07 18:58:40,004 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-07 18:58:40,004 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-07 18:58:40,005 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:58:40,006 - app.utils.i18n - INFO - Set locale to en
+2025-03-07 18:58:40,008 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 18:58:40,008 - app.utils.i18n - INFO - Current locale: en
+2025-03-07 18:58:40,008 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 18:58:40,009 - app.utils.i18n - INFO - Initialized: False
+2025-03-07 18:58:40,009 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-07 18:58:40,009 - app.utils.i18n - INFO - =====================
+2025-03-07 18:58:40,010 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 18:58:40,036 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 18:58:40,039 - __main__ - INFO - Theme applied successfully
+2025-03-07 18:58:40,040 - __main__ - INFO - Creating main window...
+2025-03-07 18:58:40,050 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 18:58:40,058 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 18:58:40,067 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 18:58:40,069 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 18:58:40,070 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 18:58:40,071 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 18:58:40,071 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 18:58:40,071 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 18:58:40,072 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 18:58:40,072 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 18:58:40,073 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 18:58:40,073 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 18:58:40,073 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 18:58:40,073 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 18:58:40,076 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 18:58:40,076 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 18:58:40,079 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 18:58:40,079 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-07 18:58:40,080 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-07 18:58:40,082 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-07 18:58:40,083 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-07 18:58:40,083 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-07 18:58:40,087 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-07 18:58:40,216 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-07 18:58:40,216 - __main__ - INFO - Main window created successfully
+2025-03-07 18:58:41,092 - __main__ - INFO - Main window shown
+2025-03-07 18:59:55,571 - app.gui.about_dialog - INFO - Initializing AboutDialog
+2025-03-07 18:59:55,589 - app.gui.about_dialog - INFO - AboutDialog initialization complete
+2025-03-07 19:01:10,381 - app.gui.settings_dialog - INFO - Initializing SettingsDialog
+2025-03-07 19:01:10,402 - app.gui.settings_dialog - INFO - SettingsDialog initialization complete
+2025-03-07 19:01:47,196 - __main__ - INFO - Logging initialized
+2025-03-07 19:01:47,197 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-07 19:01:47,197 - __main__ - INFO - Application directories created
+2025-03-07 19:01:47,198 - app.utils.config - INFO - Loading configuration
+2025-03-07 19:01:47,198 - app.utils.config - INFO - Configuration loaded from file
+2025-03-07 19:01:47,200 - app.utils.config - INFO - Loading configuration
+2025-03-07 19:01:47,201 - app.utils.config - INFO - Configuration loaded from file
+2025-03-07 19:01:47,201 - __main__ - INFO - Configuration initialized
+2025-03-07 19:01:47,253 - app.utils.i18n - INFO - Loading translations
+2025-03-07 19:01:47,255 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-07 19:01:47,256 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-07 19:01:47,256 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-07 19:01:47,256 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 19:01:47,256 - app.utils.i18n - INFO - Set locale to en
+2025-03-07 19:01:47,257 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 19:01:47,257 - app.utils.i18n - INFO - Current locale: en
+2025-03-07 19:01:47,257 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 19:01:47,257 - app.utils.i18n - INFO - Initialized: False
+2025-03-07 19:01:47,258 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-07 19:01:47,258 - app.utils.i18n - INFO - =====================
+2025-03-07 19:01:47,258 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 19:01:47,267 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 19:01:47,268 - __main__ - INFO - Theme applied successfully
+2025-03-07 19:01:47,268 - __main__ - INFO - Creating main window...
+2025-03-07 19:01:47,269 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 19:01:47,271 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 19:01:47,272 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 19:01:47,273 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 19:01:47,274 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 19:01:47,274 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 19:01:47,275 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 19:01:47,275 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 19:01:47,275 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 19:01:47,275 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 19:01:47,275 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 19:01:47,276 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 19:01:47,276 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 19:01:47,277 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 19:01:47,277 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 19:01:47,277 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 19:01:47,278 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 19:01:47,278 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-07 19:01:47,278 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-07 19:01:47,279 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-07 19:01:47,279 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-07 19:01:47,279 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-07 19:01:47,280 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-07 19:01:47,329 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-07 19:01:47,329 - __main__ - INFO - Main window created successfully
+2025-03-07 19:01:47,674 - __main__ - INFO - Main window shown
+2025-03-07 19:01:49,900 - app.gui.settings_dialog - INFO - Initializing SettingsDialog
+2025-03-07 19:01:49,906 - app.gui.settings_dialog - INFO - SettingsDialog initialization complete
+2025-03-07 19:02:06,283 - __main__ - INFO - Logging initialized
+2025-03-07 19:02:06,285 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-07 19:02:06,285 - __main__ - INFO - Application directories created
+2025-03-07 19:02:06,286 - app.utils.config - INFO - Loading configuration
+2025-03-07 19:02:06,287 - app.utils.config - INFO - Configuration loaded from file
+2025-03-07 19:02:06,287 - app.utils.config - INFO - Loading configuration
+2025-03-07 19:02:06,288 - app.utils.config - INFO - Configuration loaded from file
+2025-03-07 19:02:06,288 - __main__ - INFO - Configuration initialized
+2025-03-07 19:02:06,344 - app.utils.i18n - INFO - Loading translations
+2025-03-07 19:02:06,345 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-07 19:02:06,346 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-07 19:02:06,346 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-07 19:02:06,346 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 19:02:06,346 - app.utils.i18n - INFO - Set locale to en
+2025-03-07 19:02:06,347 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 19:02:06,347 - app.utils.i18n - INFO - Current locale: en
+2025-03-07 19:02:06,347 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 19:02:06,347 - app.utils.i18n - INFO - Initialized: False
+2025-03-07 19:02:06,348 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-07 19:02:06,348 - app.utils.i18n - INFO - =====================
+2025-03-07 19:02:06,348 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 19:02:06,357 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 19:02:06,358 - __main__ - INFO - Theme applied successfully
+2025-03-07 19:02:06,358 - __main__ - INFO - Creating main window...
+2025-03-07 19:02:06,359 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 19:02:06,360 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 19:02:06,360 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 19:02:06,362 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 19:02:06,362 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 19:02:06,362 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 19:02:06,363 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 19:02:06,363 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 19:02:06,363 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 19:02:06,363 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 19:02:06,364 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 19:02:06,364 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 19:02:06,364 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 19:02:06,364 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 19:02:06,365 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 19:02:06,365 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 19:02:06,365 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 19:02:06,366 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-07 19:02:06,366 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-07 19:02:06,366 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-07 19:02:06,366 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-07 19:02:06,367 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-07 19:02:06,368 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-07 19:02:06,407 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-07 19:02:06,407 - __main__ - INFO - Main window created successfully
+2025-03-07 19:02:06,643 - __main__ - INFO - Main window shown
+2025-03-07 19:52:16,209 - __main__ - INFO - Logging initialized
+2025-03-07 19:52:16,212 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-07 19:52:16,212 - __main__ - INFO - Application directories created
+2025-03-07 19:52:16,213 - app.utils.config - INFO - Loading configuration
+2025-03-07 19:52:16,213 - app.utils.config - INFO - Configuration loaded from file
+2025-03-07 19:52:16,214 - app.utils.config - INFO - Loading configuration
+2025-03-07 19:52:16,215 - app.utils.config - INFO - Configuration loaded from file
+2025-03-07 19:52:16,215 - __main__ - INFO - Configuration initialized
+2025-03-07 19:52:16,360 - app.utils.i18n - INFO - Loading translations
+2025-03-07 19:52:16,362 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-07 19:52:16,364 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-07 19:52:16,364 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-07 19:52:16,364 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 19:52:16,365 - app.utils.i18n - INFO - Set locale to en
+2025-03-07 19:52:16,366 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 19:52:16,366 - app.utils.i18n - INFO - Current locale: en
+2025-03-07 19:52:16,367 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 19:52:16,367 - app.utils.i18n - INFO - Initialized: False
+2025-03-07 19:52:16,367 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-07 19:52:16,367 - app.utils.i18n - INFO - =====================
+2025-03-07 19:52:16,367 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 19:52:16,379 - __main__ - INFO - Loading theme from: C:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 19:52:16,381 - __main__ - INFO - Theme applied successfully
+2025-03-07 19:52:16,381 - __main__ - INFO - Creating main window...
+2025-03-07 19:52:16,391 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 19:52:16,397 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 19:52:16,406 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 19:52:16,407 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 19:52:16,408 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 19:52:16,409 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 19:52:16,409 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 19:52:16,409 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 19:52:16,410 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 19:52:16,410 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 19:52:16,411 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 19:52:16,411 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 19:52:16,412 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 19:52:16,412 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 19:52:16,413 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 19:52:16,414 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 19:52:16,416 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 19:52:16,416 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-07 19:52:16,417 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-07 19:52:16,418 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-07 19:52:16,418 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-07 19:52:16,418 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-07 19:52:16,422 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-07 19:52:16,516 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-07 19:52:16,516 - __main__ - INFO - Main window created successfully
+2025-03-07 19:52:16,906 - __main__ - INFO - Main window shown
+2025-03-07 19:52:21,546 - app.gui.settings_dialog - INFO - Initializing SettingsDialog
+2025-03-07 19:52:21,573 - app.gui.settings_dialog - INFO - SettingsDialog initialization complete
+2025-03-07 19:52:25,145 - app.utils.config - INFO - Configuration saved successfully
+2025-03-07 23:26:01,558 - __main__ - INFO - Logging initialized
+2025-03-07 23:26:01,561 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-07 23:26:01,561 - __main__ - INFO - Application directories created
+2025-03-07 23:26:01,561 - app.utils.config - INFO - Loading configuration
+2025-03-07 23:26:01,566 - app.utils.config - INFO - Configuration loaded from file
+2025-03-07 23:26:01,566 - app.utils.config - INFO - Loading configuration
+2025-03-07 23:26:01,567 - app.utils.config - INFO - Configuration loaded from file
+2025-03-07 23:26:01,567 - __main__ - INFO - Configuration initialized
+2025-03-07 23:26:01,684 - app.utils.i18n - INFO - Loading translations
+2025-03-07 23:26:01,688 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-07 23:26:01,690 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-07 23:26:01,690 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-07 23:26:01,690 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 23:26:01,691 - app.utils.i18n - INFO - Set locale to en
+2025-03-07 23:26:01,693 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-07 23:26:01,693 - app.utils.i18n - INFO - Current locale: en
+2025-03-07 23:26:01,694 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-07 23:26:01,694 - app.utils.i18n - INFO - Initialized: False
+2025-03-07 23:26:01,694 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-07 23:26:01,694 - app.utils.i18n - INFO - =====================
+2025-03-07 23:26:01,695 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-07 23:26:01,715 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-07 23:26:01,719 - __main__ - INFO - Theme applied successfully
+2025-03-07 23:26:01,720 - __main__ - INFO - Creating main window...
+2025-03-07 23:26:01,731 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-07 23:26:01,737 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-07 23:26:01,747 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-07 23:26:01,748 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-07 23:26:01,749 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-07 23:26:01,750 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-07 23:26:01,750 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-07 23:26:01,750 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-07 23:26:01,752 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-07 23:26:01,754 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-07 23:26:01,756 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-07 23:26:01,756 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-07 23:26:01,757 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-07 23:26:01,757 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-07 23:26:01,761 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-07 23:26:01,762 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-07 23:26:01,765 - app.gui.image_list_widget - INFO - Layout set
+2025-03-07 23:26:01,766 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-07 23:26:01,766 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-07 23:26:01,768 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-07 23:26:01,768 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-07 23:26:01,769 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-07 23:26:01,775 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-07 23:26:01,926 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-07 23:26:01,929 - __main__ - INFO - Main window created successfully
+2025-03-07 23:26:02,972 - __main__ - INFO - Main window shown
+2025-03-07 23:26:07,775 - app.gui.settings_dialog - INFO - Initializing SettingsDialog
+2025-03-07 23:26:07,789 - app.gui.settings_dialog - INFO - SettingsDialog initialization complete
+2025-03-07 23:26:11,891 - app.gui.about_dialog - INFO - Initializing AboutDialog
+2025-03-07 23:26:11,919 - app.gui.about_dialog - INFO - AboutDialog initialization complete

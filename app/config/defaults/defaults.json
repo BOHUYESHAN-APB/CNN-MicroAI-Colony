@@ -1,0 +1,86 @@
+{
+    "app": {
+        "name": "Colony Detection",
+        "version": "1.0.0",
+        "locale": "en",
+        "theme": "dark",
+        "auto_save": true,
+        "window": {
+            "width": 1200,
+            "height": 800,
+            "maximized": false,
+            "recent_projects": []
+        }
+    },
+    "project": {
+        "default_path": "~/Desktop/MicroAI_Detect",
+        "auto_backup": true,
+        "backup_interval": 300,
+        "create_timestamp_folders": true,
+        "structure": {
+            "images": "images",
+            "results": "results",
+            "exports": "exports",
+            "logs": "logs"
+        }
+    },
+    "analysis": {
+        "default_iterations": 100,
+        "min_iterations": 10,
+        "max_iterations": 10000,
+        "confidence_threshold": 0.5,
+        "auto_export": true,
+        "export_formats": ["json", "csv", "xlsx"],
+        "model": {
+            "batch_size": 1,
+            "device": "cpu",
+            "num_threads": 1
+        }
+    },
+    "export": {
+        "formats": {
+            "json": true,
+            "csv": true,
+            "xlsx": true,
+            "pdf": false,
+            "png": false
+        },
+        "naming": {
+            "single": "{filename}_{timestamp}",
+            "batch": "batch_{timestamp}",
+            "summary": "summary_{timestamp}"
+        },
+        "timestamp_format": "%Y%m%d-%H%M%S",
+        "include_metadata": true,
+        "compress_images": false
+    },
+    "interface": {
+        "toolbar": {
+            "visible": true,
+            "position": "top",
+            "style": "icon_text"
+        },
+        "statusbar": {
+            "visible": true,
+            "show_progress": true
+        },
+        "image_browser": {
+            "thumbnail_size": 100,
+            "sort_by": "name",
+            "sort_order": "ascending",
+            "preview_max_size": 800
+        },
+        "results": {
+            "auto_arrange": true,
+            "tile_layout": true,
+            "show_grid": true,
+            "decimal_places": 2
+        }
+    },
+    "logging": {
+        "level": "INFO",
+        "file_rotation": "daily",
+        "keep_days": 30,
+        "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    }
+}

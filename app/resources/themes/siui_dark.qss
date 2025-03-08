@@ -1,0 +1,204 @@
+/* Silicon UI Dark Theme */
+
+/* Global Styles */
+QWidget {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+}
+
+/* Modern Buttons */
+ModernPushButton {
+    background-color: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+    padding: 6px 12px;
+    color: #ffffff;
+    min-width: 80px;
+}
+
+ModernPushButton:hover {
+    background-color: #3d3d3d;
+    border-color: #4d4d4d;
+}
+
+ModernPushButton:pressed {
+    background-color: #4d4d4d;
+    border-color: #5d5d5d;
+}
+
+ModernPushButton:checked {
+    background-color: #0078d4;
+    border-color: #0078d4;
+}
+
+ModernPushButton:disabled {
+    background-color: #252525;
+    border-color: #303030;
+    color: #666666;
+}
+
+/* Modern Labels */
+ModernLabel {
+    color: #ffffff;
+    padding: 2px;
+}
+
+/* Progress Bar */
+ProgressBar {
+    background-color: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+    text-align: center;
+}
+
+ProgressBar::chunk {
+    background-color: #0078d4;
+    border-radius: 3px;
+}
+
+/* Titled Widget Groups */
+TitledWidgetGroup {
+    background-color: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    border-radius: 6px;
+    padding: 8px;
+    margin: 4px;
+}
+
+TitledWidgetGroup > QLabel {
+    color: #0078d4;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* Modern Sliders */
+ModernSlider {
+    background: transparent;
+}
+
+ModernSlider::groove:horizontal {
+    background: #2d2d2d;
+    height: 4px;
+    border-radius: 2px;
+}
+
+ModernSlider::handle:horizontal {
+    background: #0078d4;
+    width: 16px;
+    height: 16px;
+    margin: -6px 0;
+    border-radius: 8px;
+}
+
+ModernSlider::handle:horizontal:hover {
+    background: #1a8ad4;
+}
+
+/* Modern SpinBox */
+ModernSpinBox, ModernDoubleSpinBox {
+    background-color: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+    padding: 4px;
+    min-width: 60px;
+}
+
+ModernSpinBox::up-button, ModernDoubleSpinBox::up-button,
+ModernSpinBox::down-button, ModernDoubleSpinBox::down-button {
+    background: #3d3d3d;
+    border: none;
+    border-radius: 2px;
+    width: 16px;
+    margin: 1px;
+}
+
+ModernSpinBox::up-button:hover, ModernDoubleSpinBox::up-button:hover,
+ModernSpinBox::down-button:hover, ModernDoubleSpinBox::down-button:hover {
+    background: #4d4d4d;
+}
+
+/* Modern Toolbar */
+ModernToolBar {
+    background-color: #2d2d2d;
+    border: none;
+    spacing: 4px;
+    padding: 4px;
+}
+
+ModernToolBar::separator {
+    width: 1px;
+    background-color: #3d3d3d;
+    margin: 4px 8px;
+}
+
+/* ScrollArea and ScrollBars */
+QScrollArea {
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+}
+
+QScrollBar:vertical {
+    background: #2d2d2d;
+    width: 12px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: #3d3d3d;
+    min-height: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #4d4d4d;
+}
+
+QScrollBar:horizontal {
+    background: #2d2d2d;
+    height: 12px;
+    margin: 0;
+}
+
+QScrollBar::handle:horizontal {
+    background: #3d3d3d;
+    min-width: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #4d4d4d;
+}
+
+/* Remove scroll bar buttons */
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical,
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    border: none;
+    background: none;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    background: none;
+}
+
+/* MDI Area */
+QMdiArea {
+    background-color: #1e1e1e;
+}
+
+QMdiSubWindow {
+    background-color: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    border-radius: 6px;
+}
+
+QMdiSubWindow > QWidget {
+    margin: 0;
+    padding: 0;
+}
+
+QMdiSubWindow > QWidget > QWidget {
+    margin: 0;
+    padding: 0;
+}

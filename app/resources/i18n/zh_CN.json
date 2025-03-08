@@ -1,0 +1,81 @@
+{
+    "app": {
+        "name": "菌落检测",
+        "description": "自动化细菌菌落计数软件"
+    },
+    "menu": {
+        "file": "文件(&F)",
+        "new_project": "新建工程(&N)",
+        "open_project": "打开工程(&O)",
+        "import_images": "导入图片(&I)",
+        "exit": "退出(&X)",
+        "settings": "设置(&S)",
+        "preferences": "首选项(&P)",
+        "help": "帮助(&H)",
+        "about": "关于(&A)"
+    },
+    "project": {
+        "create_title": "新建工程",
+        "open_title": "打开工程",
+        "filter": "菌落检测工程 (*.cdp)",
+        "directory_not_found": "未找到工程目录：{}",
+        "created": "已创建新工程：{}",
+        "opened": "已打开工程：{}"
+    },
+    "image_browser": {
+        "import": "导入图片",
+        "remove": "移除选中",
+        "clear": "清空全部",
+        "no_selection": "未选择图片",
+        "confirm_clear": "确定要移除所有图片吗？",
+        "image_formats": "图片文件 (*.png *.jpg *.jpeg *.tiff *.bmp)",
+        "select_images": "选择图片",
+        "create_project_first": "请先创建或打开工程",
+        "file_not_found": "未找到图片文件：{}",
+        "load_error": "加载图片失败：{}"
+    },
+    "analysis": {
+        "single_title": "分析结果",
+        "multi_title": "对比分析",
+        "colony_count": "菌落数量：{}",
+        "confidence": "检测置信度",
+        "colony_index": "菌落索引",
+        "confidence_score": "置信度得分",
+        "distribution": "菌落数量分布",
+        "summary_stats": "统计摘要",
+        "mean": "平均值",
+        "median": "中位数",
+        "std_dev": "标准差",
+        "cv": "变异系数"
+    },
+    "settings": {
+        "title": "设置",
+        "project_settings": "工程设置",
+        "default_path": "默认工程路径：",
+        "browse": "浏览",
+        "select_dir": "选择默认工程目录",
+        "export_settings": "导出设置",
+        "json": "JSON",
+        "csv": "CSV",
+        "excel": "Excel",
+        "analysis_settings": "分析设置",
+        "iterations": "默认迭代次数："
+    },
+    "export": {
+        "title": "导出结果",
+        "all": "导出全部",
+        "select_dir": "选择导出目录",
+        "formats": "PDF文件 (*.pdf);;PNG文件 (*.png)"
+    },
+    "common": {
+        "ok": "确定",
+        "cancel": "取消",
+        "warning": "警告",
+        "error": "错误",
+        "ready": "就绪",
+        "loading": "加载中...",
+        "processing": "处理中...",
+        "completed": "完成",
+        "confirmation": "确认"
+    }
+}

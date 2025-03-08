@@ -1,0 +1,81 @@
+{
+    "app": {
+        "name": "Colony Detection",
+        "description": "Automated bacterial colony counting software"
+    },
+    "menu": {
+        "file": "&File",
+        "new_project": "&New Project",
+        "open_project": "&Open Project",
+        "import_images": "&Import Images",
+        "exit": "E&xit",
+        "settings": "&Settings",
+        "preferences": "&Preferences",
+        "help": "&Help",
+        "about": "&About"
+    },
+    "project": {
+        "create_title": "New Project",
+        "open_title": "Open Project",
+        "filter": "Colony Detection Project (*.cdp)",
+        "directory_not_found": "Project directory not found: {}",
+        "created": "Created new project: {}",
+        "opened": "Opened project: {}"
+    },
+    "image_browser": {
+        "import": "Import Images",
+        "remove": "Remove Selected",
+        "clear": "Clear All",
+        "no_selection": "No image selected",
+        "confirm_clear": "Are you sure you want to remove all images?",
+        "image_formats": "Images (*.png *.jpg *.jpeg *.tiff *.bmp)",
+        "select_images": "Select Images",
+        "create_project_first": "Please create or open a project first",
+        "file_not_found": "Image file not found: {}",
+        "load_error": "Failed to load image: {}"
+    },
+    "analysis": {
+        "single_title": "Analysis Result",
+        "multi_title": "Analysis Comparison",
+        "colony_count": "Colony Count: {}",
+        "confidence": "Detection Confidence",
+        "colony_index": "Colony Index",
+        "confidence_score": "Confidence Score",
+        "distribution": "Colony Count Distribution",
+        "summary_stats": "Summary Statistics",
+        "mean": "Mean",
+        "median": "Median",
+        "std_dev": "Standard Deviation",
+        "cv": "Coefficient of Variation"
+    },
+    "settings": {
+        "title": "Settings",
+        "project_settings": "Project Settings",
+        "default_path": "Default Project Path:",
+        "browse": "Browse",
+        "select_dir": "Select Default Project Directory",
+        "export_settings": "Export Settings",
+        "json": "JSON",
+        "csv": "CSV",
+        "excel": "Excel",
+        "analysis_settings": "Analysis Settings",
+        "iterations": "Default Iterations:"
+    },
+    "export": {
+        "title": "Export Result",
+        "all": "Export All",
+        "select_dir": "Select Export Directory",
+        "formats": "PDF files (*.pdf);;PNG files (*.png)"
+    },
+    "common": {
+        "ok": "OK",
+        "cancel": "Cancel",
+        "warning": "Warning",
+        "error": "Error",
+        "ready": "Ready",
+        "loading": "Loading...",
+        "processing": "Processing...",
+        "completed": "Completed",
+        "confirmation": "Confirmation"
+    }
+}
