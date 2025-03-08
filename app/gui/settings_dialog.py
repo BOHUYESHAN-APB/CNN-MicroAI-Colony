@@ -4,21 +4,25 @@ from pathlib import Path
 from PySide6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QLabel, 
     QLineEdit, QFileDialog, QCheckBox, QSpinBox,
-    QGroupBox, QPushButton, QDialogButtonBox
+    QGroupBox, QPushButton, QDialogButtonBox, QComboBox
 )
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QFont
 
 from ..utils.config import ConfigManager
+from ..utils.i18n import get_i18n
 
 logger = logging.getLogger(__name__)
 
 class SettingsDialog(QDialog):
+    language_changed = Signal(str)  # 定义信号
+
     def __init__(self, parent=None):
         super().__init__(parent)
         logger.info("Initializing SettingsDialog")
         
         self.config = ConfigManager()
+        self.i18n = get_i18n()
         
         self.setWindowTitle(self.tr("Settings"))
         self.resize(500, 400)
@@ -102,6 +106,16 @@ class SettingsDialog(QDialog):
         interface_group = QGroupBox(self.tr("Interface Settings"))
         interface_layout = QVBoxLayout()
         
+        # Language selection
+        language_layout = QHBoxLayout()
+        language_label = QLabel(self.tr("Language:"))
+        self.language_combo = QComboBox()
+        self.language_combo.addItems(self.i18n.get_available_locales())
+        language_layout.addWidget(language_label)
+        language_layout.addWidget(self.language_combo)
+        language_layout.addStretch()
+        interface_layout.addLayout(language_layout)
+        
         # Window state
         self.maximize_check = QCheckBox(self.tr("Start Maximized"))
         self.maximize_check.setToolTip(self.tr("Start application in maximized state"))
@@ -154,6 +168,12 @@ class SettingsDialog(QDialog):
             self.config.get("window.maximized", False)
         )
         
+        # Language setting
+        current_locale = self.config.get("language", "en")
+        index = self.language_combo.findText(current_locale)
+        if index != -1:
+            self.language_combo.setCurrentIndex(index)
+        
     def _save_settings(self):
         """Save settings and close dialog"""
         # Project path
@@ -175,6 +195,11 @@ class SettingsDialog(QDialog):
         # Interface settings
         self.config.set("window.maximized", self.maximize_check.isChecked())
         
+        # Language setting
+        selected_language = self.language_combo.currentText()
+        self.config.set("language", selected_language)
+        self.config.save()
+        self.language_changed.emit(selected_language)  # 发射信号
         self.accept()
         
     def _browse_path(self):
@@ -188,3 +213,8 @@ class SettingsDialog(QDialog):
         
         if new_path:
             self.path_edit.setText(new_path)
+
+    def retranslateUi(self):
+        """Retranslate UI elements."""
+        self.setWindowTitle(self.tr("Settings"))
+        # Retranslate other elements as needed

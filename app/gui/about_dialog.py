@@ -16,75 +16,89 @@ class AboutDialog(QDialog):
         super().__init__(parent)
         logger.info("Initializing AboutDialog")
         
-        self.setWindowTitle(self.tr("About Colony Detection"))
+        self.setWindowTitle(self.tr("About MicroAI-Colony"))
         self.resize(600, 400)
         
         self._setup_ui()
         logger.info("AboutDialog initialization complete")
+
+    def retranslateUi(self):
+        """Retranslate UI elements."""
+        self.setWindowTitle(self.tr("About MicroAI-Colony"))
+        self.about_group.setTitle(self.tr("About"))
+        self.license_group.setTitle(self.tr("License"))
+        self.thirdparty_group.setTitle(self.tr("Third Party"))
+        self.ok_button.setText(self.tr("OK"))
+        self.ok_button.setToolTip(self.tr("Close this dialog"))
+
+        # Update tab texts
+        self.tab_widget.setTabText(0, self.tr("About"))
+        self.tab_widget.setTabText(1, self.tr("License"))
+        self.tab_widget.setTabText(2, self.tr("Third Party"))
         
     def _setup_ui(self):
         """Setup dialog UI"""
         layout = QVBoxLayout()
         
         # Tab widget for different sections
-        tab_widget = QTabWidget()
+        self.tab_widget = QTabWidget()
         
         # About section
-        about_group = QGroupBox(self.tr("About"))
+        self.about_group = QGroupBox(self.tr("About"))
         about_layout = QVBoxLayout()
-        about_browser = QTextBrowser()
-        about_browser.setOpenExternalLinks(True)
-        about_browser.setStyleSheet("""
+        self.about_browser = QTextBrowser()
+        self.about_browser.setOpenExternalLinks(True)
+        self.about_browser.setStyleSheet("""
             QTextBrowser {
                 background-color: #21252b;
                 border: none;
             }
         """)
-        about_browser.setHtml(self._get_about_text())
-        about_layout.addWidget(about_browser)
-        about_group.setLayout(about_layout)
-        tab_widget.addTab(about_group, self.tr("About"))
+        self.about_browser.setHtml(self._get_about_text())
+        about_layout.addWidget(self.about_browser)
+        self.about_group.setLayout(about_layout)
+        self.tab_widget.addTab(self.about_group, self.tr("About"))
         
         # License section
-        license_group = QGroupBox(self.tr("License"))
+        self.license_group = QGroupBox(self.tr("License"))
         license_layout = QVBoxLayout()
-        license_browser = QTextBrowser()
-        license_browser.setOpenExternalLinks(True)
-        license_browser.setStyleSheet("""
+        self.license_browser = QTextBrowser()
+        self.license_browser.setOpenExternalLinks(True)
+        self.license_browser.setStyleSheet("""
             QTextBrowser {
                 background-color: #21252b;
                 border: none;
             }
         """)
-        license_browser.setHtml(self._get_license_text())
-        license_layout.addWidget(license_browser)
-        license_group.setLayout(license_layout)
-        tab_widget.addTab(license_group, self.tr("License"))
+        self.license_browser.setHtml(self._get_license_text())
+        license_layout.addWidget(self.license_browser)
+        self.license_group.setLayout(license_layout)
+        self.tab_widget.addTab(self.license_group, self.tr("License"))
         
         # Third party section
-        thirdparty_group = QGroupBox(self.tr("Third Party"))
+        self.thirdparty_group = QGroupBox(self.tr("Third Party"))
         thirdparty_layout = QVBoxLayout()
-        thirdparty_browser = QTextBrowser()
-        thirdparty_browser.setOpenExternalLinks(True)
-        thirdparty_browser.setStyleSheet("""
+        self.thirdparty_browser = QTextBrowser()
+        self.thirdparty_browser.setOpenExternalLinks(True)
+        self.thirdparty_browser.setStyleSheet("""
             QTextBrowser {
                 background-color: #21252b;
                 border: none;
             }
         """)
-        thirdparty_browser.setHtml(self._get_thirdparty_text())
-        thirdparty_layout.addWidget(thirdparty_browser)
-        thirdparty_group.setLayout(thirdparty_layout)
-        tab_widget.addTab(thirdparty_group, self.tr("Third Party"))
+        self.thirdparty_browser.setHtml(self._get_thirdparty_text())
+        thirdparty_layout.addWidget(self.thirdparty_browser)
+        self.thirdparty_group.setLayout(thirdparty_layout)
+        self.tab_widget.addTab(self.thirdparty_group, self.tr("Third Party"))
         
-        layout.addWidget(tab_widget)
+        layout.addWidget(self.tab_widget)
         
         # Dialog button
         button_box = QDialogButtonBox()
-        ok_button = QPushButton(self.tr("OK"))
-        ok_button.setDefault(True)
-        ok_button.setToolTip(self.tr("Close this dialog"))
-        button_box.addButton(ok_button, QDialogButtonBox.AcceptRole)
+        self.ok_button = QPushButton(self.tr("OK"))
+        self.ok_button.setDefault(True)
+        self.ok_button.setToolTip(self.tr("Close this dialog"))
+        button_box.addButton(self.ok_button, QDialogButtonBox.AcceptRole)
         button_box.accepted.connect(self.accept)
         layout.addWidget(button_box)
         
@@ -94,17 +108,17 @@ class AboutDialog(QDialog):
         """Get formatted about text"""
         return f"""
         <div style='text-align: center;'>
-            <h2 style='color: #61afef;'>Colony Detection</h2>
+            <h2 style='color: #61afef;'>MicroAI-Colony</h2>
             <p style='color: #98c379;'>Version {__version__}</p>
             <p>
-            Colony Detection is an intelligent software solution for automated bacterial colony counting
+            MicroAI-Colony is an intelligent software solution for automated bacterial colony counting
             using advanced image processing and machine learning techniques.
             </p>
             <p>
-            Copyright © 2025 Colony Detection Team. All rights reserved.
+            Copyright © 2025 MicroAI Team. All rights reserved.
             </p>
             <p>
-            <a href='https://github.com/example/colony-detection' style='color: #61afef;'>
+            <a href='https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony' style='color: #61afef;'>
                 Project Homepage
             </a>
             </p>
@@ -114,33 +128,26 @@ class AboutDialog(QDialog):
     def _get_license_text(self):
         """Get formatted license text"""
         return """
-        <h3 style='color: #61afef;'>Colony Detection Software License</h3>
+        <h3 style='color: #61afef;'>GNU General Public License v3.0</h3>
         <p>
-        This software is licensed under the MIT License.
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
         </p>
-        <pre style='background-color: #282c34; padding: 10px; border-radius: 4px;'>
-MIT License
-
-Copyright (c) 2025 Colony Detection Team
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-        </pre>
+        <p>
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+        GNU General Public License for more details.
+        </p>
+        <p>
+        You should have received a copy of the GNU General Public License
+        along with this program. If not, see 
+        <a href='https://www.gnu.org/licenses/' style='color: #61afef;'>
+            https://www.gnu.org/licenses/
+        </a>.
+        </p>
         """
         
     def _get_thirdparty_text(self):
@@ -157,25 +164,29 @@ SOFTWARE.
         </p>
         
         <h4 style='color: #98c379;'>PyTorch</h4>
-        <p>From PyTorch:</p>
-        <pre style='background-color: #282c34; padding: 10px; border-radius: 4px;'>
-Copyright (c) 2016-     Facebook, Inc            (Adam Paszke)
-Copyright (c) 2014-     Facebook, Inc            (Soumith Chintala)
-Copyright (c) 2011-2014 Idiap Research Institute (Ronan Collobert)
-Copyright (c) 2012-2014 Deepmind Technologies    (Koray Kavukcuoglu)
-Copyright (c) 2011-2012 NEC Laboratories America (Koray Kavukcuoglu)
-Copyright (c) 2011-2013 NYU                      (Clement Farabet)
-Copyright (c) 2006-2010 NEC Laboratories America (Ronan Collobert, Leon Bottou, Iain Melvin, Jason Weston)
-Copyright (c) 2006      Idiap Research Institute (Samy Bengio)
-Copyright (c) 2001-2004 Idiap Research Institute (Ronan Collobert, Samy Bengio, Johnny Mariethoz)
-
-Licensed under the BSD 3-Clause License.
-        </pre>
+        <p>
+        PyTorch is licensed under the BSD-style license.
+        </p>
+        <p>
+        <a href='https://github.com/pytorch/pytorch/blob/master/LICENSE' style='color: #61afef;'>
+            PyTorch License
+        </a>
+        </p>
         
         <h4 style='color: #98c379;'>NumPy</h4>
         <p>
         Copyright (c) 2005-2023, NumPy Developers.<br>
         Licensed under the BSD 3-Clause License.
+        </p>
+        
+        <h4 style='color: #98c379;'>OpenCV</h4>
+        <p>
+        OpenCV is released under a BSD 3-Clause License.
+        </p>
+        <p>
+        <a href='https://github.com/opencv/opencv/blob/master/LICENSE' style='color: #61afef;'>
+            OpenCV License
+        </a>
         </p>
         
         <h4 style='color: #98c379;'>Matplotlib</h4>
