@@ -1,0 +1,265 @@
+2025-03-08 00:08:36,858 - __main__ - INFO - Logging initialized
+2025-03-08 00:08:36,861 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-08 00:08:36,861 - __main__ - INFO - Application directories created
+2025-03-08 00:08:36,861 - app.utils.config - INFO - Loading configuration
+2025-03-08 00:08:36,864 - app.utils.config - INFO - Configuration loaded from file
+2025-03-08 00:08:36,865 - app.utils.config - INFO - Loading configuration
+2025-03-08 00:08:36,867 - app.utils.config - INFO - Configuration loaded from file
+2025-03-08 00:08:36,867 - __main__ - INFO - Configuration initialized
+2025-03-08 00:08:36,988 - app.utils.i18n - INFO - Loading translations
+2025-03-08 00:08:36,992 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-08 00:08:36,992 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-08 00:08:36,992 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-08 00:08:36,994 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 00:08:36,995 - app.utils.i18n - INFO - Set locale to en
+2025-03-08 00:08:36,996 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-08 00:08:36,997 - app.utils.i18n - INFO - Current locale: en
+2025-03-08 00:08:36,997 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 00:08:36,998 - app.utils.i18n - INFO - Initialized: False
+2025-03-08 00:08:36,999 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-08 00:08:36,999 - app.utils.i18n - INFO - =====================
+2025-03-08 00:08:36,999 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-08 00:08:37,022 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-08 00:08:37,024 - __main__ - INFO - Theme applied successfully
+2025-03-08 00:08:37,024 - __main__ - INFO - Creating main window...
+2025-03-08 00:08:37,028 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-08 00:08:37,033 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-08 00:08:37,037 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-08 00:08:37,038 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-08 00:08:37,039 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-08 00:08:37,040 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-08 00:08:37,040 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-08 00:08:37,040 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-08 00:08:37,041 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-08 00:08:37,042 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-08 00:08:37,044 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-08 00:08:37,045 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-08 00:08:37,045 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-08 00:08:37,045 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-08 00:08:37,047 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-08 00:08:37,047 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-08 00:08:37,049 - app.gui.image_list_widget - INFO - Layout set
+2025-03-08 00:08:37,050 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-08 00:08:37,050 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-08 00:08:37,051 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-08 00:08:37,052 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-08 00:08:37,052 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-08 00:08:37,055 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-08 00:08:37,169 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-08 00:08:37,169 - __main__ - INFO - Main window created successfully
+2025-03-08 00:08:38,325 - __main__ - INFO - Main window shown
+2025-03-08 00:08:42,074 - app.gui.about_dialog - INFO - Initializing AboutDialog
+2025-03-08 00:08:42,097 - app.gui.about_dialog - INFO - AboutDialog initialization complete
+2025-03-08 00:13:14,742 - __main__ - INFO - Logging initialized
+2025-03-08 00:13:14,759 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-08 00:13:14,759 - __main__ - INFO - Application directories created
+2025-03-08 00:13:14,760 - app.utils.config - INFO - Loading configuration
+2025-03-08 00:13:14,761 - app.utils.config - INFO - Configuration loaded from file
+2025-03-08 00:13:14,761 - app.utils.config - INFO - Loading configuration
+2025-03-08 00:13:14,764 - app.utils.config - INFO - Configuration loaded from file
+2025-03-08 00:13:14,766 - __main__ - INFO - Configuration initialized
+2025-03-08 00:13:14,860 - app.utils.i18n - INFO - Loading translations
+2025-03-08 00:13:14,863 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-08 00:13:14,864 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-08 00:13:14,864 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-08 00:13:14,864 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 00:13:14,865 - app.utils.i18n - INFO - Set locale to en
+2025-03-08 00:13:14,866 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-08 00:13:14,866 - app.utils.i18n - INFO - Current locale: en
+2025-03-08 00:13:14,867 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 00:13:14,867 - app.utils.i18n - INFO - Initialized: False
+2025-03-08 00:13:14,868 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-08 00:13:14,868 - app.utils.i18n - INFO - =====================
+2025-03-08 00:13:14,869 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-08 00:13:14,890 - __main__ - INFO - Loading theme from: c:\Users\ETPau\Documents\GitHub\CNN-\app\resources\themes\py_onedark.qss
+2025-03-08 00:13:14,891 - __main__ - INFO - Theme applied successfully
+2025-03-08 00:13:14,892 - __main__ - INFO - Creating main window...
+2025-03-08 00:13:14,894 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-08 00:13:14,897 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-08 00:13:14,898 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-08 00:13:14,899 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-08 00:13:14,900 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-08 00:13:14,900 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-08 00:13:14,902 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-08 00:13:14,903 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-08 00:13:14,903 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-08 00:13:14,904 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-08 00:13:14,904 - app.gui.image_list_widget - INFO - btn_import added
+2025-03-08 00:13:14,905 - app.gui.image_list_widget - INFO - btn_remove added
+2025-03-08 00:13:14,905 - app.gui.image_list_widget - INFO - btn_clear added
+2025-03-08 00:13:14,906 - app.gui.image_list_widget - INFO - list_widget added
+2025-03-08 00:13:14,908 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-08 00:13:14,909 - app.gui.image_list_widget - INFO - Preview label added to layout
+2025-03-08 00:13:14,911 - app.gui.image_list_widget - INFO - Layout set
+2025-03-08 00:13:14,912 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-08 00:13:14,912 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-08 00:13:14,913 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-08 00:13:14,914 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-08 00:13:14,915 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-08 00:13:14,917 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-08 00:13:14,984 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-08 00:13:14,985 - __main__ - INFO - Main window created successfully
+2025-03-08 00:13:15,433 - __main__ - INFO - Main window shown
+2025-03-08 00:13:18,248 - app.gui.about_dialog - INFO - Initializing AboutDialog
+2025-03-08 00:13:18,270 - app.gui.about_dialog - INFO - AboutDialog initialization complete
+2025-03-08 12:45:35,006 - __main__ - INFO - Logging initialized
+2025-03-08 12:45:35,080 - __main__ - INFO - Application started: Colony Detection 1.0.0
+2025-03-08 12:45:35,080 - __main__ - INFO - Platform: win32, Python: 3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]
+2025-03-08 12:45:35,084 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-08 12:45:35,084 - __main__ - INFO - Application directories created
+2025-03-08 12:45:35,086 - app.utils.config - INFO - Configuration loaded successfully
+2025-03-08 12:45:35,087 - app.utils.config - INFO - Configuration loaded successfully
+2025-03-08 12:45:35,088 - __main__ - INFO - Configuration initialized: {'default_path': 'C:\\Users\\ETPau/Desktop/MicroAI_Detect', 'export_formats': ['json', 'csv', 'xlsx'], 'analysis_iterations': 100, 'language': 'zh', 'theme': 'light'}
+2025-03-08 12:45:35,088 - app.utils.i18n - INFO - Loading translations
+2025-03-08 12:45:35,090 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-08 12:45:35,092 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-08 12:45:35,092 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-08 12:45:35,092 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 12:45:35,093 - app.utils.i18n - INFO - Set locale to en
+2025-03-08 12:45:35,093 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-08 12:45:35,095 - app.utils.i18n - INFO - Current locale: en
+2025-03-08 12:45:35,095 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 12:45:35,095 - app.utils.i18n - INFO - Initialized: False
+2025-03-08 12:45:35,095 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-08 12:45:35,096 - app.utils.i18n - INFO - =====================
+2025-03-08 12:45:35,096 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-08 12:45:35,096 - __main__ - INFO - Translations initialized. Current locale: en
+2025-03-08 12:45:35,112 - __main__ - INFO - Theme applied successfully
+2025-03-08 12:45:35,113 - __main__ - INFO - Creating main window...
+2025-03-08 12:45:35,115 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-08 12:45:35,119 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-08 12:45:35,120 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-08 12:45:35,120 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-08 12:45:35,121 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-08 12:45:35,122 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-08 12:45:35,122 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-08 12:45:35,123 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-08 12:45:35,123 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-08 12:45:35,124 - app.gui.image_list_widget - INFO - Button group created
+2025-03-08 12:45:35,125 - app.gui.image_list_widget - INFO - List group created
+2025-03-08 12:45:35,126 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-08 12:45:35,126 - app.gui.image_list_widget - INFO - Groups added to left panel
+2025-03-08 12:45:35,129 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-08 12:45:35,130 - app.gui.image_list_widget - INFO - Preview group added to layout
+2025-03-08 12:45:35,130 - app.gui.image_list_widget - INFO - Layout set
+2025-03-08 12:45:35,132 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-08 12:45:35,132 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-08 12:45:35,134 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-08 12:45:35,134 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-08 12:45:35,173 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-08 12:45:35,179 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-08 12:45:35,291 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-08 12:45:35,556 - __main__ - INFO - Main window initialized and shown
+2025-03-08 12:46:23,354 - app.gui.settings_dialog - INFO - Initializing SettingsDialog
+2025-03-08 12:46:23,359 - app.gui.settings_dialog - INFO - SettingsDialog initialization complete
+2025-03-08 12:47:38,187 - app.gui.settings_dialog - INFO - Initializing SettingsDialog
+2025-03-08 12:47:38,190 - app.gui.settings_dialog - INFO - SettingsDialog initialization complete
+2025-03-08 12:48:55,396 - __main__ - INFO - Logging initialized
+2025-03-08 12:48:55,436 - __main__ - INFO - Application started: Colony Detection 1.0.0
+2025-03-08 12:48:55,436 - __main__ - INFO - Platform: win32, Python: 3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]
+2025-03-08 12:48:55,440 - __main__ - INFO - Using font: Microsoft YaHei
+2025-03-08 12:48:55,441 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-08 12:48:55,441 - __main__ - INFO - Application directories created
+2025-03-08 12:48:55,442 - app.utils.config - INFO - Configuration loaded successfully
+2025-03-08 12:48:55,443 - app.utils.config - INFO - Configuration loaded successfully
+2025-03-08 12:48:55,443 - __main__ - INFO - Configuration initialized: {'default_path': 'C:\\Users\\ETPau/Desktop/MicroAI_Detect', 'export_formats': ['json', 'csv', 'xlsx'], 'analysis_iterations': 100, 'language': 'zh', 'theme': 'light'}
+2025-03-08 12:48:55,443 - app.utils.i18n - INFO - Loading translations
+2025-03-08 12:48:55,445 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-08 12:48:55,445 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-08 12:48:55,445 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-08 12:48:55,445 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 12:48:55,445 - app.utils.i18n - INFO - Set locale to en
+2025-03-08 12:48:55,446 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-08 12:48:55,446 - app.utils.i18n - INFO - Current locale: en
+2025-03-08 12:48:55,446 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 12:48:55,446 - app.utils.i18n - INFO - Initialized: False
+2025-03-08 12:48:55,447 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-08 12:48:55,447 - app.utils.i18n - INFO - =====================
+2025-03-08 12:48:55,447 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-08 12:48:55,447 - __main__ - INFO - Translations initialized. Current locale: en
+2025-03-08 12:48:55,456 - __main__ - INFO - Theme applied successfully
+2025-03-08 12:48:55,457 - __main__ - INFO - Creating main window...
+2025-03-08 12:48:55,459 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-08 12:48:55,463 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-08 12:48:55,464 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-08 12:48:55,465 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-08 12:48:55,465 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-08 12:48:55,466 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-08 12:48:55,466 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-08 12:48:55,466 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-08 12:48:55,466 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-08 12:48:55,467 - app.gui.image_list_widget - INFO - Button group created
+2025-03-08 12:48:55,468 - app.gui.image_list_widget - INFO - List group created
+2025-03-08 12:48:55,468 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-08 12:48:55,468 - app.gui.image_list_widget - INFO - Groups added to left panel
+2025-03-08 12:48:55,470 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-08 12:48:55,470 - app.gui.image_list_widget - INFO - Preview group added to layout
+2025-03-08 12:48:55,471 - app.gui.image_list_widget - INFO - Layout set
+2025-03-08 12:48:55,471 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-08 12:48:55,471 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-08 12:48:55,472 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-08 12:48:55,472 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-08 12:48:55,481 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-08 12:48:55,484 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-08 12:48:55,530 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-08 12:48:55,682 - __main__ - INFO - Main window initialized and shown
+2025-03-08 12:51:23,672 - __main__ - INFO - Logging initialized
+2025-03-08 12:51:23,710 - __main__ - INFO - Application started: Colony Detection 1.0.0
+2025-03-08 12:51:23,710 - __main__ - INFO - Platform: win32, Python: 3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]
+2025-03-08 12:51:23,711 - __main__ - INFO - Using font: Microsoft YaHei UI
+2025-03-08 12:51:23,711 - app.utils.path_manager - INFO - Application directories created successfully
+2025-03-08 12:51:23,711 - __main__ - INFO - Application directories created
+2025-03-08 12:51:23,713 - app.utils.config - INFO - Configuration loaded successfully
+2025-03-08 12:51:23,713 - app.utils.config - INFO - Configuration loaded successfully
+2025-03-08 12:51:23,714 - __main__ - INFO - Configuration initialized
+2025-03-08 12:51:23,714 - app.utils.i18n - INFO - Loading translations
+2025-03-08 12:51:23,715 - app.utils.i18n - INFO - Loaded 8 translations for en
+2025-03-08 12:51:23,715 - app.utils.i18n - INFO - Loaded 8 translations for zh_CN
+2025-03-08 12:51:23,716 - app.utils.i18n - INFO - Total loaded translations: 16
+2025-03-08 12:51:23,716 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 12:51:23,716 - app.utils.i18n - INFO - Set locale to en
+2025-03-08 12:51:23,716 - app.utils.i18n - INFO - === Translation Status ===
+2025-03-08 12:51:23,717 - app.utils.i18n - INFO - Current locale: en
+2025-03-08 12:51:23,717 - app.utils.i18n - INFO - Available locales: ['en', 'zh_CN']
+2025-03-08 12:51:23,717 - app.utils.i18n - INFO - Initialized: False
+2025-03-08 12:51:23,717 - app.utils.i18n - INFO - Loaded strings for current locale: 8
+2025-03-08 12:51:23,717 - app.utils.i18n - INFO - =====================
+2025-03-08 12:51:23,717 - app.utils.i18n - INFO - Translations initialized successfully
+2025-03-08 12:51:23,717 - __main__ - INFO - Translations initialized. Current locale: en
+2025-03-08 12:51:23,727 - __main__ - INFO - Theme applied successfully
+2025-03-08 12:51:23,727 - __main__ - INFO - Creating main window...
+2025-03-08 12:51:23,728 - app.gui.main_window - INFO - Initializing MainWindow
+2025-03-08 12:51:23,729 - app.gui.image_list_widget - INFO - Initializing ImageBrowser
+2025-03-08 12:51:23,731 - app.gui.image_list_widget - INFO - Preview label initialized
+2025-03-08 12:51:23,731 - app.gui.image_list_widget - INFO - btn_import created
+2025-03-08 12:51:23,731 - app.gui.image_list_widget - INFO - btn_remove created
+2025-03-08 12:51:23,731 - app.gui.image_list_widget - INFO - btn_clear created
+2025-03-08 12:51:23,731 - app.gui.image_list_widget - INFO - Buttons created
+2025-03-08 12:51:23,733 - app.gui.image_list_widget - INFO - Setting up ImageBrowser UI
+2025-03-08 12:51:23,733 - app.gui.image_list_widget - INFO - QHBoxLayout created
+2025-03-08 12:51:23,734 - app.gui.image_list_widget - INFO - Button group created
+2025-03-08 12:51:23,735 - app.gui.image_list_widget - INFO - List group created
+2025-03-08 12:51:23,735 - app.gui.image_list_widget - INFO - QVBoxLayout created
+2025-03-08 12:51:23,735 - app.gui.image_list_widget - INFO - Groups added to left panel
+2025-03-08 12:51:23,736 - app.gui.image_list_widget - INFO - Left panel added to layout
+2025-03-08 12:51:23,736 - app.gui.image_list_widget - INFO - Preview group added to layout
+2025-03-08 12:51:23,736 - app.gui.image_list_widget - INFO - Layout set
+2025-03-08 12:51:23,737 - app.gui.image_list_widget - INFO - Button states updated
+2025-03-08 12:51:23,737 - app.gui.image_list_widget - INFO - UI setup complete
+2025-03-08 12:51:23,737 - app.gui.image_list_widget - INFO - Signals connected
+2025-03-08 12:51:23,738 - app.gui.image_list_widget - INFO - ImageBrowser initialization complete
+2025-03-08 12:51:23,746 - app.gui.result_visualizer - INFO - Initializing ResultVisualizer
+2025-03-08 12:51:23,748 - app.gui.result_visualizer - INFO - ResultVisualizer initialization complete
+2025-03-08 12:51:23,788 - app.gui.main_window - INFO - MainWindow initialization complete
+2025-03-08 12:51:23,957 - __main__ - INFO - Main window initialized and shown
+2025-03-08 12:51:38,457 - app.gui.settings_dialog - INFO - Initializing SettingsDialog
+2025-03-08 12:51:38,466 - app.gui.settings_dialog - INFO - SettingsDialog initialization complete
+2025-03-08 12:52:00,175 - app.utils.config - INFO - Configuration saved successfully
+2025-03-08 12:52:00,175 - app.utils.config - INFO - Configuration updated: default_path = C:\Users\ETPau/Desktop/MicroAI_Detect
+2025-03-08 12:52:00,178 - app.utils.config - INFO - Configuration saved successfully
+2025-03-08 12:52:00,178 - app.utils.config - INFO - Configuration updated: export_formats = ['json', 'csv', 'xlsx']
+2025-03-08 12:52:00,179 - app.utils.config - INFO - Configuration saved successfully
+2025-03-08 12:52:00,179 - app.utils.config - INFO - Configuration updated: analysis_iterations = 100
+2025-03-08 12:52:00,180 - app.utils.config - INFO - Configuration saved successfully
+2025-03-08 12:52:00,180 - app.utils.config - INFO - Configuration updated: window.maximized = False
+2025-03-08 12:52:00,194 - app.utils.config - INFO - Configuration saved successfully
