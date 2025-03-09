@@ -44,6 +44,7 @@ class ThemeManager:
                     with open(theme_path, 'r', encoding='utf-8') as f:
                         self._theme_data[theme_name] = f.read()
                         logger.info(f"Loaded theme: {theme_name}")
+                        logger.info(f"Available themes: {self.get_available_themes()}")
                         
             # Set default theme
             default_theme = self.config.get("theme.default", "siui_dark")

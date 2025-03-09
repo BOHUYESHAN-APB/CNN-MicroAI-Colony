@@ -15,5 +15,17 @@
     "settings.tab.analysis": "Analysis",
     "dialog.ok": "OK",
     "dialog.cancel": "Cancel",
-    "dialog.apply": "Apply"
+    "dialog.apply": "Apply",
+    "theme.plain": "Plain",
+    "about.tab.license": "License",
+    "about.tab.usage": "Dependencies",
+    "about.tab.github": "GitHub",
+    "about.deps.title": "Core Dependencies",
+    "about.deps.python": "Programming language",
+    "about.deps.pyqt": "GUI framework",
+    "about.deps.opencv": "Computer vision and image processing",
+    "about.deps.numpy": "Numerical computing and data processing",
+    "about.deps.tensorflow": "Deep learning and AI",
+    "about.github.description": "Visit our GitHub repository for documentation, issue reporting, and contributing:",
+    "error.license_load_failed": "Failed to load license content"
 }
