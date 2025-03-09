@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel,
                            QMessageBox)
 from PyQt5.QtCore import Qt
 
-from app.utils.i18n import i18n
+from app.utils.i18n import i18n, i18n_json
 
 logger = logging.getLogger(__name__)
 
@@ -54,7 +54,7 @@ class SettingsDialog(QDialog):
         lang_group = QGroupBox(i18n.get('settings.language'))
         lang_layout = QFormLayout()
         self.lang_combo = QComboBox()
-        self.lang_combo.addItems(['en', 'zh'])
+        self.lang_combo.addItems(i18n.get_languages()) # Populate from QM files
         lang_layout.addRow(i18n.get('settings.language_label'), self.lang_combo)
         lang_group.setLayout(lang_layout)
         layout.addWidget(lang_group)
@@ -178,7 +178,8 @@ class SettingsDialog(QDialog):
             new_lang = self.lang_combo.currentText()
             if new_lang != self.config.get('app.language'):
                 self.config.set('app.language', new_lang)
-                i18n.set_language(new_lang)
+                i18n.set_language(new_lang) # Use QM based i18n
+                i18n_json.set_language(new_lang) # Keep json based i18n in sync (for json translations)
                 
             self.config.set('project.auto_save', self.autosave_check.isChecked())
             

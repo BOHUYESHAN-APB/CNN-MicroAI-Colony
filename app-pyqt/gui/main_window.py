@@ -13,7 +13,7 @@ from .base_window import BaseWindow
 from .image_list_widget import ImageListWidget
 from .result_viewer import ResultViewer
 from .settings_dialog import SettingsDialog
-from app.utils.i18n import i18n
+from app.utils.i18n import i18n, i18n_json
 from app.models.inference import ModelInference
 from app.utils.batch_analyzer import BatchAnalyzer
 
@@ -90,11 +90,34 @@ class MainWindow(BaseWindow):
         self.current_results = None
         self.analyzer = BatchAnalyzer(config, self.path_manager)
         self.batch_thread = None
+        self.translator = QTranslator()
+        self.current_language = "en" # Default language
         self.setup_ui()
         self.init_model()
+        self.load_translation(self.current_language) # Load default language
 
         # Schedule load_last_project to run after event loop starts
         QTimer.singleShot(0, self.load_last_project)
+
+    def load_translation(self, lang_code):
+        """Load translation file for given language code"""
+        translation_files = {
+            "en": "app/resources/translations/app_en.qm",
+            "zh_CN": "app/resources/translations/app_zh_CN.qm"
+        }
+        file_path = translation_files.get(lang_code)
+        if file_path:
+            if self.translator.load(file_path):
+                QApplication.instance().installTranslator(self.translator)
+                i18n.install_translator(QApplication.instance()) # For i18n.py usage
+                self.retranslate_ui()
+                self.current_language = lang_code
+                logger.info(f"Language switched to {lang_code}")
+            else:
+                logger.error(f"Failed to load translation file: {file_path}")
+        else:
+            logger.warning(f"No translation file defined for language code: {lang_code}")
+
 
     def setup_ui(self):
         """Initialize user interface"""
@@ -178,6 +201,18 @@ class MainWindow(BaseWindow):
         batch_layout.addWidget(self.runs_label)
         batch_layout.addWidget(self.runs_spinbox)
         control_layout.addLayout(batch_layout)
+
+        # Language switch buttons
+        language_layout = QHBoxLayout()
+        self.english_button = QPushButton("English")
+        self.english_button.clicked.connect(lambda: self.load_translation('en'))
+        language_layout.addWidget(self.english_button)
+
+        self.chinese_button = QPushButton("中文") # Changed button text to "中文"
+        self.chinese_button.clicked.connect(lambda: self.load_translation('zh_CN'))
+        language_layout.addWidget(self.chinese_button)
+        control_layout.addLayout(language_layout)
+
 
         # Process button
         self.process_button = QPushButton(i18n.get('buttons.process'))
@@ -388,9 +423,9 @@ class MainWindow(BaseWindow):
         settings_action = QAction(i18n.get('menu.settings'), self)
         settings_action.triggered.connect(self.show_settings)
         file_menu.addAction(settings_action)
-        
+
         file_menu.addSeparator()
-        
+
         exit_action = QAction(i18n.get('menu.exit'), self)
         exit_action.triggered.connect(self.close)
         file_menu.addAction(exit_action)

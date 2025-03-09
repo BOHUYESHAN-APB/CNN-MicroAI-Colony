@@ -1,0 +1,34 @@
+2025-03-09 20:52:43,081 - root - INFO - Logging initialized
+2025-03-09 20:52:43,085 - root - INFO - Application directories created
+2025-03-09 20:52:43,097 - root - ERROR - Failed to initialize application: cannot import name 'config' from 'app.config' (unknown location)
+2025-03-09 20:52:43,098 - root - ERROR - Application failed to start: Failed to initialize application: cannot import name 'config' from 'app.config' (unknown location)
+2025-03-09 20:53:36,304 - root - INFO - Logging initialized
+2025-03-09 20:53:36,307 - root - INFO - Application directories created
+2025-03-09 20:53:55,380 - root - INFO - Logging initialized
+2025-03-09 20:53:55,382 - root - INFO - Application directories created
+2025-03-09 20:54:05,202 - root - INFO - Logging initialized
+2025-03-09 20:54:05,206 - root - INFO - Application directories created
+2025-03-09 20:54:21,704 - root - INFO - Logging initialized
+2025-03-09 20:54:21,707 - root - INFO - Application directories created
+2025-03-09 20:54:21,717 - root - ERROR - Failed to initialize application: cannot import name 'config' from 'app.config' (unknown location)
+2025-03-09 20:54:21,717 - root - ERROR - Application failed to start: Failed to initialize application: cannot import name 'config' from 'app.config' (unknown location)
+2025-03-09 20:57:39,481 - root - INFO - Logging initialized
+2025-03-09 20:57:39,483 - root - INFO - Application directories created
+2025-03-09 20:57:39,490 - root - ERROR - Failed to initialize application: No module named 'app.config.config_manager'
+2025-03-09 20:57:39,490 - root - ERROR - Application failed to start: Failed to initialize application: No module named 'app.config.config_manager'
+2025-03-09 20:58:41,339 - root - INFO - Logging initialized
+2025-03-09 20:58:41,342 - root - INFO - Application directories created
+2025-03-09 20:58:41,353 - root - ERROR - Failed to initialize application: No module named 'app.config.config_manager'
+2025-03-09 20:58:41,353 - root - ERROR - Application failed to start: Failed to initialize application: No module named 'app.config.config_manager'
+2025-03-09 20:59:35,630 - root - INFO - Logging initialized
+2025-03-09 20:59:35,635 - root - INFO - Application directories created
+2025-03-09 20:59:35,639 - root - ERROR - Failed to initialize application: No module named 'app_pyqt'
+2025-03-09 20:59:35,639 - root - ERROR - Application failed to start: Failed to initialize application: No module named 'app_pyqt'
+2025-03-09 21:01:31,446 - root - INFO - Logging initialized
+2025-03-09 21:01:31,462 - root - INFO - Application directories created
+2025-03-09 21:01:31,468 - root - ERROR - Failed to initialize application: No module named 'app_pyqt'
+2025-03-09 21:01:31,468 - root - ERROR - Application failed to start: Failed to initialize application: No module named 'app_pyqt'
+2025-03-09 21:02:47,332 - root - INFO - Logging initialized
+2025-03-09 21:02:47,336 - root - INFO - Application directories created
+2025-03-09 21:02:47,341 - root - ERROR - Failed to initialize application: No module named 'app_pyqt'
+2025-03-09 21:02:47,342 - root - ERROR - Application failed to start: Failed to initialize application: No module named 'app_pyqt'

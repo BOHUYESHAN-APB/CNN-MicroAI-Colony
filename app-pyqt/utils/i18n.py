@@ -4,10 +4,12 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 from functools import lru_cache
 
+from PyQt5.QtCore import QTranslator, QLocale, QCoreApplication
+
 logger = logging.getLogger(__name__)
 
 class I18nManager:
-    """Internationalization manager"""
+    """Internationalization manager (JSON based)"""
     
     def __init__(self):
         self.current_lang = "en"
@@ -93,8 +95,45 @@ class I18nManager:
             logger.error(f"Failed to format text: {e}")
             return text
 
-# Create global instance
-i18n = I18nManager()
+class I18nManagerQM:
+    """Internationalization manager (QM based)"""
+
+    def __init__(self):
+        self.current_lang = "en"
+        self.translator = QTranslator()
+        self._load_translations()
+
+    def _load_translations(self):
+        """Load QM translation files"""
+        translation_dir = Path(__file__).parent.parent / "resources" / "translations"
+        self.translation_files = {}
+        for file in translation_dir.glob("app_*.qm"): # Assuming QM files are named app_lang.qm
+            lang = file.stem.split('_')[1] # Extract language code from filename (e.g., app_en.qm -> en)
+            self.translation_files[lang] = str(file)
+        logger.info(f"Loaded QM translations: {list(self.translation_files.keys())}")
+
+    def set_language(self, lang: str):
+        """Set current language and load QM translation"""
+        if lang in self.translation_files:
+            self.current_lang = lang
+            if self.translator.load(self.translation_files[lang]):
+                QCoreApplication.instance().installTranslator(self.translator)
+                logger.info(f"Language changed to {lang} (QM)")
+                return True
+            else:
+                logger.error(f"Failed to load QM translation file for {lang}")
+                return False
+        else:
+            logger.warning(f"No QM translation file found for {lang}")
+            return False
+
+    def get_languages(self) -> list:
+        """Get list of available languages (QM)"""
+        return list(self.translation_files.keys())
+
+# Create global instances
+i18n_json = I18nManager() # keep json based i18n as i18n_json
+i18n = I18nManagerQM() # use QM based i18n as i18n
 
 # Export public interface
-__all__ = ['i18n']
+__all__ = ['i18n', 'i18n_json']

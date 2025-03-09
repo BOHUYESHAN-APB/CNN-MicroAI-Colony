@@ -8,6 +8,10 @@ from PyQt5.QtWidgets import QApplication, QMessageBox
 project_root = Path(__file__).parent.parent
 sys.path.append(str(project_root))
 
+# Add app_pyqt directory to Python path explicitly
+app_pyqt_dir = Path(__file__).parent
+sys.path.append(str(app_pyqt_dir))
+
 # Configure basic logging first
 def setup_logging():
     """Setup logging configuration"""
@@ -69,13 +73,16 @@ def initialize_app():
         if not create_required_directories():
             raise RuntimeError("Failed to create required directories")
             
-        # Import configuration (after logging is setup)
-        from app.config import config
+        # Initialize configuration manager
+        from app_pyqt.config.config_manager import ConfigManager
+        config_path = Path("config/config.yaml")  # Correct path to config.yaml
+        config_manager = ConfigManager(config_path)
+        config = config_manager.config  # Get the config object
         logging.info("Configuration initialized")
-        
-        # Import main window (after config is ready)
+
+        # Import main window (after config is initialized)
         from app.gui.main_window import MainWindow
-        
+
         return MainWindow, config
         
     except Exception as e:
