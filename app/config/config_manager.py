@@ -5,10 +5,55 @@ import os
 import json
 import logging
 from typing import Any, Dict, Optional
-from ..config.defaults import DEFAULTS
-from ..config import save_config, load_config, merge_configs
+
+from .defaults import DEFAULTS
+from ..utils.path_manager import get_config_dir
 
 logger = logging.getLogger(__name__)
+
+def merge_configs(default: Dict[str, Any], user: Dict[str, Any]) -> Dict[str, Any]:
+    """Merge two configuration dictionaries recursively"""
+    result = default.copy()
+    
+    def _merge(d1, d2):
+        for key, value in d2.items():
+            if key in d1 and isinstance(d1[key], dict) and isinstance(value, dict):
+                _merge(d1[key], value)
+            else:
+                d1[key] = value
+    
+    _merge(result, user)
+    return result
+
+def load_config() -> Dict[str, Any]:
+    """Load user configuration"""
+    config_file = os.path.join(get_config_dir(), "config.json")
+    
+    if not os.path.exists(config_file):
+        return {}
+        
+    try:
+        with open(config_file, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        logger.error(f"Error loading config: {e}")
+        return {}
+
+def save_config(config: Dict[str, Any]) -> bool:
+    """Save user configuration"""
+    try:
+        config_dir = get_config_dir()
+        os.makedirs(config_dir, exist_ok=True)
+        
+        config_file = os.path.join(config_dir, "config.json")
+        with open(config_file, 'w', encoding='utf-8') as f:
+            json.dump(config, f, indent=4, ensure_ascii=False)
+            
+        return True
+        
+    except Exception as e:
+        logger.error(f"Error saving config: {e}")
+        return False
 
 class ConfigManager:
     """Configuration manager singleton"""
@@ -22,7 +67,8 @@ class ConfigManager:
         return cls._instance
         
     def __init__(self):
-        if not self._initialized:
+        if not ConfigManager._initialized:
+            self._config = {}
             self.load()
             ConfigManager._initialized = True
             
@@ -42,13 +88,12 @@ class ConfigManager:
             return value
         except (KeyError, TypeError):
             # Return default from config defaults if exists
-            from ..config.defaults import DEFAULTS
-            default_value = DEFAULTS
             try:
+                value = DEFAULTS
                 for k in key.split('.'):
-                    default_value = default_value[k]
-                return default_value
-            except:
+                    value = value[k]
+                return value
+            except (KeyError, TypeError):
                 return default
             
     def set(self, key: str, value: Any):
@@ -75,7 +120,7 @@ class ConfigManager:
         try:
             # Load user config
             user_config = load_config()
-            
+                
             # Merge with defaults
             self._config = merge_configs(DEFAULTS, user_config)
             
@@ -89,11 +134,7 @@ class ConfigManager:
             
     def save(self) -> bool:
         """Save configuration to file"""
-        try:
-            return save_config(self._config)
-        except Exception as e:
-            logger.error(f"Error saving configuration: {e}")
-            return False
+        return save_config(self._config)
             
     def reset(self, key: Optional[str] = None):
         """Reset configuration to defaults"""

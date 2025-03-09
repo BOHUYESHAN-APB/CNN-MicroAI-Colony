@@ -1,165 +1,132 @@
-import os
-import logging
+"""
+Colony Detection Core
+"""
+import cv2
 import numpy as np
+import logging
+from typing import Dict, List, Any, Optional
+from time import time
 from pathlib import Path
-from typing import List, Dict, Any, Optional
-from concurrent.futures import ThreadPoolExecutor
-
-from PySide6.QtCore import QObject, Signal, Slot
 
 logger = logging.getLogger(__name__)
 
-class AnalysisCore(QObject):
-    # Signals
-    analysis_started = Signal()
-    analysis_completed = Signal(dict)  # Single result
-    batch_completed = Signal(list)     # Multiple results
-    progress_updated = Signal(int)     # Progress percentage
-    error_occurred = Signal(str)       # Error message
+class ColonyDetector:
+    """Colony detection and analysis"""
     
     def __init__(self):
-        super().__init__()
-        logger.info("Initializing AnalysisCore")
-        self._model = None
-        self._executor = ThreadPoolExecutor(max_workers=1)
-        self._load_model()
+        self._min_size = 5
+        self._max_size = 100
+        self._confidence = 0.5
+        self._use_gpu = False
         
-    def _load_model(self):
-        """Load detection model"""
+    def analyze(self, image_path: str, **kwargs) -> Dict[str, Any]:
+        """Analyze image for colonies
+        
+        Args:
+            image_path: Path to image file
+            **kwargs: Analysis parameters
+                confidence: Detection confidence threshold (0-1)
+                min_size: Minimum colony size in pixels
+                max_size: Maximum colony size in pixels
+                use_gpu: Use GPU acceleration if available
+                
+        Returns:
+            Dictionary containing:
+                colonies: List of detected colonies
+                    [{"x": x, "y": y, "radius": r, "confidence": conf}, ...]
+                count: Total colony count
+                density: Colony density (colonies per unit area)
+                area: Total colony area coverage
+                time: Processing time in seconds
+        """
+        start_time = time()
+        
+        # Get parameters
+        self._confidence = kwargs.get('confidence', 0.5)
+        self._min_size = kwargs.get('min_size', 5)
+        self._max_size = kwargs.get('max_size', 100)
+        self._use_gpu = kwargs.get('use_gpu', False)
+        
         try:
-            # TODO: Replace with actual model loading
-            # For now, we'll simulate the model with random predictions
-            self._model = DummyModel()
-            logger.info("Model loaded successfully")
-        except Exception as e:
-            logger.error(f"Failed to load model: {e}")
-            self.error_occurred.emit(str(e))
+            # Read image
+            image = cv2.imread(image_path)
+            if image is None:
+                raise ValueError(f"Failed to read image: {image_path}")
+                
+            # Convert to grayscale
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             
-    @Slot(str)
-    def analyze_image(self, image_path: str):
-        """Analyze single image"""
-        logger.info(f"Starting analysis for: {image_path}")
-        self.analysis_started.emit()
-        
-        try:
-            # Run analysis in thread pool
-            future = self._executor.submit(self._process_image, image_path)
-            future.add_done_callback(self._handle_single_result)
+            # Apply Gaussian blur
+            blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+            
+            # Adaptive thresholding
+            thresh = cv2.adaptiveThreshold(
+                blurred,
+                255,
+                cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                cv2.THRESH_BINARY_INV,
+                11,
+                2
+            )
+            
+            # Find contours
+            contours, _ = cv2.findContours(
+                thresh,
+                cv2.RETR_EXTERNAL,
+                cv2.CHAIN_APPROX_SIMPLE
+            )
+            
+            # Process colonies
+            colonies = []
+            total_area = 0
+            
+            for contour in contours:
+                # Get bounding circle
+                (x, y), radius = cv2.minEnclosingCircle(contour)
+                radius = int(radius)
+                
+                # Filter by size
+                if not (self._min_size <= radius * 2 <= self._max_size):
+                    continue
+                    
+                # Calculate circularity
+                area = cv2.contourArea(contour)
+                perimeter = cv2.arcLength(contour, True)
+                circularity = 4 * np.pi * area / (perimeter * perimeter)
+                
+                # Filter by shape
+                if circularity < 0.7:  # Not circular enough
+                    continue
+                    
+                # Calculate confidence based on shape metrics
+                confidence = min(circularity, 1.0)
+                
+                # Add if confidence threshold met
+                if confidence >= self._confidence:
+                    colonies.append({
+                        "x": int(x),
+                        "y": int(y),
+                        "radius": radius,
+                        "confidence": float(confidence)
+                    })
+                    total_area += area
+                    
+            # Calculate metrics
+            image_area = gray.shape[0] * gray.shape[1]
+            density = len(colonies) / (image_area / 1000000)  # per mm²
+            area_coverage = total_area / image_area
+            
+            # Prepare results
+            results = {
+                "colonies": colonies,
+                "count": len(colonies),
+                "density": density,
+                "area": area_coverage,
+                "time": time() - start_time
+            }
+            
+            return results
+            
         except Exception as e:
             logger.error(f"Analysis failed: {e}")
-            self.error_occurred.emit(str(e))
-            
-    @Slot(list)
-    def analyze_batch(self, image_paths: List[str]):
-        """Analyze multiple images"""
-        logger.info(f"Starting batch analysis for {len(image_paths)} images")
-        self.analysis_started.emit()
-        
-        try:
-            # Process each image and collect results
-            futures = []
-            for path in image_paths:
-                future = self._executor.submit(self._process_image, path)
-                futures.append(future)
-                
-            # Create callback to collect all results
-            def handle_batch_complete(_):
-                if all(f.done() for f in futures):
-                    results = []
-                    for f in futures:
-                        try:
-                            results.append(f.result())
-                        except Exception as e:
-                            logger.error(f"Batch result error: {e}")
-                    self.batch_completed.emit(results)
-                    
-            # Add callback to each future
-            for future in futures:
-                future.add_done_callback(handle_batch_complete)
-                
-        except Exception as e:
-            logger.error(f"Batch analysis failed: {e}")
-            self.error_occurred.emit(str(e))
-            
-    @Slot(str, int)
-    def quantitative_analysis(self, image_path: str, iterations: int = 100):
-        """Perform multiple iterations of analysis"""
-        logger.info(f"Starting quantitative analysis with {iterations} iterations")
-        self.analysis_started.emit()
-        
-        try:
-            results = []
-            for i in range(iterations):
-                result = self._process_image(image_path)
-                results.append(result)
-                self.progress_updated.emit(int((i + 1) * 100 / iterations))
-                
-            # Calculate statistics
-            counts = [r['count'] for r in results]
-            stats = {
-                'mean': np.mean(counts),
-                'median': np.median(counts),
-                'std': np.std(counts),
-                'min': np.min(counts),
-                'max': np.max(counts),
-                'iterations': iterations,
-                'results': results
-            }
-            
-            self.analysis_completed.emit(stats)
-            
-        except Exception as e:
-            logger.error(f"Quantitative analysis failed: {e}")
-            self.error_occurred.emit(str(e))
-            
-    def _process_image(self, image_path: str) -> Dict[str, Any]:
-        """Process single image and return results"""
-        try:
-            # TODO: Replace with actual model inference
-            # For now, using dummy model
-            count, confidence = self._model.predict(image_path)
-            
-            return {
-                'path': image_path,
-                'count': count,
-                'confidence': confidence,
-                'timestamp': self._model.get_timestamp()
-            }
-            
-        except Exception as e:
-            logger.error(f"Image processing failed: {e}")
             raise
-            
-    def _handle_single_result(self, future):
-        """Handle completion of single image analysis"""
-        try:
-            result = future.result()
-            self.analysis_completed.emit(result)
-        except Exception as e:
-            logger.error(f"Result handling failed: {e}")
-            self.error_occurred.emit(str(e))
-
-
-# Temporary dummy model for testing
-class DummyModel:
-    """Simulates colony detection model for testing"""
-    
-    def predict(self, image_path: str) -> tuple:
-        """Simulate detection with random results"""
-        import random
-        from datetime import datetime
-        
-        # Simulate processing time
-        import time
-        time.sleep(0.5)
-        
-        # Generate random results
-        count = random.randint(50, 200)
-        confidence = [random.random() * 0.5 + 0.5 for _ in range(count)]
-        
-        return count, confidence
-        
-    def get_timestamp(self) -> str:
-        """Get current timestamp"""
-        from datetime import datetime
-        return datetime.now().isoformat()

@@ -1,81 +1,89 @@
-# Result files
-app/results/**/*.xlsx
-app/results/**/*.csv
-app/results/**/*.json
-
-# Model files and weights
-checkpoints/
-*.pth
-*.pt
-*.h5
-*.onnx
-*.weights
-*.cfg
-*.pb
-*.tflite
-*.mlmodel
-*.caffemodel
-*.prototxt
-*.model
-model_weights/
-trained_models/
-
-# Ignore all binary files by default
-*.bin
-*.exe
-*.dll
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
 *.so
-*.dylib
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.pth
 
-# Ignore compressed files
-*.zip
-*.gz
-*.tar
-*.7z
-*.rar
+# Virtual Environment
+.env
+.venv
+env/
+venv/
+ENV/
 
-# Ignore system files
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Qt files
+*.qm
+*.ts
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+
+# Application specific
+app/logs/
+app/data/
+app/results/
+app/resources/i18n/qm/
+app/resources/i18n/ts/
+app/config/user.json
+
+# System
 .DS_Store
 Thumbs.db
-desktop.ini
 
-# Additional Python related
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
+# Images and media
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.tif
+*.tiff
+*.psd
+*.ai
+*.raw
 
-# Additional IDE files
-*.iml
-.idea_modules/
-*.sublime-workspace
-*.sublime-project
-.settings/
-.project
-.classpath
-
-# Additional temp files
+# Temporary files
 *.bak
 *.tmp
 *~
-.*.swp
-.*.swo
+._*
 
-# Build and dist
+# Local configuration
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# Build directories
+_build/
 build/
 dist/
-_build/
-.build/
-*.spec
-
-# Python virtual environment
-venv/
-env/
-.env/
-.venv/
-ENV/
