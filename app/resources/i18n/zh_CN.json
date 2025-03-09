@@ -15,5 +15,17 @@
     "settings.tab.analysis": "分析",
     "dialog.ok": "确定",
     "dialog.cancel": "取消",
-    "dialog.apply": "应用"
+    "dialog.apply": "应用",
+    "theme.plain": "原始的界面",
+    "about.tab.license": "开源协议",
+    "about.tab.usage": "依赖组件",
+    "about.tab.github": "项目仓库",
+    "about.deps.title": "核心依赖",
+    "about.deps.python": "编程语言",
+    "about.deps.pyqt": "图形界面框架",
+    "about.deps.opencv": "计算机视觉与图像处理",
+    "about.deps.numpy": "数值计算与数据处理",
+    "about.deps.tensorflow": "深度学习与人工智能",
+    "about.github.description": "访问我们的GitHub仓库以获取文档、反馈问题和参与贡献：",
+    "error.license_load_failed": "无法加载许可证内容"
 }

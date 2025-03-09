@@ -67,7 +67,17 @@ class ImageListWidget(QWidget):
         preview_layout.addWidget(self.preview_image)
         
         layout.addLayout(preview_layout)
-        
+
+    def retranslateUi(self):
+        """Retranslate UI elements"""
+        self.import_btn.setText(tr("image_browser.import_images"))
+        self.clear_btn.setText(tr("image_browser.clear_all"))
+        # Find the preview label and update its text
+        for child in self.findChildren(QLabel):
+            if child.text() == "Preview":  # Just check for default text
+                child.setText(tr("image_browser.preview"))
+                break
+
     def clear(self):
         """Clear image list"""
         self.list_widget.clear()

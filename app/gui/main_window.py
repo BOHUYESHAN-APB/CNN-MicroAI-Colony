@@ -139,6 +139,10 @@ class MainWindow(QMainWindow):
 
     def on_language_changed(self, locale: str):
         """Change application language"""
+        self.change_language(locale)
+
+    def change_language(self, locale: str):
+        """Change application language"""
         from ..utils.i18n import set_locale
         if not set_locale(locale):
             QMessageBox.critical(
@@ -157,7 +161,7 @@ class MainWindow(QMainWindow):
 
         # Close and recreate any open dialogs
         open_dialogs = self.findChildren(QDialog)
-        dialog_positions = {} # Not used currently, but could be used to restore dialog positions
+        dialog_positions = {}  # Not used currently, but could be used to restore dialog positions
         for dialog in open_dialogs:
             dialog_positions[dialog.__class__.__name__] = dialog.pos()
             dialog.close()
@@ -172,13 +176,28 @@ class MainWindow(QMainWindow):
         self.analysis_menu.setEnabled(menu_states['analysis_menu'])
 
         # Update window title
-        if self.project_manager.get_project_path(): # Removed has_project assignment
+        if self.project_manager.get_project_path():  # Removed has_project assignment
             info = self.project_manager.get_project_info()
             self.setWindowTitle(f"{tr('main.title')} - {info.get('name', '')}")
         else:
             self.setWindowTitle(tr("main.title"))
 
         self.show_status_message(tr("status.language_changed", locale=locale))
+        self.retranslate_ui()
+
+    def retranslate_ui(self):
+        """Retranslate UI elements"""
+        # Update window title
+        if self.project_manager.get_project_path():
+            info = self.project_manager.get_project_info()
+            self.setWindowTitle(f"{tr('main.title')} - {info.get('name', '')}")
+        else:
+            self.setWindowTitle(tr("main.title"))
+
+        # The menu is already updated in change_language
+        # Add calls to child widgets' retranslateUi methods here
+        self.image_browser.retranslateUi()
+        self.result_viewer.retranslateUi()
 
     def new_project(self):
         """Create new project"""

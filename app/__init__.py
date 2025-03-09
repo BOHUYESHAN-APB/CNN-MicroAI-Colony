@@ -10,7 +10,7 @@ from typing import Dict, Any
 # Application metadata
 __version__ = "1.0.0"
 __author__ = "MicroAI Team"
-__license__ = "MIT"
+__license__ = "GPL-3.0"
 __website__ = "https://github.com/microai-team/colony-counter"
 
 APP_NAME = "MicroAI-Colony"
