@@ -6,7 +6,7 @@
         "xlsx"
     ],
     "analysis_iterations": 100,
-    "language": "zh_CN",
+    "language": "en",
     "theme": "light",
     "window": {
         "maximized": false

@@ -1,318 +1,346 @@
+"""
+Result Visualizer
+"""
 import os
+import csv
+import json
 import logging
 from pathlib import Path
-from PySide6.QtWidgets import (
-    QWidget, QVBoxLayout, QHBoxLayout, 
-    QLabel, QMdiArea, QMdiSubWindow, 
-    QScrollArea, QFrame, QFileDialog,
-    QPushButton, QProgressBar, QGroupBox
-)
-from PySide6.QtCore import Qt, Signal, Slot
-from PySide6.QtGui import QImage, QPixmap, QPalette, QColor
+from typing import Dict, List, Optional, Any
+from datetime import datetime
 
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
+from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
+                            QLabel, QScrollArea, QFrame, QFileDialog, QMessageBox,
+                            QSpinBox, QComboBox, QProgressBar)
+from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot
+from PyQt6.QtGui import QPixmap, QPainter, QPen, QColor
+
+from ..utils.i18n import tr
+from ..analysis_core import ColonyDetector
 
 logger = logging.getLogger(__name__)
 
-# 设置 matplotlib 暗色主题
-plt.style.use('dark_background')
-
-class DarkMdiArea(QMdiArea):
-    """自定义暗色 MDI 区域"""
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        # 设置暗色背景
-        palette = self.palette()
-        palette.setColor(QPalette.Window, QColor("#282c34"))
-        self.setPalette(palette)
-        self.setBackground(QColor("#282c34"))
+class ResultExporter:
+    """Handles exporting analysis results"""
+    
+    @staticmethod
+    def export_csv(path: str, results: Dict[str, Any]) -> bool:
+        """Export results to CSV"""
+        try:
+            with open(path, 'w', newline='', encoding='utf-8') as f:
+                writer = csv.writer(f)
+                # Write header
+                writer.writerow(['Parameter', 'Value'])
+                # Write summary
+                writer.writerow(['Total Colonies', results['count']])
+                writer.writerow(['Colony Density', f"{results['density']:.2f}"])
+                writer.writerow(['Area Coverage', f"{results['area']:.2f}"])
+                writer.writerow(['Processing Time', f"{results['time']:.2f}s"])
+                # Write colony details
+                writer.writerow([])
+                writer.writerow(['Colony Details'])
+                writer.writerow(['X', 'Y', 'Radius', 'Confidence'])
+                for colony in results['colonies']:
+                    writer.writerow([
+                        colony['x'],
+                        colony['y'],
+                        colony['radius'],
+                        f"{colony['confidence']:.2f}"
+                    ])
+            return True
+        except Exception as e:
+            logger.error(f"CSV export failed: {e}")
+            return False
+            
+    @staticmethod
+    def export_json(path: str, results: Dict[str, Any]) -> bool:
+        """Export results to JSON"""
+        try:
+            with open(path, 'w', encoding='utf-8') as f:
+                json.dump(results, f, indent=4, ensure_ascii=False)
+            return True
+        except Exception as e:
+            logger.error(f"JSON export failed: {e}")
+            return False
+            
+    @staticmethod
+    def export_excel(path: str, results: Dict[str, Any]) -> bool:
+        """Export results to Excel"""
+        try:
+            import pandas as pd
+            
+            # Create summary dataframe
+            summary_data = {
+                'Parameter': ['Total Colonies', 'Colony Density', 
+                            'Area Coverage', 'Processing Time'],
+                'Value': [
+                    results['count'],
+                    f"{results['density']:.2f}",
+                    f"{results['area']:.2f}",
+                    f"{results['time']:.2f}s"
+                ]
+            }
+            summary_df = pd.DataFrame(summary_data)
+            
+            # Create colonies dataframe
+            colonies_df = pd.DataFrame(results['colonies'])
+            colonies_df['confidence'] = colonies_df['confidence'].map('{:.2f}'.format)
+            
+            # Write to Excel
+            with pd.ExcelWriter(path) as writer:
+                summary_df.to_excel(writer, sheet_name='Summary', index=False)
+                colonies_df.to_excel(writer, sheet_name='Colony Details', index=False)
+                
+            return True
+            
+        except Exception as e:
+            logger.error(f"Excel export failed: {e}")
+            return False
 
 class ResultVisualizer(QWidget):
+    """Widget for displaying analysis results"""
+    
+    # Signals
+    analysis_started = pyqtSignal()
+    analysis_finished = pyqtSignal(dict)  # Emits results dictionary
+    analysis_error = pyqtSignal(str)    # Emits error message
+    
     def __init__(self, parent=None):
         super().__init__(parent)
-        logger.info("Initializing ResultVisualizer")
+        self.setup_ui()
+        self.detector = ColonyDetector()
+        self.current_image = None
+        self.current_results = None
         
-        self._setup_ui()
-        logger.info("ResultVisualizer initialization complete")
-        
-    def _setup_ui(self):
-        """Setup UI components"""
+    def setup_ui(self):
+        """Setup user interface"""
         layout = QVBoxLayout()
-        
-        # Actions group
-        self.action_group = QGroupBox(self.tr("Result Actions"))
-        action_layout = QHBoxLayout()
-        
-        self.btn_export_all = QPushButton(self.tr("Export All"))
-        self.btn_export_all.clicked.connect(self._export_all)
-        self.btn_export_all.setEnabled(False)
-        self.btn_export_all.setToolTip(self.tr("Export all analysis results"))
-        action_layout.addWidget(self.btn_export_all)
-        
-        self.btn_clear = QPushButton(self.tr("Clear Results"))
-        self.btn_clear.clicked.connect(self._clear_results)
-        self.btn_clear.setEnabled(False)
-        self.btn_clear.setToolTip(self.tr("Clear all analysis results"))
-        action_layout.addWidget(self.btn_clear)
-        
-        action_layout.addStretch()
-        self.action_group.setLayout(action_layout)
-        layout.addWidget(self.action_group)
-
-        # Progress bar for export operations
-        self.progress_layout = QHBoxLayout()
-        self.progress_label = QLabel(self.tr("Export Progress:"))
-        self.progress_bar = QProgressBar()
-        self.progress_bar.setVisible(False)
-        self.progress_layout.addWidget(self.progress_label)
-        self.progress_layout.addWidget(self.progress_bar)
-        layout.addLayout(self.progress_layout)
-        
-        # MDI area for multiple result windows
-        self.mdi_area = DarkMdiArea()
-        self.mdi_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.mdi_area.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        layout.addWidget(self.mdi_area)
-        
         self.setLayout(layout)
         
-    def add_single_result(self, result_data):
-        """Display single image analysis result"""
-        logger.info("Adding single analysis result")
+        # Controls
+        controls = QHBoxLayout()
         
-        # Create sub window
-        sub_window = QMdiSubWindow()
-        sub_window.setWindowTitle(self.tr("Single Image Analysis"))
+        # Analysis settings
+        settings = QHBoxLayout()
         
-        # Result widget container
-        result_widget = QWidget()
-        content_layout = QVBoxLayout()
+        # Confidence threshold
+        settings.addWidget(QLabel(tr("analysis.settings.confidence")))
+        self.confidence = QSpinBox()
+        self.confidence.setRange(1, 100)
+        self.confidence.setValue(50)
+        self.confidence.setSuffix("%")
+        settings.addWidget(self.confidence)
         
-        # Count display group
-        count_group = QGroupBox(self.tr("Colony Count"))
-        count_layout = QVBoxLayout()
-        count_label = QLabel(f"<h1>{result_data['count']}</h1>")
-        count_label.setAlignment(Qt.AlignCenter)
-        count_layout.addWidget(count_label)
-        count_group.setLayout(count_layout)
-        content_layout.addWidget(count_group)
+        # Size range
+        settings.addWidget(QLabel(tr("analysis.settings.min_size")))
+        self.min_size = QSpinBox()
+        self.min_size.setRange(1, 1000)
+        self.min_size.setValue(5)
+        settings.addWidget(self.min_size)
         
-        # Confidence visualization
-        if 'confidence' in result_data:
-            confidence_group = QGroupBox(self.tr("Detection Confidence"))
-            confidence_layout = QVBoxLayout()
+        settings.addWidget(QLabel(tr("analysis.settings.max_size")))
+        self.max_size = QSpinBox()
+        self.max_size.setRange(1, 10000)
+        self.max_size.setValue(100)
+        settings.addWidget(self.max_size)
+        
+        # GPU acceleration
+        settings.addWidget(QLabel(tr("analysis.settings.device")))
+        self.device = QComboBox()
+        self.device.addItems(["CPU", "GPU"])
+        settings.addWidget(self.device)
+        
+        settings.addStretch()
+        controls.addLayout(settings)
+        
+        # Action buttons
+        actions = QHBoxLayout()
+        
+        self.analyze_btn = QPushButton(tr("analysis.start"))
+        self.analyze_btn.clicked.connect(self.start_analysis)
+        actions.addWidget(self.analyze_btn)
+        
+        self.export_btn = QPushButton(tr("analysis.export"))
+        self.export_btn.clicked.connect(self.export_results)
+        self.export_btn.setEnabled(False)
+        actions.addWidget(self.export_btn)
+        
+        controls.addLayout(actions)
+        layout.addLayout(controls)
+        
+        # Progress bar
+        self.progress = QProgressBar()
+        self.progress.setVisible(False)
+        layout.addWidget(self.progress)
+        
+        # Results display
+        self.scroll = QScrollArea()
+        self.scroll.setWidgetResizable(True)
+        self.scroll.setFrameShape(QFrame.Shape.NoFrame)
+        
+        self.display = QLabel()
+        self.display.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.scroll.setWidget(self.display)
+        
+        layout.addWidget(self.scroll)
+        
+        # Results summary
+        self.summary = QLabel()
+        self.summary.setVisible(False)
+        layout.addWidget(self.summary)
+        
+    def load_image(self, path: str):
+        """Load image for analysis"""
+        self.current_image = path
+        self.display_image(path)
+        self.current_results = None
+        self.export_btn.setEnabled(False)
+        self.summary.setVisible(False)
+        
+    def display_image(self, path: str, results: Optional[Dict] = None):
+        """Display image with optional overlay of results"""
+        if not path or not os.path.exists(path):
+            return
             
-            fig = Figure(figsize=(5, 4), facecolor='#282c34')
-            ax = fig.add_subplot(111)
-            ax.scatter(range(len(result_data['confidence'])), 
-                      result_data['confidence'],
-                      color='#61afef')
-            ax.set_title(self.tr("Detection Confidence"), color='#abb2bf')
-            ax.set_xlabel(self.tr("Colony Index"), color='#abb2bf')
-            ax.set_ylabel(self.tr("Confidence Score"), color='#abb2bf')
-            ax.set_facecolor('#21252b')
-            ax.tick_params(colors='#abb2bf')
-            ax.grid(True, linestyle='--', alpha=0.3, color='#abb2bf')
+        # Load image
+        pixmap = QPixmap(path)
+        if pixmap.isNull():
+            return
             
-            canvas = FigureCanvas(fig)
-            confidence_layout.addWidget(canvas)
-            confidence_group.setLayout(confidence_layout)
-            content_layout.addWidget(confidence_group)
-        
-        # Export button
-        btn_export = QPushButton(self.tr("Export"))
-        btn_export.clicked.connect(
-            lambda: self._export_result(sub_window, result_data)
+        # Scale to fit
+        scaled = pixmap.scaled(
+            self.scroll.size(),
+            Qt.AspectRatioMode.KeepAspectRatio,
+            Qt.TransformationMode.SmoothTransformation
         )
-        btn_export.setToolTip(self.tr("Export this result"))
-        content_layout.addWidget(btn_export)
         
-        result_widget.setLayout(content_layout)
-        sub_window.setWidget(result_widget)
-        
-        self.mdi_area.addSubWindow(sub_window)
-        sub_window.show()
-        
-        self.btn_export_all.setEnabled(True)
-        self.btn_clear.setEnabled(True)
-        
-    def add_multi_result(self, results_data):
-        """Display multi-image comparison results"""
-        logger.info("Adding multi-image comparison results")
-        
-        # Create sub window
-        sub_window = QMdiSubWindow()
-        sub_window.setWindowTitle(self.tr("Batch Analysis Results"))
-        
-        # Result widget
-        result_widget = QScrollArea()
-        content_widget = QWidget()
-        content_layout = QVBoxLayout()
-        
-        # Summary statistics
-        counts = [r['count'] for r in results_data]
-        stats = {
-            'Mean': sum(counts) / len(counts),
-            'Median': sorted(counts)[len(counts)//2],
-            'Std Dev': (sum((x - sum(counts)/len(counts))**2 for x in counts) / len(counts))**0.5,
-            'CV': (sum((x - sum(counts)/len(counts))**2 for x in counts) / len(counts))**0.5 / (sum(counts)/len(counts)) * 100
-        }
-        
-        stats_group = QGroupBox(self.tr("Summary Statistics"))
-        stats_layout = QVBoxLayout()
-        stats_text = "\n".join(f"{k}: {v:.2f}" for k, v in stats.items())
-        stats_label = QLabel(f"<pre>{stats_text}</pre>")
-        stats_layout.addWidget(stats_label)
-        stats_group.setLayout(stats_layout)
-        content_layout.addWidget(stats_group)
-        
-        # Distribution plot
-        dist_group = QGroupBox(self.tr("Count Distribution"))
-        dist_layout = QVBoxLayout()
-        fig = Figure(figsize=(8, 6), facecolor='#282c34')
-        ax = fig.add_subplot(111)
-        bp = ax.boxplot(counts, patch_artist=True)
-        
-        # 自定义箱型图颜色
-        plt.setp(bp['boxes'], facecolor='#61afef', alpha=0.7)
-        plt.setp(bp['whiskers'], color='#abb2bf')
-        plt.setp(bp['caps'], color='#abb2bf')
-        plt.setp(bp['medians'], color='#98c379')
-        plt.setp(bp['fliers'], marker='o', markerfacecolor='#e06c75')
-        
-        ax.set_title(self.tr("Colony Count Distribution"), color='#abb2bf')
-        ax.set_ylabel(self.tr("Colony Count"), color='#abb2bf')
-        ax.set_facecolor('#21252b')
-        ax.tick_params(colors='#abb2bf')
-        ax.grid(True, linestyle='--', alpha=0.3, color='#abb2bf')
-        
-        canvas = FigureCanvas(fig)
-        dist_layout.addWidget(canvas)
-        dist_group.setLayout(dist_layout)
-        content_layout.addWidget(dist_group)
-        
-        # Individual results
-        for i, result in enumerate(results_data):
-            result_group = QGroupBox(f"Image {i+1}")
-            result_layout = QVBoxLayout()
+        # Draw results if available
+        if results:
+            painter = QPainter(scaled)
+            pen = QPen(QColor(0, 255, 0))
+            pen.setWidth(2)
+            painter.setPen(pen)
             
-            count_label = QLabel(f"<b>Count: {result['count']}</b>")
-            result_layout.addWidget(count_label)
-            
-            if 'confidence' in result:
-                conf_fig = Figure(figsize=(4, 3), facecolor='#282c34')
-                conf_ax = conf_fig.add_subplot(111)
-                conf_ax.scatter(range(len(result['confidence'])), 
-                              result['confidence'],
-                              color='#61afef')
-                conf_ax.set_title(self.tr("Detection Confidence"), color='#abb2bf')
-                conf_ax.set_facecolor('#21252b')
-                conf_ax.tick_params(colors='#abb2bf')
-                conf_ax.grid(True, linestyle='--', alpha=0.3, color='#abb2bf')
+            for colony in results.get("colonies", []):
+                x = colony["x"]
+                y = colony["y"]
+                r = colony["radius"]
+                painter.drawEllipse(x-r, y-r, 2*r, 2*r)
                 
-                conf_canvas = FigureCanvas(conf_fig)
-                result_layout.addWidget(conf_canvas)
+            painter.end()
             
-            result_group.setLayout(result_layout)
-            content_layout.addWidget(result_group)
+        self.display.setPixmap(scaled)
         
-        # Export button
-        btn_export = QPushButton(self.tr("Export"))
-        btn_export.clicked.connect(
-            lambda: self._export_result(sub_window, results_data)
-        )
-        btn_export.setToolTip(self.tr("Export batch analysis results"))
-        content_layout.addWidget(btn_export)
-        
-        content_widget.setLayout(content_layout)
-        result_widget.setWidget(content_widget)
-        sub_window.setWidget(result_widget)
-        
-        self.mdi_area.addSubWindow(sub_window)
-        sub_window.show()
-        
-        self.btn_export_all.setEnabled(True)
-        self.btn_clear.setEnabled(True)
-        
-    @Slot()
-    def _export_result(self, window, data):
-        """Export single result window"""
-        file_name, _ = QFileDialog.getSaveFileName(
-            self,
-            self.tr("Export Result"),
-            "",
-            self.tr("PDF files (*.pdf);;PNG files (*.png)")
-        )
-        
-        if file_name:
-            self.progress_bar.setVisible(True)
-            self.progress_bar.setValue(0)
+    @pyqtSlot()
+    def start_analysis(self):
+        """Start colony analysis"""
+        if not self.current_image:
+            return
             
-            if file_name.endswith('.pdf'):
-                self._export_pdf(window, file_name)
+        try:
+            # Update UI
+            self.analyze_btn.setEnabled(False)
+            self.progress.setVisible(True)
+            self.progress.setRange(0, 0)
+            self.analysis_started.emit()
+            
+            # Get parameters
+            params = {
+                "confidence": self.confidence.value() / 100,
+                "min_size": self.min_size.value(),
+                "max_size": self.max_size.value(),
+                "use_gpu": self.device.currentText() == "GPU"
+            }
+            
+            # Run analysis
+            self.current_results = self.detector.analyze(
+                self.current_image,
+                **params
+            )
+            
+            # Update display
+            self.display_image(self.current_image, self.current_results)
+            
+            # Update summary
+            count = self.current_results.get("count", 0)
+            density = self.current_results.get("density", 0)
+            area = self.current_results.get("area", 0)
+            time = self.current_results.get("time", 0)
+            
+            self.summary.setText(
+                f"{tr('analysis.results.colony_count')}: {count}\n"
+                f"{tr('analysis.results.density')}: {density:.2f}\n"
+                f"{tr('analysis.results.area')}: {area:.2f}\n"
+                f"{tr('analysis.results.processing_time')}: {time:.2f}s"
+            )
+            self.summary.setVisible(True)
+            
+            # Enable export
+            self.export_btn.setEnabled(True)
+            
+            # Emit results
+            self.analysis_finished.emit(self.current_results)
+            
+        except Exception as e:
+            logger.error(f"Analysis failed: {e}")
+            self.analysis_error.emit(str(e))
+            QMessageBox.critical(
+                self,
+                tr("dialog.error"),
+                str(e)
+            )
+            
+        finally:
+            # Reset UI
+            self.analyze_btn.setEnabled(True)
+            self.progress.setVisible(False)
+            
+    @pyqtSlot()
+    def export_results(self):
+        """Export analysis results"""
+        if not self.current_results:
+            return
+            
+        try:
+            # Get save path
+            path, filter = QFileDialog.getSaveFileName(
+                self,
+                tr("analysis.results.export"),
+                "",
+                "CSV (*.csv);;JSON (*.json);;Excel (*.xlsx)"
+            )
+            
+            if not path:
+                return
+                
+            # Determine format and export
+            if filter == "CSV (*.csv)":
+                if not path.endswith('.csv'):
+                    path += '.csv'
+                success = ResultExporter.export_csv(path, self.current_results)
+            elif filter == "JSON (*.json)":
+                if not path.endswith('.json'):
+                    path += '.json'
+                success = ResultExporter.export_json(path, self.current_results)
+            else:  # Excel
+                if not path.endswith('.xlsx'):
+                    path += '.xlsx'
+                success = ResultExporter.export_excel(path, self.current_results)
+                
+            if success:
+                self.show_status_message(tr("status.export_complete"))
             else:
-                self._export_png(window, file_name)
+                raise RuntimeError(tr("error.export_failed"))
                 
-            self.progress_bar.setValue(100)
-            self.progress_bar.setVisible(False)
-                
-    @Slot()
-    def _export_all(self):
-        """Export all result windows"""
-        export_dir = QFileDialog.getExistingDirectory(
-            self,
-            self.tr("Select Export Directory")
-        )
-        
-        if export_dir:
-            total = len(self.mdi_area.subWindowList())
-            self.progress_bar.setVisible(True)
+        except Exception as e:
+            logger.error(f"Export failed: {e}")
+            QMessageBox.critical(
+                self,
+                tr("dialog.error"),
+                str(e)
+            )
             
-            for i, window in enumerate(self.mdi_area.subWindowList()):
-                pdf_path = os.path.join(export_dir, f"result_{i+1}.pdf")
-                self._export_pdf(window, pdf_path)
-                self.progress_bar.setValue(int((i + 1) * 100 / total))
-                
-            self.progress_bar.setVisible(False)
-                
-    def _export_pdf(self, window, file_path):
-        """Export window content as PDF"""
-        # Implementation depends on specific PDF generation library
-        logger.info(f"Exporting PDF to: {file_path}")
-        
-    def _export_png(self, window, file_path):
-        """Export window content as PNG"""
-        # Implementation depends on specific image generation approach
-        logger.info(f"Exporting PNG to: {file_path}")
-        
-    @Slot()
-    def _clear_results(self):
-        """Clear all result windows"""
-        self.mdi_area.closeAllSubWindows()
-        self.btn_export_all.setEnabled(False)
-        self.btn_clear.setEnabled(False)
-
-    def retranslateUi(self):
-        """Retranslate UI elements."""
-        self.action_group.setTitle(self.tr("Result Actions"))
-        self.btn_export_all.setText(self.tr("Export All"))
-        self.btn_export_all.setToolTip(self.tr("Export all analysis results"))
-        self.btn_clear.setText(self.tr("Clear Results"))
-        self.btn_clear.setToolTip(self.tr("Clear all analysis results"))
-        self.progress_label.setText(self.tr("Export Progress:"))
-        # Update existing subwindow titles
-        for window in self.mdi_area.subWindowList():
-            if window.windowTitle() == "Single Image Analysis":
-                window.setWindowTitle(self.tr("Single Image Analysis"))
-            elif window.windowTitle() == "Batch Analysis Results":
-                window.setWindowTitle(self.tr("Batch Analysis Results"))
-            # Find and retranslate widgets within each subwindow
-            for widget in window.widget().findChildren(QWidget):
-                if hasattr(widget, 'setText') and widget.text():
-                    widget.setText(self.tr(widget.text()))
-                if hasattr(widget, 'setTitle') and widget.title():
-                    widget.setTitle(self.tr(widget.title()))
-                if hasattr(widget, 'setToolTip') and widget.toolTip():
-                    widget.setToolTip(self.tr(widget.toolTip()))
+    def show_status_message(self, message: str):
+        """Show status message"""
+        if hasattr(self.parent(), "show_status_message"):
+            self.parent().show_status_message(message)

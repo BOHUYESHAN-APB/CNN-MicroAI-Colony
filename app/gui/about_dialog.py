@@ -1,196 +1,116 @@
+"""
+About Dialog
+"""
+import os
 import logging
-from PySide6.QtWidgets import (
-    QDialog, QVBoxLayout, QTextBrowser,
-    QDialogButtonBox, QTabWidget, QPushButton,
-    QGroupBox
-)
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont
+from typing import Dict, List
+from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel,
+                            QPushButton, QWidget)
+from PyQt6.QtGui import QPixmap, QIcon
+from PyQt6.QtCore import Qt
 
-from .. import __version__
+from ..utils.i18n import tr
+from ..utils.path_manager import get_resources_dir
+import app
 
 logger = logging.getLogger(__name__)
 
 class AboutDialog(QDialog):
+    """About dialog"""
+    
     def __init__(self, parent=None):
         super().__init__(parent)
-        logger.info("Initializing AboutDialog")
+        self.setup_ui()
         
-        self.setWindowTitle(self.tr("About MicroAI-Colony"))
-        self.resize(600, 400)
+    def setup_ui(self):
+        """Setup user interface"""
+        self.setWindowTitle(tr("about.title"))
+        self.setFixedSize(400, 300)
+        self.setModal(True)
         
-        self._setup_ui()
-        logger.info("AboutDialog initialization complete")
-
-    def retranslateUi(self):
-        """Retranslate UI elements."""
-        self.setWindowTitle(self.tr("About MicroAI-Colony"))
-        self.about_group.setTitle(self.tr("About"))
-        self.license_group.setTitle(self.tr("License"))
-        self.thirdparty_group.setTitle(self.tr("Third Party"))
-        self.ok_button.setText(self.tr("OK"))
-        self.ok_button.setToolTip(self.tr("Close this dialog"))
-
-        # Update tab texts
-        self.tab_widget.setTabText(0, self.tr("About"))
-        self.tab_widget.setTabText(1, self.tr("License"))
-        self.tab_widget.setTabText(2, self.tr("Third Party"))
-        
-    def _setup_ui(self):
-        """Setup dialog UI"""
         layout = QVBoxLayout()
-        
-        # Tab widget for different sections
-        self.tab_widget = QTabWidget()
-        
-        # About section
-        self.about_group = QGroupBox(self.tr("About"))
-        about_layout = QVBoxLayout()
-        self.about_browser = QTextBrowser()
-        self.about_browser.setOpenExternalLinks(True)
-        self.about_browser.setStyleSheet("""
-            QTextBrowser {
-                background-color: #21252b;
-                border: none;
-            }
-        """)
-        self.about_browser.setHtml(self._get_about_text())
-        about_layout.addWidget(self.about_browser)
-        self.about_group.setLayout(about_layout)
-        self.tab_widget.addTab(self.about_group, self.tr("About"))
-        
-        # License section
-        self.license_group = QGroupBox(self.tr("License"))
-        license_layout = QVBoxLayout()
-        self.license_browser = QTextBrowser()
-        self.license_browser.setOpenExternalLinks(True)
-        self.license_browser.setStyleSheet("""
-            QTextBrowser {
-                background-color: #21252b;
-                border: none;
-            }
-        """)
-        self.license_browser.setHtml(self._get_license_text())
-        license_layout.addWidget(self.license_browser)
-        self.license_group.setLayout(license_layout)
-        self.tab_widget.addTab(self.license_group, self.tr("License"))
-        
-        # Third party section
-        self.thirdparty_group = QGroupBox(self.tr("Third Party"))
-        thirdparty_layout = QVBoxLayout()
-        self.thirdparty_browser = QTextBrowser()
-        self.thirdparty_browser.setOpenExternalLinks(True)
-        self.thirdparty_browser.setStyleSheet("""
-            QTextBrowser {
-                background-color: #21252b;
-                border: none;
-            }
-        """)
-        self.thirdparty_browser.setHtml(self._get_thirdparty_text())
-        thirdparty_layout.addWidget(self.thirdparty_browser)
-        self.thirdparty_group.setLayout(thirdparty_layout)
-        self.tab_widget.addTab(self.thirdparty_group, self.tr("Third Party"))
-        
-        layout.addWidget(self.tab_widget)
-        
-        # Dialog button
-        button_box = QDialogButtonBox()
-        self.ok_button = QPushButton(self.tr("OK"))
-        self.ok_button.setDefault(True)
-        self.ok_button.setToolTip(self.tr("Close this dialog"))
-        button_box.addButton(self.ok_button, QDialogButtonBox.AcceptRole)
-        button_box.accepted.connect(self.accept)
-        layout.addWidget(button_box)
-        
         self.setLayout(layout)
         
-    def _get_about_text(self):
-        """Get formatted about text"""
-        return f"""
-        <div style='text-align: center;'>
-            <h2 style='color: #61afef;'>MicroAI-Colony</h2>
-            <p style='color: #98c379;'>Version {__version__}</p>
-            <p>
-            MicroAI-Colony is an intelligent software solution for automated bacterial colony counting
-            using advanced image processing and machine learning techniques.
-            </p>
-            <p>
-            Copyright © 2025 MicroAI Team. All rights reserved.
-            </p>
-            <p>
-            <a href='https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony' style='color: #61afef;'>
-                Project Homepage
-            </a>
-            </p>
-        </div>
-        """
+        # Logo
+        logo_path = os.path.join(get_resources_dir(), "icons", "app.png")
+        if os.path.exists(logo_path):
+            logo_label = QLabel()
+            logo_pixmap = QPixmap(logo_path)
+            if not logo_pixmap.isNull():
+                scaled = logo_pixmap.scaled(
+                    64, 64,
+                    Qt.AspectRatioMode.KeepAspectRatio,
+                    Qt.TransformationMode.SmoothTransformation
+                )
+                logo_label.setPixmap(scaled)
+                logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                layout.addWidget(logo_label)
         
-    def _get_license_text(self):
-        """Get formatted license text"""
-        return """
-        <h3 style='color: #61afef;'>GNU General Public License v3.0</h3>
-        <p>
-        This program is free software: you can redistribute it and/or modify
-        it under the terms of the GNU General Public License as published by
-        the Free Software Foundation, either version 3 of the License, or
-        (at your option) any later version.
-        </p>
-        <p>
-        This program is distributed in the hope that it will be useful,
-        but WITHOUT ANY WARRANTY; without even the implied warranty of
-        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-        GNU General Public License for more details.
-        </p>
-        <p>
-        You should have received a copy of the GNU General Public License
-        along with this program. If not, see 
-        <a href='https://www.gnu.org/licenses/' style='color: #61afef;'>
-            https://www.gnu.org/licenses/
-        </a>.
-        </p>
-        """
+        # App name and version
+        name_label = QLabel(f"{app.APP_NAME} {app.__version__}")
+        name_label.setStyleSheet("font-size: 16px; font-weight: bold;")
+        name_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(name_label)
         
-    def _get_thirdparty_text(self):
-        """Get formatted third party licenses text"""
-        return """
-        <h3 style='color: #61afef;'>Third Party Software</h3>
+        # Description
+        desc_label = QLabel(tr("about.description"))
+        desc_label.setWordWrap(True)
+        desc_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(desc_label)
         
-        <h4 style='color: #98c379;'>PySide6</h4>
-        <p>
-        The Qt for Python project (PySide6) is licensed under the GNU Lesser General Public License (LGPL) version 3.
-        </p>
-        <p>
-        <a href='https://www.qt.io/licensing/' style='color: #61afef;'>Qt Licensing</a>
-        </p>
+        # Copyright
+        copyright_label = QLabel(
+            f"{tr('about.copyright')} © {app.__author__}"
+        )
+        copyright_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(copyright_label)
         
-        <h4 style='color: #98c379;'>PyTorch</h4>
-        <p>
-        PyTorch is licensed under the BSD-style license.
-        </p>
-        <p>
-        <a href='https://github.com/pytorch/pytorch/blob/master/LICENSE' style='color: #61afef;'>
-            PyTorch License
-        </a>
-        </p>
+        # License
+        license_label = QLabel(
+            f"{tr('about.license')}: {app.__license__}"
+        )
+        license_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(license_label)
         
-        <h4 style='color: #98c379;'>NumPy</h4>
-        <p>
-        Copyright (c) 2005-2023, NumPy Developers.<br>
-        Licensed under the BSD 3-Clause License.
-        </p>
+        # Website
+        website_label = QLabel(
+            f"{tr('about.website')}: "
+            f"<a href='{app.__website__}'>{app.__website__}</a>"
+        )
+        website_label.setOpenExternalLinks(True)
+        website_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(website_label)
         
-        <h4 style='color: #98c379;'>OpenCV</h4>
-        <p>
-        OpenCV is released under a BSD 3-Clause License.
-        </p>
-        <p>
-        <a href='https://github.com/opencv/opencv/blob/master/LICENSE' style='color: #61afef;'>
-            OpenCV License
-        </a>
-        </p>
+        # Credits
+        credits_label = QLabel(tr("about.acknowledgments"))
+        credits_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(credits_label)
         
-        <h4 style='color: #98c379;'>Matplotlib</h4>
-        <p>
-        Matplotlib is licensed under the PSF (Python Software Foundation) License.
-        </p>
-        """
+        # Built with packages
+        packages = [
+            "Python",
+            "PyQt6",
+            "OpenCV",
+            "NumPy",
+            "TensorFlow"
+        ]
+        
+        packages_label = QLabel(", ".join(packages))
+        packages_label.setWordWrap(True)
+        packages_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(packages_label)
+        
+        # Close button
+        button_layout = QHBoxLayout()
+        button_layout.addStretch()
+        
+        close_button = QPushButton(tr("dialog.close"))
+        close_button.clicked.connect(self.accept)
+        button_layout.addWidget(close_button)
+        
+        button_layout.addStretch()
+        layout.addLayout(button_layout)
+        
+        # Add stretch to center content vertically
+        layout.insertStretch(0)
+        layout.addStretch()
