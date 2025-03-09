@@ -188,7 +188,37 @@ class ResultVisualizer(QWidget):
         self.summary = QLabel()
         self.summary.setVisible(False)
         layout.addWidget(self.summary)
-        
+
+    def retranslateUi(self):
+        """Retranslate UI elements"""
+        # Find and update the labels for analysis settings
+        for child in self.findChildren(QLabel):
+            if "Confidence" in child.text():
+                child.setText(tr("analysis.settings.confidence"))
+            elif "Min Size" in child.text():
+                child.setText(tr("analysis.settings.min_size"))
+            elif "Max Size" in child.text():
+                child.setText(tr("analysis.settings.max_size"))
+            elif "Device" in child.text():
+                child.setText(tr("analysis.settings.device"))
+
+        self.analyze_btn.setText(tr("analysis.start"))
+        self.export_btn.setText(tr("analysis.export"))
+
+        # Update summary if results are available
+        if self.current_results:
+            count = self.current_results.get("count", 0)
+            density = self.current_results.get("density", 0)
+            area = self.current_results.get("area", 0)
+            time = self.current_results.get("time", 0)
+
+            self.summary.setText(
+                f"{tr('analysis.results.colony_count')}: {count}\n"
+                f"{tr('analysis.results.density')}: {density:.2f}\n"
+                f"{tr('analysis.results.area')}: {area:.2f}\n"
+                f"{tr('analysis.results.processing_time')}: {time:.2f}s"
+            )
+
     def load_image(self, path: str):
         """Load image for analysis"""
         self.current_image = path
