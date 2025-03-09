@@ -131,6 +131,13 @@ def get_i18n_dir() -> str:
     """Get internationalization directory"""
     return os.path.join(get_resources_dir(), "i18n")
 
+def get_checkpoints_dir() -> str:
+    """Get model checkpoints directory"""
+    return os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+        "checkpoints"
+    )
+
 def create_app_directories() -> bool:
     """Create application directories if they don't exist"""
     try:
