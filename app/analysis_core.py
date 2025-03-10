@@ -135,7 +135,7 @@ class ColonyDetector:
         # Convert to tensor and add batch dimension
         image = torch.from_numpy(image).permute(2, 0, 1)
         
-        return [image.to(self._device)]  # Faster R-CNN expects a list of tensors
+        return image.to(self._device)
         
     def postprocess_detections(self, detections: List[Dict], orig_size: tuple) -> List[Dict]:
         """Convert model output to colony detections"""
@@ -183,7 +183,6 @@ class ColonyDetector:
         self._min_size = kwargs.get('min_size', 5)
         self._max_size = kwargs.get('max_size', 100)
         self._use_gpu = kwargs.get('use_gpu', False)
-        self._nms_threshold = kwargs.get('nms_threshold', 0.3)  # Add NMS threshold parameter
         
         try:
             # Check if model is loaded
@@ -194,23 +193,58 @@ class ColonyDetector:
             image = cv2.imread(image_path)
             if image is None:
                 raise ValueError(f"Failed to read image: {image_path}")
-                
+
             # Get original size
             orig_size = image.shape[:2]
+
+            # Custom preprocessing based on image type
+            image_name = Path(image_path).name
+            if "R-C" in image_name:
+                # Convert to grayscale
+                gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+                # CLAHE (Contrast Limited Adaptive Histogram Equalization)
+                clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(12, 12)) # Increased clipLimit and tileGridSize
+                gray = clahe.apply(gray)
+
+                # Gaussian blur (slightly larger kernel)
+                blurred = cv2.GaussianBlur(gray, (7, 7), 0)
+
+                # Top-hat filtering (for extracting small bright objects)
+                kernel = np.ones((9,9), np.uint8)  # Larger kernel
+                tophat = cv2.morphologyEx(blurred, cv2.MORPH_TOPHAT, kernel)
+
+                # Add tophat result to the blurred image (enhances bright regions)
+                enhanced = cv2.add(blurred, tophat)
+
+                # Adaptive thresholding (larger block size for uneven illumination)
+                thresh = cv2.adaptiveThreshold(enhanced, 255, cv2.ADAPTIVE_THRESH_MEAN_C, 
+                                              cv2.THRESH_BINARY_INV, 25, 3) # Larger blockSize and adjusted C
+                
+                # Morphological operations (experiment with different combinations)
+                kernel = np.ones((3,3),np.uint8)
+                opening = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations = 1) # Reduced iterations
+                closing = cv2.morphologyEx(opening, cv2.MORPH_CLOSE, kernel, iterations = 1) # Added closing
+
+                # Convert back to BGR
+                image = cv2.cvtColor(closing, cv2.COLOR_GRAY2BGR) # Use closing result
+
+            # Preprocess image for the model
+            tensor_image = self.preprocess_image(image)
             
-            # Preprocess image
-            images = self.preprocess_image(image)
-            
+            # Pass image with path info
+            input_data = {'image': tensor_image, 'image_path': str(image_path)}
+
             # Model inference
             self._model.eval()
             with torch.no_grad():
                 detections = self._model(
-                    images,
-                    nms_threshold=self._nms_threshold,
+                    input_data,
+                    nms_threshold=kwargs.get('nms_threshold', 0.3),
                     score_threshold=kwargs.get('score_threshold', 0.1)
                 )
-                logger.info(f"Inference completed with NMS threshold: {self._nms_threshold}, score threshold: {kwargs.get('score_threshold', 0.1)}")
-                
+                logger.info(f"Inference completed with NMS threshold: {kwargs.get('nms_threshold', 0.3)}, score threshold: {kwargs.get('score_threshold', 0.1)}")
+
             # Postprocess detections
             colonies = self.postprocess_detections(detections, orig_size)
             
