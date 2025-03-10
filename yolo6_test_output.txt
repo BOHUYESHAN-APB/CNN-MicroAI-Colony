@@ -1,0 +1,180 @@
+Starting yolo6/test_model.py...
+Main function started...
+Testing YOLOv6 colony detection...
+Initializing dependencies...
+Initializing scipy...
+scipy version: 1.15.2
+scipy.ndimage imported successfully.
+Determining checkpoint path...
+No model path argument provided. Using standard paths...
+Standard paths: [WindowsPath('C:/Users/ETPau/Documents/GitHub/CNN-/yolo6/checkpoints/best_model_20250310_144315.pth'), WindowsPath('C:/Users/ETPau/Documents/GitHub/CNN-/checkpoints/best_model_20250310_144315.pth'), WindowsPath('C:/Users/ETPau/Documents/GitHub/CNN-/yolo6/best_model_20250310_144315.pth'), WindowsPath('C:/Users/ETPau/Documents/GitHub/CNN-/yolo6/model.pth')]
+Checkpoint found at: C:\Users\ETPau\Documents\GitHub\CNN-\yolo6\checkpoints\best_model_20250310_144315.pth
+Checkpoint path exists.
+Loading checkpoint...
+Checkpoint loaded successfully.
+Project root: C:\Users\ETPau\Documents\GitHub\CNN-
+Using classes: ['colony']
+Using device: cpu
+Loading model from: C:\Users\ETPau\Documents\GitHub\CNN-\yolo6\checkpoints\best_model_20250310_144315.pth
+
+Model Configuration:
+- Input size: 224x224
+- Feature map: 3x3
+- Feature channels: 512
+- Input dimension: 4608
+- Output dimension: 1
+Model created.
+Checkpoint loaded.
+Checkpoint keys: dict_keys(['state_dict', 'num_classes', 'model_config'])
+State dict loaded.
+State dict loaded into model.
+Model set to eval mode.
+Model loaded successfully!
+Model loading complete.
+
+Model Configuration:
+- Input size: 224x224
+- Feature map: 3x3
+- Feature channels: 512
+- Input dimension: N/A
+- Output dimension: N/A
+Loading ground truth data...
+
+==================================================
+DETECTION PARAMETERS
+==================================================
+
+Model Parameters:
+----------------------------------------
+Confidence threshold: 0.33
+Score threshold: 0.23
+NMS threshold: 0.28
+Size range: 11 - 88 pixels
+Using GPU: False
+
+Processing 2021041310020608608.jpg...
+Ground truth - Total: 107, Merged: 102
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.439 to 0.490
+Mean: 0.466
+First 100 values: [0.43917552 0.46329764 0.4486866  0.47214335 0.49029896 0.47964513
+ 0.45336202 0.48035386 0.4681844 ]
+Found 0 colonies (Ground truth: 107)
+Difference: -107 (100.0% error)
+Processing time: 0.02 seconds
+
+Processing 2121.jpg...
+Ground truth - Total: 40, Merged: 36
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.411 to 0.461
+Mean: 0.438
+First 100 values: [0.4255829  0.445637   0.44022542 0.41138768 0.46060073 0.44156644
+ 0.41917396 0.43899417 0.45525178]
+Found 0 colonies (Ground truth: 40)
+Difference: -40 (100.0% error)
+Processing time: 0.02 seconds
+
+Processing OIP-C.jpg...
+Ground truth - Total: 88, Merged: 82
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.413 to 0.480
+Mean: 0.447
+First 100 values: [0.41258922 0.43703204 0.44105121 0.42327154 0.46964288 0.46440402
+ 0.4198442  0.4799195  0.4748625 ]
+Found 0 colonies (Ground truth: 88)
+Difference: -88 (100.0% error)
+Processing time: 0.02 seconds
+
+Processing R-C.jpg...
+Ground truth - Total: 163, Merged: 123
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.436 to 0.473
+Mean: 0.451
+First 100 values: [0.44780007 0.46005186 0.43598664 0.4637993  0.45382676 0.4726563
+ 0.43918982 0.44629842 0.4433055 ]
+Found 0 colonies (Ground truth: 163)
+Difference: -163 (100.0% error)
+Processing time: 0.02 seconds
+
+Processing t019872959c62f44875.jpg...
+Ground truth - Total: 94, Merged: 78
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.439 to 0.520
+Mean: 0.467
+First 100 values: [0.45548287 0.4650364  0.46205282 0.4464905  0.5201271  0.4601503
+ 0.43891943 0.4908445  0.46150956]
+Found 0 colonies (Ground truth: 94)
+Difference: -94 (100.0% error)
+Processing time: 0.02 seconds
+
+==================================================
+OVERALL RESULTS
+==================================================
+Total detections: 0
+Total ground truth: 492
+Average error rate: 100.0%
+Total processing time: 0.00 seconds
+
+Detailed Results:
+----------------------------------------
+2021041310020608608.jpg:
+  Detected: 0
+  Ground Truth: 107
+  Error Rate: 100.0% 
+2121.jpg:
+  Detected: 0
+  Ground Truth: 40
+  Error Rate: 100.0% 
+OIP-C.jpg:
+  Detected: 0
+  Ground Truth: 88
+  Error Rate: 100.0% 
+R-C.jpg:
+  Detected: 0
+  Ground Truth: 163
+  Error Rate: 100.0% 
+t019872959c62f44875.jpg:
+  Detected: 0
+  Ground Truth: 94
+  Error Rate: 100.0% 
+
+==================================================
+DETECTION STATISTICS (per image)
+==================================================
+
+Image: 2021041310020608608.jpg
+------------------------------
+  No colonies detected.
+
+Image: 2121.jpg
+------------------------------
+  No colonies detected.
+
+Image: OIP-C.jpg
+------------------------------
+  No colonies detected.
+
+Image: R-C.jpg
+------------------------------
+  No colonies detected.
+
+Image: t019872959c62f44875.jpg
+------------------------------
+  No colonies detected.
+
+Saving visualizations...
+Saved visualization for 2021041310020608608.jpg
+Saved visualization for 2121.jpg
+Saved visualization for OIP-C.jpg
+Saved visualization for R-C.jpg
+Saved visualization for t019872959c62f44875.jpg
