@@ -54,6 +54,9 @@ app/results/
 app/resources/i18n/qm/
 app/resources/i18n/ts/
 app/config/user.json
+test-pic/
+test_images/
+test_outputs/
 
 # System
 .DS_Store
