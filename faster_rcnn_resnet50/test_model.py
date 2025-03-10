@@ -47,6 +47,8 @@ def main():
         test_dir = Path("test-pic")
         test_images = [f for f in test_dir.glob("*.jpg")]
         
+        output_dir = Path("test_outputs") # Define output_dir here
+
         total_detection_count = 0
         total_ground_truth = 0
         total_time = 0
@@ -152,7 +154,6 @@ def main():
                 print("  No colonies detected.")
 
         # Save visualizations for each image
-        output_dir = Path("test_outputs")
         output_dir.mkdir(exist_ok=True)
         
         print("\nSaving visualizations...")
@@ -193,7 +194,7 @@ def main():
                 y += 30
             
             # Save output
-            output_path = output_dir / f"result_{result['filename']}"
+            output_path = Path("test_outputs") / f"result_{result['filename']}" # output to test_outputs in current directory
             cv2.imwrite(str(output_path), image)
             print(f"Saved visualization for {result['filename']}")
         
