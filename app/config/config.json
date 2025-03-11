@@ -1,0 +1,14 @@
+{
+    "default_path": "C:\\Users\\ETPau/Desktop/MicroAI_Detect",
+    "export_formats": [
+        "json",
+        "csv",
+        "xlsx"
+    ],
+    "analysis_iterations": 100,
+    "language": "en",
+    "theme": "light",
+    "window": {
+        "maximized": false
+    }
+}
