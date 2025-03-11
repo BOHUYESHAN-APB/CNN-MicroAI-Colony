@@ -1,9 +1,6 @@
 """
 Test Colony Detection Model
 """
-import sys
-import os
-sys.path.insert(0, os.getcwd()) # Add project root to Python path
 import cv2
 import json
 import torch
