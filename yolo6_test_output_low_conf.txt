@@ -1,0 +1,215 @@
+Starting yolo6/test_model.py...
+Main function started...
+Testing YOLOv6 colony detection...
+Initializing dependencies...
+Initializing scipy...
+scipy version: 1.15.2
+scipy.ndimage imported successfully.
+Determining checkpoint path...
+No model path argument provided. Using standard paths...
+Standard paths: [WindowsPath('C:/Users/ETPau/Documents/GitHub/CNN-/yolo6/checkpoints/best_model_20250310_144315.pth'), WindowsPath('C:/Users/ETPau/Documents/GitHub/CNN-/checkpoints/best_model_20250310_144315.pth'), WindowsPath('C:/Users/ETPau/Documents/GitHub/CNN-/yolo6/best_model_20250310_144315.pth'), WindowsPath('C:/Users/ETPau/Documents/GitHub/CNN-/yolo6/model.pth')]
+Checkpoint found at: C:\Users\ETPau\Documents\GitHub\CNN-\yolo6\checkpoints\best_model_20250310_144315.pth
+Checkpoint path exists.
+Loading checkpoint...
+Checkpoint loaded successfully.
+Project root: C:\Users\ETPau\Documents\GitHub\CNN-
+Using classes: ['colony']
+Using device: cpu
+Loading model from: C:\Users\ETPau\Documents\GitHub\CNN-\yolo6\checkpoints\best_model_20250310_144315.pth
+
+Model Configuration:
+- Input size: 224x224
+- Feature map: 3x3
+- Feature channels: 512
+- Input dimension: 4608
+- Output dimension: 1
+Model created.
+Checkpoint loaded.
+Checkpoint keys: dict_keys(['state_dict', 'num_classes', 'model_config'])
+State dict loaded.
+State dict loaded into model.
+Model set to eval mode.
+Model loaded successfully!
+Model loading complete.
+Loading ground truth data...
+
+==================================================
+DETECTION PARAMETERS
+==================================================
+
+Model Parameters:
+----------------------------------------
+Confidence threshold: 0.01
+Score threshold: 0.23
+NMS threshold: 0.28
+Size range: 0 - 999 pixels
+Using GPU: False
+
+Processing 2021041310020608608.jpg...
+Ground truth - Total: 107, Merged: 102
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.481 to 0.523
+Mean: 0.504
+First 100 values: [0.4912461  0.5220856  0.5228841  0.48127368 0.51211405 0.5037859
+ 0.48782215 0.50215083 0.5086633 ]
+Found 0 colonies (Ground truth: 107)
+Difference: -107 (100.0% error)
+Processing time: 0.03 seconds
+
+Processing 2121.jpg...
+Ground truth - Total: 40, Merged: 36
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.496 to 0.550
+Mean: 0.520
+First 100 values: [0.53147936 0.5243927  0.55008453 0.4961494  0.50620145 0.4969329
+ 0.53357965 0.5210377  0.51988107]
+Found 0 colonies (Ground truth: 40)
+Difference: -40 (100.0% error)
+Processing time: 0.02 seconds
+
+Processing OIP-C.jpg...
+Ground truth - Total: 88, Merged: 82
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.486 to 0.555
+Mean: 0.514
+First 100 values: [0.5213719  0.49826825 0.49797985 0.48642877 0.52644753 0.5457112
+ 0.48810127 0.51028997 0.5546    ]
+Found 9 colonies (Ground truth: 88)
+Difference: -79 (89.8% error)
+Processing time: 0.02 seconds
+
+Processing R-C.jpg...
+Ground truth - Total: 163, Merged: 123
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.505 to 0.528
+Mean: 0.516
+First 100 values: [0.5088278  0.51425415 0.5053833  0.5245601  0.5200933  0.5276577
+ 0.5066001  0.51392484 0.52564746]
+Found 0 colonies (Ground truth: 163)
+Difference: -163 (100.0% error)
+Processing time: 0.02 seconds
+
+Processing t019872959c62f44875.jpg...
+Ground truth - Total: 94, Merged: 78
+
+Score map analysis:
+Shape: (3, 3)
+Range: 0.492 to 0.581
+Mean: 0.515
+First 100 values: [0.506524   0.5099462  0.49208695 0.5050012  0.5807577  0.52791685
+ 0.503887   0.5036267  0.50726837]
+Found 9 colonies (Ground truth: 94)
+Difference: -85 (90.4% error)
+Processing time: 0.02 seconds
+
+==================================================
+OVERALL RESULTS
+==================================================
+Total detections: 0
+Total ground truth: 492
+Average error rate: 96.0%
+Total processing time: 0.00 seconds
+
+Detailed Results:
+----------------------------------------
+2021041310020608608.jpg:
+  Detected: 0
+  Ground Truth: 107
+  Error Rate: 100.0% 
+2121.jpg:
+  Detected: 0
+  Ground Truth: 40
+  Error Rate: 100.0% 
+OIP-C.jpg:
+  Detected: 9
+  Ground Truth: 88
+  Error Rate: 89.8% 
+R-C.jpg:
+  Detected: 0
+  Ground Truth: 163
+  Error Rate: 100.0% 
+t019872959c62f44875.jpg:
+  Detected: 9
+  Ground Truth: 94
+  Error Rate: 90.4% 
+
+==================================================
+DETECTION STATISTICS (per image)
+==================================================
+
+Image: 2021041310020608608.jpg
+------------------------------
+  No colonies detected.
+
+Image: 2121.jpg
+------------------------------
+  No colonies detected.
+
+Image: OIP-C.jpg
+------------------------------
+Confidence Scores:
+  - Average: 0.514
+  - Range:   0.486 to 0.555
+  - Std Dev: 0.023
+
+Colony Sizes (diameter):
+  - Average: 790.0 pixels
+  - Range:   790.0 to 790.0 pixels
+  - Std Dev: 0.0 pixels
+
+Size Distribution (diameter):
+------------------------------
+   789.0-789.2 px |                                |   0
+   789.2-789.4 px |                                |   0
+   789.4-789.6 px |                                |   0
+   789.6-789.8 px |                                |   0
+   789.8-790.0 px |                                |   0
+   790.0-790.2 px | ############################## |   9
+   790.2-790.4 px |                                |   0
+   790.4-790.6 px |                                |   0
+   790.6-790.8 px |                                |   0
+   790.8-791.0 px |                                |   0
+
+Image: R-C.jpg
+------------------------------
+  No colonies detected.
+
+Image: t019872959c62f44875.jpg
+------------------------------
+Confidence Scores:
+  - Average: 0.515
+  - Range:   0.492 to 0.581
+  - Std Dev: 0.025
+
+Colony Sizes (diameter):
+  - Average: 954.0 pixels
+  - Range:   954.0 to 954.0 pixels
+  - Std Dev: 0.0 pixels
+
+Size Distribution (diameter):
+------------------------------
+   953.0-953.2 px |                                |   0
+   953.2-953.4 px |                                |   0
+   953.4-953.6 px |                                |   0
+   953.6-953.8 px |                                |   0
+   953.8-954.0 px |                                |   0
+   954.0-954.2 px | ############################## |   9
+   954.2-954.4 px |                                |   0
+   954.4-954.6 px |                                |   0
+   954.6-954.8 px |                                |   0
+   954.8-955.0 px |                                |   0
+
+Saving visualizations...
+Saved visualization for 2021041310020608608.jpg
+Saved visualization for 2121.jpg
+Saved visualization for OIP-C.jpg
+Saved visualization for R-C.jpg
+Saved visualization for t019872959c62f44875.jpg
