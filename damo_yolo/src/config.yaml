@@ -1,0 +1,55 @@
+# DAMO-YOLO Configuration
+
+model:
+  name: 'damo-yolo'
+  num_classes: 1
+  input_size: 224
+  backbone:
+    channels: [32, 64, 128, 256, 512]
+    activation: 'silu'
+  neck:
+    in_channels: 512
+    out_channels: 256
+  head:
+    in_channels: 256
+    hidden_channels: 256
+
+training:
+  batch_size: 16
+  epochs: 50
+  learning_rate: 0.001
+  weight_decay: 0.0005
+  momentum: 0.9
+  lr_scheduler:
+    type: 'step'
+    step_size: 30
+    gamma: 0.1
+  
+  # Data augmentation
+  augmentation:
+    horizontal_flip: true
+    vertical_flip: true
+    rotation: [-10, 10]
+    brightness: 0.2
+    contrast: 0.2
+    
+  # Checkpoint settings
+  checkpoint:
+    save_freq: 5  # Save every n epochs
+    save_best: true
+    metric: 'accuracy'
+
+# Testing parameters
+testing:
+  confidence: 0.01
+  nms_threshold: 0.28
+  score_threshold: 0.23
+  min_size: 0
+  max_size: 999
+
+# Dataset paths
+data:
+  train: 'pic-all/train'
+  val: 'pic-all/val'
+  test: 'test-pic'
+  classes: 'pic-all/classes.txt'

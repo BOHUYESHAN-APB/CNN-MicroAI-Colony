@@ -1,0 +1,19 @@
+{
+    "main.title": "CNN分析器",
+    "status.language_changed": "已切換語言至{locale}",
+    "error.language_change_failed": "切換語言至{locale}失敗",
+    "menu.language": "語言",
+    "menu.file": "檔案",
+    "menu.help": "說明",
+    "menu.help.about": "關於",
+    "dialog.error": "錯誤",
+    "settings.title": "設定",
+    "settings.language": "語言",
+    "settings.theme": "主題",
+    "settings.tab.general": "一般",
+    "settings.tab.display": "顯示",
+    "settings.tab.analysis": "分析",
+    "dialog.ok": "確定",
+    "dialog.cancel": "取消",
+    "dialog.apply": "套用"
+}

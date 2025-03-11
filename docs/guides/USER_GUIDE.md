@@ -1,182 +1,151 @@
-# 用户指南 / User Guide
+# 用户指南
 
-[中文](#用户指南) | [English](#user-guide)
+## 新版本界面说明
 
-## 用户指南
+### 主界面
+- **工具栏**: 常用功能快捷访问
+- **侧边栏**: 文件列表和导航
+- **主工作区**: 图像预览和分析
+- **状态栏**: 系统状态和提示信息
 
-### 软件界面说明
-#### 主界面布局
-1. **工具栏区域**
-   - 加载图像按钮：导入待分析图片
-   - 处理按钮：开始分析过程
-   - 保存按钮：导出分析结果
-   - 设置按钮：配置分析参数
+### 深色主题
+- 基于PyOneDark主题设计
+- 降低视觉疲劳
+- 提高对比度
+- 专业的外观
 
-2. **图像显示区**
-   - 支持拖放图像
-   - 支持缩放和平移
-   - 实时显示分析结果和标注
+### 界面特性
+- 平滑的动画效果
+- 响应式布局
+- 高DPI支持
+- 多语言界面
 
-3. **结果面板**
-   - 菌落计数统计
-   - 置信度分布图
-   - 详细数据表格
+## 基本操作
 
-### 基本操作流程
+### 图像导入
+1. 拖放文件到主窗口
+2. 使用"打开文件"按钮
+3. 从剪贴板粘贴
 
-1. **导入图像**
-   ```
-   方式1: 点击"加载图像"按钮
-   方式2: 直接拖放图像到显示区
-   支持格式: JPG, PNG
-   ```
+### 分析模式
+- **单图分析**: 逐张处理
+- **批量分析**: 多图同时处理
+- **实时分析**: 摄像头实时处理
 
-2. **分析处理**
-   ```
-   1. 选择处理模式:
-      - 单图分析
-      - 批量处理
-   2. 点击"处理"按钮
-   3. 等待处理完成
-   ```
+### 结果查看
+- 图表可视化
+- 数据表格
+- 统计信息
+- 对比分析
 
-3. **查看结果**
-   ```
-   - 检查标注图像
-   - 确认计数结果
-   - 验证识别准确性
-   ```
+### 导出功能
+- CSV数据导出
+- Excel报表
+- PDF报告
+- 图表导出
 
-4. **导出结果**
-   ```
-   支持格式:
-   - PDF报告
-   - CSV数据表
-   - JSON格式
-   ```
+## 高级功能
+
+### 分析设置
+- 检测阈值调整 
+- 处理参数配置
+- 批量处理设置
+
+### 结果管理
+- 历史记录查看
+- 数据库存储
+- 结果对比
+- 批量导出
+
+### 自定义选项
+- 界面布局
+- 快捷键设置
+- 文件关联
+- 导出模板
+
+## 使用技巧
+
+### 性能优化
+- 使用GPU加速
+- 批量处理优化
+- 内存使用控制
+
+### 结果准确性
+- 图像质量要求
+- 参数调整建议
+- 常见问题解决
+
+### 数据管理
+- 定期备份
+- 结果整理
+- 存储空间管理
+
+## 故障排除
+
+### 常见问题
+1. 启动失败
+2. 检测异常
+3. 导出错误
+4. 性能问题
+
+### 解决方案
+- 检查系统要求
+- 验证安装完整性
+- 清理临时文件
+- 重置配置
+
+### 获取帮助
+- 查看日志文件
+- 提交问题报告
+- 联系技术支持
+
+## 最佳实践
+
+### 工作流程
+1. 图像采集规范
+2. 分析前准备
+3. 结果验证
+4. 数据管理
+
+### 效率提升
+- 使用快捷键
+- 批量处理
+- 模板应用
+- 自动化任务
+
+### 质量控制
+- 定期校准
+- 结果验证
+- 数据备份
+- 版本更新
+
+## 更新与维护
+
+### 版本更新
+- 检查更新
+- 自动更新
+- 更新说明
+
+### 系统维护
+- 缓存清理
+- 数据备份
+- 日志管理
+- 性能优化
+
+## 附录
 
 ### 快捷键列表
+- Ctrl+O: 打开文件
+- Ctrl+S: 保存结果
+- Ctrl+P: 打印报告
+- F5: 刷新视图
 
-| 功能 | Windows/Linux | macOS |
-|------|--------------|-----|
-| 打开文件 | Ctrl+O | ⌘+O |
-| 保存结果 | Ctrl+S | ⌘+S |
-| 开始处理 | Ctrl+R | ⌘+R |
-| 缩放适应 | Ctrl+0 | ⌘+0 |
-| 实际大小 | Ctrl+1 | ⌘+1 |
+### 文件格式
+- 支持的图像格式
+- 导出文件格式
+- 配置文件说明
 
-### 常见问题解决
-
-1. **图像加载失败**
-   ```
-   可能原因和解决方案:
-   - 检查文件格式是否支持
-   - 确认文件是否完整
-   - 验证文件大小是否超限
-   ```
-
-2. **处理速度慢**
-   ```
-   优化建议:
-   - 启用GPU加速
-   - 减少批处理数量
-   - 关闭其他应用程序
-   ```
-
-3. **识别结果不准**
-   ```
-   改进方法:
-   - 提高图像质量
-   - 调整处理参数
-   - 确保光照均匀
-   ```
-
----
-
-## User Guide
-
-### Interface Overview
-#### Main Window Layout
-1. **Toolbar Area**
-   - Load Image: Import images for analysis
-   - Process: Start analysis
-   - Save: Export analysis results
-   - Settings: Configure analysis parameters
-
-2. **Image Display Area**
-   - Support drag and drop
-   - Support zoom and pan
-   - Real-time display of results and annotations
-
-3. **Results Panel**
-   - Colony count statistics
-   - Confidence distribution chart
-   - Detailed data table
-
-### Basic Operations
-
-1. **Import Images**
-   ```
-   Method 1: Click "Load Image" button
-   Method 2: Drag and drop images to display area
-   Supported formats: JPG, PNG
-   ```
-
-2. **Analysis Process**
-   ```
-   1. Select processing mode:
-      - Single image analysis
-      - Batch processing
-   2. Click "Process" button
-   3. Wait for completion
-   ```
-
-3. **View Results**
-   ```
-   - Check annotated images
-   - Verify count results
-   - Validate detection accuracy
-   ```
-
-4. **Export Results**
-   ```
-   Supported formats:
-   - PDF report
-   - CSV data table
-   - JSON format
-   ```
-
-### Keyboard Shortcuts
-
-| Function | Windows/Linux | macOS |
-|----------|--------------|-----|
-| Open File | Ctrl+O | ⌘+O |
-| Save Results | Ctrl+S | ⌘+S |
-| Start Processing | Ctrl+R | ⌘+R |
-| Fit to View | Ctrl+0 | ⌘+0 |
-| Actual Size | Ctrl+1 | ⌘+1 |
-
-### Troubleshooting
-
-1. **Image Loading Failed**
-   ```
-   Possible causes and solutions:
-   - Check if file format is supported
-   - Verify file integrity
-   - Check if file size exceeds limit
-   ```
-
-2. **Slow Processing**
-   ```
-   Optimization suggestions:
-   - Enable GPU acceleration
-   - Reduce batch size
-   - Close other applications
-   ```
-
-3. **Inaccurate Results**
-   ```
-   Improvement methods:
-   - Enhance image quality
-   - Adjust processing parameters
-   - Ensure even lighting
+### 系统要求
+- 操作系统
+- 硬件配置
+- 依赖软件

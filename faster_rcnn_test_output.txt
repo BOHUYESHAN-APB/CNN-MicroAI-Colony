@@ -1,0 +1,247 @@
+2025-03-10 19:15:20,532 [INFO] app.utils.config: Configuration loaded successfully
+2025-03-10 19:15:20,533 [INFO] app.config.config_manager: Configuration loaded successfully
+2025-03-10 19:15:20,533 [INFO] app.utils.theme_manager: Loaded theme: plain
+2025-03-10 19:15:20,533 [INFO] app.utils.theme_manager: Available themes: ['plain']
+2025-03-10 19:15:20,534 [INFO] app.utils.theme_manager: Loaded theme: py_onedark
+2025-03-10 19:15:20,534 [INFO] app.utils.theme_manager: Available themes: ['plain', 'py_onedark']
+2025-03-10 19:15:20,534 [INFO] app.utils.theme_manager: Loaded theme: siui_dark
+2025-03-10 19:15:20,534 [INFO] app.utils.theme_manager: Available themes: ['plain', 'py_onedark', 'siui_dark']
+Testing colony detection...
+2025-03-10 19:15:20,534 [INFO] app.analysis_core: Loading model from: faster_rcnn_resnet50\checkpoints\checkpoint_epoch_31.pth
+2025-03-10 19:15:20,535 [INFO] app.analysis_core: Using device: cpu
+2025-03-10 19:15:22,908 [INFO] app.analysis_core: Creating model...
+2025-03-10 19:15:23,464 [INFO] app.analysis_core: Loading checkpoint...
+2025-03-10 19:15:24,005 [INFO] app.analysis_core: Checkpoint contents: dict_keys(['epoch', 'model_state_dict', 'optimizer_state_dict', 'metrics'])
+2025-03-10 19:15:24,005 [INFO] app.analysis_core: Found model_state_dict key
+2025-03-10 19:15:24,005 [INFO] app.analysis_core: Loading state dict into model...
+2025-03-10 19:15:24,052 [INFO] app.analysis_core: Successfully loaded state dict into model
+2025-03-10 19:15:24,055 [INFO] app.analysis_core: Model loaded and set to eval mode
+2025-03-10 19:15:24,055 [INFO] app.analysis_core: Model loaded successfully from faster_rcnn_resnet50\checkpoints\checkpoint_epoch_31.pth
+2025-03-10 19:15:24,055 [INFO] app.analysis_core: Using device: cpu
+Model loaded successfully!
+
+==================================================
+DETECTION PARAMETERS
+==================================================
+
+Model Parameters:
+----------------------------------------
+Confidence threshold: 0.33
+Score threshold: 0.23
+NMS threshold: 0.28
+Size range: 11 - 88 pixels
+Using GPU: False
+
+Analyzing test images...
+
+Processing 2021041310020608608.jpg...
+Ground truth - Total: 107, Merged: 102
+Processing image: 2021041310020608608.jpg
+Processing image: 2021041310020608608.jpg
+2025-03-10 19:15:26,139 [INFO] app.analysis_core: Inference completed with NMS threshold: 0.28, score threshold: 0.23
+Found 106 colonies (Ground truth: 107)
+Difference: -1 (0.9% error)
+Processing time: 2.08 seconds
+
+Processing 2121.jpg...
+Ground truth - Total: 40, Merged: 36
+Processing image: 2121.jpg
+Processing image: 2121.jpg
+2025-03-10 19:15:28,597 [INFO] app.analysis_core: Inference completed with NMS threshold: 0.28, score threshold: 0.23
+Found 39 colonies (Ground truth: 40)
+Difference: -1 (2.5% error)
+Processing time: 2.46 seconds
+
+Processing OIP-C.jpg...
+Ground truth - Total: 88, Merged: 82
+Processing image: OIP-C.jpg
+Processing image: OIP-C.jpg
+2025-03-10 19:15:30,481 [INFO] app.analysis_core: Inference completed with NMS threshold: 0.28, score threshold: 0.23
+Found 64 colonies (Ground truth: 88)
+Difference: -24 (27.3% error)
+Processing time: 1.88 seconds
+
+Processing R-C.jpg...
+Ground truth - Total: 163, Merged: 123
+Processing image: R-C.jpg
+Processing image: R-C.jpg
+2025-03-10 19:15:32,701 [INFO] app.analysis_core: Inference completed with NMS threshold: 0.28, score threshold: 0.23
+Found 78 colonies (Ground truth: 163)
+Difference: -85 (52.1% error)
+Processing time: 2.22 seconds
+
+Processing t019872959c62f44875.jpg...
+Ground truth - Total: 94, Merged: 78
+Processing image: t019872959c62f44875.jpg
+Processing image: t019872959c62f44875.jpg
+2025-03-10 19:15:34,754 [INFO] app.analysis_core: Inference completed with NMS threshold: 0.28, score threshold: 0.23
+Found 77 colonies (Ground truth: 94)
+Difference: -17 (18.1% error)
+Processing time: 2.05 seconds
+
+==================================================
+OVERALL RESULTS
+==================================================
+Total detections: 364
+Total ground truth: 492
+Average error rate: 20.2%
+Total processing time: 10.68 seconds
+
+Detailed Results:
+----------------------------------------
+2021041310020608608.jpg:
+  Detected: 106
+  Ground Truth: 107
+  Error Rate: 0.9% 
+2121.jpg:
+  Detected: 39
+  Ground Truth: 40
+  Error Rate: 2.5% 
+OIP-C.jpg:
+  Detected: 64
+  Ground Truth: 88
+  Error Rate: 27.3% 
+R-C.jpg:
+  Detected: 78
+  Ground Truth: 163
+  Error Rate: 52.1% 
+t019872959c62f44875.jpg:
+  Detected: 77
+  Ground Truth: 94
+  Error Rate: 18.1% 
+
+==================================================
+DETECTION STATISTICS (per image)
+==================================================
+
+Image: 2021041310020608608.jpg
+------------------------------
+Confidence Scores:
+  - Average: 0.586
+  - Range:   0.349 to 0.708
+  - Std Dev: 0.080
+
+Colony Sizes (diameter):
+  - Average: 46.6 pixels
+  - Range:   20.0 to 62.0 pixels
+  - Std Dev: 8.9 pixels
+
+Size Distribution (diameter):
+------------------------------
+     20.0-24.2 px | #                              |   1
+     24.2-28.4 px | ##                             |   2
+     28.4-32.6 px | ##########                     |   9
+     32.6-36.8 px | #######                        |   6
+     36.8-41.0 px | #######                        |   6
+     41.0-45.2 px | ################               |  14
+     45.2-49.4 px | #####################          |  18
+     49.4-53.6 px | ############################## |  25
+     53.6-57.8 px | ##################             |  15
+     57.8-62.0 px | ############                   |  10
+
+Image: 2121.jpg
+------------------------------
+Confidence Scores:
+  - Average: 0.437
+  - Range:   0.334 to 0.623
+  - Std Dev: 0.076
+
+Colony Sizes (diameter):
+  - Average: 26.9 pixels
+  - Range:   12.0 to 46.0 pixels
+  - Std Dev: 11.4 pixels
+
+Size Distribution (diameter):
+------------------------------
+     12.0-15.4 px | ############################## |  10
+     15.4-18.8 px | #####################          |   7
+     18.8-22.2 px | ###                            |   1
+     22.2-25.6 px |                                |   0
+     25.6-29.0 px | ######                         |   2
+     29.0-32.4 px | ##################             |   6
+     32.4-35.8 px | ###                            |   1
+     35.8-39.2 px | #########                      |   3
+     39.2-42.6 px | ##################             |   6
+     42.6-46.0 px | #########                      |   3
+
+Image: OIP-C.jpg
+------------------------------
+Confidence Scores:
+  - Average: 0.496
+  - Range:   0.356 to 0.614
+  - Std Dev: 0.069
+
+Colony Sizes (diameter):
+  - Average: 18.2 pixels
+  - Range:   12.0 to 72.0 pixels
+  - Std Dev: 10.0 pixels
+
+Size Distribution (diameter):
+------------------------------
+     12.0-18.0 px | ############################## |  34
+     18.0-24.0 px | #######################        |  27
+     24.0-30.0 px |                                |   1
+     30.0-36.0 px |                                |   0
+     36.0-42.0 px |                                |   0
+     42.0-48.0 px |                                |   0
+     48.0-54.0 px |                                |   0
+     54.0-60.0 px |                                |   0
+     60.0-66.0 px |                                |   0
+     66.0-72.0 px | #                              |   2
+
+Image: R-C.jpg
+------------------------------
+Confidence Scores:
+  - Average: 0.444
+  - Range:   0.331 to 0.566
+  - Std Dev: 0.066
+
+Colony Sizes (diameter):
+  - Average: 50.9 pixels
+  - Range:   34.0 to 76.0 pixels
+  - Std Dev: 8.1 pixels
+
+Size Distribution (diameter):
+------------------------------
+     34.0-38.2 px | ######                         |   5
+     38.2-42.4 px | #########                      |   7
+     42.4-46.6 px | ###############                |  12
+     46.6-50.8 px | ###############                |  12
+     50.8-55.0 px | ############################## |  23
+     55.0-59.2 px | ##########                     |   8
+     59.2-63.4 px | #########                      |   7
+     63.4-67.6 px |                                |   0
+     67.6-71.8 px | ##                             |   2
+     71.8-76.0 px | ##                             |   2
+
+Image: t019872959c62f44875.jpg
+------------------------------
+Confidence Scores:
+  - Average: 0.449
+  - Range:   0.332 to 0.622
+  - Std Dev: 0.077
+
+Colony Sizes (diameter):
+  - Average: 27.1 pixels
+  - Range:   12.0 to 80.0 pixels
+  - Std Dev: 13.2 pixels
+
+Size Distribution (diameter):
+------------------------------
+     12.0-18.8 px | ###########                    |  13
+     18.8-25.6 px | ############################## |  34
+     25.6-32.4 px | ################               |  19
+     32.4-39.2 px | #                              |   2
+     39.2-46.0 px | #                              |   2
+     46.0-52.8 px | ###                            |   4
+     52.8-59.6 px |                                |   0
+     59.6-66.4 px |                                |   0
+     66.4-73.2 px |                                |   0
+     73.2-80.0 px | ##                             |   3
+
+Saving visualizations...
+Saved visualization for 2021041310020608608.jpg
+Saved visualization for 2121.jpg
+Saved visualization for OIP-C.jpg
+Saved visualization for R-C.jpg
+Saved visualization for t019872959c62f44875.jpg

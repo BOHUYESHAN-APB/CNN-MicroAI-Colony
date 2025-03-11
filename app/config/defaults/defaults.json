@@ -1,0 +1,53 @@
+{
+    "theme": {
+        "default": "siui_dark",
+        "available": ["siui_dark", "py_onedark"]
+    },
+    "locale": "en",
+    "interface": {
+        "start_maximized": false,
+        "recent_projects": [],
+        "toolbar_style": "icon_text",
+        "status_bar": true,
+        "last_directory": ""
+    },
+    "project": {
+        "default_path": "",
+        "auto_save": true,
+        "save_interval": 300,
+        "backup_count": 5
+    },
+    "analysis": {
+        "default_iterations": 100,
+        "confidence_threshold": 0.5,
+        "min_size": 5,
+        "max_size": 100,
+        "use_gpu": true,
+        "batch_size": 4,
+        "parallel_processing": true
+    },
+    "display": {
+        "chart_style": "dark",
+        "result_preview_size": [400, 300],
+        "thumbnail_size": 48,
+        "show_confidence": true,
+        "show_area": true,
+        "show_density": true,
+        "marker_color": "#00ff00",
+        "marker_size": 2
+    },
+    "export": {
+        "json": true,
+        "csv": true,
+        "excel": false,
+        "image": true,
+        "format": {
+            "date": "YYYY-MM-DD",
+            "time": "HH:mm:ss",
+            "decimal_places": 2,
+            "delimiter": ","
+        },
+        "auto_export": false,
+        "export_directory": ""
+    }
+}

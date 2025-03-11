@@ -1,0 +1,13 @@
+{
+  "app": {
+    "language": "zh_CN",
+    "theme": "py_onedark"
+  },
+  "ui": {
+    "window": {
+      "width": 1280,
+      "height": 800,
+      "maximized": false
+    }
+  }
+}
