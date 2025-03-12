@@ -1,0 +1,60 @@
+# YOLOv11 Configuration
+
+model:
+  name: 'yolo11'
+  num_classes: 1  # Assuming 1 class for colony detection
+  image_size: 224 # Input image size for YOLOv11
+  backbone:
+    channels: [32, 64, 128, 256, 512] # Example backbone channels
+    activation: 'silu'
+  neck:
+    in_channels: 512
+    out_channels: 256
+  head:
+    in_channels: 256
+    hidden_channels: 256
+
+training:
+  batch_size: 16
+  epochs: 5
+  learning_rate: 0.001
+  weight_decay: 0.0005
+  momentum: 0.9
+  device: 'cuda' # Use CUDA if available, else CPU
+  log_interval: 10 # Log training info every 10 batches
+  amp: true # Enable Automatic Mixed Precision
+  num_workers: 4 # Number of workers for data loading
+  learning_rate: 0.001
+  weight_decay: 0.0005
+  lr_scheduler:
+    type: 'one_cycle' # Using OneCycleLR scheduler
+  
+  # Data augmentation
+  augmentation:
+    horizontal_flip: true
+    vertical_flip: true
+    rotation: [-10, 10]
+    brightness: 0.2
+    contrast: 0.2
+    size: 224 # Added size parameter, using model's image_size
+
+  # Checkpoint settings
+  checkpoint:
+    save_freq: 1  # Save every epoch
+    save_best: true # Save best model based on validation loss
+    metric: 'val_loss' # Metric to determine best model
+
+# Testing parameters
+testing:
+  confidence: 0.01
+  nms_threshold: 0.28
+  score_threshold: 0.23
+  min_size: 0
+  max_size: 999
+
+# Dataset paths
+data:
+  train_path: 'pic-all/' # Path to training images and annotations
+  val_path: 'pic-all/'   # Using same path for validation for now
+  test_path: 'test-pic/' # Path to test images and annotations
+  classes_path: 'pic-all/classes.txt' # Path to class names file
