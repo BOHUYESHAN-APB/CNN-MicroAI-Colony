@@ -88,3 +88,8 @@ _build/
 build/
 dist/
 py-side6-silicon-ui/
+
+# Dataset directories
+pic-all/
+pic/
+AGAR_representative/
