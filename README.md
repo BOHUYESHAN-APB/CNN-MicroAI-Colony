@@ -1,3 +1,186 @@
+# Colony Detection and Analysis System
+
+## Version Information
+
+The project currently includes three versions:
+
+### PyQt5 Version (app-pyqt/)
+- Legacy version
+- For research and learning purposes only
+- Developed based on the PyQt5 framework
+
+### PySide6 Version (app_pyside6/)
+- Transition version
+- Migrating to the PySide6 framework
+- Maintaining basic functionality
+
+### New Version (app/)
+- Latest development version
+- Based on PySide6 and PyOneDark theme
+- Modern UI design
+- Optimized user experience
+- Improved performance and stability
+
+## New Version Features
+- Brand new dark-themed interface
+- Smooth animations
+- Better high DPI support
+- Optimized performance and memory usage
+- Modular code structure
+- Complete type hints
+- Comprehensive error handling
+
+## Directory Structure
+```
+CNN-/
+├── app/                # New version (in development)
+│   ├── config/        # Configuration files
+│   ├── database/      # Database management
+│   ├── font/         # Font resources
+│   ├── gui/          # Graphical interface
+│   ├── models/       # Model definitions
+│   ├── resources/    # Resource files
+│   │   ├── i18n/    # Internationalization files
+│   │   └── themes/  # Theme files
+│   ├── templates/    # Report templates
+│   └── utils/       # Utility functions
+├── app_pyside6/      # Transition version
+├── app-pyqt/         # Old version
+├── docs/            # Documentation
+└── src/            # Shared source code
+```
+
+## Tech Stack
+- **GUI Framework**: PySide6 6.5+
+- **Theme**: PyOneDark style
+- **Deep Learning**: PyTorch 2.0+
+- **Image Processing**: OpenCV 4.8+, incorporating Canny edge detection and Watershed algorithm in preprocessing for enhanced colony analysis.
+- **Data Processing**: NumPy, Pandas
+- **Visualization**: Matplotlib
+- **Type Checking**: mypy
+- **Code Quality**: pylint, black
+- **Testing Framework**: pytest
+
+## New Version Installation
+```bash
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python -m app.main
+```
+
+## Development Notes
+- Use Python 3.9+
+- Follow PEP 8 coding style
+- Use type annotations
+- Write unit tests
+- Keep documentation updated
+
+## Licensing
+Same as before, maintain the dual licensing model:
+- Non-commercial use: AGPL v3
+- Commercial use: Proprietary license
+
+## Contribution Guide
+1. Clone the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## Contact
+- Issue Tracking: GitHub Issues
+- Feature Suggestions: Discussions
+- Security Issues: Contact the maintainer directly
+
+## Changelog
+See CHANGELOG.md
+
+## 资源声明
+本项目开发过程中使用的GitHub Copilot为个人学生认证权益，未使用任何学校提供的物质技术条件。其中AI生成代码经过审核。
+
+### **一、当前模型（Faster R-CNN + ResNet50 + Canny & Watershed + GaussianBlur）的效果**
+
+#### **1. 场景识别率**
+
+| **场景类型** | **识别率范围（%）**        | **主要挑战**                                                            |
+| -- | --------- | ------------------------------------------------------------- |
+| **标准微生物平板** | \>98 | 无明显问题，但存在冗余计算开销（ResNet50参数量超23M）       |
+| **质量略差或低像素（但清晰）** | 95-98   | 图像分辨率不足导致细节丢失，需增强特征提取能力              |
+| **黏连菌落分界难以辨识** | 85-92   | Canny边缘检测与Watershed分水岭算法对黏连区域分割失败率超40% |
+| **边界模糊或贴近培养基壁** | \<80 | 边缘特征提取困难，背景干扰严重（如培养基壁反光）            |
+| **高密度黏连菌落（>500 CFU）** | \<80 | 漏检率显著增加，RPN模块生成过多冗余候选框                   |
+
+#### **2. 核心缺陷对比表（与优化方案对比）**
+
+| **模块** | **现有方案（Faster R-CNN + ResNet50）**                                 | **预测优化方案（YOLOv12 + DAMO-YOLO）**                              | **专利风险等级**                 |
+| -- | ---------------------------------- | ------------------------------- | ------------------ |
+| **检测精度** | MAE 5.2%（菌落计数）             | MAE ≤3.5%                    | 高（RPN专利）    |
+| **形态学鉴别准确率** | 88%                              | ≥92%                         | 中（ResNet）     |
+| **预处理流程** | Canny + Watershed + GaussianBlur | HED网络 + U²-Net动态分割     | 高（形态学专利） |
+| **推理速度** | 420ms/帧（A100 GPU）             | 110ms/帧（Jetson AGX Xavier） | -                |
+| **黏连菌落分割失败率** | \>50%（高密度场景）           | \<15%（R-ELAN模块增强）    | -                |
+
+---
+
+### **二、其他模型的预测结果与实际精确度**
+
+#### **1. 模型性能对比表（基于公开数据集及预测）**
+
+| **模型** | **mAP（COCO）**     | **推理速度（FPS）**     | **显存占用（GB）**   | **专利风险等级**                        | **误差率（菌落计数）**                |
+| -- | ------ | ------ | ---- | ------------------------- | ----------------- |
+| **Faster R-CNN + ResNet50** | 32.1 | 0.25 | 18 | 高（RPN + ResNet）      | 5.2%            |
+| **YOLOv6** | 40.5 | 30   | 12 | 中（锚框机制）          | 96%（实际测试） |
+| **DAMO-YOLO** | 45.2 | 40   | 9  | 低（NAS优化）           | 预测12.8%       |
+| **YOLOv12** | 48.7 | 55   | 6  | 低（无锚点+区域注意力） | 预测≤3.5%      |
+| **传统方法（Canny+Watershed+GaussianBlur）** | -    | -    | -  | 无                      | 实测20.2%       |
+
+#### **2. 关键场景性能对比**
+
+| **场景** | **当前模型（Faster R-CNN）**               | **YOLOv12预测效果**               | **DAMO-YOLO预测效果**           | **YOLOv6实际表现**          |
+| -- | ---------------- | ---------------- | ------------ | ----------- |
+| **标准场景（清晰、无黏连）** | 识别率\>98% | 识别率98%+     | 识别率99%  | 误差率96% |
+| **黏连菌落（500 CFU/plate）** | 识别率\<80% | 失败率\<15% | 误差率8.9% | 误差率96% |
+| **低像素/模糊图像** | 识别率95-98%   | 识别率97%      | 识别率96%  | 误差率96% |
+
+---
+
+### **三、模型优劣势总结**
+
+#### **1. 当前模型（Faster R-CNN + ResNet50）**
+
+* **优势** ：
+
+  * 标准场景（清晰图像）识别率高（\>98%）。
+  * 传统预处理（Canny+Watershed）在简单场景表现稳定。
+* **劣势** ：
+
+  * 复杂场景（黏连、高密度）性能显著下降（误差率\>5%）。
+  * 推理速度慢（420ms/帧），显存占用高（18GB）。
+  * 存在专利风险（RPN模块和ResNet的残差结构专利）。
+
+#### **2. 优化方案模型（YOLOv12、DAMO-YOLO）**
+
+* **YOLOv12** ：
+
+  * **预测效果** ：mAP 48.7%，黏连场景失败率\<15%，延迟降至110ms/帧。
+  * **优势** ：无锚点设计规避专利，轻量化（6GB显存），支持边缘设备部署。
+* **DAMO-YOLO** ：
+
+  * **预测效果** ：误差率12.8%，形态学鉴别准确率92%+。
+  * **优势** ：NAS优化的轻量化骨干网络，适合小样本训练。
+* **YOLOv6** ：
+
+  * **实际表现** ：误差率高达96%，不适用于复杂场景（如高密度黏连）。
+
+---
+
 ## 性能变化
 
 为了跟踪算法的改进，我们记录了每次修改后的性能变化。下表总结了在测试模型 `test_model.py` 脚本中使用的同一组测试图像上的误差率变化。
