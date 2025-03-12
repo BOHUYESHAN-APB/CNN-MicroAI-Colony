@@ -1,0 +1,25 @@
+model:
+  num_classes: 1
+  image_size: 640
+
+data:
+  train_path: pic-all/
+  val_path: pic-all/ # Using same dataset for validation for now
+  train_image_folder:  # These are relative to train_path/val_path
+  train_anno_folder: 
+  val_image_folder: 
+  val_anno_folder: 
+
+training:
+  device: cuda
+  epochs: 5
+  batch_size: 16
+  learning_rate: 0.001
+  weight_decay: 0.0005
+  num_workers: 0
+  log_interval: 10
+  amp: False # Mixed precision training
+
+test:
+  conf_threshold: 0.05
+  iou_threshold: 0.6

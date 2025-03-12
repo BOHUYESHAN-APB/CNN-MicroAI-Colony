@@ -1,0 +1,20 @@
+2025-03-07 08:14:33,527 - root - INFO - Logging initialized
+2025-03-07 08:14:33,530 - root - INFO - Application directories created
+2025-03-07 08:14:33,622 - app_pyside6.config - INFO - Using defaults configuration from: c:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-07 08:14:33,633 - app_pyside6.config - INFO - Copied default config to: c:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\config.yaml
+2025-03-07 08:14:33,634 - root - INFO - Configuration initialized
+2025-03-07 08:14:38,309 - app_pyside6.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-07 08:14:46,568 - app_pyside6.gui.main_window - INFO - Starting in demo mode
+2025-03-07 08:14:46,569 - app_pyside6.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-07 08:14:52,628 - app_pyside6.gui.settings_dialog - ERROR - Failed to apply settings: 'dict' object has no attribute 'set'
+2025-03-07 08:14:55,583 - app_pyside6.config.config_manager - INFO - Configuration saved to c:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-07 15:48:27,089 - root - INFO - Logging initialized
+2025-03-07 15:48:27,092 - root - INFO - Application directories created
+2025-03-07 15:48:27,229 - app_pyside6.config - INFO - Using defaults configuration from: c:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml
+2025-03-07 15:48:27,239 - app_pyside6.config - INFO - Copied default config to: c:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\config.yaml
+2025-03-07 15:48:27,241 - root - INFO - Configuration initialized
+2025-03-07 15:48:33,051 - app_pyside6.utils.i18n - INFO - Loaded translations: ['en', 'zh']
+2025-03-07 15:48:42,138 - app_pyside6.gui.main_window - INFO - Starting in demo mode
+2025-03-07 15:48:42,138 - app_pyside6.models.inference - INFO - Running in demo mode - using mock predictions
+2025-03-07 15:48:51,074 - app_pyside6.gui.settings_dialog - ERROR - Failed to apply settings: 'dict' object has no attribute 'set'
+2025-03-07 15:48:55,041 - app_pyside6.config.config_manager - INFO - Configuration saved to c:\Users\ETPau\Documents\GitHub\CNN-\app_pyside6\config\defaults\defaults.yaml

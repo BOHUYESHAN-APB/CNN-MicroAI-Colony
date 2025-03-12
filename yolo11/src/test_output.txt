@@ -1,0 +1,12 @@
+Python version: 3.11.0 (main, Oct 24 2022, 18:26:48) [MSC v.1933 64 bit (AMD64)]
+Current directory: C:\Users\ETPau\Documents\GitHub\CNN-MicroAI-Colony\yolo11\src
+
+Directory contents:
+['config.yaml', 'debug_config.py', 'debug_output.txt', 'debug_train.py', 'models', 'run_debug.bat', 'run_debug.ps1', 'test.py', 'test_env.py', 'test_output.txt', 'train.py', 'utils', 'yolo11', '__init__.py', '__pycache__']
+
+Trying to import config module...
+Config imported successfully
+
+config.yaml found, trying to load...
+Config loaded successfully
+Config contents: {'model': {'num_classes': 1, 'image_size': 640}, 'data': {'train_path': 'pic-all/', 'val_path': 'pic-all/', 'train_image_folder': None, 'train_anno_folder': None, 'val_image_folder': None, 'val_anno_folder': None}, 'training': {'device': 'cuda', 'epochs': 5, 'batch_size': 16, 'learning_rate': 0.001, 'weight_decay': 0.0005, 'num_workers': 0, 'log_interval': 10, 'amp': False}, 'test': {'conf_threshold': 0.05, 'iou_threshold': 0.6}}

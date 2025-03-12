@@ -1,0 +1,475 @@
+=== Git历史大文件分析报告 ===
+
+文件: venv/Lib/site-packages/torch/lib/torch_cuda.dll
+  大小: 1215.37MB
+  对象Hash: fae76c372a14c80f717ede81a149f826d0ca4bcb
+
+文件: venv/Lib/site-packages/torch/lib/dnnl.lib
+  大小: 623.26MB
+  对象Hash: 9399c890b473bdfb4c2ca34d446fc59baeb63ab9
+
+文件: venv/Lib/site-packages/torch/lib/cudnn_engines_precompiled64_9.dll
+  大小: 562.64MB
+  对象Hash: 78ee3e91b0de6539694876ecceeeb78f7b3432bb
+
+文件: venv/Lib/site-packages/torch/lib/cublasLt64_11.dll
+  大小: 518.87MB
+  对象Hash: 3aeb37732b1cdf475c6c7a9ae92a46c1a69ff4ed
+
+文件: checkpoints/checkpoint_epoch_31.pth
+  大小: 446.50MB
+  对象Hash: 5110348e403a250333baba8c25b9c0bd365d5a8b
+
+文件: checkpoints/run_20250303_142756/checkpoint_epoch_20.pth
+  大小: 446.50MB
+  对象Hash: 54b04b387d947ae7d72382482cd4adc7fc1718a8
+
+文件: checkpoints/run_20250303_142756/checkpoint_epoch_21.pth
+  大小: 446.50MB
+  对象Hash: 6dfc67c23b2ac3d951ea73bb8370bd4d9331eeb9
+
+文件: checkpoints/run_20250303_142756/checkpoint_epoch_22.pth
+  大小: 446.50MB
+  对象Hash: cc18629f9008924857bbd3ac5ebd0a28d69ffa2c
+
+文件: checkpoints/run_20250303_142756/checkpoint_epoch_23.pth
+  大小: 446.50MB
+  对象Hash: 89b9da87361ce38ededf05101c37c7417ecfcce0
+
+文件: checkpoints/run_20250303_142756/checkpoint_epoch_1.pth
+  大小: 446.50MB
+  对象Hash: 86ac37ff9e0b0131228dcbe8457e90d66fbcc54d
+
+文件: checkpoints/run_20250303_111548/checkpoint_epoch_1.pth
+  大小: 446.48MB
+  对象Hash: 90e80f9897e8b3d08016c90d77d9bce309f10c9d
+
+文件: venv/Lib/site-packages/torch/lib/cusolver64_11.dll
+  大小: 284.62MB
+  对象Hash: 80ee988a69ffd046fb1626bb6299af179aa6f3a8
+
+文件: venv/Lib/site-packages/torch/lib/cufft64_10.dll
+  大小: 266.91MB
+  对象Hash: c7603ab93c8b069146a1075e8ce2323ed292d2e3
+
+文件: venv/Lib/site-packages/torch/lib/cusparse64_11.dll
+  大小: 264.59MB
+  对象Hash: a0a3b86f3e3c19f4bdfcea9abf02a815aaa14e28
+
+文件: venv/Lib/site-packages/torch/lib/torch_cpu.dll
+  大小: 239.62MB
+  对象Hash: 692ed2c0be8495eb79b2ebfcf3521ca2f56de4a7
+
+文件: venv/Lib/site-packages/torch/lib/cudnn_adv64_9.dll
+  大小: 229.90MB
+  对象Hash: 6f8b1df2169cd43543440706a20778d4e9cbde91
+
+文件: venv/Lib/site-packages/torch/lib/cusolverMg64_11.dll
+  大小: 173.60MB
+  对象Hash: 102e8cec9dce51d6cfe548a43f52e2b36f4adc41
+
+文件: venv/Lib/site-packages/torch/lib/cudnn_ops64_9.dll
+  大小: 103.14MB
+  对象Hash: bc7d8ac9f2608da1d84dbad07889def35e3bdc7f
+
+文件: venv/Lib/site-packages/torch/lib/cublas64_11.dll
+  大小: 84.56MB
+  对象Hash: ee8e5774b9e123362ddb02c4572e8cae3b438529
+
+文件: venv/Lib/site-packages/torch/lib/cudnn_heuristic64_9.dll
+  大小: 81.77MB
+  对象Hash: 121b3d6c7d6831ffefa1239da390cf632b3c2314
+
+文件: venv/Lib/site-packages/cv2/cv2.pyd
+  大小: 71.24MB
+  对象Hash: 1b752071e408c485a57820b6f2ddb85c5fde1d59
+
+文件: venv/Lib/site-packages/torch/lib/curand64_10.dll
+  大小: 62.35MB
+  对象Hash: 8cf3c40891b42d965161bc37bd36a7da9891c851
+
+文件: venv/Lib/site-packages/torch/lib/nvrtc64_112_0.dll
+  大小: 38.75MB
+  对象Hash: 185d4c3ed71d27c3d26da36fd0dc49f83108bef5
+
+文件: venv/Lib/site-packages/torch/lib/libprotoc.lib
+  大小: 37.80MB
+  对象Hash: 018815014050ef79498e4b8f8b2e3922353258b7
+
+文件: venv/Lib/site-packages/torch/lib/libprotobuf.lib
+  大小: 36.04MB
+  对象Hash: 57da59986f66a9b52555950630fe0d73e4bcbc40
+
+文件: venv/Lib/site-packages/torch/lib/torch_cpu.lib
+  大小: 27.34MB
+  对象Hash: b2c3c21728087fa14f5e188f799cef556f831c2c
+
+文件: venv/Lib/site-packages/cv2/opencv_videoio_ffmpeg4110_64.dll
+  大小: 26.66MB
+  对象Hash: 43d44b1f9bd905d40c5ab282566397ce99c6194d
+
+文件: venv/Lib/site-packages/torch/lib/kineto.lib
+  大小: 20.65MB
+  对象Hash: d50f545d8aa7dc232f19ac482f6074828e4e746e
+
+文件: venv/Lib/site-packages/numpy.libs/libscipy_openblas64_-43e11ff0749b8cbe0a615c9cf6737e0e.dll
+  大小: 19.36MB
+  对象Hash: c53e43be5a5be0505db98b8ae9ef325b9481f0cf
+
+文件: venv/Lib/site-packages/scipy.libs/libscipy_openblas-f07f5a5d207a3a47104dca54d6d0c86a.dll
+  大小: 19.22MB
+  对象Hash: d560b72dcde9abcc4bf92d6e458162e4cf11ead3
+
+文件: app/font/MiSans VF.ttf
+  大小: 19.07MB
+  对象Hash: 17c32823b9a1650a339a5f750dd89453a154b352
+
+文件: venv/Lib/site-packages/torch/lib/torch_python.dll
+  大小: 16.15MB
+  对象Hash: 7cbbd09b1efca4ca3aabc8c04fa5bf3c2c3e179b
+
+文件: venv/Lib/site-packages/torch/lib/sleef.lib
+  大小: 8.45MB
+  对象Hash: ed40c136d4985dda9d53342ccc64f4494a5e57a5
+
+文件: venv/Lib/site-packages/torch/lib/nvrtc-builtins64_118.dll
+  大小: 7.54MB
+  对象Hash: 1037fd43e909900e3f03dc94d00622be487e053f
+
+文件: venv/Lib/site-packages/torch/lib/cudnn_engines_runtime_compiled64_9.dll
+  大小: 6.47MB
+  对象Hash: 83207a4741464d2e5d76c1a65ce435044eaddd2c
+
+文件: venv/Lib/site-packages/scipy/optimize/_highspy/_core.cp311-win_amd64.pyd
+  大小: 5.51MB
+  对象Hash: 407214cda1c32c582af810b57e9e98f0e4ae5f21
+
+文件: venv/Lib/site-packages/pydantic_core/_pydantic_core.cp311-win_amd64.pyd
+  大小: 4.99MB
+  对象Hash: 5c62c078b7a196ee8f38103ea1d01d83723b7998
+
+文件: venv/Lib/site-packages/torch/lib/libprotobuf-lite.lib
+  大小: 4.93MB
+  对象Hash: 34a332a5e2c3cb7b23c0f86045070861d0d088ec
+
+文件: venv/Lib/site-packages/torch/bin/fbgemm.dll
+  大小: 4.73MB
+  对象Hash: bbd2435ad608fbb74d520525abcb0215a131126f
+
+文件: venv/Lib/site-packages/torch/lib/cupti64_2022.3.0.dll
+  大小: 4.09MB
+  对象Hash: 5c7d3b239bad54f4ec9af9bf2c5f7f8bd91b9adf
+
+文件: venv/Lib/site-packages/scipy/sparse/_sparsetools.cp311-win_amd64.pyd
+  大小: 4.08MB
+  对象Hash: 634dac7beca75249fee2d9cffb537376a38ee4be
+
+文件: venv/Lib/site-packages/numpy/_core/_multiarray_umath.cp311-win_amd64.pyd
+  大小: 3.98MB
+  对象Hash: 60168632bca969590960ed75cfbf1b226bf21562
+
+文件: venv/Lib/site-packages/torch/lib/cudnn_cnn64_9.dll
+  大小: 3.81MB
+  对象Hash: 74855ee018e4b24a6bbed528800df602f51cae6b
+
+文件: pic/higher-resolution/vague/12033.jpg
+  大小: 3.40MB
+  对象Hash: 9db0e27f559ba5645023748dd0be8eb9f9b7eb74
+
+文件: pic/higher-resolution/vague/11924.jpg
+  大小: 3.39MB
+  对象Hash: 1f0872ef9842aaa206c41ef28ad78f9d6ab6deb5
+
+文件: pic/higher-resolution/vague/12031.jpg
+  大小: 3.28MB
+  对象Hash: cbfe0039b6dcabe59ecc589ab56e97977d95de25
+
+文件: pic/higher-resolution/vague/11884.jpg
+  大小: 3.26MB
+  对象Hash: a56492fac673390701ac0637405b02bd5fbe9e55
+
+文件: pic/higher-resolution/vague/11761.jpg
+  大小: 3.25MB
+  对象Hash: 98d7dc12aaecaff588f3cbb03ae669709d403e1c
+
+文件: venv/Lib/site-packages/scipy/special/cython_special.cp311-win_amd64.pyd
+  大小: 3.09MB
+  对象Hash: 4983faa45a4fc4043130bc1e8417be2f62e55618
+
+文件: pic/higher-resolution/vague/11773.jpg
+  大小: 3.05MB
+  对象Hash: b4aa7390a274cdebdbbe57ed626b1c2539cea940
+
+文件: pic/higher-resolution/vague/11890.jpg
+  大小: 3.03MB
+  对象Hash: b88fdd2b7469a0f96ded84fec912549231a89f57
+
+文件: pic/higher-resolution/vague/11764.jpg
+  大小: 3.00MB
+  对象Hash: 504acf1ab3d411837d83a7a9e1a3b857b69c58ff
+
+文件: pic/higher-resolution/vague/12028.jpg
+  大小: 2.95MB
+  对象Hash: 84e97e8f4482ca24a8b61c568cd0dd226ad8c0a5
+
+文件: pic/higher-resolution/vague/11955.jpg
+  大小: 2.90MB
+  对象Hash: 38439fdc3cc3a0c9fec550fb25a0d1273e6a89e5
+
+文件: venv/Lib/site-packages/torch/lib/microkernels-prod.lib
+  大小: 2.76MB
+  对象Hash: 8a369dd3f18f72b3298e64cb9ace03c010db3c2d
+
+文件: pic/higher-resolution/bright/734.jpg
+  大小: 2.74MB
+  对象Hash: ee6d7d2c846e2daaa659bc33513de4df7c1cfc25
+
+文件: venv/Lib/site-packages/torch/bin/protoc.exe
+  大小: 2.68MB
+  对象Hash: 87b6df9cfe42f8b44675d0b178e7c37e1d2590ae
+
+文件: pic/higher-resolution/bright/1399.jpg
+  大小: 2.68MB
+  对象Hash: 69a8fb81a5813e6fa8586df64745e5c1b5c68698
+
+文件: venv/Lib/site-packages/scipy/io/_fast_matrix_market/_fmm_core.cp311-win_amd64.pyd
+  大小: 2.63MB
+  对象Hash: 499e5b52786847b7bd0ba26442cf1477064fbf24
+
+文件: venv/Lib/site-packages/cv2/data/haarcascade_frontalface_alt_tree.xml
+  大小: 2.56MB
+  对象Hash: e0420a274333613f57ef8c2661b26780afdde6de
+
+文件: pic/higher-resolution/bright/510.jpg
+  大小: 2.55MB
+  对象Hash: 16dca95161ba92c8a845622a39e690e47eb70250
+
+文件: pic/higher-resolution/bright/971.jpg
+  大小: 2.55MB
+  对象Hash: 2dd81727298def163f91505873911265e79da931
+
+文件: pic/higher-resolution/bright/735.jpg
+  大小: 2.53MB
+  对象Hash: eaa820b19a68fd434b338cd17328b7a710b96475
+
+文件: venv/Lib/site-packages/torch/lib/XNNPACK.lib
+  大小: 2.48MB
+  对象Hash: 98c0508baf24c79d3db2822b7e1c434cdf538741
+
+文件: pic/higher-resolution/bright/356.jpg
+  大小: 2.47MB
+  对象Hash: 8a32818c4b09c4aa107eefcdba7ee147c7407db1
+
+文件: pic/higher-resolution/bright/349.jpg
+  大小: 2.42MB
+  对象Hash: ec37868f2d789c8766a14d08a722066404aea2fe
+
+文件: pic/higher-resolution/bright/736.jpg
+  大小: 2.41MB
+  对象Hash: 97e771cc8b6023ad9c28e8703d8db9150e55b426
+
+文件: pic/higher-resolution/bright/518.jpg
+  大小: 2.39MB
+  对象Hash: ce34fb32fd63a4e93a37a6229825356927ca6474
+
+文件: pic/higher-resolution/bright/525.jpg
+  大小: 2.37MB
+  对象Hash: 7df9910d71d68fd337467fc6cbe894d6277c888e
+
+文件: venv/Lib/site-packages/PIL/_imaging.cp311-win_amd64.pyd
+  大小: 2.34MB
+  对象Hash: 413a368b466c1883eb0dd298831c9410ed8e38d5
+
+文件: venv/Lib/site-packages/scipy/special/_ufuncs_cxx.cp311-win_amd64.pyd
+  大小: 2.27MB
+  对象Hash: 7f81dd920cc0b70b801a45f2a3b70a0597ec226e
+
+文件: pic/higher-resolution/dark/5312.jpg
+  大小: 2.19MB
+  对象Hash: 0c1faa3770959f7e2c09a9aaba22f333c8795ae7
+
+文件: pic/higher-resolution/dark/5308.jpg
+  大小: 2.13MB
+  对象Hash: be8525347488a8e20436ae8c3e731bad47d43dfd
+
+文件: venv/Lib/site-packages/numpy/_core/_simd.cp311-win_amd64.pyd
+  大小: 2.13MB
+  对象Hash: cde5dbaa08422fbb54c5fbb71233519f37cbb06c
+
+文件: pic/higher-resolution/dark/5206.jpg
+  大小: 2.11MB
+  对象Hash: 541638cf106ef85212cc60fb9622f6ec08912fdc
+
+文件: venv/Lib/site-packages/torch/include/ATen/RedispatchFunctions.h
+  大小: 2.11MB
+  对象Hash: 160ddc5822de4d6b7f9553cca25577b98262111e
+
+文件: pic/higher-resolution/dark/5207.jpg
+  大小: 2.10MB
+  对象Hash: 1fcf5c75e39b3b1897d3dc11517eb2bf213db6f0
+
+文件: pic/higher-resolution/dark/5270.jpg
+  大小: 2.09MB
+  对象Hash: 747a50c0b54cc97250a3f907e2dc5e222c4cc66b
+
+文件: venv/Lib/site-packages/pandas/_libs/groupby.cp311-win_amd64.pyd
+  大小: 2.09MB
+  对象Hash: 03f901b220bea7edd012eb3a28a8995258b94255
+
+文件: venv/Lib/site-packages/scipy/special/_special_ufuncs.cp311-win_amd64.pyd
+  大小: 2.09MB
+  对象Hash: 7791cc53abef5a04a1cb354a0aba24a8480c7b30
+
+文件: pic/higher-resolution/dark/4826.jpg
+  大小: 2.08MB
+  对象Hash: 5fa942a2003e7cbb1aee4ce2606ce3588bce6dfa
+
+文件: pic/higher-resolution/dark/8386.jpg
+  大小: 2.07MB
+  对象Hash: 61ca46e297c0c55b8cd733bc887de59ee6140990
+
+文件: venv/Lib/site-packages/torch/lib/cudnn_graph64_9.dll
+  大小: 2.05MB
+  对象Hash: 781c62603222f6d44373429193d12fdb89a03ede
+
+文件: venv/Lib/site-packages/scipy/linalg/_flapack.cp311-win_amd64.pyd
+  大小: 1.95MB
+  对象Hash: 8ac208c133e760481cf6cdecb6a04d1a97c7df4e
+
+文件: venv/Lib/site-packages/sklearn/_loss/_loss.cp311-win_amd64.pyd
+  大小: 1.86MB
+  对象Hash: 22e91970925fa38b8af5ea26b7955d0ce1a106b3
+
+文件: venv/Lib/site-packages/PIL/_imagingft.cp311-win_amd64.pyd
+  大小: 1.84MB
+  对象Hash: 7f91fb95a8393a8f1a45c27cdf879e41ca02cec7
+
+文件: pic/higher-resolution/dark/5212.jpg
+  大小: 1.79MB
+  对象Hash: 118fcb27cd1b7eccc0105e553dc6cefecd506cda
+
+文件: venv/Lib/site-packages/pandas/_libs/hashtable.cp311-win_amd64.pyd
+  大小: 1.74MB
+  对象Hash: 15e75261add6e3fc07128b4c5a402315ee8d35ab
+
+文件: venv/Lib/site-packages/pandas/_libs/algos.cp311-win_amd64.pyd
+  大小: 1.73MB
+  对象Hash: 6a36c703568696a83da62c362fcde7ac7f348139
+
+文件: venv/Lib/site-packages/fontTools/misc/bezierTools.c
+  大小: 1.73MB
+  对象Hash: 35028925e49d08df6bba8bc19d5b920479c8534c
+
+文件: venv/Lib/site-packages/torch/include/ATen/VmapGeneratedPlumbing.h
+  大小: 1.65MB
+  对象Hash: 5dc0fd9d75ea82d4d7ad0b8fab658d786d38c115
+
+文件: venv/Lib/site-packages/torch/lib/torch_cuda.lib
+  大小: 1.62MB
+  对象Hash: 6c8401ba1bd24526b9792dc44708132a4d506f4b
+
+文件: venv/Lib/site-packages/scipy/spatial/_ckdtree.cp311-win_amd64.pyd
+  大小: 1.62MB
+  对象Hash: e2b2f517e1c25abe62b4d3e4d2e5b30493ad9c1a
+
+文件: pic/higher-resolution/dark/5271.jpg
+  大小: 1.60MB
+  对象Hash: d0405381ce6e0d16456734247fa00a98e1539fbd
+
+文件: pic/higher-resolution/dark/4904.jpg
+  大小: 1.58MB
+  对象Hash: 18e9756b2f16926408be9e5235200248b7ee966b
+
+文件: venv/Lib/site-packages/scipy/special/_gufuncs.cp311-win_amd64.pyd
+  大小: 1.44MB
+  对象Hash: 1f75bf135d1c54f7b1f977239640c33706ac7b97
+
+文件: venv/Lib/site-packages/torch/lib/fmt.lib
+  大小: 1.43MB
+  对象Hash: b0b836f0010cf384b6e0f094ef14740bd4de1f8d
+
+文件: venv/Lib/site-packages/sympy/polys/benchmarks/__pycache__/bench_solvers.cpython-311.pyc
+  大小: 1.42MB
+  对象Hash: f91bf7672ccf303f7b51f345b4602e7240ba8147
+
+文件: venv/Lib/site-packages/scipy/special/_ufuncs.cp311-win_amd64.pyd
+  大小: 1.40MB
+  对象Hash: 669fb815ec1ee6758f26f9b53a0b8ec15e4ab083
+
+文件: venv/Lib/site-packages/scipy/stats/_unuran/unuran_wrapper.cp311-win_amd64.pyd
+  大小: 1.40MB
+  对象Hash: 2311c02ae836fc7a0a2b4c2e448a53cca7ac7d9c
+
+文件: venv/Lib/site-packages/torch/lib/fbgemm.lib
+  大小: 1.34MB
+  对象Hash: 806fadef8120731730bdb1f22352c12f33c7bb58
+
+文件: venv/Lib/site-packages/scipy/spatial/_distance_pybind.cp311-win_amd64.pyd
+  大小: 1.31MB
+  对象Hash: 46ae1c16ae460ac2eb7e42c83356f7d0b23ca758
+
+文件: venv/Lib/site-packages/torch/lib/libiomp5md.dll
+  大小: 1.25MB
+  对象Hash: 7e7d1b5d1b6d2c6978070c24b29b33688e16701b
+
+文件: venv/Lib/site-packages/torch-2.6.0+cu118.dist-info/RECORD
+  大小: 1.23MB
+  对象Hash: a98943943cd84db720f5e8af289efcd8ed7728ec
+
+文件: venv/Lib/site-packages/scipy/special/tests/data/boost.npz
+  大小: 1.21MB
+  对象Hash: fb740b3a2f66ac982615926337dcce726f0f7b5d
+
+文件: venv/Lib/site-packages/scipy/optimize/_highspy/_highs_options.cp311-win_amd64.pyd
+  大小: 1.17MB
+  对象Hash: 79ee4b11d710a6d2c538af4f19e52264628f1b66
+
+文件: venv/Lib/site-packages/torch/testing/_internal/common_methods_invocations.py
+  大小: 1.14MB
+  对象Hash: 54a7c1da8a8925bd5abca0e49a16792538c403b9
+
+文件: venv/Lib/site-packages/scipy/interpolate/_bspl.cp311-win_amd64.pyd
+  大小: 1.12MB
+  对象Hash: be19a8e153941e1cdbaec03bdcf15d57346c4a25
+
+文件: venv/Lib/site-packages/scipy/interpolate/_rbfinterp_pythran.cp311-win_amd64.pyd
+  大小: 1.11MB
+  对象Hash: b2f9c8e4fc1ab888ca42375a34cd902365096e53
+
+文件: venv/Lib/site-packages/torch/_C/_VariableFunctions.pyi
+  大小: 1.10MB
+  对象Hash: 31eddc1a28ae9d15350c4916e1a381f50e886fae
+
+文件: venv/Lib/site-packages/pandas/_libs/interval.cp311-win_amd64.pyd
+  大小: 1.06MB
+  对象Hash: dce83fbb744cff59126723927aee49a81124f236
+
+文件: venv/Lib/site-packages/pandas/_libs/join.cp311-win_amd64.pyd
+  大小: 1.06MB
+  对象Hash: 17e0d4ba2b5ad8333d336b2a452069eff09c15c4
+
+文件: venv/Lib/site-packages/scipy/stats/_stats_pythran.cp311-win_amd64.pyd
+  大小: 1.04MB
+  对象Hash: 699ac72fec07dd5747de6bc88e202371c84ad990
+
+文件: venv/Lib/site-packages/scipy/fft/_pocketfft/pypocketfft.cp311-win_amd64.pyd
+  大小: 1.03MB
+  对象Hash: e5693928ff7a2800b03286ee15ae2a62ea49b23c
+
+文件: venv/Lib/site-packages/scipy/spatial/_qhull.cp311-win_amd64.pyd
+  大小: 1.03MB
+  对象Hash: 11de46f76a6bcab5ea2b5af7a80ae95350a3c204
+
+文件: venv/Lib/site-packages/scipy/linalg/_linalg_pythran.cp311-win_amd64.pyd
+  大小: 1.01MB
+  对象Hash: d086c60639f053d8691eeeff44593835f42b355e
+
+
+总计大文件大小: 8376.27MB
+
+清理建议：
+1. 使用以下命令清理特定文件：
+   git filter-repo --invert-paths --path-match 'path/to/large/file'
+
+2. 或使用BFG清理所有大文件：
+   java -jar bfg.jar --strip-blobs-bigger-than 100M .
