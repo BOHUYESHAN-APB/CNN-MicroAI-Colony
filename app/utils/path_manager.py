@@ -10,7 +10,13 @@ from typing import List, Optional, Dict, Any, Tuple
 
 logger = logging.getLogger(__name__)
 
-# [Previous functions remain unchanged until get_project_images]
+def get_project_root() -> str:
+    """Get project root directory"""
+    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+def get_checkpoints_dir() -> str:
+    """Get model checkpoints directory"""
+    return os.path.join(get_project_root(), "checkpoints")
 
 def get_project_images(project_dir: str) -> List[Dict[str, str]]:
     """Get list of images in a project
@@ -130,13 +136,6 @@ def get_themes_dir() -> str:
 def get_i18n_dir() -> str:
     """Get internationalization directory"""
     return os.path.join(get_resources_dir(), "i18n")
-
-def get_checkpoints_dir() -> str:
-    """Get model checkpoints directory"""
-    return os.path.join(
-        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-        "checkpoints"
-    )
 
 def create_app_directories() -> bool:
     """Create application directories if they don't exist"""

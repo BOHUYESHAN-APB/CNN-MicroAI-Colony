@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\ETPau\Documents\GitHub\CNN-MicroAI-Colony\faster_rcnn_resnet50\test_model.py", line 15, in <module>
+    logger.setLevel(logging.DEBUG)
+    ^^^^^^
+NameError: name 'logger' is not defined

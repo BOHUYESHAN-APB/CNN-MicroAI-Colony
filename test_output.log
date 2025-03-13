@@ -1,0 +1,10 @@
+2025-03-13 15:11:55,081 - app.utils.logger - INFO - Python sys.path: ['C:\\Users\\ETPau\\Documents\\GitHub\\CNN-MicroAI-Colony\\faster_rcnn_resnet50', 'C:\\Users\\ETPau\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip', 'C:\\Users\\ETPau\\AppData\\Local\\Programs\\Python\\Python311\\DLLs', 'C:\\Users\\ETPau\\AppData\\Local\\Programs\\Python\\Python311\\Lib', 'C:\\Users\\ETPau\\AppData\\Local\\Programs\\Python\\Python311', 'C:\\Users\\ETPau\\Documents\\GitHub\\CNN-MicroAI-Colony\\.venv', 'C:\\Users\\ETPau\\Documents\\GitHub\\CNN-MicroAI-Colony\\.venv\\Lib\\site-packages', 'C:\\Users\\ETPau\\Documents\\GitHub\\CNN-MicroAI-Colony']
+2025-03-13 15:11:55,088 - app.utils.logger - INFO - Using device: cpu
+2025-03-13 15:11:56,188 - app.utils.logger - INFO - Loaded weights from: C:\Users\ETPau\Documents\GitHub\CNN-MicroAI-Colony\faster_rcnn_resnet50\checkpoints\checkpoint_epoch_31.pth
+2025-03-13 15:11:56,189 - app.utils.logger - INFO - Model initialized successfully
+2025-03-13 15:11:56,191 - app.utils.logger - INFO - Starting test_analyze_image...
+2025-03-13 15:12:01,182 - app.utils.logger - INFO - No detections found
+2025-03-13 15:12:01,235 - app.utils.logger - INFO - Detected 0 colonies in 2121.jpg
+2025-03-13 15:12:01,237 - app.utils.logger - INFO - Ground truth - Total: 40
+2025-03-13 15:12:01,237 - app.utils.logger - INFO - Difference: -40 (100.0% error)
+2025-03-13 15:12:01,238 - app.utils.logger - ERROR - Test failed: 100.0 not less than or equal to 50 : Error rate exceeds acceptable limit
