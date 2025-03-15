@@ -114,14 +114,18 @@ class ProjectManager:
             return False
             
     def get_project_info(self) -> Dict[str, Any]:
-        """Get current project metadata"""
+        """Get current project metadata and sync with actual files"""
         if not self.current_project:
             return {}
             
         try:
             metadata_file = os.path.join(self.current_project, "project.json")
-            if not os.path.exists(metadata_file):
-                # Create default metadata
+            
+            # Load or create metadata
+            if os.path.exists(metadata_file):
+                with open(metadata_file, 'r', encoding='utf-8') as f:
+                    metadata = json.load(f)
+            else:
                 metadata = {
                     "name": get_project_name(self.current_project),
                     "created": str(Path(self.current_project).stat().st_ctime),
@@ -129,14 +133,37 @@ class ProjectManager:
                     "images": [],
                     "results": []
                 }
-                # Save it
-                with open(metadata_file, 'w', encoding='utf-8') as f:
-                    json.dump(metadata, f, indent=4, ensure_ascii=False)
-                return metadata
+            
+            # Sync with actual files
+            img_dir = os.path.join(self.current_project, "images")
+            if os.path.exists(img_dir):
+                # Get actual files
+                actual_images = set()
+                for img in Path(img_dir).glob("*.*"):
+                    if img.suffix.lower() in [".jpg", ".jpeg", ".png", ".bmp"]:
+                        actual_images.add(str(img))
                 
-            # Load existing metadata
-            with open(metadata_file, 'r', encoding='utf-8') as f:
-                return json.load(f)
+                # Keep only existing images in metadata
+                metadata["images"] = [
+                    img for img in metadata["images"]
+                    if os.path.exists(img["path"]) and img["path"] in actual_images
+                ]
+                
+                # Add any new images not in metadata
+                existing_paths = {img["path"] for img in metadata["images"]}
+                for img_path in actual_images:
+                    if img_path not in existing_paths:
+                        metadata["images"].append({
+                            "path": img_path,
+                            "name": os.path.basename(img_path),
+                            "added": str(Path(img_path).stat().st_ctime)
+                        })
+            
+            # Save synced metadata
+            with open(metadata_file, 'w', encoding='utf-8') as f:
+                json.dump(metadata, f, indent=4, ensure_ascii=False)
+                
+            return metadata
         except Exception as e:
             logger.error(f"Error reading project metadata: {e}")
             return {}

@@ -3,13 +3,12 @@ Test Colony Detection Model
 """
 import sys
 import os
-sys.path.insert(0, os.getcwd()) # Add project root to Python path
+from pathlib import Path
 import cv2
 import json
 import torch
 import numpy as np
 from app.analysis_core import ColonyDetector
-from pathlib import Path
 from datetime import datetime
 
 def main():
@@ -42,17 +41,19 @@ def main():
         print(f"Size range: {params['min_size']} - {params['max_size']} pixels")
         print(f"Using GPU: {params['use_gpu']}")
         
-        # Load ground truth results
-        with open("test-pic/result.json", "r", encoding='utf-8') as f:
-            ground_truth = json.load(f)
-        
-        # Test images in test-pic folder with UTF-8 encoding
+        # Setup directories with absolute paths
         test_dir = Path("test-pic").resolve()
-        test_images = list(test_dir.glob("*.jpg"))
-        if not test_images:
-            raise FileNotFoundError(f"No test images found in {test_dir}")
         
-        output_dir = Path("test_outputs") # Define output_dir here
+        # Load ground truth results
+        result_file = test_dir / "result.json"
+        with open(result_file, "r", encoding='utf-8') as f:
+            ground_truth = json.load(f)
+        test_images = [f for f in test_dir.glob("*.jpg")]
+        
+        # Create output directory with absolute path
+        output_dir = Path("test_outputs").resolve()
+        output_dir.mkdir(exist_ok=True)
+        print(f"Outputs will be saved to: {output_dir}")
 
         total_detection_count = 0
         total_ground_truth = 0
@@ -75,8 +76,8 @@ def main():
                 print("Warning: No ground truth data found for this image")
             total_ground_truth += gt_count
             
-            # Analyze image
-            results = detector.analyze(str(img_path), **params)
+            # Analyze image using absolute path
+            results = detector.analyze(str(img_path.resolve()), **params)
             total_detection_count += results['count']
             total_time += results['time']
             
@@ -159,14 +160,19 @@ def main():
                 print("  No colonies detected.")
 
         # Save visualizations for each image
-        output_dir.mkdir(exist_ok=True)
-        
         print("\nSaving visualizations...")
         for result in all_results:
-            # Load and process image
-            image = cv2.imread(str(Path("test-pic") / result['filename']))
-            if image is None:
-                print(f"Warning: Could not load image {result['filename']}")
+            # Load and process image with UTF-8 path handling
+            img_path = Path("test-pic") / result['filename']
+            try:
+                with open(img_path.resolve(), 'rb') as f:
+                    img_data = np.frombuffer(f.read(), np.uint8)
+                image = cv2.imdecode(img_data, cv2.IMREAD_COLOR)
+                if image is None:
+                    print(f"Warning: Failed to decode image {result['filename']}")
+                    continue
+            except Exception as e:
+                print(f"Warning: Could not load image {result['filename']}: {e}")
                 continue
                 
             # Draw colonies with confidence scores
@@ -199,8 +205,14 @@ def main():
                 y += 30
             
             # Save output
-            output_path = Path("test_outputs") / f"result_{result['filename']}" # output to test_outputs in current directory
-            cv2.imwrite(str(output_path), image)
+            output_path = output_dir / f"result_{result['filename']}"
+            # Save with Unicode path support
+            is_success, im_buf_arr = cv2.imencode(".jpg", image)
+            if not is_success:
+                print(f"Warning: Failed to encode image for {result['filename']}")
+                continue
+            
+            im_buf_arr.tofile(str(output_path))
             print(f"Saved visualization for {result['filename']}")
         
     except Exception as e:
