@@ -12,8 +12,8 @@ from datetime import datetime
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
                             QLabel, QScrollArea, QFrame, QFileDialog, QMessageBox,
                             QSpinBox, QComboBox, QProgressBar)
-from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot
-from PyQt6.QtGui import QPixmap, QPainter, QPen, QColor
+from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot, QRect
+from PyQt6.QtGui import QPixmap, QPainter, QPen, QColor, QPainterPath
 
 from ..utils.i18n import tr
 from ..analysis_core import ColonyDetector
@@ -108,9 +108,38 @@ class ResultVisualizer(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setup_ui()
-        self.detector = ColonyDetector()
+        self._detector = None  # Lazy initialization
         self.current_image = None
         self.current_results = None
+        self.image_cache = {}  # Cache for processed images
+        self.max_cache_size = 10  # Maximum number of cached images
+        
+    def resizeEvent(self, event):
+        """Handle resize events"""
+        super().resizeEvent(event)
+        # Clear cache and redraw current image
+        self.clear_cache()
+        if self.current_image:
+            self.display_image(self.current_image, self.current_results)
+            
+    def clear_cache(self):
+        """Clear image cache"""
+        self.image_cache.clear()
+        
+    def manage_cache(self):
+        """Remove oldest items if cache is too large"""
+        if len(self.image_cache) > self.max_cache_size:
+            # Remove oldest entries
+            remove_count = len(self.image_cache) - self.max_cache_size
+            for _ in range(remove_count):
+                self.image_cache.pop(next(iter(self.image_cache)))
+        
+    @property
+    def detector(self):
+        """Get detector instance (lazy initialization)"""
+        if self._detector is None:
+            self._detector = ColonyDetector()
+        return self._detector
         
     def setup_ui(self):
         """Setup user interface"""
@@ -232,6 +261,12 @@ class ResultVisualizer(QWidget):
         if not path or not os.path.exists(path):
             return
             
+        # Check cache first
+        cache_key = f"{path}_{hash(str(results)) if results else 'raw'}"
+        if cache_key in self.image_cache:
+            self.display.setPixmap(self.image_cache[cache_key])
+            return
+            
         # Load image
         pixmap = QPixmap(path)
         if pixmap.isNull():
@@ -247,19 +282,98 @@ class ResultVisualizer(QWidget):
         # Draw results if available
         if results:
             painter = QPainter(scaled)
-            pen = QPen(QColor(0, 255, 0))
-            pen.setWidth(2)
-            painter.setPen(pen)
+            
+            # Enable antialiasing
+            painter.setRenderHint(QPainter.RenderHint.Antialiasing)
             
             for colony in results.get("colonies", []):
                 x = colony["x"]
                 y = colony["y"]
                 r = colony["radius"]
-                painter.drawEllipse(x-r, y-r, 2*r, 2*r)
+                conf = colony["confidence"]
+                
+                try:
+                    # Calculate scaled coordinates for circle
+                    scale_x = scaled.width() / pixmap.width()
+                    scale_y = scaled.height() / pixmap.height()
+                    
+                    # Scale coordinates
+                    scaled_x = int(x * scale_x)
+                    scaled_y = int(y * scale_y)
+                    scaled_r = int(r * min(scale_x, scale_y))
+                    
+                    # Draw circle with confidence-based color
+                    color = QColor(
+                        int(255 * (1 - conf)),  # Red decreases with confidence
+                        int(255 * conf),        # Green increases with confidence
+                        0                       # No blue component
+                    )
+                    pen = QPen(color)
+                    pen.setWidth(2)
+                    painter.setPen(pen)
+                    
+                    # Draw circle with antialiasing
+                    painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+                    painter.drawEllipse(
+                        scaled_x - scaled_r,
+                        scaled_y - scaled_r,
+                        2 * scaled_r,
+                        2 * scaled_r
+                    )
+                except Exception as e:
+                    logger.error(f"Error drawing circle: {e}")
+                
+                try:
+                    # Draw confidence text with background
+                    text = f"{conf:.2f}"
+                    painter.setPen(QPen(Qt.GlobalColor.white))
+                    metrics = painter.fontMetrics()
+                    text_rect = metrics.boundingRect(text)
+                    
+                    # Calculate scaled coordinates
+                    scale_x = scaled.width() / pixmap.width()
+                    scale_y = scaled.height() / pixmap.height()
+                    
+                    # Scale coordinates
+                    scaled_x = int(x * scale_x)
+                    scaled_y = int(y * scale_y)
+                    scaled_r = int(r * min(scale_x, scale_y))
+                    
+                    # Create path for text background
+                    text_path = QPainterPath()
+                    bg_rect = QRect(
+                        scaled_x - text_rect.width()//2 - 2,
+                        scaled_y - text_rect.height()//2 - 2,
+                        text_rect.width() + 4,
+                        text_rect.height() + 4
+                    )
+                    text_path.addRoundedRect(bg_rect, 2, 2)
+                    
+                    # Draw background with antialiasing
+                    painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+                    painter.fillPath(text_path, QColor(0, 0, 0, 127))
+                    
+                    # Draw text
+                    painter.drawText(
+                        scaled_x - text_rect.width()//2,
+                        scaled_y + text_rect.height()//2,
+                        text
+                    )
+                    
+                except Exception as e:
+                    logger.error(f"Error drawing overlay: {e}")
                 
             painter.end()
             
+        # Manage cache before adding new item
+        self.manage_cache()
+        
+        # Cache the result and display
+        self.image_cache[cache_key] = scaled
         self.display.setPixmap(scaled)
+        
+        # Log cache status
+        logger.debug(f"Image cache size: {len(self.image_cache)}")
         
     @pyqtSlot()
     def start_analysis(self):
@@ -268,6 +382,9 @@ class ResultVisualizer(QWidget):
             return
             
         try:
+            # Clear previous results and cache
+            self.clear_cache()
+            
             # Update UI
             self.analyze_btn.setEnabled(False)
             self.progress.setVisible(True)
