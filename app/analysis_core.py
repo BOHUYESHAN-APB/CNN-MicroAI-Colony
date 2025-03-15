@@ -30,7 +30,8 @@ class ColonyDetector:
     def load_model(self):
         """Load detection model"""
         try:
-            model_path = Path("faster_rcnn_resnet50") / "checkpoints" / "checkpoint_epoch_31.pth"
+            # Update model path to use new location
+            model_path = Path("app/resources/models/checkpoint_epoch_31.pth")
             logger.info(f"Loading model from: {model_path}")
             
             if not model_path.exists():
@@ -137,7 +138,6 @@ class ColonyDetector:
         # Apply the dish mask to the grayscale image
         masked_gray = cv2.bitwise_and(gray, gray, mask=dish_mask)
 
-
         # Apply Gaussian Blur to reduce noise and improve Canny edge detection - use masked grayscale
         blurred_gray = cv2.GaussianBlur(masked_gray, (5, 5), 0)
 
@@ -174,7 +174,6 @@ class ColonyDetector:
 
         # Convert processed image to RGB for model input (model expects RGB)
         processed_image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
 
         # Convert to float32
         processed_image_rgb = processed_image_rgb.astype(np.float32) / 255.0
@@ -236,10 +235,21 @@ class ColonyDetector:
             if self._model is None:
                 self.load_model()
 
-            # Read image
-            image = cv2.imread(image_path)
-            if image is None:
-                raise ValueError(f"Failed to read image: {image_path}")
+            # Read image with better UTF-8 path handling
+            image_path = Path(image_path).resolve()
+            if not image_path.exists():
+                raise FileNotFoundError(f"Image not found: {image_path}")
+
+            try:
+                # Read binary data
+                with open(image_path, 'rb') as f:
+                    img_data = np.frombuffer(f.read(), np.uint8)
+                # Decode image
+                image = cv2.imdecode(img_data, cv2.IMREAD_COLOR)
+                if image is None:
+                    raise ValueError(f"Failed to decode image: {image_path}")
+            except Exception as e:
+                raise ValueError(f"Failed to read image: {image_path} - {str(e)}")
 
             # Get original size
             orig_size = image.shape[:2]
