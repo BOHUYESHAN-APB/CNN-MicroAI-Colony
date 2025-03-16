@@ -6,9 +6,9 @@ import logging
 from typing import Optional
 
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QPushButton,
-                            QMessageBox, QFileDialog, QLabel, QDialog)
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QAction, QIcon
+                            QMessageBox, QFileDialog, QLabel, QDialog, QHBoxLayout, QTreeView)
+from PyQt6.QtCore import Qt, QDir
+from PyQt6.QtGui import QAction, QIcon, QFileSystemModel, QPixmap
 
 from ..utils.i18n import tr
 from ..utils.project_manager import ProjectManager
@@ -24,102 +24,161 @@ logger = logging.getLogger(__name__)
 
 class MainWindow(QMainWindow):
     """Main application window"""
-    
+
     def __init__(self):
         super().__init__()
         self.project_manager = ProjectManager()
         self.theme_manager = ThemeManager()
+        self.file_system_model = QFileSystemModel()  # Initialize QFileSystemModel
         self.setup_ui()
-        
+
     def setup_ui(self):
         """Setup user interface"""
         self.setWindowTitle(tr("main.title"))
         self.resize(1200, 800)
-        
+
         # Set window icon
         icon_path = os.path.join(get_resources_dir(), "icons", "app.png")
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
-        
+
         # Central widget
         central = QWidget()
         self.setCentralWidget(central)
-        
-        layout = QVBoxLayout()
+
+        layout = QHBoxLayout()
         central.setLayout(layout)
-        
-        # Image browser
-        self.image_browser = ImageListWidget()
-        self.image_browser.image_selected.connect(self.on_image_selected)
-        layout.addWidget(self.image_browser)
-        
-        # Result viewer
-        self.result_viewer = ResultVisualizer()
-        layout.addWidget(self.result_viewer)
-        
+
+        # Resource Explorer (Left Panel)
+        self.resource_explorer = QTreeView()
+        self.resource_explorer.setHeaderHidden(True)  # Hide header
+        layout.addWidget(self.resource_explorer)
+
+        # Central Panel (Middle Panel)
+        central_panel_layout = QVBoxLayout()
+        central_panel = QWidget()
+        central_panel.setLayout(central_panel_layout)
+        layout.addWidget(central_panel)
+
+        # Image Viewer (Central Top Panel)
+        self.image_viewer = QLabel()
+        self.image_viewer.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        central_panel_layout.addWidget(self.image_viewer)
+
+        # Result Table (Central Bottom Panel)
+        self.result_table = ResultVisualizer(self, self.project_manager.get_project_path())
+        central_panel_layout.addWidget(self.result_table)
+
+        # Image List Widget (Right Panel)
+        self.image_list_widget = ImageListWidget()
+        self.image_list_widget.image_selected.connect(self.on_image_selected)
+        layout.addWidget(self.image_list_widget)
+
         # Setup menus
         self.setup_menus()
-        
+
+        # Initialize resource explorer
+        self.populate_resource_explorer()
+
         # Update UI state
         self.update_ui_for_project()
-        
+
+    def populate_resource_explorer(self):
+        """Populate resource explorer with project files"""
+        project_path = self.project_manager.get_project_path()
+        if project_path:
+            self.file_system_model.setRootPath(project_path)
+            self.resource_explorer.setModel(self.file_system_model)
+            self.resource_explorer.setRootIndex(self.file_system_model.index(project_path))
+        else:
+            self.resource_explorer.setModel(None)  # Clear model if no project
+
+    def update_ui_for_project(self):
+        """Update UI based on project state"""
+        project_path = self.project_manager.get_project_path()
+        has_project = project_path is not None
+
+        # Update window title
+        if has_project:
+            info = self.project_manager.get_project_info()
+            self.setWindowTitle(f"{tr('main.title')} - {info.get('name', '')}")
+        else:
+            self.setWindowTitle(tr("main.title"))
+
+        # Update result visualizer project path
+        self.result_table.current_project_path = project_path
+
+        # Populate resource explorer
+        self.populate_resource_explorer()
+
+        # Update image browser (image list widget)
+        self.image_list_widget.clear()
+        if has_project:
+            for image in self.project_manager.get_images():
+                self.image_list_widget.add_image(image["path"])
+
+        # Update menu states
+        self.close_project_action.setEnabled(has_project)
+        self.image_menu.setEnabled(has_project)
+        self.analysis_menu.setEnabled(has_project)
+
     def setup_menus(self):
         """Setup application menus"""
         # Create and save the menubar for access
         self.menu_bar = self.menuBar()
-        
+
         # File menu
         file_menu = self.menu_bar.addMenu(tr("menu.file"))
-        
+
         new_project = QAction(tr("menu.file.new_project"), self)
         new_project.triggered.connect(self.new_project)
         file_menu.addAction(new_project)
-        
+
         open_project = QAction(tr("menu.file.open_project"), self)
         open_project.triggered.connect(self.open_project)
         file_menu.addAction(open_project)
-        
+
         self.close_project_action = QAction(tr("menu.file.close_project"), self)
         self.close_project_action.triggered.connect(self.close_project)
         file_menu.addAction(self.close_project_action)
-        
+
         file_menu.addSeparator()
-        
+
         settings = QAction(tr("menu.file.settings"), self)
         settings.triggered.connect(self.show_settings)
         file_menu.addAction(settings)
-        
+
         file_menu.addSeparator()
-        
+
         quit_action = QAction(tr("menu.file.quit"), self)
         quit_action.triggered.connect(self.close)
         file_menu.addAction(quit_action)
-        
+
         # Image menu
         self.image_menu = self.menu_bar.addMenu(tr("menu.image"))
-        
+
         add_images = QAction(tr("menu.image.add"), self)
         add_images.triggered.connect(self.add_images)
         self.image_menu.addAction(add_images)
-        
+
         clear_images = QAction(tr("menu.image.clear"), self)
         clear_images.triggered.connect(self.clear_images)
         self.image_menu.addAction(clear_images)
-        
+
         # Analysis menu
         self.analysis_menu = self.menu_bar.addMenu(tr("menu.analysis"))
-        
+
         start_analysis = QAction(tr("menu.analysis.start"), self)
         start_analysis.triggered.connect(self.start_analysis)
         self.analysis_menu.addAction(start_analysis)
-        
+
         export_results = QAction(tr("menu.analysis.export"), self)
         export_results.triggered.connect(self.export_results)
         self.analysis_menu.addAction(export_results)
-        
+
         # Help menu
         help_menu = self.menu_bar.addMenu(tr("menu.help"))
-        
+
         about = QAction(tr("menu.help.about"), self)
         about.triggered.connect(self.show_about)
         help_menu.addAction(about)
@@ -176,7 +235,7 @@ class MainWindow(QMainWindow):
         self.analysis_menu.setEnabled(menu_states['analysis_menu'])
 
         # Update window title
-        if self.project_manager.get_project_path():  # Removed has_project assignment
+        if self.project_manager.get_project_path():
             info = self.project_manager.get_project_info()
             self.setWindowTitle(f"{tr('main.title')} - {info.get('name', '')}")
         else:
@@ -194,10 +253,9 @@ class MainWindow(QMainWindow):
         else:
             self.setWindowTitle(tr("main.title"))
 
-        # The menu is already updated in change_language
-        # Add calls to child widgets' retranslateUi methods here
-        self.image_browser.retranslateUi()
-        self.result_viewer.retranslateUi()
+        # Child widgets
+        self.image_list_widget.retranslateUi()
+        self.result_table.retranslateUi()
 
     def new_project(self):
         """Create new project"""
@@ -213,7 +271,7 @@ class MainWindow(QMainWindow):
                     tr("dialog.error"),
                     tr("error.create_project")
                 )
-                
+
     def open_project(self):
         """Open existing project"""
         dialog = OpenProjectDialog(self)
@@ -228,7 +286,7 @@ class MainWindow(QMainWindow):
                     tr("dialog.error"),
                     tr("error.open_project")
                 )
-                
+
     def close_project(self):
         """Close current project"""
         if self.project_manager.close_project():
@@ -240,7 +298,7 @@ class MainWindow(QMainWindow):
                 tr("dialog.error"),
                 tr("error.close_project")
             )
-            
+
     def add_images(self):
         """Add images to project"""
         files, _ = QFileDialog.getOpenFileNames(
@@ -249,19 +307,19 @@ class MainWindow(QMainWindow):
             "",
             tr("dialog.image_filter")
         )
-        
+
         if files:
             added = 0
             for file in files:
                 if self.project_manager.add_image(file):
                     added += 1
-                    
+
             if added > 0:
                 self.update_ui_for_project()
                 self.show_status_message(
                     tr("status.images_added").format(count=added)
                 )
-                
+
     def clear_images(self):
         """Clear all images"""
         reply = QMessageBox.question(
@@ -270,61 +328,46 @@ class MainWindow(QMainWindow):
             tr("dialog.clear_images_confirm"),
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
-        
+
         if reply == QMessageBox.StandardButton.Yes:
-            self.image_browser.clear()
+            self.image_list_widget.clear()
             self.show_status_message(tr("status.images_cleared"))
-            
+
     def start_analysis(self):
         """Start image analysis"""
-        if image := self.image_browser.get_selected_image():
-            self.result_viewer.load_image(image)
-            self.result_viewer.start_analysis()
-            
+        if image := self.image_list_widget.get_selected_image():
+            self.result_table.load_image(image)
+            self.result_table.start_analysis()
+
     def export_results(self):
         """Export analysis results"""
-        self.result_viewer.export_results()
-        
+        self.result_table.export_results()
+
     def show_settings(self):
         """Show settings dialog"""
         dialog = SettingsDialog(self)
         dialog.exec()
-        
+
     def show_about(self):
         """Show about dialog"""
         dialog = AboutDialog(self)
         dialog.exec()
-        
-    def update_ui_for_project(self):
-        """Update UI based on project state"""
-        has_project = self.project_manager.get_project_path() is not None
-        
-        # Update window title
-        if has_project:
-            info = self.project_manager.get_project_info()
-            self.setWindowTitle(f"{tr('main.title')} - {info.get('name', '')}")
-        else:
-            self.setWindowTitle(tr("main.title"))
-            
-        # Update menu states
-        self.close_project_action.setEnabled(has_project)
-        self.image_menu.setEnabled(has_project)
-        self.analysis_menu.setEnabled(has_project)
-        
-        # Update image browser
-        self.image_browser.clear()
-        if has_project:
-            for image in self.project_manager.get_images():
-                self.image_browser.add_image(image["path"])
-                
+
     def on_image_selected(self, path: str):
         """Handle image selection"""
-        self.result_viewer.load_image(path)
-        
+        pixmap = QPixmap(path)
+        scaled_pixmap = pixmap.scaled(
+            self.image_viewer.size(),
+            Qt.AspectRatioMode.KeepAspectRatio,
+            Qt.TransformationMode.SmoothTransformation
+        )
+        self.image_viewer.setPixmap(scaled_pixmap)
+        self.result_table.load_image(path)
+
     def show_status_message(self, message: str):
         """Show status bar message"""
         self.statusBar().showMessage(message, 3000)
-        
+
     def closeEvent(self, event):
         """Handle window close event"""
         if self.project_manager.get_project_path():
@@ -334,11 +377,11 @@ class MainWindow(QMainWindow):
                 tr("dialog.close_project_confirm"),
                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
             )
-            
+
             if reply == QMessageBox.StandardButton.No:
                 event.ignore()
                 return
-                
+
             self.project_manager.close_project()
-            
+
         event.accept()

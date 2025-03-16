@@ -47,10 +47,14 @@ class ProjectManager:
             if not project_dir:
                 logger.error("Failed to create project directory")
                 return False
-                
+
+            # Create results directory
+            results_dir = os.path.join(project_dir, "results") # Create results dir
+            os.makedirs(results_dir, exist_ok=True)
+
             # Set as current project
             self.current_project = project_dir
-            
+
             logger.info(f"Created new project: {project_dir}")
             return True
             
