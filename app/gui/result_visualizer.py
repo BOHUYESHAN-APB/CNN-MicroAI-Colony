@@ -12,11 +12,12 @@ from datetime import datetime
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
                             QLabel, QScrollArea, QFrame, QFileDialog, QMessageBox,
                             QSpinBox, QComboBox, QProgressBar)
-from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot, QRect
+from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot, QRect, QRectF
 from PyQt6.QtGui import QPixmap, QPainter, QPen, QColor, QPainterPath
 
 from ..utils.i18n import tr
 from ..analysis_core import ColonyDetector
+from ..utils.project_manager import get_project_name
 
 logger = logging.getLogger(__name__)
 
@@ -105,15 +106,18 @@ class ResultVisualizer(QWidget):
     analysis_finished = pyqtSignal(dict)  # Emits results dictionary
     analysis_error = pyqtSignal(str)    # Emits error message
     
-    def __init__(self, parent=None):
+    current_project_path: str | None = None
+
+    def __init__(self, parent=None, project_path: Optional[str] = None):
         super().__init__(parent)
+        self._detector = ColonyDetector() # Initialize detector
         self.setup_ui()
-        self._detector = None  # Lazy initialization
         self.current_image = None
         self.current_results = None
-        self.image_cache = {}  # Cache for processed images
+        self.image_cache = {} # Cache for processed images
         self.max_cache_size = 10  # Maximum number of cached images
-        
+        self.current_project_path = project_path
+
     def resizeEvent(self, event):
         """Handle resize events"""
         super().resizeEvent(event)
@@ -129,18 +133,27 @@ class ResultVisualizer(QWidget):
     def manage_cache(self):
         """Remove oldest items if cache is too large"""
         if len(self.image_cache) > self.max_cache_size:
-            # Remove oldest entries
-            remove_count = len(self.image_cache) - self.max_cache_size
-            for _ in range(remove_count):
-                self.image_cache.pop(next(iter(self.image_cache)))
-        
+            # Remove oldest entries until we're back at max_cache_size
+            while len(self.image_cache) > self.max_cache_size:
+                oldest_key = next(iter(self.image_cache))
+                del self.image_cache[oldest_key]
+            logger.debug(f"Cache pruned to {len(self.image_cache)} items")
+
+    def load_image(self, path: str):
+        """Load image for analysis"""
+        self.current_image = path
+        self.display_image(path)
+        self.current_results = None
+        self.export_btn.setEnabled(False)
+        self.summary.setVisible(False)
+
     @property
     def detector(self):
         """Get detector instance (lazy initialization)"""
         if self._detector is None:
             self._detector = ColonyDetector()
         return self._detector
-        
+
     def setup_ui(self):
         """Setup user interface"""
         layout = QVBoxLayout()
@@ -248,14 +261,6 @@ class ResultVisualizer(QWidget):
                 f"{tr('analysis.results.processing_time')}: {time:.2f}s"
             )
 
-    def load_image(self, path: str):
-        """Load image for analysis"""
-        self.current_image = path
-        self.display_image(path)
-        self.current_results = None
-        self.export_btn.setEnabled(False)
-        self.summary.setVisible(False)
-        
     def display_image(self, path: str, results: Optional[Dict] = None):
         """Display image with optional overlay of results"""
         if not path or not os.path.exists(path):
@@ -274,16 +279,24 @@ class ResultVisualizer(QWidget):
             
         # Scale to fit
         scaled = pixmap.scaled(
-            self.scroll.size(),
+            int(self.scroll.size().width() * 0.8),  # Leave space for info panel
+            self.scroll.size().height(),
             Qt.AspectRatioMode.KeepAspectRatio,
             Qt.TransformationMode.SmoothTransformation
         )
         
+        # Create a new wider pixmap to accommodate the info panel
+        info_width = 200  # Width of info panel
+        final_pixmap = QPixmap(scaled.width() + info_width, scaled.height())
+        final_pixmap.fill(Qt.GlobalColor.white)  # Fill with white background
+        
+        # Draw the original image
+        painter = QPainter(final_pixmap)
+        painter.drawPixmap(0, 0, scaled)
+        
         # Draw results if available
         if results:
-            painter = QPainter(scaled)
-            
-            # Enable antialiasing
+            # Draw colonies on the image part
             painter.setRenderHint(QPainter.RenderHint.Antialiasing)
             
             for colony in results.get("colonies", []):
@@ -313,35 +326,22 @@ class ResultVisualizer(QWidget):
                     painter.setPen(pen)
                     
                     # Draw circle with antialiasing
-                    painter.setRenderHint(QPainter.RenderHint.Antialiasing)
                     painter.drawEllipse(
                         scaled_x - scaled_r,
                         scaled_y - scaled_r,
                         2 * scaled_r,
                         2 * scaled_r
                     )
-                except Exception as e:
-                    logger.error(f"Error drawing circle: {e}")
-                
-                try:
-                    # Draw confidence text with background
+                    
+                    # Draw confidence text
                     text = f"{conf:.2f}"
                     painter.setPen(QPen(Qt.GlobalColor.white))
                     metrics = painter.fontMetrics()
                     text_rect = metrics.boundingRect(text)
                     
-                    # Calculate scaled coordinates
-                    scale_x = scaled.width() / pixmap.width()
-                    scale_y = scaled.height() / pixmap.height()
-                    
-                    # Scale coordinates
-                    scaled_x = int(x * scale_x)
-                    scaled_y = int(y * scale_y)
-                    scaled_r = int(r * min(scale_x, scale_y))
-                    
                     # Create path for text background
                     text_path = QPainterPath()
-                    bg_rect = QRect(
+                    bg_rect = QRectF(
                         scaled_x - text_rect.width()//2 - 2,
                         scaled_y - text_rect.height()//2 - 2,
                         text_rect.width() + 4,
@@ -350,7 +350,6 @@ class ResultVisualizer(QWidget):
                     text_path.addRoundedRect(bg_rect, 2, 2)
                     
                     # Draw background with antialiasing
-                    painter.setRenderHint(QPainter.RenderHint.Antialiasing)
                     painter.fillPath(text_path, QColor(0, 0, 0, 127))
                     
                     # Draw text
@@ -362,15 +361,71 @@ class ResultVisualizer(QWidget):
                     
                 except Exception as e:
                     logger.error(f"Error drawing overlay: {e}")
-                
+
+            # Draw info panel
+            info_x = scaled.width() + 10  # Start 10 pixels from the image edge
+            info_y = 20  # Start 20 pixels from top
+            line_height = painter.fontMetrics().height() + 5
+            
+            # Draw title
+            painter.setPen(QPen(Qt.GlobalColor.black))
+            font = painter.font()
+            font.setBold(True)
+            painter.setFont(font)
+            painter.drawText(info_x, info_y, tr("analysis.results.title"))
+            font.setBold(False)
+            painter.setFont(font)
+            info_y += line_height * 2
+
+            # Draw timestamp
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            painter.drawText(info_x, info_y, tr("analysis.results.time"))
+            info_y += line_height
+            painter.drawText(info_x, info_y, timestamp)
+            info_y += line_height * 2
+
+            # Draw colony count
+            count = results.get("count", 0)
+            painter.drawText(info_x, info_y, tr("analysis.results.colony_count"))
+            info_y += line_height
+            painter.drawText(info_x, info_y, str(count))
+            info_y += line_height * 2
+
+            # Draw confidence metrics
+            total_conf = sum(c["confidence"] for c in results.get("colonies", []))
+            avg_conf = total_conf / len(results["colonies"]) if results["colonies"] else 0
+            error_rate = 1 - avg_conf
+
+            painter.drawText(info_x, info_y, tr("analysis.results.confidence"))
+            info_y += line_height
+            painter.drawText(info_x, info_y, f"{avg_conf:.2f}")
+            info_y += line_height * 2
+
+            painter.drawText(info_x, info_y, tr("analysis.results.error_rate"))
+            info_y += line_height
+            painter.drawText(info_x, info_y, f"{error_rate:.2f}")
+            info_y += line_height * 2
+
+            # Draw density and area
+            density = results.get("density", 0)
+            painter.drawText(info_x, info_y, tr("analysis.results.density"))
+            info_y += line_height
+            painter.drawText(info_x, info_y, f"{density:.2f}")
+            info_y += line_height * 2
+
+            area = results.get("area", 0)
+            painter.drawText(info_x, info_y, tr("analysis.results.area"))
+            info_y += line_height
+            painter.drawText(info_x, info_y, f"{area:.2f}%")
+            
             painter.end()
             
         # Manage cache before adding new item
         self.manage_cache()
         
         # Cache the result and display
-        self.image_cache[cache_key] = scaled
-        self.display.setPixmap(scaled)
+        self.image_cache[cache_key] = final_pixmap
+        self.display.setPixmap(final_pixmap)
         
         # Log cache status
         logger.debug(f"Image cache size: {len(self.image_cache)}")
@@ -425,9 +480,10 @@ class ResultVisualizer(QWidget):
             # Enable export
             self.export_btn.setEnabled(True)
             
-            # Emit results
+            # Emit results and save
             self.analysis_finished.emit(self.current_results)
-            
+            self.save_analysis_results(self.current_image, self.current_results)
+
         except Exception as e:
             logger.error(f"Analysis failed: {e}")
             self.analysis_error.emit(str(e))
@@ -441,7 +497,38 @@ class ResultVisualizer(QWidget):
             # Reset UI
             self.analyze_btn.setEnabled(True)
             self.progress.setVisible(False)
-            
+
+    def save_analysis_results(self, image_path: str, results: Dict[str, Any]):
+        """Save analysis results to project directory"""
+        if not self.current_project_path:
+            logger.warning("Project path not set, skipping result saving.")
+            return
+
+        project_name = get_project_name(self.current_project_path)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        base_filename = f"{project_name}_result_{timestamp}"
+        results_dir = os.path.join(self.current_project_path, "results")
+        
+        # Create results directory if it doesn't exist
+        os.makedirs(results_dir, exist_ok=True)
+
+        # Save result image
+        image_filename = f"{base_filename}.png"
+        image_filepath = os.path.join(results_dir, image_filename)
+        self.display.pixmap().save(image_filepath)
+
+        # Save CSV results
+        csv_filename = f"{base_filename}.csv"
+        csv_filepath = os.path.join(results_dir, csv_filename)
+        ResultExporter.export_csv(csv_filepath, results)
+
+        # Save JSON results
+        json_filename = f"{base_filename}.json"
+        json_filepath = os.path.join(results_dir, json_filename)
+        ResultExporter.export_json(json_filepath, results)
+
+        logger.info(f"Results saved to: {results_dir}")
+        
     @pyqtSlot()
     def export_results(self):
         """Export analysis results"""
@@ -488,6 +575,6 @@ class ResultVisualizer(QWidget):
             )
             
     def show_status_message(self, message: str):
-        """Show status message"""
+        """Show status bar message"""
         if hasattr(self.parent(), "show_status_message"):
             self.parent().show_status_message(message)

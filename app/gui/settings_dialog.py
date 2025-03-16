@@ -197,6 +197,20 @@ class SettingsDialog(QDialog):
         # GPU acceleration
         self.gpu_check = QCheckBox(tr("settings.use_gpu"))
         layout.addRow("", self.gpu_check)
+
+        # NMS threshold
+        self.nms_threshold_spin = QDoubleSpinBox()
+        self.nms_threshold_spin.setRange(0.01, 1.0)
+        self.nms_threshold_spin.setSingleStep(0.05)
+        self.nms_threshold_spin.setValue(0.28)  # Default value from test_model.py
+        layout.addRow(tr("settings.nms_threshold"), self.nms_threshold_spin)
+
+        # Score threshold
+        self.score_threshold_spin = QDoubleSpinBox()
+        self.score_threshold_spin.setRange(0.01, 1.0)
+        self.score_threshold_spin.setSingleStep(0.05)
+        self.score_threshold_spin.setValue(0.23)  # Default value from test_model.py
+        layout.addRow(tr("settings.score_threshold"), self.score_threshold_spin)
         
         tab.setLayout(layout)
         return tab
