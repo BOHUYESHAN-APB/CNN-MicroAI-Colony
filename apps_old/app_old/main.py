@@ -15,10 +15,10 @@ parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from app.gui import MainWindow
-from app.utils.config import ConfigManager
-from app.utils.path_manager import create_app_directories
-from app.utils.i18n import initialize as init_i18n
+from app_old.gui import MainWindow
+from app_old.utils.config import ConfigManager
+from app_old.utils.path_manager import create_app_directories
+from app_old.utils.i18n import initialize as init_i18n
 
 # App info constants
 APP_NAME = "CNN Analyzer"

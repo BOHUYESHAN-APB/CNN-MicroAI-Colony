@@ -44,7 +44,7 @@ class ColonyDetector:
             self._device = torch.device("cuda" if torch.cuda.is_available() and self._use_gpu else "cpu") # Use GPU if available and requested
             
             # Import and initialize the actual model from faster_rcnn_resnet50
-            from app.models.colony_detector import ColonyDetectionModel  # Import the actual model class
+            from app_old.models.colony_detector import ColonyDetectionModel  # Import the actual model class
             self._model = ColonyDetectionModel().to(self._device)  # Create model instance and move to device
             
             # Load the state dict with strict=False to ignore unexpected keys

@@ -14,7 +14,7 @@ from scipy.ndimage import maximum_filter
 
 # Add parent directory to Python path for app imports
 sys.path.append(str(Path(__file__).parent.parent.absolute()))
-from app.analysis_core import ColonyDetector
+from app_old.analysis_core import ColonyDetector
 from .src.utils.config import Config
 from .src.utils.dataset import create_dataloader
 from .src.utils.transforms import get_test_transforms

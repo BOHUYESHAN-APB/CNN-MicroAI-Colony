@@ -12,7 +12,7 @@ from PyQt6.QtCore import Qt
 
 from ..utils.i18n import tr
 from ..utils.path_manager import get_resources_dir
-import app
+import app_old
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +51,7 @@ class AboutDialog(QDialog):
                 header_layout.addWidget(logo_label)
         
         # App name and version
-        name_label = QLabel(f"{app.APP_NAME} {app.__version__}")
+        name_label = QLabel(f"{app_old.APP_NAME} {app_old.__version__}")
         name_label.setStyleSheet("font-size: 16px; font-weight: bold;")
         name_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         header_layout.addWidget(name_label)
@@ -119,7 +119,7 @@ class AboutDialog(QDialog):
         
         github_label = QLabel(
             f"""<p>{tr("about.github.description")}</p>
-            <p><a href='{app.__website__}'>{app.__website__}</a></p>"""
+            <p><a href='{app_old.__website__}'>{app_old.__website__}</a></p>"""
         )
         github_label.setOpenExternalLinks(True)
         github_label.setWordWrap(True)
