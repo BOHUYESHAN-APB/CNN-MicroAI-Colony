@@ -59,7 +59,7 @@ def main():
             return 1
             
         # Import and run application
-        from app.main import main
+        from app_old.main import main
         return main()
         
     except Exception as e:

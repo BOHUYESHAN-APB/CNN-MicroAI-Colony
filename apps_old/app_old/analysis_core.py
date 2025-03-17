@@ -145,7 +145,7 @@ class ColonyDetector:
 
         if model_type == "faster_rcnn_resnet50":
             checkpoint_path = config.get("model.faster_rcnn_resnet50.checkpoint_path", "faster_rcnn_resnet50/checkpoints/checkpoint_epoch_31.pth")
-            from app.models.colony_detector import ColonyDetectionModel
+            from app_old.models.colony_detector import ColonyDetectionModel
             model_class = ColonyDetectionModel
         elif model_type == "yolov11":
             checkpoint_path = config.get("model.yolov11.checkpoint_path", "yolo11/checkpoints/best.pth")
