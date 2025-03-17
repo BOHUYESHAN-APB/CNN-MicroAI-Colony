@@ -9,15 +9,18 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 
-from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
-                            QLabel, QScrollArea, QFrame, QFileDialog, QMessageBox,
-                            QSpinBox, QComboBox, QProgressBar)
+from PyQt6.QtWidgets import (
+    QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
+    QLabel, QScrollArea, QFrame, QFileDialog, QMessageBox,
+    QSpinBox, QComboBox, QProgressBar, QDoubleSpinBox
+)
 from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot, QRect, QRectF
 from PyQt6.QtGui import QPixmap, QPainter, QPen, QColor, QPainterPath
 
 from ..utils.i18n import tr
 from ..analysis_core import ColonyDetector
 from ..utils.project_manager import get_project_name
+from ..utils.config import ConfigManager
 
 logger = logging.getLogger(__name__)
 
@@ -30,29 +33,26 @@ class ResultExporter:
         try:
             with open(path, 'w', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
-                # Write header
                 writer.writerow(['Parameter', 'Value'])
-                # Write summary
-                writer.writerow(['Total Colonies', results['count']])
-                writer.writerow(['Colony Density', f"{results['density']:.2f}"])
-                writer.writerow(['Area Coverage', f"{results['area']:.2f}"])
-                writer.writerow(['Processing Time', f"{results['time']:.2f}s"])
-                # Write colony details
+                writer.writerow(['Total Colonies', results.get('count', 0)])
+                writer.writerow(['Colony Density', f"{results.get('density', 0):.2f}"])
+                writer.writerow(['Area Coverage', f"{results.get('area', 0):.2f}"])
+                writer.writerow(['Processing Time', f"{results.get('time', 0):.2f}s"])
                 writer.writerow([])
                 writer.writerow(['Colony Details'])
                 writer.writerow(['X', 'Y', 'Radius', 'Confidence'])
-                for colony in results['colonies']:
+                for colony in results.get('colonies', []):
                     writer.writerow([
-                        colony['x'],
-                        colony['y'],
-                        colony['radius'],
-                        f"{colony['confidence']:.2f}"
+                        colony.get('x', 0),
+                        colony.get('y', 0),
+                        colony.get('radius', 0),
+                        f"{colony.get('confidence', 0):.2f}"
                     ])
             return True
         except Exception as e:
             logger.error(f"CSV export failed: {e}")
             return False
-            
+
     @staticmethod
     def export_json(path: str, results: Dict[str, Any]) -> bool:
         """Export results to JSON"""
@@ -63,426 +63,248 @@ class ResultExporter:
         except Exception as e:
             logger.error(f"JSON export failed: {e}")
             return False
-            
+
     @staticmethod
     def export_excel(path: str, results: Dict[str, Any]) -> bool:
         """Export results to Excel"""
         try:
             import pandas as pd
             
-            # Create summary dataframe
             summary_data = {
-                'Parameter': ['Total Colonies', 'Colony Density', 
-                            'Area Coverage', 'Processing Time'],
+                'Parameter': [
+                    'Total Colonies', 'Colony Density',
+                    'Area Coverage', 'Processing Time'
+                ],
                 'Value': [
-                    results['count'],
-                    f"{results['density']:.2f}",
-                    f"{results['area']:.2f}",
-                    f"{results['time']:.2f}s"
+                    results.get('count', 0),
+                    f"{results.get('density', 0):.2f}",
+                    f"{results.get('area', 0):.2f}",
+                    f"{results.get('time', 0):.2f}s"
                 ]
             }
             summary_df = pd.DataFrame(summary_data)
             
-            # Create colonies dataframe
-            colonies_df = pd.DataFrame(results['colonies'])
-            colonies_df['confidence'] = colonies_df['confidence'].map('{:.2f}'.format)
+            colonies_df = pd.DataFrame(results.get('colonies', []))
+            if not colonies_df.empty:
+                colonies_df['confidence'] = colonies_df['confidence'].map('{:.2f}'.format)
             
-            # Write to Excel
             with pd.ExcelWriter(path) as writer:
                 summary_df.to_excel(writer, sheet_name='Summary', index=False)
                 colonies_df.to_excel(writer, sheet_name='Colony Details', index=False)
                 
             return True
-            
         except Exception as e:
             logger.error(f"Excel export failed: {e}")
             return False
 
 class ResultVisualizer(QWidget):
     """Widget for displaying analysis results"""
-    
+
     # Signals
     analysis_started = pyqtSignal()
     analysis_finished = pyqtSignal(dict)  # Emits results dictionary
-    analysis_error = pyqtSignal(str)    # Emits error message
+    analysis_error = pyqtSignal(str)      # Emits error message
     
     current_project_path: str | None = None
-
+    max_cache_size: int = 10
+    current_image: str | None = None
+    analysis_thread: Optional[Any] = None
+    analysis_results: Optional[Dict[str, Any]] = None
+    image_cache: Dict[str, QPixmap] = {}
+    _detector: Optional[ColonyDetector] = None
+    _opt_cache: Dict[str, Dict[str, float]] = {}
+    config: Optional[ConfigManager] = None
+    
     def __init__(self, parent=None, project_path: Optional[str] = None):
         super().__init__(parent)
-        self._detector = ColonyDetector() # Initialize detector
-        self.setup_ui()
+        self.config = None
+        self.current_project_path = project_path
+        self.image_path = None
+        self.analysis_thread = None
+        self.analysis_results = None
+        self._detector = None
+        self.image_cache = {}
+        self._opt_cache = {}
         self.current_image = None
         self.current_results = None
-        self.image_cache = {} # Cache for processed images
-        self.max_cache_size = 10  # Maximum number of cached images
-        self.current_project_path = project_path
-
-    def resizeEvent(self, event):
-        """Handle resize events"""
-        super().resizeEvent(event)
-        # Clear cache and redraw current image
-        self.clear_cache()
-        if self.current_image:
-            self.display_image(self.current_image, self.current_results)
-            
-    def clear_cache(self):
-        """Clear image cache"""
-        self.image_cache.clear()
-        
-    def manage_cache(self):
-        """Remove oldest items if cache is too large"""
-        if len(self.image_cache) > self.max_cache_size:
-            # Remove oldest entries until we're back at max_cache_size
-            while len(self.image_cache) > self.max_cache_size:
-                oldest_key = next(iter(self.image_cache))
-                del self.image_cache[oldest_key]
-            logger.debug(f"Cache pruned to {len(self.image_cache)} items")
-
-    def load_image(self, path: str):
-        """Load image for analysis"""
-        self.current_image = path
-        self.display_image(path)
-        self.current_results = None
-        self.export_btn.setEnabled(False)
-        self.summary.setVisible(False)
-
-    @property
-    def detector(self):
-        """Get detector instance (lazy initialization)"""
-        if self._detector is None:
-            self._detector = ColonyDetector()
-        return self._detector
+        self.max_cache_size = 10
+        self.setup_ui()
+        self.load_settings()
 
     def setup_ui(self):
-        """Setup user interface"""
+        """Initialize the UI"""
         layout = QVBoxLayout()
         self.setLayout(layout)
         
-        # Controls
         controls = QHBoxLayout()
-        
-        # Analysis settings
-        settings = QHBoxLayout()
-        
-        # Confidence threshold
-        settings.addWidget(QLabel(tr("analysis.settings.confidence")))
-        self.confidence = QSpinBox()
-        self.confidence.setRange(1, 100)
-        self.confidence.setValue(50)
-        self.confidence.setSuffix("%")
-        settings.addWidget(self.confidence)
-        
-        # Size range
-        settings.addWidget(QLabel(tr("analysis.settings.min_size")))
-        self.min_size = QSpinBox()
-        self.min_size.setRange(1, 1000)
-        self.min_size.setValue(5)
-        settings.addWidget(self.min_size)
-        
-        settings.addWidget(QLabel(tr("analysis.settings.max_size")))
-        self.max_size = QSpinBox()
-        self.max_size.setRange(1, 10000)
-        self.max_size.setValue(100)
-        settings.addWidget(self.max_size)
-        
-        # GPU acceleration
-        settings.addWidget(QLabel(tr("analysis.settings.device")))
-        self.device = QComboBox()
-        self.device.addItems(["CPU", "GPU"])
-        settings.addWidget(self.device)
-        
-        settings.addStretch()
-        controls.addLayout(settings)
-        
-        # Action buttons
-        actions = QHBoxLayout()
-        
-        self.analyze_btn = QPushButton(tr("analysis.start"))
-        self.analyze_btn.clicked.connect(self.start_analysis)
-        actions.addWidget(self.analyze_btn)
-        
-        self.export_btn = QPushButton(tr("analysis.export"))
-        self.export_btn.clicked.connect(self.export_results)
-        self.export_btn.setEnabled(False)
-        actions.addWidget(self.export_btn)
-        
-        controls.addLayout(actions)
         layout.addLayout(controls)
         
-        # Progress bar
+        # Create buttons with translations
+        self.analyze_btn = QPushButton(tr("analysis.start"))
+        self.export_btn = QPushButton(tr("analysis.export"))
+        self.auto_opt_btn = QPushButton(tr("analysis.auto_optimize"))
+        
+        controls.addWidget(self.analyze_btn)
+        controls.addWidget(self.export_btn)
+        controls.addWidget(self.auto_opt_btn)
+        
+        params = QHBoxLayout()
+        layout.addLayout(params)
+        
+        # NMS threshold
+        self.nms_spin = QDoubleSpinBox()
+        self.nms_spin.setRange(0.1, 1.0)
+        self.nms_spin.setSingleStep(0.01)
+        self.nms_spin.setValue(0.45)
+        params.addWidget(QLabel(tr("settings.nms_threshold")))
+        params.addWidget(self.nms_spin)
+        
+        # Confidence threshold
+        self.score_spin = QDoubleSpinBox()
+        self.score_spin.setRange(0.1, 1.0)
+        self.score_spin.setSingleStep(0.01)
+        self.score_spin.setValue(0.25)
+        params.addWidget(QLabel(tr("settings.score_threshold")))
+        params.addWidget(self.score_spin)
+        
+        # Device selection
+        self.device = QComboBox()
+        self.device.addItems(['cpu', 'cuda'])
+        params.addWidget(QLabel(tr("analysis.settings.device")))
+        params.addWidget(self.device)
+        
         self.progress = QProgressBar()
         self.progress.setVisible(False)
         layout.addWidget(self.progress)
         
-        # Results display
         self.scroll = QScrollArea()
         self.scroll.setWidgetResizable(True)
-        self.scroll.setFrameShape(QFrame.Shape.NoFrame)
+        layout.addWidget(self.scroll)
         
         self.display = QLabel()
         self.display.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.scroll.setWidget(self.display)
         
-        layout.addWidget(self.scroll)
-        
-        # Results summary
         self.summary = QLabel()
         self.summary.setVisible(False)
         layout.addWidget(self.summary)
+        
+        self.analyze_btn.clicked.connect(self.start_analysis)
+        self.export_btn.clicked.connect(self.export_results)
+        self.auto_opt_btn.clicked.connect(self.auto_optimize_params)
+        self.nms_spin.valueChanged.connect(self.on_params_changed)
+        self.score_spin.valueChanged.connect(self.on_params_changed)
+        
+        self.export_btn.setEnabled(False)
 
-    def retranslateUi(self):
-        """Retranslate UI elements"""
-        # Find and update the labels for analysis settings
-        for child in self.findChildren(QLabel):
-            if "Confidence" in child.text():
-                child.setText(tr("analysis.settings.confidence"))
-            elif "Min Size" in child.text():
-                child.setText(tr("analysis.settings.min_size"))
-            elif "Max Size" in child.text():
-                child.setText(tr("analysis.settings.max_size"))
-            elif "Device" in child.text():
-                child.setText(tr("analysis.settings.device"))
+    def load_settings(self):
+        """Load settings from config"""
+        if self.config:
+            self.nms_spin.setValue(self.config.get('nms_threshold', 0.45))
+            self.score_spin.setValue(self.config.get('confidence_threshold', 0.25))
+            self.device.setCurrentText(self.config.get('device', 'cpu'))
 
-        self.analyze_btn.setText(tr("analysis.start"))
-        self.export_btn.setText(tr("analysis.export"))
+    def get_analysis_params(self) -> Dict[str, Any]:
+        """Get current analysis parameters"""
+        return {
+            'nms_threshold': self.nms_spin.value(),
+            'confidence_threshold': self.score_spin.value(),
+            'device': self.device.currentText()
+        }
 
-        # Update summary if results are available
-        if self.current_results:
-            count = self.current_results.get("count", 0)
-            density = self.current_results.get("density", 0)
-            area = self.current_results.get("area", 0)
-            time = self.current_results.get("time", 0)
+    def set_config(self, config: ConfigManager):
+        """Set configuration"""
+        self.config = config
+        self._detector = ColonyDetector(config=config)
+        self.load_settings()
 
-            self.summary.setText(
-                f"{tr('analysis.results.colony_count')}: {count}\n"
-                f"{tr('analysis.results.density')}: {density:.2f}\n"
-                f"{tr('analysis.results.area')}: {area:.2f}\n"
-                f"{tr('analysis.results.processing_time')}: {time:.2f}s"
-            )
-
-    def display_image(self, path: str, results: Optional[Dict] = None):
-        """Display image with optional overlay of results"""
+    def load_image(self, path: str):
+        """Load image for analysis"""
         if not path or not os.path.exists(path):
+            logger.warning(f"Invalid image path: {path}")
             return
-            
-        # Check cache first
-        cache_key = f"{path}_{hash(str(results)) if results else 'raw'}"
-        if cache_key in self.image_cache:
-            self.display.setPixmap(self.image_cache[cache_key])
-            return
-            
-        # Load image
-        pixmap = QPixmap(path)
-        if pixmap.isNull():
-            return
-            
-        # Scale to fit
-        scaled = pixmap.scaled(
-            int(self.scroll.size().width() * 0.8),  # Leave space for info panel
-            self.scroll.size().height(),
-            Qt.AspectRatioMode.KeepAspectRatio,
-            Qt.TransformationMode.SmoothTransformation
+
+        self.current_image = path
+        self.current_results = None
+        self.export_btn.setEnabled(False)
+        self.summary.setVisible(False)
+        
+        self.display_image(path)
+        
+        if hasattr(self.parent(), "setWindowTitle"):
+            filename = os.path.basename(path)
+            self.parent().setWindowTitle(f"{tr('window.title')} - {filename}")
+
+    def _update_summary_text(self, results: Dict[str, Any]):
+        """Update summary text with results"""
+        colonies = results.get('colonies', [])
+        total_conf = sum(colony['confidence'] for colony in colonies)
+        avg_conf = total_conf / len(colonies) if colonies else 0
+        
+        # Make sure we have these translations in zh_CN.json:
+        # analysis.results.summary = "菌落数量: {count} 菌落密度: {density} 覆盖面积: {area} 平均置信度: {confidence:.2f}"
+        
+        self.summary.setText(
+            tr("analysis.results.summary").format(
+                count=results.get('count', 0),
+                density=results.get('density', 0),
+                area=results.get('area', 0),
+                confidence=avg_conf
+            )
         )
-        
-        # Create a new wider pixmap to accommodate the info panel
-        info_width = 200  # Width of info panel
-        final_pixmap = QPixmap(scaled.width() + info_width, scaled.height())
-        final_pixmap.fill(Qt.GlobalColor.white)  # Fill with white background
-        
-        # Draw the original image
-        painter = QPainter(final_pixmap)
-        painter.drawPixmap(0, 0, scaled)
-        
-        # Draw results if available
-        if results:
-            # Draw colonies on the image part
-            painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-            
-            for colony in results.get("colonies", []):
-                x = colony["x"]
-                y = colony["y"]
-                r = colony["radius"]
-                conf = colony["confidence"]
-                
-                try:
-                    # Calculate scaled coordinates for circle
-                    scale_x = scaled.width() / pixmap.width()
-                    scale_y = scaled.height() / pixmap.height()
-                    
-                    # Scale coordinates
-                    scaled_x = int(x * scale_x)
-                    scaled_y = int(y * scale_y)
-                    scaled_r = int(r * min(scale_x, scale_y))
-                    
-                    # Draw circle with confidence-based color
-                    color = QColor(
-                        int(255 * (1 - conf)),  # Red decreases with confidence
-                        int(255 * conf),        # Green increases with confidence
-                        0                       # No blue component
-                    )
-                    pen = QPen(color)
-                    pen.setWidth(2)
-                    painter.setPen(pen)
-                    
-                    # Draw circle with antialiasing
-                    painter.drawEllipse(
-                        scaled_x - scaled_r,
-                        scaled_y - scaled_r,
-                        2 * scaled_r,
-                        2 * scaled_r
-                    )
-                    
-                    # Draw confidence text
-                    text = f"{conf:.2f}"
-                    painter.setPen(QPen(Qt.GlobalColor.white))
-                    metrics = painter.fontMetrics()
-                    text_rect = metrics.boundingRect(text)
-                    
-                    # Create path for text background
-                    text_path = QPainterPath()
-                    bg_rect = QRectF(
-                        scaled_x - text_rect.width()//2 - 2,
-                        scaled_y - text_rect.height()//2 - 2,
-                        text_rect.width() + 4,
-                        text_rect.height() + 4
-                    )
-                    text_path.addRoundedRect(bg_rect, 2, 2)
-                    
-                    # Draw background with antialiasing
-                    painter.fillPath(text_path, QColor(0, 0, 0, 127))
-                    
-                    # Draw text
-                    painter.drawText(
-                        scaled_x - text_rect.width()//2,
-                        scaled_y + text_rect.height()//2,
-                        text
-                    )
-                    
-                except Exception as e:
-                    logger.error(f"Error drawing overlay: {e}")
+        self.summary.setVisible(True)
 
-            # Draw info panel
-            info_x = scaled.width() + 10  # Start 10 pixels from the image edge
-            info_y = 20  # Start 20 pixels from top
-            line_height = painter.fontMetrics().height() + 5
-            
-            # Draw title
-            painter.setPen(QPen(Qt.GlobalColor.black))
-            font = painter.font()
-            font.setBold(True)
-            painter.setFont(font)
-            painter.drawText(info_x, info_y, tr("analysis.results.title"))
-            font.setBold(False)
-            painter.setFont(font)
-            info_y += line_height * 2
+    def _save_result_image(self, results_dir: str, base_filename: str):
+        """Save result image with overlays"""
+        if self.current_image and self.display.pixmap():
+            image_path = os.path.join(results_dir, f"{base_filename}.png")
+            self.display.pixmap().save(image_path)
 
-            # Draw timestamp
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            painter.drawText(info_x, info_y, tr("analysis.results.time"))
-            info_y += line_height
-            painter.drawText(info_x, info_y, timestamp)
-            info_y += line_height * 2
+    def _save_csv_results(self, results_dir: str, base_filename: str, results: Dict[str, Any]):
+        """Save results as CSV"""
+        csv_path = os.path.join(results_dir, f"{base_filename}.csv")
+        ResultExporter.export_csv(csv_path, results)
 
-            # Draw colony count
-            count = results.get("count", 0)
-            painter.drawText(info_x, info_y, tr("analysis.results.colony_count"))
-            info_y += line_height
-            painter.drawText(info_x, info_y, str(count))
-            info_y += line_height * 2
+    def _save_json_results(self, results_dir: str, base_filename: str, results: Dict[str, Any]):
+        """Save results as JSON"""
+        json_path = os.path.join(results_dir, f"{base_filename}.json")
+        ResultExporter.export_json(json_path, results)
 
-            # Draw confidence metrics
-            total_conf = sum(c["confidence"] for c in results.get("colonies", []))
-            avg_conf = total_conf / len(results["colonies"]) if results["colonies"] else 0
-            error_rate = 1 - avg_conf
+    def show_status_message(self, message: str):
+        """Show status bar message"""
+        if hasattr(self.parent(), "show_status_message"):
+            self.parent().show_status_message(message)
 
-            painter.drawText(info_x, info_y, tr("analysis.results.confidence"))
-            info_y += line_height
-            painter.drawText(info_x, info_y, f"{avg_conf:.2f}")
-            info_y += line_height * 2
-
-            painter.drawText(info_x, info_y, tr("analysis.results.error_rate"))
-            info_y += line_height
-            painter.drawText(info_x, info_y, f"{error_rate:.2f}")
-            info_y += line_height * 2
-
-            # Draw density and area
-            density = results.get("density", 0)
-            painter.drawText(info_x, info_y, tr("analysis.results.density"))
-            info_y += line_height
-            painter.drawText(info_x, info_y, f"{density:.2f}")
-            info_y += line_height * 2
-
-            area = results.get("area", 0)
-            painter.drawText(info_x, info_y, tr("analysis.results.area"))
-            info_y += line_height
-            painter.drawText(info_x, info_y, f"{area:.2f}%")
-            
-            painter.end()
-            
-        # Manage cache before adding new item
-        self.manage_cache()
-        
-        # Cache the result and display
-        self.image_cache[cache_key] = final_pixmap
-        self.display.setPixmap(final_pixmap)
-        
-        # Log cache status
-        logger.debug(f"Image cache size: {len(self.image_cache)}")
-        
     @pyqtSlot()
     def start_analysis(self):
-        """Start colony analysis"""
+        """Start colony analysis and return the results"""
         if not self.current_image:
-            return
+            return None
             
         try:
-            # Clear previous results and cache
             self.clear_cache()
-            
-            # Update UI
             self.analyze_btn.setEnabled(False)
             self.progress.setVisible(True)
             self.progress.setRange(0, 0)
             self.analysis_started.emit()
             
-            # Get parameters
-            params = {
-                "confidence": self.confidence.value() / 100,
-                "min_size": self.min_size.value(),
-                "max_size": self.max_size.value(),
-                "use_gpu": self.device.currentText() == "GPU"
-            }
-            
-            # Run analysis
-            self.current_results = self.detector.analyze(
+            params = self.get_analysis_params()
+            # Use correct params from get_analysis_params
+            self.current_results = self._detector.analyze_image(  # Changed from analyze to analyze_image
                 self.current_image,
-                **params
+                confidence=params['confidence_threshold'],
+                nms_threshold=params['nms_threshold'],
+                use_gpu=(params['device'] == 'cuda')
             )
             
-            # Update display
             self.display_image(self.current_image, self.current_results)
+            self._update_summary_text(self.current_results)
             
-            # Update summary
-            count = self.current_results.get("count", 0)
-            density = self.current_results.get("density", 0)
-            area = self.current_results.get("area", 0)
-            time = self.current_results.get("time", 0)
-            
-            self.summary.setText(
-                f"{tr('analysis.results.colony_count')}: {count}\n"
-                f"{tr('analysis.results.density')}: {density:.2f}\n"
-                f"{tr('analysis.results.area')}: {area:.2f}\n"
-                f"{tr('analysis.results.processing_time')}: {time:.2f}s"
-            )
-            self.summary.setVisible(True)
-            
-            # Enable export
             self.export_btn.setEnabled(True)
-            
-            # Emit results and save
             self.analysis_finished.emit(self.current_results)
             self.save_analysis_results(self.current_image, self.current_results)
+            
+            return self.current_results
 
         except Exception as e:
             logger.error(f"Analysis failed: {e}")
@@ -492,11 +314,63 @@ class ResultVisualizer(QWidget):
                 tr("dialog.error"),
                 str(e)
             )
+            return None
             
         finally:
-            # Reset UI
             self.analyze_btn.setEnabled(True)
             self.progress.setVisible(False)
+
+    def clear_cache(self):
+        """Clear image cache"""
+        self.image_cache.clear()
+        self._opt_cache.clear()
+
+    def auto_optimize_params(self):
+        """Auto-optimize parameters based on image characteristics"""
+        if not self.current_image:
+            return
+
+        try:
+            import cv2
+            import numpy as np
+            
+            with open(self.current_image, 'rb') as f:
+                img_array = np.frombuffer(f.read(), np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                
+            if img is None:
+                raise RuntimeError(tr("error.load_image"))
+                
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            thresh = cv2.adaptiveThreshold(
+                gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                cv2.THRESH_BINARY_INV, 21, 5
+            )
+            
+            density = np.count_nonzero(thresh) / (gray.shape[0] * gray.shape[1])
+            contrast = np.std(gray) / 255.0
+            blur = cv2.Laplacian(gray, cv2.CV_64F).var()
+            
+            if density > 0.3:  # Dense
+                nms = min(0.4 + density * 0.3, 0.6)
+                conf = max(0.3 - density * 0.2, 0.15)
+            else:  # Sparse
+                nms = 0.4
+                conf = 0.25
+                
+            if blur < 100:  # Blurry
+                conf *= 0.8
+            if contrast < 0.15:  # Low contrast
+                conf *= 0.9
+                
+            self.nms_spin.setValue(nms)
+            self.score_spin.setValue(conf)
+            
+            self.start_analysis()
+            
+        except Exception as e:
+            logger.error(f"Auto-optimization failed: {e}")
+            self.show_status_message(tr("error.auto_optimize_failed"))
 
     def save_analysis_results(self, image_path: str, results: Dict[str, Any]):
         """Save analysis results to project directory"""
@@ -509,35 +383,29 @@ class ResultVisualizer(QWidget):
         base_filename = f"{project_name}_result_{timestamp}"
         results_dir = os.path.join(self.current_project_path, "results")
         
-        # Create results directory if it doesn't exist
         os.makedirs(results_dir, exist_ok=True)
-
-        # Save result image
-        image_filename = f"{base_filename}.png"
-        image_filepath = os.path.join(results_dir, image_filename)
-        self.display.pixmap().save(image_filepath)
-
-        # Save CSV results
-        csv_filename = f"{base_filename}.csv"
-        csv_filepath = os.path.join(results_dir, csv_filename)
-        ResultExporter.export_csv(csv_filepath, results)
-
-        # Save JSON results
-        json_filename = f"{base_filename}.json"
-        json_filepath = os.path.join(results_dir, json_filename)
-        ResultExporter.export_json(json_filepath, results)
-
-        logger.info(f"Results saved to: {results_dir}")
         
+        try:
+            self._save_result_image(results_dir, base_filename)
+            self._save_csv_results(results_dir, base_filename, results)
+            self._save_json_results(results_dir, base_filename, results)
+            logger.info(f"Results saved to: {results_dir}")
+        except Exception as e:
+            logger.error(f"Error saving results: {e}")
+            QMessageBox.warning(
+                self,
+                tr("dialog.warning"),
+                tr("error.save_results").format(error=str(e))
+            )
+
     @pyqtSlot()
     def export_results(self):
-        """Export analysis results"""
+        """Show export dialog and handle result export"""
         if not self.current_results:
             return
             
         try:
-            # Get save path
-            path, filter = QFileDialog.getSaveFileName(
+            path, chosen_filter = QFileDialog.getSaveFileName(
                 self,
                 tr("analysis.results.export"),
                 "",
@@ -547,16 +415,16 @@ class ResultVisualizer(QWidget):
             if not path:
                 return
                 
-            # Determine format and export
-            if filter == "CSV (*.csv)":
+            success = False
+            if chosen_filter == "CSV (*.csv)":
                 if not path.endswith('.csv'):
                     path += '.csv'
                 success = ResultExporter.export_csv(path, self.current_results)
-            elif filter == "JSON (*.json)":
+            elif chosen_filter == "JSON (*.json)":
                 if not path.endswith('.json'):
                     path += '.json'
                 success = ResultExporter.export_json(path, self.current_results)
-            else:  # Excel
+            else:
                 if not path.endswith('.xlsx'):
                     path += '.xlsx'
                 success = ResultExporter.export_excel(path, self.current_results)
@@ -573,8 +441,64 @@ class ResultVisualizer(QWidget):
                 tr("dialog.error"),
                 str(e)
             )
+
+    def on_params_changed(self):
+        """Handle parameter changes"""
+        if self.current_image and self.current_results:
+            self.start_analysis()
+
+    def display_image(self, path: str, results: Optional[Dict[str, Any]] = None):
+        """Display image with results overlay"""
+        if not path or not os.path.exists(path):
+            return
             
-    def show_status_message(self, message: str):
-        """Show status bar message"""
-        if hasattr(self.parent(), "show_status_message"):
-            self.parent().show_status_message(message)
+        try:
+            pixmap = QPixmap(path)
+            if pixmap.isNull():
+                return
+                
+            scaled = pixmap.scaled(
+                self.scroll.width(),
+                self.scroll.height(),
+                Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation
+            )
+            
+            if results:
+                painter = QPainter(scaled)
+                painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+                
+                colonies = results.get("colonies", [])
+                for colony in colonies:
+                    x = colony.get("x", 0)
+                    y = colony.get("y", 0)
+                    r = colony.get("radius", 0)
+                    conf = colony.get("confidence", 0)
+                    
+                    scale_x = scaled.width() / pixmap.width()
+                    scale_y = scaled.height() / pixmap.height()
+                    scaled_x = int(x * scale_x)
+                    scaled_y = int(y * scale_y)
+                    scaled_r = int(r * min(scale_x, scale_y))
+                    
+                    color = QColor(
+                        int(255 * (1 - conf)),
+                        int(255 * conf),
+                        0
+                    )
+                    pen = QPen(color)
+                    pen.setWidth(2)
+                    painter.setPen(pen)
+                    painter.drawEllipse(
+                        scaled_x - scaled_r,
+                        scaled_y - scaled_r,
+                        2 * scaled_r,
+                        2 * scaled_r
+                    )
+                    
+                painter.end()
+                
+            self.display.setPixmap(scaled)
+            
+        except Exception as e:
+            logger.error(f"Error displaying image: {e}")

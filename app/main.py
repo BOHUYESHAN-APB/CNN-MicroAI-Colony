@@ -102,7 +102,7 @@ def main():
         config = ConfigManager()
 
         # Create main window
-        window = MainWindow()
+        window = MainWindow(config)
             
         if config.get("interface.start_maximized", False):
             window.showMaximized()

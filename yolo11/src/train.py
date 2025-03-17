@@ -46,7 +46,7 @@ def setup_logger():
 
 
 class Trainer:
-    def __init__(self, config_path='C:/Users/ETPau/Documents/GitHub/CNN-MicroAI-Colony/yolo11/config.yaml'):  # Hardcoded absolute config path as default
+    def __init__(self, config_path='c:/Users/韩涛/OneDrive/文档/GitHub/CNN-MicroAI-Colony/yolo11/config.yaml'):  # Hardcoded absolute config path as default
         print(f"Script directory: {os.path.dirname(__file__)}") # Print script directory
         print(f"Config path (before Config init): {config_path}") # Print config path INSIDE init
         self.config = Config(config_path)  # Load config

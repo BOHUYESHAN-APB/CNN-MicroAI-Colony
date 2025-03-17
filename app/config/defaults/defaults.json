@@ -24,7 +24,14 @@
         "max_size": 100,
         "use_gpu": true,
         "batch_size": 4,
-        "parallel_processing": true
+        "parallel_processing": true,
+        "adaptive_thresh_method": "gaussian",
+        "available_adaptive_thresh_methods": ["gaussian", "mean"],
+        "clahe_clip_limit": 3.0,
+        "clahe_tile_grid_size": 12,
+        "blur_kernel_size": 7,
+        "canny_min_threshold": 50,
+        "canny_max_threshold": 150
     },
     "display": {
         "chart_style": "dark",

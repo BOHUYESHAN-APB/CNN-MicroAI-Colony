@@ -8,7 +8,7 @@ class Config:
     def __init__(self, config_path):
         print(f"Config path inside Config class: {config_path}") # Print path in Config class
         try:
-            with open(config_path, 'r') as f:
+            with open(config_path, 'r', encoding='utf-8') as f:
                 self.config = yaml.safe_load(f)
         except FileNotFoundError:
             raise ConfigError(f"Configuration file not found: {config_path}") # Use ConfigError

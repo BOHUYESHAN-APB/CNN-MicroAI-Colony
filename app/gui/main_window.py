@@ -25,11 +25,12 @@ logger = logging.getLogger(__name__)
 class MainWindow(QMainWindow):
     """Main application window"""
 
-    def __init__(self):
+    def __init__(self, config):
         super().__init__()
+        self.config = config  # Store config
         self.project_manager = ProjectManager()
         self.theme_manager = ThemeManager()
-        self.file_system_model = QFileSystemModel()  # Initialize QFileSystemModel
+        self.file_system_model = QFileSystemModel()
         self.setup_ui()
 
     def setup_ui(self):
@@ -67,6 +68,7 @@ class MainWindow(QMainWindow):
 
         # Result Table (Central Bottom Panel)
         self.result_table = ResultVisualizer(self, self.project_manager.get_project_path())
+        self.result_table.set_config(self.config)
         central_panel_layout.addWidget(self.result_table)
 
         # Image List Widget (Right Panel)
@@ -337,7 +339,13 @@ class MainWindow(QMainWindow):
         """Start image analysis"""
         if image := self.image_list_widget.get_selected_image():
             self.result_table.load_image(image)
-            self.result_table.start_analysis()
+            result = self.result_table.start_analysis()
+            
+            # 如果分析完成且有结果，显示结果对话框
+            if result and isinstance(result, dict):
+                from .result_dialog import ResultDialog
+                dialog = ResultDialog(result, self)
+                dialog.exec()
 
     def export_results(self):
         """Export analysis results"""
