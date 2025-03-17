@@ -12,10 +12,11 @@ from datetime import datetime
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
     QLabel, QScrollArea, QFrame, QFileDialog, QMessageBox,
-    QSpinBox, QComboBox, QProgressBar, QDoubleSpinBox
+    QSpinBox, QComboBox, QProgressBar, QDoubleSpinBox,
+    QGroupBox, QGridLayout
 )
 from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot, QRect, QRectF
-from PyQt6.QtGui import QPixmap, QPainter, QPen, QColor, QPainterPath
+from PyQt6.QtGui import QPixmap, QPainter, QPen, QColor, QPainterPath, QImage
 
 from ..utils.i18n import tr
 from ..analysis_core import ColonyDetector
@@ -100,6 +101,33 @@ class ResultExporter:
 class ResultVisualizer(QWidget):
     """Widget for displaying analysis results"""
 
+    def retranslateUi(self):
+        """Retranslate UI elements"""
+        self.analyze_btn.setText(tr("analysis.start"))
+        self.export_btn.setText(tr("analysis.export"))
+        self.auto_opt_btn.setText(tr("analysis.auto_optimize"))
+        params_group = self.findChild(QGroupBox, "params_group") # added name in setup_ui
+        if params_group:
+            params_group.setTitle(tr("analysis.params.title"))
+        nms_label = self.findChild(QLabel, "nms_label")
+        if nms_label:
+            nms_label.setText(tr("settings.nms_threshold"))
+        score_label = self.findChild(QLabel, "score_label")
+        if score_label:
+            score_label.setText(tr("settings.score_threshold"))
+        min_size_label = self.findChild(QLabel, "min_size_label")
+        if min_size_label:
+            min_size_label.setText(tr("settings.min_size"))
+        max_size_label = self.findChild(QLabel, "max_size_label")
+        if max_size_label:
+            max_size_label.setText(tr("settings.max_size"))
+        petri_size_label = self.findChild(QLabel, "petri_size_label")
+        if petri_size_label:
+            petri_size_label.setText(tr("settings.petri_size"))
+        device_label = self.findChild(QLabel, "device_label")
+        if device_label:
+            device_label.setText(tr("analysis.settings.device"))
+
     # Signals
     analysis_started = pyqtSignal()
     analysis_finished = pyqtSignal(dict)  # Emits results dictionary
@@ -151,27 +179,55 @@ class ResultVisualizer(QWidget):
         params = QHBoxLayout()
         layout.addLayout(params)
         
+        # 参数设置区域
+        params_group = QGroupBox(tr("analysis.params.title"))
+        params_layout = QGridLayout()
+        params_group.setLayout(params_layout)
+        layout.addWidget(params_group)
+        
+        current_row = 0
+        
         # NMS threshold
         self.nms_spin = QDoubleSpinBox()
         self.nms_spin.setRange(0.1, 1.0)
         self.nms_spin.setSingleStep(0.01)
         self.nms_spin.setValue(0.45)
-        params.addWidget(QLabel(tr("settings.nms_threshold")))
-        params.addWidget(self.nms_spin)
+        params_layout.addWidget(QLabel(tr("settings.nms_threshold")), current_row, 0)
+        params_layout.addWidget(self.nms_spin, current_row, 1)
         
         # Confidence threshold
         self.score_spin = QDoubleSpinBox()
         self.score_spin.setRange(0.1, 1.0)
         self.score_spin.setSingleStep(0.01)
         self.score_spin.setValue(0.25)
-        params.addWidget(QLabel(tr("settings.score_threshold")))
-        params.addWidget(self.score_spin)
+        params_layout.addWidget(QLabel(tr("settings.score_threshold")), current_row, 2)
+        params_layout.addWidget(self.score_spin, current_row, 3)
+        current_row += 1
         
-        # Device selection
+        # Min/Max size
+        self.min_size_spin = QSpinBox()
+        self.min_size_spin.setRange(1, 50)
+        self.min_size_spin.setValue(5)
+        params_layout.addWidget(QLabel(tr("settings.min_size")), current_row, 0)
+        params_layout.addWidget(self.min_size_spin, current_row, 1)
+        
+        self.max_size_spin = QSpinBox()
+        self.max_size_spin.setRange(10, 200)
+        self.max_size_spin.setValue(100)
+        params_layout.addWidget(QLabel(tr("settings.max_size")), current_row, 2)
+        params_layout.addWidget(self.max_size_spin, current_row, 3)
+        current_row += 1
+        
+        # Petri dish size and device selection
+        self.petri_size_combo = QComboBox()
+        self.petri_size_combo.addItems(['60mm', '90mm'])
+        params_layout.addWidget(QLabel(tr("settings.petri_size")), current_row, 0)
+        params_layout.addWidget(self.petri_size_combo, current_row, 1)
+        
         self.device = QComboBox()
         self.device.addItems(['cpu', 'cuda'])
-        params.addWidget(QLabel(tr("analysis.settings.device")))
-        params.addWidget(self.device)
+        params_layout.addWidget(QLabel(tr("analysis.settings.device")), current_row, 2)
+        params_layout.addWidget(self.device, current_row, 3)
         
         self.progress = QProgressBar()
         self.progress.setVisible(False)
@@ -208,7 +264,11 @@ class ResultVisualizer(QWidget):
         """Get current analysis parameters"""
         return {
             'nms_threshold': self.nms_spin.value(),
-            'confidence_threshold': self.score_spin.value(),
+            'confidence': self.score_spin.value(),  # Changed from confidence_threshold
+            'min_size': self.min_size_spin.value(),
+            'max_size': self.max_size_spin.value(),
+            'petri_size': int(self.petri_size_combo.currentText().replace('mm', '')),  # Convert '90mm' to 90
+            'use_gpu': self.device.currentText() == 'cuda',
             'device': self.device.currentText()
         }
 
@@ -256,9 +316,77 @@ class ResultVisualizer(QWidget):
 
     def _save_result_image(self, results_dir: str, base_filename: str):
         """Save result image with overlays"""
-        if self.current_image and self.display.pixmap():
-            image_path = os.path.join(results_dir, f"{base_filename}.png")
-            self.display.pixmap().save(image_path)
+        if not self.current_image or not self.current_results:
+            return
+
+        try:
+            import cv2
+            import numpy as np
+            
+            # 读取原始图像
+            img_array = np.fromfile(self.current_image, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            if img is None:
+                raise RuntimeError("Failed to load image")
+
+            # 左侧是标注后的图像
+            height, width = img.shape[:2]
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            font_scale = min(width, height) / 2000
+            thickness = max(1, int(font_scale * 2))
+            
+            # 添加标注信息
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            filename = os.path.basename(self.current_image)
+            
+            # 添加标注
+            colonies = self.current_results.get("colonies", [])
+            for i, colony in enumerate(colonies, 1):
+                x = int(colony.get("x", 0))
+                y = int(colony.get("y", 0))
+                r = int(colony.get("radius", 0))
+                conf = colony.get("confidence", 0)
+                
+                # 根据置信度设置颜色
+                color = (
+                    0,  # B
+                    int(255 * conf),  # G
+                    int(255 * (1 - conf))  # R
+                )
+                
+                # 画圆和编号
+                cv2.circle(img, (x, y), r, color, thickness)
+                cv2.putText(img, str(i), (x-r//2, y), font, font_scale * 0.8, color, thickness)
+
+            # 添加文件信息
+            cv2.putText(img, f"文件: {filename}", (10, 30), font, font_scale, (0, 0, 0), thickness + 1)
+            cv2.putText(img, f"分析时间: {timestamp}", (10, 60), font, font_scale, (0, 0, 0), thickness + 1)
+            cv2.putText(img, f"文件: {filename}", (10, 30), font, font_scale, (255, 255, 255), thickness)
+            cv2.putText(img, f"分析时间: {timestamp}", (10, 60), font, font_scale, (255, 255, 255), thickness)
+            
+            # 添加分析结果信息
+            y_pos = 100
+            results_text = [
+                f"菌落数量: {len(colonies)}",
+                f"置信度阈值: {self.score_spin.value():.2f}",
+                f"培养皿大小: {self.petri_size_combo.currentText()}",
+                f"菌落密度: {self.current_results.get('density', 0):.2f}/mm²",
+                f"覆盖面积: {self.current_results.get('area', 0):.2%}"
+            ]
+            
+            for text in results_text:
+                text_pos = (10, y_pos)  # 创建元组
+                cv2.putText(img, text, text_pos, font, font_scale, (0, 0, 0), thickness + 1)
+                cv2.putText(img, text, text_pos, font, font_scale, (255, 255, 255), thickness)
+                y_pos += int(30 * font_scale)
+
+            # 保存结果图像
+            output_path = os.path.join(results_dir, f"{base_filename}.png")
+            cv2.imencode('.png', img)[1].tofile(output_path)
+            
+        except Exception as e:
+            logger.error(f"Error saving result image: {e}")
+            self.show_status_message(tr("error.save_image"))
 
     def _save_csv_results(self, results_dir: str, base_filename: str, results: Dict[str, Any]):
         """Save results as CSV"""
@@ -292,9 +420,7 @@ class ResultVisualizer(QWidget):
             # Use correct params from get_analysis_params
             self.current_results = self._detector.analyze_image(  # Changed from analyze to analyze_image
                 self.current_image,
-                confidence=params['confidence_threshold'],
-                nms_threshold=params['nms_threshold'],
-                use_gpu=(params['device'] == 'cuda')
+                **params  # Pass all parameters directly
             )
             
             self.display_image(self.current_image, self.current_results)
@@ -453,10 +579,71 @@ class ResultVisualizer(QWidget):
             return
             
         try:
-            pixmap = QPixmap(path)
-            if pixmap.isNull():
-                return
+            # 使用cv2读取图片以确保正确处理编码
+            import cv2
+            import numpy as np
+            
+            img_array = np.fromfile(path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            if img is None:
+                raise RuntimeError("Failed to load image")
+            
+            # 转换为RGB
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            height, width = img.shape[:2]
+            
+            # 在图像上添加标注
+            if results:
+                # 绘制标注时间和文件名
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                filename = os.path.basename(path)
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                font_scale = min(width, height) / 2000
+                thickness = max(1, int(font_scale * 2))
                 
+                # 添加文本背景
+                # 添加文本（使用正确的元组格式）
+                file_pos = (10, 30)
+                time_pos = (10, 60)
+                
+                cv2.putText(img, f"文件: {filename}", 
+                           file_pos, font, font_scale, (0, 0, 0), thickness + 1)
+                cv2.putText(img, f"分析时间: {timestamp}", 
+                           time_pos, font, font_scale, (0, 0, 0), thickness + 1)
+                
+                cv2.putText(img, f"文件: {filename}", 
+                           file_pos, font, font_scale, (255, 255, 255), thickness)
+                cv2.putText(img, f"分析时间: {timestamp}", 
+                           time_pos, font, font_scale, (255, 255, 255), thickness)
+                
+                # 绘制菌落标注
+                colonies = results.get("colonies", [])
+                for i, colony in enumerate(colonies, 1):
+                    x = int(colony.get("x", 0))
+                    y = int(colony.get("y", 0))
+                    r = int(colony.get("radius", 0))
+                    conf = colony.get("confidence", 0)
+                    
+                    # 根据置信度设置颜色
+                    color = (
+                        int(255 * (1 - conf)),  # R
+                        int(255 * conf),        # G
+                        0                       # B
+                    )
+                    
+                    # 画圆和编号
+                    cv2.circle(img, (x, y), r, color, thickness)
+                    text_pos = (x-r//2, y)  # 创建元组
+                    cv2.putText(img, str(i), text_pos, 
+                              font, font_scale * 0.8, color, thickness)
+            
+            # 转换为QPixmap显示
+            height, width = img.shape[:2]
+            bytes_per_line = 3 * width
+            image = QImage(img.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
+            pixmap = QPixmap.fromImage(image)
+            
+            # 缩放以适应显示区域
             scaled = pixmap.scaled(
                 self.scroll.width(),
                 self.scroll.height(),
@@ -464,41 +651,8 @@ class ResultVisualizer(QWidget):
                 Qt.TransformationMode.SmoothTransformation
             )
             
-            if results:
-                painter = QPainter(scaled)
-                painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-                
-                colonies = results.get("colonies", [])
-                for colony in colonies:
-                    x = colony.get("x", 0)
-                    y = colony.get("y", 0)
-                    r = colony.get("radius", 0)
-                    conf = colony.get("confidence", 0)
-                    
-                    scale_x = scaled.width() / pixmap.width()
-                    scale_y = scaled.height() / pixmap.height()
-                    scaled_x = int(x * scale_x)
-                    scaled_y = int(y * scale_y)
-                    scaled_r = int(r * min(scale_x, scale_y))
-                    
-                    color = QColor(
-                        int(255 * (1 - conf)),
-                        int(255 * conf),
-                        0
-                    )
-                    pen = QPen(color)
-                    pen.setWidth(2)
-                    painter.setPen(pen)
-                    painter.drawEllipse(
-                        scaled_x - scaled_r,
-                        scaled_y - scaled_r,
-                        2 * scaled_r,
-                        2 * scaled_r
-                    )
-                    
-                painter.end()
-                
             self.display.setPixmap(scaled)
             
         except Exception as e:
             logger.error(f"Error displaying image: {e}")
+            self.show_status_message(tr("error.display_image"))

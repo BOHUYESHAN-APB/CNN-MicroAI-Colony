@@ -9,6 +9,7 @@ import numpy as np
 import logging
 from typing import Dict, List, Any, Optional
 from time import time
+from datetime import datetime
 from pathlib import Path
 
 from .utils.path_manager import get_checkpoints_dir
@@ -35,40 +36,99 @@ class ColonyDetector:
         # Initialize model
         self.load_model()
 
-    def _create_info_panel(self, image: np.ndarray, colony_count: int, confidence_thresh: float, process_time: float) -> np.ndarray:
-        """在原图右侧添加信息面板"""
+    def _create_info_panel(self, image: np.ndarray, colonies: List[Dict], density: float, 
+                          area_coverage: float, confidence_thresh: float, process_time: float, 
+                          image_name: str, petri_size: int = 90) -> np.ndarray:
+        """在原图右侧添加信息面板并标注菌落"""
         h, w = image.shape[:2]
-        info_width = 300  # 信息区域宽度
+        info_width = 400  # 扩大信息区域宽度
         
+        # 在原图上标注菌落
+        annotated_image = image.copy()
+        for colony in colonies:
+            x, y = colony['x'], colony['y']
+            r = colony['radius']
+            conf = colony['confidence']
+            
+            # 根据置信度设置颜色 (绿色到红色)
+            color = (
+                int(255 * (1 - conf)),  # B
+                int(255 * conf),        # G
+                0                       # R
+            )
+            
+            # 画圆圈标注菌落
+            cv2.circle(annotated_image, (x, y), r, color, 2)
+            
         # 创建带有信息区域的新画布
         canvas = np.ones((h, w + info_width, 3), dtype=np.uint8) * 255
-        canvas[:, :w] = image  # 复制原图
+        canvas[:, :w] = annotated_image  # 复制带标注的图
         
         # 添加文本信息
         text_color = (0, 0, 0)  # 黑色文字
         font = cv2.FONT_HERSHEY_SIMPLEX
         start_x = w + 20
         start_y = 50
-        line_gap = 40
+        line_gap = 35
+        
+        # 获取当前时间
+        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        # 标题
+        # 标题和文件信息
         cv2.putText(canvas, "分析结果", (start_x, start_y), 
                     font, 1.0, (0, 0, 255), 2)
         start_y += line_gap
+        
+        cv2.putText(canvas, f"文件: {image_name}", 
+                    (start_x, start_y), font, 0.6, text_color, 1)
+        start_y += line_gap
+        
+        cv2.putText(canvas, f"分析时间: {current_time}", 
+                    (start_x, start_y), font, 0.6, text_color, 1)
+        start_y += line_gap * 1.5
 
-        # 菌落数量
-        cv2.putText(canvas, f"菌落数量: {colony_count}", 
+        # 分析结果
+        results = [
+            ("菌落数量", f"{len(colonies)} 个"),
+            ("培养皿大小", f"{petri_size} mm"),
+            ("菌落密度", f"{density:.2f} 个/mm²"),
+            ("覆盖面积", f"{area_coverage:.2%}"),
+            ("置信度阈值", f"{confidence_thresh:.2f}"),
+            ("分析用时", f"{process_time:.2f} 秒")
+        ]
+
+        for label, value in results:
+            cv2.putText(canvas, f"{label}: {value}", 
+                        (start_x, start_y), font, 0.7, text_color, 2)
+            start_y += line_gap
+
+        # 添加置信度图例
+        start_y += line_gap
+        cv2.putText(canvas, "置信度图例:", 
                     (start_x, start_y), font, 0.7, text_color, 2)
         start_y += line_gap
 
-        # 置信度阈值
-        cv2.putText(canvas, f"置信度 >= {confidence_thresh:.2f}", 
-                    (start_x, start_y), font, 0.7, text_color, 2)
-        start_y += line_gap
+        legend_width = 200
+        legend_height = 20
+        for i in range(legend_width):
+            confidence = i / legend_width
+            color = (
+                int(255 * (1 - confidence)),
+                int(255 * confidence),
+                0
+            )
+            cv2.line(canvas, 
+                     (start_x + i, start_y),
+                     (start_x + i, start_y + legend_height),
+                     color,
+                     1)
 
-        # 处理时间
-        cv2.putText(canvas, f"处理时间: {process_time:.2f}s", 
-                    (start_x, start_y), font, 0.7, text_color, 2)
+        cv2.putText(canvas, "低", 
+                    (start_x, start_y + legend_height + 20),
+                    font, 0.6, text_color, 1)
+        cv2.putText(canvas, "高", 
+                    (start_x + legend_width - 20, start_y + legend_height + 20),
+                    font, 0.6, text_color, 1)
         
         return canvas
 
@@ -449,11 +509,16 @@ class ColonyDetector:
             logger.info(f"总处理时间: {process_time:.2f}秒")
 
             # 创建带信息面板的结果图像
+            petri_size = kwargs.get('petri_size', 90)  # 获取培养皿大小，默认90mm
             annotated_image = self._create_info_panel(
                 image=image,
-                colony_count=len(colonies),
+                colonies=colonies,
+                density=density,
+                area_coverage=area_coverage,
                 confidence_thresh=self._confidence,
-                process_time=process_time
+                process_time=process_time,
+                image_name=Path(image_path).name,
+                petri_size=petri_size
             )
 
             # 保存结果图像
