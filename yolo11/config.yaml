@@ -1,6 +1,7 @@
 # YOLOv11 Configuration
 
 model:
+  type: 'faster_rcnn_resnet50' # 模型类型，默认为 Faster R-CNN ResNet50
   name: 'yolo11'
   num_classes: 1  # Assuming 1 class for colony detection
   image_size: 224 # Input image size for YOLOv11
@@ -54,7 +55,7 @@ testing:
 
 # Dataset paths
 data:
-  train_path: 'pic-all/' # Path to training images and annotations
-  val_path: 'pic-all/'   # Using same path for validation for now
+  train_path: 'C:/pic-all/' # Path to training images and annotations
+  val_path: 'C:/pic-all/'   # 使用相同路径作为验证集
   test_path: 'test-pic/' # Path to test images and annotations
-  classes_path: 'pic-all/classes.txt' # Path to class names file
+  classes_path: 'C:/pic-all/classes.txt' # Path to class names file

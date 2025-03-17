@@ -72,7 +72,9 @@ def main(model_path): # Modified to accept model_path
         print("Model initialized and ready.")
 
     except Exception as e:
-        print(f"Error loading model: {e}")
+        img_path_str = str(img_file.absolute()) # Get absolute path
+        print(f"Attempting to load image (absolute): {img_path_str}")  # Print absolute image path
+        print(f"Error loading model: {e}") # Move print and return inside except block
         return
 
     # Create test dataloader

@@ -203,6 +203,7 @@ class SettingsDialog(QDialog):
         self.nms_threshold_spin.setRange(0.01, 1.0)
         self.nms_threshold_spin.setSingleStep(0.05)
         self.nms_threshold_spin.setValue(0.28)  # Default value from test_model.py
+        self.nms_threshold_spin.setToolTip("非极大值抑制阈值，用于合并重叠的检测框，值越大保留的框越多")
         layout.addRow(tr("settings.nms_threshold"), self.nms_threshold_spin)
 
         # Score threshold
@@ -210,8 +211,61 @@ class SettingsDialog(QDialog):
         self.score_threshold_spin.setRange(0.01, 1.0)
         self.score_threshold_spin.setSingleStep(0.05)
         self.score_threshold_spin.setValue(0.23)  # Default value from test_model.py
+        self.score_threshold_spin.setToolTip("检测分数阈值，低于此分数的检测框将被过滤，值越高检测越准确但可能遗漏部分菌落")
         layout.addRow(tr("settings.score_threshold"), self.score_threshold_spin)
-        
+
+        # Adaptive threshold method
+        self.adaptive_thresh_combo = QComboBox()
+        self.adaptive_thresh_combo.addItem(tr("settings.adaptive_threshold.gaussian"), "gaussian")
+        self.adaptive_thresh_combo.addItem(tr("settings.adaptive_threshold.mean"), "mean")
+        self.adaptive_thresh_combo.setToolTip("选择自适应阈值算法的类型")
+        layout.addRow(tr("settings.adaptive_threshold"), self.adaptive_thresh_combo)
+
+        # CLAHE parameters
+        self.clahe_clip_spin = QDoubleSpinBox()
+        self.clahe_clip_spin.setRange(1.0, 10.0)
+        self.clahe_clip_spin.setSingleStep(0.5)
+        self.clahe_clip_spin.setValue(2.0)
+        self.clahe_clip_spin.setSuffix("x")
+        self.clahe_clip_spin.setToolTip("限制像素对比度的上限，值越大对比度越强")
+        layout.addRow(tr("settings.clahe_clip_limit"), self.clahe_clip_spin)
+
+        self.clahe_grid_spin = QSpinBox()
+        self.clahe_grid_spin.setRange(2, 32)
+        self.clahe_grid_spin.setSingleStep(2)
+        self.clahe_grid_spin.setValue(8)
+        self.clahe_grid_spin.setSuffix(" x " + str(self.clahe_grid_spin.value()))
+        self.clahe_grid_spin.setToolTip("CLAHE算法的网格大小，值越大局部对比度调整越明显")
+        layout.addRow(tr("settings.clahe_grid_size"), self.clahe_grid_spin)
+
+        # Blur kernel size
+        self.blur_kernel_spin = QSpinBox()
+        self.blur_kernel_spin.setRange(3, 15)
+        self.blur_kernel_spin.setSingleStep(2)
+        self.blur_kernel_spin.setValue(5)
+        self.blur_kernel_spin.setSuffix(" x " + str(self.blur_kernel_spin.value()))
+        self.blur_kernel_spin.setToolTip("高斯模糊核大小，值越大模糊效果越强")
+        layout.addRow(tr("settings.blur_kernel"), self.blur_kernel_spin)
+
+        # Canny thresholds
+        self.canny_min_spin = QSpinBox()
+        self.canny_min_spin.setRange(0, 255)
+        self.canny_min_spin.setValue(50)
+        self.canny_min_spin.setToolTip("Canny边缘检测的低阈值")
+        layout.addRow(tr("settings.canny_min"), self.canny_min_spin)
+
+        self.canny_max_spin = QSpinBox()
+        self.canny_max_spin.setRange(0, 255)
+        self.canny_max_spin.setValue(150)
+        self.canny_max_spin.setToolTip("Canny边缘检测的高阈值")
+        layout.addRow(tr("settings.canny_max"), self.canny_max_spin)
+
+        # Add value changed connections
+        self.clahe_grid_spin.valueChanged.connect(
+            lambda v: self.clahe_grid_spin.setSuffix(" x " + str(v)))
+        self.blur_kernel_spin.valueChanged.connect(
+            lambda v: self.blur_kernel_spin.setSuffix(" x " + str(v)))
+
         tab.setLayout(layout)
         return tab
         
@@ -267,6 +321,18 @@ class SettingsDialog(QDialog):
         self.config.set("analysis.min_size", self.min_size_spin.value())
         self.config.set("analysis.max_size", self.max_size_spin.value())
         self.config.set("analysis.use_gpu", self.gpu_check.isChecked())
+        self.config.set("analysis.adaptive_thresh_method", self.adaptive_thresh_combo.currentData())
+        
+        # CLAHE parameters
+        self.config.set("analysis.clahe_clip_limit", self.clahe_clip_spin.value())
+        self.config.set("analysis.clahe_tile_grid_size", self.clahe_grid_spin.value())
+
+        # Blur kernel size
+        self.config.set("analysis.blur_kernel_size", self.blur_kernel_spin.value())
+
+        # Canny thresholds
+        self.config.set("analysis.canny_min_threshold", self.canny_min_spin.value())
+        self.config.set("analysis.canny_max_threshold", self.canny_max_spin.value())
         
         # Save changes
         self.config.save()

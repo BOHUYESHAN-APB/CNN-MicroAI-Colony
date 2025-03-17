@@ -98,7 +98,9 @@ class ColonyDataset(Dataset):
 
             # Validate image loading
             try:
-                img = cv2.imread(str(img_file))
+                print(f"Attempting to load image: {img_file}")  # Print image path
+                # Ensure file path is decoded as UTF-8 for OpenCV
+                img = cv2.imread(str(img_file).encode('utf-8').decode('utf-8'))
                 if img is None:
                     print(f"Warning: Failed to load image {img_file.name}")
                     continue
@@ -155,9 +157,8 @@ class ColonyDataset(Dataset):
             image = cv2.imread(sample['image'])
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-        # Load annotation
-        with open(sample['annotation'], 'r') as f:
-            ann = json.load(f)
+        # Load annotation - already loaded in _load_samples
+        ann = sample['annotation']
 
         # Create target mask
         # TODO: Implement colony location-based mask generation

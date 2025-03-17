@@ -18,108 +18,44 @@ logger = logging.getLogger(__name__)
 class ColonyDetector:
     """Colony detection and analysis"""
     
-    def __init__(self, config=None): # Added config
-        # Config
-        self.config = config  # Store config
-        
-        # Basic parameters
-        self._min_size = 5  # Minimum colony size
-        self._max_size = 100 # Maximum colony size
-        self._confidence = 0.5  # Detection confidence threshold
-        self._use_gpu = False  # Whether to use GPU
+    def __init__(self):
+        # 基本参数设置 Basic parameters
+        self._min_size = 5  # 最小菌落尺寸 (Minimum colony size)
+        self._max_size = 100  # 最大菌落尺寸 (Maximum colony size)
+        self._confidence = 0.5  # 检测置信度阈值 (Detection confidence threshold)
+        self._use_gpu = False  # 是否使用GPU (Whether to use GPU)
         self._model = None
         self._device = None
         self.scale_x = 1.0
         self.scale_y = 1.0
         
-        # Initialize model
+        # 初始化模型 (Initialize model)
         self.load_model()
-
-    def _create_info_panel(self, image: np.ndarray, colony_count: int, confidence_thresh: float, process_time: float) -> np.ndarray:
-        """在原图右侧添加信息面板"""
-        h, w = image.shape[:2]
-        info_width = 300  # 信息区域宽度
-        
-        # 创建带有信息区域的新画布
-        canvas = np.ones((h, w + info_width, 3), dtype=np.uint8) * 255
-        canvas[:, :w] = image  # 复制原图
-        
-        # 添加文本信息
-        text_color = (0, 0, 0)  # 黑色文字
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        start_x = w + 20
-        start_y = 50
-        line_gap = 40
-
-        # 标题
-        cv2.putText(canvas, "分析结果", (start_x, start_y), 
-                    font, 1.0, (0, 0, 255), 2)
-        start_y += line_gap
-
-        # 菌落数量
-        cv2.putText(canvas, f"菌落数量: {colony_count}", 
-                    (start_x, start_y), font, 0.7, text_color, 2)
-        start_y += line_gap
-
-        # 置信度阈值
-        cv2.putText(canvas, f"置信度 >= {confidence_thresh:.2f}", 
-                    (start_x, start_y), font, 0.7, text_color, 2)
-        start_y += line_gap
-
-        # 处理时间
-        cv2.putText(canvas, f"处理时间: {process_time:.2f}s", 
-                    (start_x, start_y), font, 0.7, text_color, 2)
-        
-        return canvas
 
     def load_model(self):
         """Load the colony detection model"""
-        self._load_detection_model()
-
-    def _load_detection_model(self):
-        """Load the colony detection model based on configuration"""
-        config = self.config.config  # 获取 ConfigManager 实例
-        model_type = config.get("model.type", "faster_rcnn_resnet50")  # 从配置中读取模型类型，默认为 faster_rcnn_resnet50
-        checkpoint_path = ""
-        model_class = None
-
-        if model_type == "faster_rcnn_resnet50":
-            checkpoint_path = config.get("model.faster_rcnn_resnet50.checkpoint_path", "faster_rcnn_resnet50/checkpoints/checkpoint_epoch_31.pth")
-            from app.models.colony_detector import ColonyDetectionModel
-            model_class = ColonyDetectionModel
-        elif model_type == "yolov11":
-            checkpoint_path = config.get("model.yolov11.checkpoint_path", "yolo11/checkpoints/best.pth")
-            from yolo11.src.models.yolo11 import YOLO11Detector
-            model_class = YOLO11Detector
-        else:
-            raise ValueError(f"Unknown model type: {model_type}")
-
+        checkpoint_path = "faster_rcnn_resnet50/checkpoints/checkpoint_epoch_31.pth" # Path to checkpoint file, provided by user
         if not os.path.exists(checkpoint_path):
             raise FileNotFoundError(f"Model checkpoint file not found: {checkpoint_path}")
-        try:
-            checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
-            logger.info(f"Checkpoint keys: {checkpoint.keys()}")
-            self._device = torch.device("cuda" if torch.cuda.is_available() and self._use_gpu else "cpu")
-            if model_type == "faster_rcnn_resnet50":
-                num_classes = 2  # Use 2 classes for the pre-trained Faster R-CNN model
-            else:
-                num_classes = config.get("model.num_classes", 1)
-            self._model = model_class(num_classes=num_classes).to(self._device)
-
-            if model_type == "faster_rcnn_resnet50":
-                model_state_dict = checkpoint['model_state_dict']
-            elif model_type == "yolov11":
-                model_state_dict = checkpoint['state_dict']
-            else:
-                raise ValueError(f"Unknown model type: {model_type}")
-
-            self._model.load_state_dict(model_state_dict, strict=False)
-            self._model.to(self._device)
-            self._model.eval()
-            logger.info(f"Model loaded from: {checkpoint_path}, using device: {self._device}, type: {model_type}")
+        try:    
+            checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu')) # Load checkpoint to CPU
+            logger.info(f"Checkpoint keys: {checkpoint.keys()}") # Print checkpoint keys for inspection
+            # Initialize device before model
+            self._device = torch.device("cuda" if torch.cuda.is_available() and self._use_gpu else "cpu") # Use GPU if available and requested
+            
+            # Import and initialize the actual model from faster_rcnn_resnet50
+            from app.models.colony_detector import ColonyDetectionModel  # Import the actual model class
+            self._model = ColonyDetectionModel().to(self._device)  # Create model instance and move to device
+            
+            # Load the state dict with strict=False to ignore unexpected keys
+            model_state_dict = checkpoint['model_state_dict']  # Get model state dict from checkpoint
+            self._model.load_state_dict(model_state_dict, strict=False)  # Load state dict with strict=False
+            self._model.to(self._device) # Move model to device
+            self._model.eval() # Set model to evaluation mode
+            logger.info(f"Model loaded from: {checkpoint_path}, using device: {self._device}")
         except Exception as e:
             logger.error(f"Error loading checkpoint from {checkpoint_path}: {e}")
-            self._model = None
+            self._model = None # Ensure model is None in case of loading failure
             raise
 
     def estimate_colony_density(self, image: np.ndarray) -> Dict[str, Any]:
@@ -127,12 +63,7 @@ class ColonyDetector:
         # 转换为灰度图并进行初步处理
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-
-        # 计算图像清晰度 (Laplacian variance)
-        laplacian = cv2.Laplacian(blurred, cv2.CV_64F)
-        clarity = np.var(laplacian)
-        logger.info(f"图像清晰度 (Laplacian variance): {clarity:.2f}")
-
+        
         # 快速检测潜在菌落
         _, binary = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
         contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -170,7 +101,7 @@ class ColonyDetector:
         # 获取基础参数
         params = {
             'use_clahe': False,
-            'clahe_clip': 2.0, # 降低 CLAHE clip limit 
+            'clahe_clip': 3.0,
             'clahe_grid': (12, 12),
             'blur_kernel': (7, 7),
             'canny_min': 50,
@@ -379,7 +310,7 @@ class ColonyDetector:
 
         return colonies
 
-    def analyze_image(self, image_path: str, **kwargs) -> Dict[str, Any]:
+    def analyze(self, image_path: str, **kwargs) -> Dict[str, Any]:
         """分析图像中的菌落 (Analyze colonies in image)"""
         start_time = time()
 
@@ -448,34 +379,13 @@ class ColonyDetector:
             process_time = time() - start_time
             logger.info(f"总处理时间: {process_time:.2f}秒")
 
-            # 创建带信息面板的结果图像
-            annotated_image = self._create_info_panel(
-                image=image,
-                colony_count=len(colonies),
-                confidence_thresh=self._confidence,
-                process_time=process_time
-            )
-
-            # 保存结果图像
-            results_dir = os.path.join("app", "results")
-            os.makedirs(results_dir, exist_ok=True)  # 确保目录存在
-            result_path = os.path.join(results_dir, f"{Path(image_path).stem}_result.png")
-            cv2.imencode('.png', annotated_image)[1].tofile(result_path)
-
-            # 准备UI显示的摘要信息
-            summary = f"菌落数量: {len(colonies)}\n" \
-                     f"置信度阈值: {self._confidence}\n" \
-                     f"处理时间: {process_time:.2f}秒"
-
             return {
                 "colonies": colonies,         # 菌落列表 (Colony list)
                 "count": len(colonies),       # 菌落数量 (Colony count)
                 "density": density,           # 密度 (Density)
                 "area": area_coverage,        # 覆盖率 (Coverage)
                 "time": process_time,         # 处理时间 (Processing time)
-                "parameters": params,         # 使用的参数 (Used parameters)
-                "result_image": result_path,  # 结果图像路径
-                "summary": summary           # UI显示的摘要信息
+                "parameters": params          # 使用的参数 (Used parameters)
             }
 
         except Exception as e:
