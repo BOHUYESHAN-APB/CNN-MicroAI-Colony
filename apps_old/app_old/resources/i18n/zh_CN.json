@@ -27,5 +27,15 @@
     "about.deps.numpy": "数值计算与数据处理",
     "about.deps.tensorflow": "深度学习与人工智能",
     "about.github.description": "访问我们的GitHub仓库以获取文档、反馈问题和参与贡献：",
-    "error.license_load_failed": "无法加载许可证内容"
+    "error.license_load_failed": "无法加载许可证内容",
+    "settings.tab.preprocessing": "图像预处理",
+    "settings.remove_glare": "去除光晕",
+    "settings.normalize_lighting": "光照归一化",
+    "settings.clahe": "对比度自适应直方图均衡化",
+    "settings.gaussian_blur": "高斯模糊",
+    "settings.adaptive_thresholding": "自适应阈值",
+    "settings.select_project_dir": "选择项目目录",
+    "settings.browse": "浏览",
+    "settings.default_path": "默认项目路径",
+    "settings.auto_save": "自动保存项目"
 }

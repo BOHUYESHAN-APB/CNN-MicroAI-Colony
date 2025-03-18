@@ -1,0 +1,1445 @@
+2025-03-17 22:26:26,163 [INFO] app.utils.config: Created default configuration
+2025-03-17 22:26:26,167 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-17 22:29:56,697 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 22:34:05,755 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 22:39:37,481 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 22:42:46,541 [INFO] app.utils.project_manager: Created project: 1 at C:/Users/º«ÌÎ/OneDrive/Desktop/213
+2025-03-17 22:43:54,432 [INFO] app.utils.project_manager: Saved project: 1
+2025-03-17 22:43:54,432 [INFO] app.utils.project_manager: Added image: img1.jpg
+2025-03-17 22:43:54,447 [INFO] app.utils.project_manager: Saved project: 1
+2025-03-17 22:43:54,447 [INFO] app.utils.project_manager: Added image: img2.jpg
+2025-03-17 22:43:54,470 [INFO] app.utils.project_manager: Saved project: 1
+2025-03-17 22:43:54,470 [INFO] app.utils.project_manager: Added image: img3.jpg
+2025-03-17 22:43:54,479 [INFO] app.utils.project_manager: Saved project: 1
+2025-03-17 22:43:54,480 [INFO] app.utils.project_manager: Added image: img4.jpg
+2025-03-17 22:43:54,491 [INFO] app.utils.project_manager: Saved project: 1
+2025-03-17 22:43:54,495 [INFO] app.utils.project_manager: Added image: img5.jpg
+2025-03-17 22:50:35,766 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 22:50:55,073 [ERROR] app.utils.project_manager: Project file not found: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images\project.json
+2025-03-17 22:51:05,966 [INFO] app.utils.project_manager: Created project: wqeqwe at C:/Users/º«ÌÎ/OneDrive/Desktop/213
+2025-03-17 22:51:14,166 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img1.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img1.jpg' are the same file
+2025-03-17 22:51:14,166 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img2.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img2.jpg' are the same file
+2025-03-17 22:51:14,166 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img3.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img3.jpg' are the same file
+2025-03-17 22:51:14,166 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img4.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img4.jpg' are the same file
+2025-03-17 22:51:14,166 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img5.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img5.jpg' are the same file
+2025-03-17 22:51:20,815 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img1.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img1.jpg' are the same file
+2025-03-17 22:51:20,815 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img2.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img2.jpg' are the same file
+2025-03-17 22:51:20,831 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img3.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img3.jpg' are the same file
+2025-03-17 22:51:20,831 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img4.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img4.jpg' are the same file
+2025-03-17 22:51:20,831 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img5.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img5.jpg' are the same file
+2025-03-17 22:51:24,251 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img1.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img1.jpg' are the same file
+2025-03-17 22:51:24,251 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img2.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img2.jpg' are the same file
+2025-03-17 22:51:24,251 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img3.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img3.jpg' are the same file
+2025-03-17 22:51:24,251 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img4.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img4.jpg' are the same file
+2025-03-17 22:51:24,251 [ERROR] app.utils.project_manager: Error adding image: 'C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/img5.jpg' and 'C:/Users/º«ÌÎ/OneDrive/Desktop/213\\images\\img5.jpg' are the same file
+2025-03-17 22:51:29,058 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 22:53:12,758 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 23:00:23,433 [ERROR] app.utils.project_manager: Project file not found: 123\project.json
+2025-03-17 23:00:32,548 [INFO] app.utils.project_manager: Opened project: wqeqwe
+2025-03-17 23:00:39,335 [WARNING] app.utils.project_manager: Image is already in project directory: img1.jpg
+2025-03-17 23:00:39,335 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:39,338 [INFO] app.utils.project_manager: Added existing image: img1.jpg
+2025-03-17 23:00:39,342 [WARNING] app.utils.project_manager: Image is already in project directory: img2.jpg
+2025-03-17 23:00:39,342 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:39,342 [INFO] app.utils.project_manager: Added existing image: img2.jpg
+2025-03-17 23:00:39,370 [WARNING] app.utils.project_manager: Image is already in project directory: img3.jpg
+2025-03-17 23:00:39,370 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:39,370 [INFO] app.utils.project_manager: Added existing image: img3.jpg
+2025-03-17 23:00:39,370 [WARNING] app.utils.project_manager: Image is already in project directory: img4.jpg
+2025-03-17 23:00:39,370 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:39,370 [INFO] app.utils.project_manager: Added existing image: img4.jpg
+2025-03-17 23:00:39,385 [WARNING] app.utils.project_manager: Image is already in project directory: img5.jpg
+2025-03-17 23:00:39,385 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:39,397 [INFO] app.utils.project_manager: Added existing image: img5.jpg
+2025-03-17 23:00:49,117 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:49,117 [INFO] app.utils.project_manager: Removed image: img1.jpg
+2025-03-17 23:00:49,117 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:49,117 [INFO] app.utils.project_manager: Removed image: img2.jpg
+2025-03-17 23:00:49,127 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:49,127 [INFO] app.utils.project_manager: Removed image: img3.jpg
+2025-03-17 23:00:49,127 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:49,127 [INFO] app.utils.project_manager: Removed image: img4.jpg
+2025-03-17 23:00:49,127 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:00:49,127 [INFO] app.utils.project_manager: Removed image: img5.jpg
+2025-03-17 23:02:29,009 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 23:02:49,767 [INFO] app.utils.project_manager: Opened project: wqeqwe
+2025-03-17 23:02:55,285 [WARNING] app.utils.project_manager: Image is already in project directory: img1.jpg
+2025-03-17 23:02:55,285 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:02:55,285 [INFO] app.utils.project_manager: Added existing image: img1.jpg
+2025-03-17 23:02:55,297 [WARNING] app.utils.project_manager: Image is already in project directory: img2.jpg
+2025-03-17 23:02:55,297 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:02:55,297 [INFO] app.utils.project_manager: Added existing image: img2.jpg
+2025-03-17 23:02:55,309 [WARNING] app.utils.project_manager: Image is already in project directory: img3.jpg
+2025-03-17 23:02:55,313 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:02:55,313 [INFO] app.utils.project_manager: Added existing image: img3.jpg
+2025-03-17 23:02:55,313 [WARNING] app.utils.project_manager: Image is already in project directory: img4.jpg
+2025-03-17 23:02:55,313 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:02:55,313 [INFO] app.utils.project_manager: Added existing image: img4.jpg
+2025-03-17 23:02:55,329 [WARNING] app.utils.project_manager: Image is already in project directory: img5.jpg
+2025-03-17 23:02:55,329 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:02:55,329 [INFO] app.utils.project_manager: Added existing image: img5.jpg
+2025-03-17 23:03:01,322 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:03:01,322 [INFO] app.utils.project_manager: Removed image: img3.jpg
+2025-03-17 23:03:03,810 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:04:41,406 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 23:04:55,745 [INFO] app.utils.project_manager: Opened project: wqeqwe
+2025-03-17 23:05:00,695 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:14:14,370 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 23:17:46,765 [INFO] app.utils.project_manager: Opened project: wqeqwe
+2025-03-17 23:17:53,855 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-17 23:19:56,681 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 23:29:05,599 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-17 23:29:55,120 [INFO] app.utils.project_manager: Opened project: wqeqwe
+2025-03-17 23:30:07,058 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-18 10:35:28,124 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 10:38:22,539 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 10:38:35,326 [INFO] app.utils.project_manager: Opened project: wqeqwe
+2025-03-18 10:38:46,952 [WARNING] app.utils.project_manager: Image is already in project directory: img5.jpg
+2025-03-18 10:38:52,808 [WARNING] app.utils.project_manager: Image is already in project directory: img3.jpg
+2025-03-18 10:38:52,810 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-18 10:38:52,811 [INFO] app.utils.project_manager: Added existing image: img3.jpg
+2025-03-18 10:39:00,061 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-18 10:39:00,061 [INFO] app.utils.project_manager: Saved results for: img1.jpg
+2025-03-18 10:39:10,127 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-18 10:41:19,231 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 10:41:32,208 [INFO] app.utils.project_manager: Opened project: wqeqwe
+2025-03-18 10:41:35,426 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-18 10:41:35,427 [INFO] app.utils.project_manager: Saved results for: img4.jpg
+2025-03-18 10:41:42,022 [INFO] app.utils.project_manager: Saved project: wqeqwe
+2025-03-18 10:43:34,610 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 10:45:15,168 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 10:51:27,468 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 10:53:00,293 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 10:57:20,042 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 11:47:09,752 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 11:57:15,491 [ERROR] app.utils.project_manager: Project file not found: C:\Users\º«ÌÎ\OneDrive\Desktop\213\project.json\project.json
+2025-03-18 11:58:55,087 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 11:59:17,822 [ERROR] app.utils.project_manager: Project file not found: C:\Users\º«ÌÎ\OneDrive\Desktop\213\project.json\project.json
+2025-03-18 11:59:36,285 [INFO] app.utils.project_manager: Created project: 123321 at C:\Users\º«ÌÎ\OneDrive\Desktop\213
+2025-03-18 11:59:54,724 [INFO] app.utils.project_manager: Saved project: 123321
+2025-03-18 11:59:54,725 [INFO] app.utils.project_manager: Added image: 2121.jpg
+2025-03-18 11:59:54,752 [INFO] app.utils.project_manager: Saved project: 123321
+2025-03-18 11:59:54,753 [INFO] app.utils.project_manager: Added image: 2021041310020608608.jpg
+2025-03-18 11:59:54,771 [INFO] app.utils.project_manager: Saved project: 123321
+2025-03-18 11:59:54,772 [INFO] app.utils.project_manager: Added image: OIP-C.jpg
+2025-03-18 11:59:54,778 [INFO] app.utils.project_manager: Saved project: 123321
+2025-03-18 11:59:54,778 [INFO] app.utils.project_manager: Added image: R-C.jpg
+2025-03-18 11:59:54,798 [INFO] app.utils.project_manager: Saved project: 123321
+2025-03-18 11:59:54,799 [INFO] app.utils.project_manager: Added image: t019872959c62f44875.jpg
+2025-03-18 11:59:58,104 [ERROR] app.utils.project_manager: Image not in project: C:\Users\º«ÌÎ\OneDrive\Desktop\ces\2021041310020608608.jpg
+2025-03-18 12:00:04,083 [INFO] app.utils.project_manager: Saved project: 123321
+2025-03-18 12:04:01,707 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 12:04:19,337 [ERROR] app.utils.project_manager: Project file not found: C:\Users\º«ÌÎ\OneDrive\Desktop\213\project.json\project.json
+2025-03-18 12:04:52,455 [INFO] app.utils.project_manager: Created project: sad at C:\Users\º«ÌÎ\OneDrive\Desktop\sad
+2025-03-18 12:05:08,673 [INFO] app.utils.project_manager: Saved project: sad
+2025-03-18 12:05:08,676 [INFO] app.utils.project_manager: Added image: 2121.jpg
+2025-03-18 12:05:08,691 [INFO] app.utils.project_manager: Saved project: sad
+2025-03-18 12:05:08,691 [INFO] app.utils.project_manager: Added image: 2021041310020608608.jpg
+2025-03-18 12:05:08,710 [INFO] app.utils.project_manager: Saved project: sad
+2025-03-18 12:05:08,710 [INFO] app.utils.project_manager: Added image: OIP-C.jpg
+2025-03-18 12:05:08,718 [INFO] app.utils.project_manager: Saved project: sad
+2025-03-18 12:05:08,718 [INFO] app.utils.project_manager: Added image: R-C.jpg
+2025-03-18 12:05:08,745 [INFO] app.utils.project_manager: Saved project: sad
+2025-03-18 12:05:08,745 [INFO] app.utils.project_manager: Added image: t019872959c62f44875.jpg
+2025-03-18 12:05:11,988 [INFO] app.utils.project_manager: Saved project: sad
+2025-03-18 12:05:11,989 [INFO] app.utils.project_manager: Closed project
+2025-03-18 12:05:24,823 [ERROR] app.utils.project_manager: Project file not found: C:\Users\º«ÌÎ\OneDrive\Desktop\sad\project.json\project.json
+2025-03-18 12:07:00,259 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 12:07:18,864 [ERROR] app.utils.project_manager: Project file not found: C:\Users\º«ÌÎ\OneDrive\Desktop\213\project.json\project.json
+2025-03-18 12:07:50,382 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 12:07:50,382 [INFO] app.utils.project_manager: Created project: 123 at C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-18 12:08:09,230 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 12:08:09,231 [INFO] app.utils.project_manager: Added image: 2121.jpg
+2025-03-18 12:08:09,245 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 12:08:09,246 [INFO] app.utils.project_manager: Added image: 2021041310020608608.jpg
+2025-03-18 12:08:09,263 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 12:08:09,263 [INFO] app.utils.project_manager: Added image: OIP-C.jpg
+2025-03-18 12:08:09,271 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 12:08:09,271 [INFO] app.utils.project_manager: Added image: R-C.jpg
+2025-03-18 12:08:09,295 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 12:08:09,295 [INFO] app.utils.project_manager: Added image: t019872959c62f44875.jpg
+2025-03-18 12:08:11,880 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 12:08:15,818 [ERROR] app.utils.project_manager: Image not in project: C:\Users\º«ÌÎ\OneDrive\Desktop\213\images\2021041310020608608.jpg
+2025-03-18 12:18:53,658 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 12:19:33,110 [ERROR] app.utils.project_manager: Project file not found: C:\Users\º«ÌÎ\OneDrive\Desktop\123\project.json\project.json
+2025-03-18 12:25:24,225 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 12:29:02,395 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 12:29:06,644 [INFO] app.models.colony_detector: Initializing model architecture...
+2025-03-18 13:05:31,218 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:06:20,459 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:07:11,369 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:07:52,681 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:08:36,909 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:09:20,402 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:10:25,096 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:12:18,177 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:17:21,774 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:18:14,772 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:19:08,027 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:21:11,127 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:23:56,193 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:40:39,936 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 13:40:56,810 [INFO] app.utils.project_manager: Opened project: sad
+2025-03-18 13:41:04,426 [INFO] app.utils.project_manager: Opened project: 123321
+2025-03-18 13:41:26,936 [INFO] app.utils.project_manager: Saved project: wqe12
+2025-03-18 13:41:26,937 [INFO] app.utils.project_manager: Created project: wqe12 at C:/Users/º«ÌÎ/OneDrive/Desktop/2134
+2025-03-18 13:41:37,114 [INFO] app.utils.project_manager: Saved project: wqe12
+2025-03-18 13:41:37,114 [INFO] app.utils.project_manager: Added image: 2121.jpg
+2025-03-18 13:42:40,564 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:42:52,060 [INFO] app.utils.project_manager: Opened project: wqe12
+2025-03-18 13:43:12,156 [INFO] app.utils.project_manager: Saved project: 342
+2025-03-18 13:43:12,157 [INFO] app.utils.project_manager: Created project: 342 at C:/Users/º«ÌÎ/OneDrive/Desktop/123/images
+2025-03-18 13:43:22,652 [INFO] app.utils.project_manager: Saved project: 342
+2025-03-18 13:43:22,652 [INFO] app.utils.project_manager: Added image: 2121.jpg
+2025-03-18 13:44:49,001 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 13:44:58,851 [INFO] app.utils.project_manager: Saved project: images
+2025-03-18 13:44:58,852 [INFO] app.utils.project_manager: Created project: images at C:/Users/º«ÌÎ/OneDrive/Desktop/123/images/images
+2025-03-18 13:45:18,930 [INFO] app.utils.project_manager: Saved project: images
+2025-03-18 13:45:18,930 [INFO] app.utils.project_manager: Added image: 2121.jpg
+2025-03-18 13:45:18,936 [INFO] app.utils.project_manager: Saved project: images
+2025-03-18 13:45:18,936 [INFO] app.utils.project_manager: Added image: 2021041310020608608.jpg
+2025-03-18 13:45:18,951 [INFO] app.utils.project_manager: Saved project: images
+2025-03-18 13:45:18,952 [INFO] app.utils.project_manager: Added image: OIP-C.jpg
+2025-03-18 13:45:18,958 [INFO] app.utils.project_manager: Saved project: images
+2025-03-18 13:45:18,958 [INFO] app.utils.project_manager: Added image: R-C.jpg
+2025-03-18 13:45:18,965 [INFO] app.utils.project_manager: Saved project: images
+2025-03-18 13:45:18,965 [INFO] app.utils.project_manager: Added image: t019872959c62f44875.jpg
+2025-03-18 13:45:34,187 [INFO] app.models.colony_detector: Initializing model architecture...
+2025-03-18 13:45:34,572 [INFO] app.models.colony_detector: Loading model weights from checkpoint...
+2025-03-18 13:45:34,985 [ERROR] app.models.colony_detector: Error loading model: Error(s) in loading state_dict for FasterRCNN:
+	Missing key(s) in state_dict: "rpn.head.conv.0.0.weight", "rpn.head.conv.0.0.bias", "rpn.head.cls_logits.weight", "rpn.head.cls_logits.bias", "rpn.head.bbox_pred.weight", "rpn.head.bbox_pred.bias", "roi_heads.box_head.fc6.weight", "roi_heads.box_head.fc6.bias", "roi_heads.box_head.fc7.weight", "roi_heads.box_head.fc7.bias", "roi_heads.box_predictor.cls_score.weight", "roi_heads.box_predictor.cls_score.bias", "roi_heads.box_predictor.bbox_pred.weight", "roi_heads.box_predictor.bbox_pred.bias". 
+	Unexpected key(s) in state_dict: "model.backbone.body.conv1.weight", "model.backbone.body.bn1.weight", "model.backbone.body.bn1.bias", "model.backbone.body.bn1.running_mean", "model.backbone.body.bn1.running_var", "model.backbone.body.bn1.num_batches_tracked", "model.backbone.body.layer1.0.conv1.weight", "model.backbone.body.layer1.0.bn1.weight", "model.backbone.body.layer1.0.bn1.bias", "model.backbone.body.layer1.0.bn1.running_mean", "model.backbone.body.layer1.0.bn1.running_var", "model.backbone.body.layer1.0.bn1.num_batches_tracked", "model.backbone.body.layer1.0.conv2.weight", "model.backbone.body.layer1.0.bn2.weight", "model.backbone.body.layer1.0.bn2.bias", "model.backbone.body.layer1.0.bn2.running_mean", "model.backbone.body.layer1.0.bn2.running_var", "model.backbone.body.layer1.0.bn2.num_batches_tracked", "model.backbone.body.layer1.0.conv3.weight", "model.backbone.body.layer1.0.bn3.weight", "model.backbone.body.layer1.0.bn3.bias", "model.backbone.body.layer1.0.bn3.running_mean", "model.backbone.body.layer1.0.bn3.running_var", "model.backbone.body.layer1.0.bn3.num_batches_tracked", "model.backbone.body.layer1.0.downsample.0.weight", "model.backbone.body.layer1.0.downsample.1.weight", "model.backbone.body.layer1.0.downsample.1.bias", "model.backbone.body.layer1.0.downsample.1.running_mean", "model.backbone.body.layer1.0.downsample.1.running_var", "model.backbone.body.layer1.0.downsample.1.num_batches_tracked", "model.backbone.body.layer1.1.conv1.weight", "model.backbone.body.layer1.1.bn1.weight", "model.backbone.body.layer1.1.bn1.bias", "model.backbone.body.layer1.1.bn1.running_mean", "model.backbone.body.layer1.1.bn1.running_var", "model.backbone.body.layer1.1.bn1.num_batches_tracked", "model.backbone.body.layer1.1.conv2.weight", "model.backbone.body.layer1.1.bn2.weight", "model.backbone.body.layer1.1.bn2.bias", "model.backbone.body.layer1.1.bn2.running_mean", "model.backbone.body.layer1.1.bn2.running_var", "model.backbone.body.layer1.1.bn2.num_batches_tracked", "model.backbone.body.layer1.1.conv3.weight", "model.backbone.body.layer1.1.bn3.weight", "model.backbone.body.layer1.1.bn3.bias", "model.backbone.body.layer1.1.bn3.running_mean", "model.backbone.body.layer1.1.bn3.running_var", "model.backbone.body.layer1.1.bn3.num_batches_tracked", "model.backbone.body.layer1.2.conv1.weight", "model.backbone.body.layer1.2.bn1.weight", "model.backbone.body.layer1.2.bn1.bias", "model.backbone.body.layer1.2.bn1.running_mean", "model.backbone.body.layer1.2.bn1.running_var", "model.backbone.body.layer1.2.bn1.num_batches_tracked", "model.backbone.body.layer1.2.conv2.weight", "model.backbone.body.layer1.2.bn2.weight", "model.backbone.body.layer1.2.bn2.bias", "model.backbone.body.layer1.2.bn2.running_mean", "model.backbone.body.layer1.2.bn2.running_var", "model.backbone.body.layer1.2.bn2.num_batches_tracked", "model.backbone.body.layer1.2.conv3.weight", "model.backbone.body.layer1.2.bn3.weight", "model.backbone.body.layer1.2.bn3.bias", "model.backbone.body.layer1.2.bn3.running_mean", "model.backbone.body.layer1.2.bn3.running_var", "model.backbone.body.layer1.2.bn3.num_batches_tracked", "model.backbone.body.layer2.0.conv1.weight", "model.backbone.body.layer2.0.bn1.weight", "model.backbone.body.layer2.0.bn1.bias", "model.backbone.body.layer2.0.bn1.running_mean", "model.backbone.body.layer2.0.bn1.running_var", "model.backbone.body.layer2.0.bn1.num_batches_tracked", "model.backbone.body.layer2.0.conv2.weight", "model.backbone.body.layer2.0.bn2.weight", "model.backbone.body.layer2.0.bn2.bias", "model.backbone.body.layer2.0.bn2.running_mean", "model.backbone.body.layer2.0.bn2.running_var", "model.backbone.body.layer2.0.bn2.num_batches_tracked", "model.backbone.body.layer2.0.conv3.weight", "model.backbone.body.layer2.0.bn3.weight", "model.backbone.body.layer2.0.bn3.bias", "model.backbone.body.layer2.0.bn3.running_mean", "model.backbone.body.layer2.0.bn3.running_var", "model.backbone.body.layer2.0.bn3.num_batches_tracked", "model.backbone.body.layer2.0.downsample.0.weight", "model.backbone.body.layer2.0.downsample.1.weight", "model.backbone.body.layer2.0.downsample.1.bias", "model.backbone.body.layer2.0.downsample.1.running_mean", "model.backbone.body.layer2.0.downsample.1.running_var", "model.backbone.body.layer2.0.downsample.1.num_batches_tracked", "model.backbone.body.layer2.1.conv1.weight", "model.backbone.body.layer2.1.bn1.weight", "model.backbone.body.layer2.1.bn1.bias", "model.backbone.body.layer2.1.bn1.running_mean", "model.backbone.body.layer2.1.bn1.running_var", "model.backbone.body.layer2.1.bn1.num_batches_tracked", "model.backbone.body.layer2.1.conv2.weight", "model.backbone.body.layer2.1.bn2.weight", "model.backbone.body.layer2.1.bn2.bias", "model.backbone.body.layer2.1.bn2.running_mean", "model.backbone.body.layer2.1.bn2.running_var", "model.backbone.body.layer2.1.bn2.num_batches_tracked", "model.backbone.body.layer2.1.conv3.weight", "model.backbone.body.layer2.1.bn3.weight", "model.backbone.body.layer2.1.bn3.bias", "model.backbone.body.layer2.1.bn3.running_mean", "model.backbone.body.layer2.1.bn3.running_var", "model.backbone.body.layer2.1.bn3.num_batches_tracked", "model.backbone.body.layer2.2.conv1.weight", "model.backbone.body.layer2.2.bn1.weight", "model.backbone.body.layer2.2.bn1.bias", "model.backbone.body.layer2.2.bn1.running_mean", "model.backbone.body.layer2.2.bn1.running_var", "model.backbone.body.layer2.2.bn1.num_batches_tracked", "model.backbone.body.layer2.2.conv2.weight", "model.backbone.body.layer2.2.bn2.weight", "model.backbone.body.layer2.2.bn2.bias", "model.backbone.body.layer2.2.bn2.running_mean", "model.backbone.body.layer2.2.bn2.running_var", "model.backbone.body.layer2.2.bn2.num_batches_tracked", "model.backbone.body.layer2.2.conv3.weight", "model.backbone.body.layer2.2.bn3.weight", "model.backbone.body.layer2.2.bn3.bias", "model.backbone.body.layer2.2.bn3.running_mean", "model.backbone.body.layer2.2.bn3.running_var", "model.backbone.body.layer2.2.bn3.num_batches_tracked", "model.backbone.body.layer2.3.conv1.weight", "model.backbone.body.layer2.3.bn1.weight", "model.backbone.body.layer2.3.bn1.bias", "model.backbone.body.layer2.3.bn1.running_mean", "model.backbone.body.layer2.3.bn1.running_var", "model.backbone.body.layer2.3.bn1.num_batches_tracked", "model.backbone.body.layer2.3.conv2.weight", "model.backbone.body.layer2.3.bn2.weight", "model.backbone.body.layer2.3.bn2.bias", "model.backbone.body.layer2.3.bn2.running_mean", "model.backbone.body.layer2.3.bn2.running_var", "model.backbone.body.layer2.3.bn2.num_batches_tracked", "model.backbone.body.layer2.3.conv3.weight", "model.backbone.body.layer2.3.bn3.weight", "model.backbone.body.layer2.3.bn3.bias", "model.backbone.body.layer2.3.bn3.running_mean", "model.backbone.body.layer2.3.bn3.running_var", "model.backbone.body.layer2.3.bn3.num_batches_tracked", "model.backbone.body.layer3.0.conv1.weight", "model.backbone.body.layer3.0.bn1.weight", "model.backbone.body.layer3.0.bn1.bias", "model.backbone.body.layer3.0.bn1.running_mean", "model.backbone.body.layer3.0.bn1.running_var", "model.backbone.body.layer3.0.bn1.num_batches_tracked", "model.backbone.body.layer3.0.conv2.weight", "model.backbone.body.layer3.0.bn2.weight", "model.backbone.body.layer3.0.bn2.bias", "model.backbone.body.layer3.0.bn2.running_mean", "model.backbone.body.layer3.0.bn2.running_var", "model.backbone.body.layer3.0.bn2.num_batches_tracked", "model.backbone.body.layer3.0.conv3.weight", "model.backbone.body.layer3.0.bn3.weight", "model.backbone.body.layer3.0.bn3.bias", "model.backbone.body.layer3.0.bn3.running_mean", "model.backbone.body.layer3.0.bn3.running_var", "model.backbone.body.layer3.0.bn3.num_batches_tracked", "model.backbone.body.layer3.0.downsample.0.weight", "model.backbone.body.layer3.0.downsample.1.weight", "model.backbone.body.layer3.0.downsample.1.bias", "model.backbone.body.layer3.0.downsample.1.running_mean", "model.backbone.body.layer3.0.downsample.1.running_var", "model.backbone.body.layer3.0.downsample.1.num_batches_tracked", "model.backbone.body.layer3.1.conv1.weight", "model.backbone.body.layer3.1.bn1.weight", "model.backbone.body.layer3.1.bn1.bias", "model.backbone.body.layer3.1.bn1.running_mean", "model.backbone.body.layer3.1.bn1.running_var", "model.backbone.body.layer3.1.bn1.num_batches_tracked", "model.backbone.body.layer3.1.conv2.weight", "model.backbone.body.layer3.1.bn2.weight", "model.backbone.body.layer3.1.bn2.bias", "model.backbone.body.layer3.1.bn2.running_mean", "model.backbone.body.layer3.1.bn2.running_var", "model.backbone.body.layer3.1.bn2.num_batches_tracked", "model.backbone.body.layer3.1.conv3.weight", "model.backbone.body.layer3.1.bn3.weight", "model.backbone.body.layer3.1.bn3.bias", "model.backbone.body.layer3.1.bn3.running_mean", "model.backbone.body.layer3.1.bn3.running_var", "model.backbone.body.layer3.1.bn3.num_batches_tracked", "model.backbone.body.layer3.2.conv1.weight", "model.backbone.body.layer3.2.bn1.weight", "model.backbone.body.layer3.2.bn1.bias", "model.backbone.body.layer3.2.bn1.running_mean", "model.backbone.body.layer3.2.bn1.running_var", "model.backbone.body.layer3.2.bn1.num_batches_tracked", "model.backbone.body.layer3.2.conv2.weight", "model.backbone.body.layer3.2.bn2.weight", "model.backbone.body.layer3.2.bn2.bias", "model.backbone.body.layer3.2.bn2.running_mean", "model.backbone.body.layer3.2.bn2.running_var", "model.backbone.body.layer3.2.bn2.num_batches_tracked", "model.backbone.body.layer3.2.conv3.weight", "model.backbone.body.layer3.2.bn3.weight", "model.backbone.body.layer3.2.bn3.bias", "model.backbone.body.layer3.2.bn3.running_mean", "model.backbone.body.layer3.2.bn3.running_var", "model.backbone.body.layer3.2.bn3.num_batches_tracked", "model.backbone.body.layer3.3.conv1.weight", "model.backbone.body.layer3.3.bn1.weight", "model.backbone.body.layer3.3.bn1.bias", "model.backbone.body.layer3.3.bn1.running_mean", "model.backbone.body.layer3.3.bn1.running_var", "model.backbone.body.layer3.3.bn1.num_batches_tracked", "model.backbone.body.layer3.3.conv2.weight", "model.backbone.body.layer3.3.bn2.weight", "model.backbone.body.layer3.3.bn2.bias", "model.backbone.body.layer3.3.bn2.running_mean", "model.backbone.body.layer3.3.bn2.running_var", "model.backbone.body.layer3.3.bn2.num_batches_tracked", "model.backbone.body.layer3.3.conv3.weight", "model.backbone.body.layer3.3.bn3.weight", "model.backbone.body.layer3.3.bn3.bias", "model.backbone.body.layer3.3.bn3.running_mean", "model.backbone.body.layer3.3.bn3.running_var", "model.backbone.body.layer3.3.bn3.num_batches_tracked", "model.backbone.body.layer3.4.conv1.weight", "model.backbone.body.layer3.4.bn1.weight", "model.backbone.body.layer3.4.bn1.bias", "model.backbone.body.layer3.4.bn1.running_mean", "model.backbone.body.layer3.4.bn1.running_var", "model.backbone.body.layer3.4.bn1.num_batches_tracked", "model.backbone.body.layer3.4.conv2.weight", "model.backbone.body.layer3.4.bn2.weight", "model.backbone.body.layer3.4.bn2.bias", "model.backbone.body.layer3.4.bn2.running_mean", "model.backbone.body.layer3.4.bn2.running_var", "model.backbone.body.layer3.4.bn2.num_batches_tracked", "model.backbone.body.layer3.4.conv3.weight", "model.backbone.body.layer3.4.bn3.weight", "model.backbone.body.layer3.4.bn3.bias", "model.backbone.body.layer3.4.bn3.running_mean", "model.backbone.body.layer3.4.bn3.running_var", "model.backbone.body.layer3.4.bn3.num_batches_tracked", "model.backbone.body.layer3.5.conv1.weight", "model.backbone.body.layer3.5.bn1.weight", "model.backbone.body.layer3.5.bn1.bias", "model.backbone.body.layer3.5.bn1.running_mean", "model.backbone.body.layer3.5.bn1.running_var", "model.backbone.body.layer3.5.bn1.num_batches_tracked", "model.backbone.body.layer3.5.conv2.weight", "model.backbone.body.layer3.5.bn2.weight", "model.backbone.body.layer3.5.bn2.bias", "model.backbone.body.layer3.5.bn2.running_mean", "model.backbone.body.layer3.5.bn2.running_var", "model.backbone.body.layer3.5.bn2.num_batches_tracked", "model.backbone.body.layer3.5.conv3.weight", "model.backbone.body.layer3.5.bn3.weight", "model.backbone.body.layer3.5.bn3.bias", "model.backbone.body.layer3.5.bn3.running_mean", "model.backbone.body.layer3.5.bn3.running_var", "model.backbone.body.layer3.5.bn3.num_batches_tracked", "model.backbone.body.layer4.0.conv1.weight", "model.backbone.body.layer4.0.bn1.weight", "model.backbone.body.layer4.0.bn1.bias", "model.backbone.body.layer4.0.bn1.running_mean", "model.backbone.body.layer4.0.bn1.running_var", "model.backbone.body.layer4.0.bn1.num_batches_tracked", "model.backbone.body.layer4.0.conv2.weight", "model.backbone.body.layer4.0.bn2.weight", "model.backbone.body.layer4.0.bn2.bias", "model.backbone.body.layer4.0.bn2.running_mean", "model.backbone.body.layer4.0.bn2.running_var", "model.backbone.body.layer4.0.bn2.num_batches_tracked", "model.backbone.body.layer4.0.conv3.weight", "model.backbone.body.layer4.0.bn3.weight", "model.backbone.body.layer4.0.bn3.bias", "model.backbone.body.layer4.0.bn3.running_mean", "model.backbone.body.layer4.0.bn3.running_var", "model.backbone.body.layer4.0.bn3.num_batches_tracked", "model.backbone.body.layer4.0.downsample.0.weight", "model.backbone.body.layer4.0.downsample.1.weight", "model.backbone.body.layer4.0.downsample.1.bias", "model.backbone.body.layer4.0.downsample.1.running_mean", "model.backbone.body.layer4.0.downsample.1.running_var", "model.backbone.body.layer4.0.downsample.1.num_batches_tracked", "model.backbone.body.layer4.1.conv1.weight", "model.backbone.body.layer4.1.bn1.weight", "model.backbone.body.layer4.1.bn1.bias", "model.backbone.body.layer4.1.bn1.running_mean", "model.backbone.body.layer4.1.bn1.running_var", "model.backbone.body.layer4.1.bn1.num_batches_tracked", "model.backbone.body.layer4.1.conv2.weight", "model.backbone.body.layer4.1.bn2.weight", "model.backbone.body.layer4.1.bn2.bias", "model.backbone.body.layer4.1.bn2.running_mean", "model.backbone.body.layer4.1.bn2.running_var", "model.backbone.body.layer4.1.bn2.num_batches_tracked", "model.backbone.body.layer4.1.conv3.weight", "model.backbone.body.layer4.1.bn3.weight", "model.backbone.body.layer4.1.bn3.bias", "model.backbone.body.layer4.1.bn3.running_mean", "model.backbone.body.layer4.1.bn3.running_var", "model.backbone.body.layer4.1.bn3.num_batches_tracked", "model.backbone.body.layer4.2.conv1.weight", "model.backbone.body.layer4.2.bn1.weight", "model.backbone.body.layer4.2.bn1.bias", "model.backbone.body.layer4.2.bn1.running_mean", "model.backbone.body.layer4.2.bn1.running_var", "model.backbone.body.layer4.2.bn1.num_batches_tracked", "model.backbone.body.layer4.2.conv2.weight", "model.backbone.body.layer4.2.bn2.weight", "model.backbone.body.layer4.2.bn2.bias", "model.backbone.body.layer4.2.bn2.running_mean", "model.backbone.body.layer4.2.bn2.running_var", "model.backbone.body.layer4.2.bn2.num_batches_tracked", "model.backbone.body.layer4.2.conv3.weight", "model.backbone.body.layer4.2.bn3.weight", "model.backbone.body.layer4.2.bn3.bias", "model.backbone.body.layer4.2.bn3.running_mean", "model.backbone.body.layer4.2.bn3.running_var", "model.backbone.body.layer4.2.bn3.num_batches_tracked", "model.backbone.fpn.inner_blocks.0.0.weight", "model.backbone.fpn.inner_blocks.0.0.bias", "model.backbone.fpn.inner_blocks.1.0.weight", "model.backbone.fpn.inner_blocks.1.0.bias", "model.backbone.fpn.inner_blocks.2.0.weight", "model.backbone.fpn.inner_blocks.2.0.bias", "model.backbone.fpn.inner_blocks.3.0.weight", "model.backbone.fpn.inner_blocks.3.0.bias", "model.backbone.fpn.layer_blocks.0.0.weight", "model.backbone.fpn.layer_blocks.0.0.bias", "model.backbone.fpn.layer_blocks.1.0.weight", "model.backbone.fpn.layer_blocks.1.0.bias", "model.backbone.fpn.layer_blocks.2.0.weight", "model.backbone.fpn.layer_blocks.2.0.bias", "model.backbone.fpn.layer_blocks.3.0.weight", "model.backbone.fpn.layer_blocks.3.0.bias", "model.rpn.head.conv.0.0.weight", "model.rpn.head.conv.0.0.bias", "model.rpn.head.cls_logits.weight", "model.rpn.head.cls_logits.bias", "model.rpn.head.bbox_pred.weight", "model.rpn.head.bbox_pred.bias", "model.roi_heads.box_head.fc6.weight", "model.roi_heads.box_head.fc6.bias", "model.roi_heads.box_head.fc7.weight", "model.roi_heads.box_head.fc7.bias", "model.roi_heads.box_predictor.cls_score.weight", "model.roi_heads.box_predictor.cls_score.bias", "model.roi_heads.box_predictor.bbox_pred.weight", "model.roi_heads.box_predictor.bbox_pred.bias". 
+2025-03-18 13:45:46,252 [INFO] app.utils.project_manager: Saved project: images
+2025-03-18 14:39:55,970 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 14:39:55,973 [INFO] app.utils.resource_checker: Created directory: c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\resources\models
+2025-03-18 14:39:55,975 [INFO] app.utils.resource_checker: Created directory: c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\logs
+2025-03-18 14:39:55,975 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 14:39:55,975 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 14:39:55,976 [INFO] app.utils.resource_checker: Created translation file: c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\resources\i18n\en.json
+2025-03-18 14:39:55,977 [INFO] app.utils.resource_checker: Created translation file: c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\resources\i18n\zh_CN.json
+2025-03-18 14:39:55,978 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 14:39:55,979 [INFO] app.utils.resource_checker: Created default theme: c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\resources\themes\default.qss
+2025-03-18 14:39:55,979 [INFO] app.utils.resource_checker: Created dark theme: c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\resources\themes\dark.qss
+2025-03-18 14:39:55,980 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 14:39:55,980 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 14:39:55,980 [INFO] app: Application initialized successfully
+2025-03-18 14:39:56,658 [ERROR] __main__: Fatal error: 'QTableWidget' object has no attribute 'setMinimumSectionSize'
+Traceback (most recent call last):
+  File "c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\main.py", line 78, in main
+    window = MainWindow(config)
+             ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\main_window.py", line 139, in __init__
+    self.setup_ui()
+  File "c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\main_window.py", line 209, in setup_ui
+    self.result_visualizer = ResultVisualizer()
+                             ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\result_visualizer.py", line 20, in __init__
+    self.setup_ui()
+  File "c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\result_visualizer.py", line 186, in setup_ui
+    self.detail_table.setMinimumSectionSize(50)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'QTableWidget' object has no attribute 'setMinimumSectionSize'
+2025-03-18 14:39:56,661 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 14:39:56,662 [INFO] app: Application cleanup completed
+2025-03-18 14:51:40,674 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 14:51:40,685 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 14:51:40,686 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 14:51:40,688 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 14:51:40,689 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 14:51:40,690 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 14:51:40,691 [INFO] app: Application initialized successfully
+2025-03-18 14:51:57,524 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 14:52:11,174 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 14:52:11,176 [INFO] app: Application cleanup completed
+2025-03-18 14:52:53,966 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 14:52:53,978 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 14:52:53,979 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 14:52:53,980 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 14:52:53,981 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 14:52:53,982 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 14:52:53,983 [INFO] app: Application initialized successfully
+2025-03-18 15:12:31,387 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 15:12:45,944 [ERROR] app.gui.main_window: Failed to process C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg: 'FasterRCNNColonyDetectionModel' object has no attribute 'detect'
+2025-03-18 15:12:45,945 [ERROR] app.gui.main_window: Failed to process C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg: 'FasterRCNNColonyDetectionModel' object has no attribute 'detect'
+2025-03-18 15:12:45,946 [ERROR] app.gui.main_window: Failed to process C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg: 'FasterRCNNColonyDetectionModel' object has no attribute 'detect'
+2025-03-18 15:12:45,946 [ERROR] app.gui.main_window: Failed to process C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg: 'FasterRCNNColonyDetectionModel' object has no attribute 'detect'
+2025-03-18 15:12:45,947 [ERROR] app.gui.main_window: Failed to process C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg: 'FasterRCNNColonyDetectionModel' object has no attribute 'detect'
+2025-03-18 15:12:55,184 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:12:55,231 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 15:12:55,231 [INFO] app: Application cleanup completed
+2025-03-18 15:16:36,885 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 15:16:36,888 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 15:16:36,889 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 15:16:36,889 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 15:16:36,890 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 15:16:36,890 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 15:16:36,891 [INFO] app: Application initialized successfully
+2025-03-18 15:17:43,966 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 15:18:09,338 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:18:09,373 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 15:18:09,374 [INFO] app: Application cleanup completed
+2025-03-18 15:18:51,003 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 15:18:51,014 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 15:18:51,015 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 15:18:51,016 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 15:18:51,018 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 15:18:51,020 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 15:18:51,020 [INFO] app: Application initialized successfully
+2025-03-18 15:24:42,552 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 15:24:59,364 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:24:59,392 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 15:24:59,393 [INFO] app: Application cleanup completed
+2025-03-18 15:28:17,960 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 15:28:17,964 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 15:28:17,965 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 15:28:17,965 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 15:28:17,966 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 15:28:17,967 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 15:28:17,968 [INFO] app: Application initialized successfully
+2025-03-18 15:41:09,769 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 15:41:23,086 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 15:41:52,041 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:41:52,126 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 15:41:52,128 [INFO] app: Application cleanup completed
+2025-03-18 15:43:29,660 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 15:43:29,691 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 15:43:29,695 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 15:43:29,697 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 15:43:29,698 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 15:43:29,699 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 15:43:29,701 [INFO] app: Application initialized successfully
+2025-03-18 15:45:37,840 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 15:47:57,829 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:47:57,909 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 15:47:57,910 [INFO] app: Application cleanup completed
+2025-03-18 15:51:29,053 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 15:51:29,088 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 15:51:29,090 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 15:51:29,092 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 15:51:29,094 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 15:51:29,096 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 15:51:29,097 [INFO] app: Application initialized successfully
+2025-03-18 15:56:02,783 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 15:56:03,253 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 15:56:03,287 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 15:56:03,288 [DEBUG] app.gui.main_window: No existing results found
+2025-03-18 15:56:05,821 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 15:56:05,822 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 15:56:05,836 [ERROR] app.models.colony_detector: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 15:56:05,836 [ERROR] app.models.colony_detector: Error during colony detection: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+Traceback (most recent call last):
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\models\colony_detector.py", line 69, in detect
+    raise ValueError(f"Failed to load image: {image_path}")
+ValueError: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 15:56:13,863 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 15:56:13,903 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 15:56:13,905 [DEBUG] app.gui.main_window: No existing results found
+2025-03-18 15:56:16,337 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 15:56:16,338 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 15:56:16,351 [ERROR] app.models.colony_detector: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 15:56:16,352 [ERROR] app.models.colony_detector: Error during colony detection: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+Traceback (most recent call last):
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\models\colony_detector.py", line 69, in detect
+    raise ValueError(f"Failed to load image: {image_path}")
+ValueError: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 15:56:19,462 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:56:19,503 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 15:56:19,504 [INFO] app: Application cleanup completed
+2025-03-18 15:58:03,753 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 15:58:03,782 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 15:58:03,786 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 15:58:03,789 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 15:58:03,790 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 15:58:03,791 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 15:58:03,793 [INFO] app: Application initialized successfully
+2025-03-18 15:58:12,244 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 15:58:12,735 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 15:58:12,757 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 15:58:12,759 [DEBUG] app.gui.main_window: No existing results found
+2025-03-18 15:58:16,196 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 15:58:16,197 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 15:58:16,232 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (777, 1080, 3)
+2025-03-18 15:58:16,233 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 15:58:16,246 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 15:58:16,284 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 15:58:17,934 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 15:58:17,935 [INFO] app.models.colony_detector: Detection summary - High: 1, Medium: 99, Low: 0
+2025-03-18 15:58:17,936 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 15:58:17,953 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:58:17,954 [INFO] app.utils.project_manager: Saved results for: 2121.jpg
+2025-03-18 15:58:17,959 [ERROR] app.gui.image_viewer: Error setting image: name 'QImage' is not defined
+Traceback (most recent call last):
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\image_viewer.py", line 269, in set_image
+    q_image = QImage(image.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
+              ^^^^^^
+NameError: name 'QImage' is not defined
+2025-03-18 15:58:21,140 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 15:58:21,141 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 15:58:21,147 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (777, 1080, 3)
+2025-03-18 15:58:21,148 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 15:58:21,150 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 15:58:21,240 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 15:58:22,973 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 15:58:22,974 [INFO] app.models.colony_detector: Detection summary - High: 1, Medium: 99, Low: 0
+2025-03-18 15:58:22,975 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 15:58:22,990 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:58:22,991 [INFO] app.utils.project_manager: Saved results for: 2121.jpg
+2025-03-18 15:58:22,997 [ERROR] app.gui.image_viewer: Error setting image: name 'QImage' is not defined
+Traceback (most recent call last):
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\image_viewer.py", line 269, in set_image
+    q_image = QImage(image.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
+              ^^^^^^
+NameError: name 'QImage' is not defined
+2025-03-18 15:58:25,664 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 15:58:25,665 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 15:58:25,672 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (777, 1080, 3)
+2025-03-18 15:58:25,673 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 15:58:25,675 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 15:58:25,769 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 15:58:27,579 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 15:58:27,580 [INFO] app.models.colony_detector: Detection summary - High: 1, Medium: 99, Low: 0
+2025-03-18 15:58:27,585 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:58:27,585 [INFO] app.utils.project_manager: Saved results for: 2121.jpg
+2025-03-18 15:58:27,586 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 15:58:27,598 [ERROR] app.gui.image_viewer: Error setting image: name 'QImage' is not defined
+Traceback (most recent call last):
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\image_viewer.py", line 269, in set_image
+    q_image = QImage(image.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
+              ^^^^^^
+NameError: name 'QImage' is not defined
+2025-03-18 15:58:27,602 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 15:58:27,603 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 15:58:27,618 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (1000, 1000, 3)
+2025-03-18 15:58:27,619 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 15:58:27,622 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 15:58:27,625 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 15:58:29,266 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 15:58:29,266 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 100, Low: 0
+2025-03-18 15:58:29,273 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:58:29,274 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 15:58:29,274 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 15:58:29,274 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 15:58:29,277 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (474, 474, 3)
+2025-03-18 15:58:29,277 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 15:58:29,278 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 15:58:29,280 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 15:58:30,770 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 15:58:30,771 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 100, Low: 0
+2025-03-18 15:58:30,780 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:58:30,781 [INFO] app.utils.project_manager: Saved results for: OIP-C.jpg
+2025-03-18 15:58:30,781 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 15:58:30,782 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 15:58:30,801 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (1377, 1387, 3)
+2025-03-18 15:58:30,802 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 15:58:30,804 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 15:58:30,809 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 15:58:32,148 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 15:58:32,149 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 100, Low: 0
+2025-03-18 15:58:32,159 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:58:32,160 [INFO] app.utils.project_manager: Saved results for: R-C.jpg
+2025-03-18 15:58:32,161 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 15:58:32,161 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 15:58:32,172 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (568, 573, 3)
+2025-03-18 15:58:32,173 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 15:58:32,173 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 15:58:32,175 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 15:58:34,017 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 15:58:34,018 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 100, Low: 0
+2025-03-18 15:58:34,040 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 15:58:34,040 [INFO] app.utils.project_manager: Saved results for: t019872959c62f44875.jpg
+2025-03-18 15:58:44,205 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 15:58:44,207 [INFO] app: Application cleanup completed
+2025-03-18 16:00:52,119 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 16:00:52,148 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 16:00:52,150 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 16:00:52,151 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 16:00:52,152 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 16:00:52,153 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 16:00:52,153 [INFO] app: Application initialized successfully
+2025-03-18 16:01:03,075 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 16:01:03,561 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:01:03,595 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:01:03,600 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:01:05,003 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:01:05,004 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:01:05,019 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (1000, 1000, 3)
+2025-03-18 16:01:05,019 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:01:05,027 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:01:05,051 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:01:06,405 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:01:06,407 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 100, Low: 0
+2025-03-18 16:01:06,408 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:01:06,438 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:01:06,438 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 16:01:16,974 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:01:16,988 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:01:16,990 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:01:18,910 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:01:18,911 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:01:18,913 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (474, 474, 3)
+2025-03-18 16:01:18,914 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:01:18,914 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:01:18,974 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:01:20,155 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:01:20,157 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 100, Low: 0
+2025-03-18 16:01:20,158 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:01:20,174 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:01:20,175 [INFO] app.utils.project_manager: Saved results for: OIP-C.jpg
+2025-03-18 16:01:24,643 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:01:24,668 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:01:24,669 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:01:25,556 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:01:25,557 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:01:25,572 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (568, 573, 3)
+2025-03-18 16:01:25,573 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:01:25,574 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:01:25,653 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:01:26,933 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:01:26,934 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 86, Low: 14
+2025-03-18 16:01:26,935 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:01:26,960 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:01:26,960 [INFO] app.utils.project_manager: Saved results for: t019872959c62f44875.jpg
+2025-03-18 16:01:30,993 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:01:31,063 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 16:01:31,064 [INFO] app: Application cleanup completed
+2025-03-18 16:07:50,374 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 16:07:50,377 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 16:07:50,377 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 16:07:50,378 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 16:07:50,379 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 16:07:50,380 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 16:07:50,381 [INFO] app: Application initialized successfully
+2025-03-18 16:07:57,820 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 16:07:59,124 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:07:59,140 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:07:59,142 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:08:00,752 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:08:00,752 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:08:00,755 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (474, 474, 3)
+2025-03-18 16:08:00,756 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:08:00,760 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:08:00,789 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:08:02,209 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:08:02,210 [DEBUG] app.models.colony_detector: After filtering: 71 colonies
+2025-03-18 16:08:02,210 [INFO] app.models.colony_detector: Detection summary - High: 3, Medium: 68, Low: 0
+2025-03-18 16:08:02,211 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:08:02,256 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:08:02,257 [INFO] app.utils.project_manager: Saved results for: OIP-C.jpg
+2025-03-18 16:08:05,188 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:08:05,203 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:08:05,204 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:08:06,280 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:08:06,280 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:08:06,286 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (777, 1080, 3)
+2025-03-18 16:08:06,287 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:08:06,289 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:08:06,354 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:08:08,151 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:08:08,152 [DEBUG] app.models.colony_detector: After filtering: 60 colonies
+2025-03-18 16:08:08,153 [INFO] app.models.colony_detector: Detection summary - High: 1, Medium: 59, Low: 0
+2025-03-18 16:08:08,153 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:08:08,170 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:08:08,172 [INFO] app.utils.project_manager: Saved results for: 2121.jpg
+2025-03-18 16:09:27,045 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:09:27,096 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:09:27,097 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:09:28,222 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:09:28,223 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:09:28,238 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (1000, 1000, 3)
+2025-03-18 16:09:28,239 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:09:28,240 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:09:28,330 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:09:29,576 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:09:29,577 [DEBUG] app.models.colony_detector: After filtering: 52 colonies
+2025-03-18 16:09:29,577 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 52, Low: 0
+2025-03-18 16:09:29,578 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:09:29,602 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:09:29,603 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 16:09:32,838 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:09:32,860 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:09:32,861 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:09:34,065 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:09:34,065 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:09:34,081 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (568, 573, 3)
+2025-03-18 16:09:34,081 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:09:34,082 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:09:34,155 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:09:35,554 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:09:35,555 [DEBUG] app.models.colony_detector: After filtering: 76 colonies
+2025-03-18 16:09:35,555 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 76, Low: 0
+2025-03-18 16:09:35,556 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:09:35,577 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:09:35,578 [INFO] app.utils.project_manager: Saved results for: t019872959c62f44875.jpg
+2025-03-18 16:09:59,548 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:09:59,578 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:09:59,580 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:10:01,141 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:10:01,145 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:10:01,159 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (1377, 1387, 3)
+2025-03-18 16:10:01,159 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:10:01,162 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:10:01,237 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:10:02,539 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:10:02,540 [DEBUG] app.models.colony_detector: After filtering: 77 colonies
+2025-03-18 16:10:02,541 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 77, Low: 0
+2025-03-18 16:10:02,541 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:10:02,567 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:10:02,568 [INFO] app.utils.project_manager: Saved results for: R-C.jpg
+2025-03-18 16:10:04,296 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:10:04,340 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:10:04,342 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:10:05,210 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:10:05,211 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:10:05,228 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (1000, 1000, 3)
+2025-03-18 16:10:05,229 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:10:05,231 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:10:05,305 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:10:06,605 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:10:06,606 [DEBUG] app.models.colony_detector: After filtering: 52 colonies
+2025-03-18 16:10:06,607 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 52, Low: 0
+2025-03-18 16:10:06,607 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:10:06,630 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:10:06,631 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 16:10:08,425 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:10:08,427 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:10:08,455 [DEBUG] app.models.colony_detector: Image loaded successfully, shape: (1000, 1000, 3)
+2025-03-18 16:10:08,456 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:10:08,458 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:10:08,462 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:10:09,709 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:10:09,710 [DEBUG] app.models.colony_detector: After filtering: 52 colonies
+2025-03-18 16:10:09,711 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 52, Low: 0
+2025-03-18 16:10:09,712 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:10:09,735 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:10:09,736 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 16:10:12,759 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:10:12,815 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 16:10:12,816 [INFO] app: Application cleanup completed
+2025-03-18 16:13:59,211 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 16:13:59,230 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 16:13:59,231 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 16:13:59,232 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 16:13:59,234 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 16:13:59,235 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 16:13:59,236 [INFO] app: Application initialized successfully
+2025-03-18 16:14:20,235 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 16:14:21,168 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:14:21,202 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:14:21,204 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:14:21,517 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:14:21,528 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:14:21,530 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:14:21,802 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:14:21,832 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:14:21,834 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:14:22,763 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:14:22,763 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:14:22,780 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:14:22,858 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 16:14:23,296 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000)
+2025-03-18 16:14:23,298 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:14:23,300 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:14:23,327 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:14:24,638 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:14:24,639 [DEBUG] app.models.colony_detector: After filtering: 60 colonies
+2025-03-18 16:14:24,639 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 18, Low: 42
+2025-03-18 16:14:24,640 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:14:24,663 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:14:24,664 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 16:14:27,291 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:14:27,304 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:14:27,305 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:14:28,813 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:14:28,818 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:14:28,819 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:14:29,235 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:14:29,264 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:14:29,266 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:14:30,601 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:14:30,602 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:14:30,617 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:14:31,659 [DEBUG] app.models.colony_detector: Found petri dish: center=(706, 684), radius=679
+2025-03-18 16:14:32,113 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1377, 1387)
+2025-03-18 16:14:32,113 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:14:32,115 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:14:32,182 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:14:33,508 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:14:33,508 [DEBUG] app.models.colony_detector: After filtering: 48 colonies
+2025-03-18 16:14:33,509 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 24, Low: 24
+2025-03-18 16:14:33,509 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:14:33,530 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:14:33,531 [INFO] app.utils.project_manager: Saved results for: R-C.jpg
+2025-03-18 16:14:38,141 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:14:38,161 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:14:38,162 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:14:39,237 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:14:39,238 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:14:39,251 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:14:39,412 [DEBUG] app.models.colony_detector: Found petri dish: center=(280, 280), radius=267
+2025-03-18 16:14:39,437 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (568, 573)
+2025-03-18 16:14:39,438 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:14:39,438 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:14:39,499 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:14:40,853 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:14:40,854 [DEBUG] app.models.colony_detector: After filtering: 74 colonies
+2025-03-18 16:14:40,855 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 29, Low: 45
+2025-03-18 16:14:40,855 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:14:40,875 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:14:40,876 [INFO] app.utils.project_manager: Saved results for: t019872959c62f44875.jpg
+2025-03-18 16:14:50,370 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:14:50,426 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 16:14:50,428 [INFO] app: Application cleanup completed
+2025-03-18 16:17:32,272 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 16:17:32,301 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 16:17:32,304 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 16:17:32,310 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 16:17:32,313 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 16:17:32,315 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 16:17:32,315 [INFO] app: Application initialized successfully
+2025-03-18 16:18:29,059 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 16:18:29,477 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:18:29,510 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:18:29,511 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:18:30,965 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:18:30,967 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:18:30,981 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:18:31,025 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 16:18:31,395 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000)
+2025-03-18 16:18:31,396 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:18:31,397 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:18:31,428 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:18:32,785 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:18:32,786 [DEBUG] app.models.colony_detector: After filtering: 28 colonies
+2025-03-18 16:18:32,787 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 12, Low: 16
+2025-03-18 16:18:32,788 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:18:32,811 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:18:32,812 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 16:18:38,251 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:18:38,260 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:18:38,262 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:18:39,620 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:18:39,621 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:18:39,624 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:18:39,644 [DEBUG] app.models.colony_detector: Found petri dish: center=(238, 240), radius=230
+2025-03-18 16:18:39,679 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (474, 474)
+2025-03-18 16:18:39,682 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:18:39,683 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:18:39,755 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:18:41,069 [DEBUG] app.models.colony_detector: Found 79 potential colonies
+2025-03-18 16:18:41,070 [DEBUG] app.models.colony_detector: After filtering: 37 colonies
+2025-03-18 16:18:41,070 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 25, Low: 12
+2025-03-18 16:18:41,071 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:18:41,080 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:18:41,081 [INFO] app.utils.project_manager: Saved results for: OIP-C.jpg
+2025-03-18 16:18:43,832 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:18:43,850 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:18:43,851 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:18:45,065 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:18:45,065 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:18:45,078 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:18:45,236 [DEBUG] app.models.colony_detector: Found petri dish: center=(280, 280), radius=267
+2025-03-18 16:18:45,261 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (568, 573)
+2025-03-18 16:18:45,262 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:18:45,263 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:18:45,327 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:18:46,670 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:18:46,672 [DEBUG] app.models.colony_detector: After filtering: 73 colonies
+2025-03-18 16:18:46,672 [INFO] app.models.colony_detector: Detection summary - High: 1, Medium: 67, Low: 5
+2025-03-18 16:18:46,673 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 16:18:46,692 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:18:46,693 [INFO] app.utils.project_manager: Saved results for: t019872959c62f44875.jpg
+2025-03-18 16:18:48,753 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:18:48,771 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:18:48,776 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:18:49,746 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:18:49,747 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:18:49,758 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:18:49,836 [DEBUG] app.models.colony_detector: Found petri dish: center=(540, 390), radius=341
+2025-03-18 16:18:49,914 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (777, 1080)
+2025-03-18 16:18:49,914 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:18:49,915 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:18:49,987 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:18:51,728 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:18:51,729 [DEBUG] app.models.colony_detector: After filtering: 22 colonies
+2025-03-18 16:18:51,730 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 12, Low: 10
+2025-03-18 16:18:51,731 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:18:51,743 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:18:51,743 [INFO] app.utils.project_manager: Saved results for: 2121.jpg
+2025-03-18 16:18:59,285 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:18:59,317 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:18:59,318 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:19:02,061 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:19:02,139 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 16:19:02,140 [INFO] app: Application cleanup completed
+2025-03-18 16:26:56,901 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 16:26:56,931 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 16:26:56,933 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 16:26:56,936 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 16:26:56,937 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 16:26:56,939 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 16:26:56,939 [INFO] app: Application initialized successfully
+2025-03-18 16:27:05,913 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 16:27:07,275 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:27:07,329 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:27:07,330 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:27:08,582 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:27:08,582 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:27:08,597 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:27:08,658 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 16:27:09,038 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000)
+2025-03-18 16:27:09,039 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:27:09,041 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:27:09,065 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:27:10,436 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:27:10,438 [DEBUG] app.models.colony_detector: After filtering: 41 colonies
+2025-03-18 16:27:10,438 [INFO] app.models.colony_detector: Detection summary - High: 28, Medium: 13, Low: 0
+2025-03-18 16:27:10,439 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 16:27:10,535 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:27:10,535 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 16:27:15,187 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:27:15,200 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:27:15,201 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:27:16,151 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:27:16,151 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:27:16,157 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:27:16,180 [DEBUG] app.models.colony_detector: Found petri dish: center=(238, 240), radius=230
+2025-03-18 16:27:16,220 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (474, 474)
+2025-03-18 16:27:16,222 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:27:16,222 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:27:16,285 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:27:17,644 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:27:17,645 [DEBUG] app.models.colony_detector: After filtering: 51 colonies
+2025-03-18 16:27:17,645 [INFO] app.models.colony_detector: Detection summary - High: 2, Medium: 45, Low: 4
+2025-03-18 16:27:17,646 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 16:27:17,693 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:27:17,693 [INFO] app.utils.project_manager: Saved results for: OIP-C.jpg
+2025-03-18 16:27:23,776 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:27:23,813 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:27:23,815 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:27:25,464 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:27:25,468 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:27:25,486 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:27:26,478 [DEBUG] app.models.colony_detector: Found petri dish: center=(706, 684), radius=679
+2025-03-18 16:27:26,924 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1377, 1387)
+2025-03-18 16:27:26,925 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:27:26,927 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:27:26,990 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:27:28,447 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:27:28,449 [DEBUG] app.models.colony_detector: After filtering: 10 colonies
+2025-03-18 16:27:28,450 [INFO] app.models.colony_detector: Detection summary - High: 3, Medium: 7, Low: 0
+2025-03-18 16:27:28,451 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:27:29,470 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:27:29,470 [INFO] app.utils.project_manager: Saved results for: R-C.jpg
+2025-03-18 16:27:29,705 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:27:29,705 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:27:29,717 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:27:30,625 [DEBUG] app.models.colony_detector: Found petri dish: center=(706, 684), radius=679
+2025-03-18 16:27:31,075 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1377, 1387)
+2025-03-18 16:27:31,076 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:27:31,078 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:27:31,148 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:27:32,418 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:27:32,419 [DEBUG] app.models.colony_detector: After filtering: 10 colonies
+2025-03-18 16:27:32,419 [INFO] app.models.colony_detector: Detection summary - High: 3, Medium: 7, Low: 0
+2025-03-18 16:27:32,421 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 16:27:33,341 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:27:33,341 [INFO] app.utils.project_manager: Saved results for: R-C.jpg
+2025-03-18 16:27:33,372 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:27:33,383 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 16:27:33,384 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:27:36,744 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:27:36,750 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 16:27:36,759 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 16:27:36,848 [DEBUG] app.models.colony_detector: Found petri dish: center=(540, 390), radius=341
+2025-03-18 16:27:36,935 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (777, 1080)
+2025-03-18 16:27:36,936 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 16:27:36,937 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 16:27:37,010 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 16:27:38,587 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 16:27:38,588 [DEBUG] app.models.colony_detector: After filtering: 42 colonies
+2025-03-18 16:27:38,588 [INFO] app.models.colony_detector: Detection summary - High: 8, Medium: 34, Low: 0
+2025-03-18 16:27:38,588 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 16:27:38,708 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:27:38,709 [INFO] app.utils.project_manager: Saved results for: 2121.jpg
+2025-03-18 16:27:46,726 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 16:27:46,757 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 16:27:46,758 [INFO] app: Application cleanup completed
+2025-03-18 19:06:13,551 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:06:13,553 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:06:13,554 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:06:13,556 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:06:13,556 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:06:13,557 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:06:13,558 [INFO] app: Application initialized successfully
+2025-03-18 19:06:24,009 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 19:06:26,608 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:06:26,636 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:06:26,637 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:06:27,572 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:06:27,572 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:06:27,579 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:06:27,799 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 19:06:27,799 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000, 3)
+2025-03-18 19:06:27,800 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:06:27,800 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:06:27,818 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:06:28,581 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:06:28,582 [DEBUG] app.models.colony_detector: After filtering: 20 colonies
+2025-03-18 19:06:28,582 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 17, Low: 3
+2025-03-18 19:06:28,583 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:06:28,626 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:06:28,627 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 19:06:34,771 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:06:34,782 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:06:34,783 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:06:35,791 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:06:35,791 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:06:35,794 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:06:35,836 [DEBUG] app.models.colony_detector: Found petri dish: center=(238, 240), radius=230
+2025-03-18 19:06:35,836 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (474, 474, 3)
+2025-03-18 19:06:35,836 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:06:35,838 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:06:35,886 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:06:36,656 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:06:36,657 [DEBUG] app.models.colony_detector: After filtering: 70 colonies
+2025-03-18 19:06:36,657 [INFO] app.models.colony_detector: Detection summary - High: 1, Medium: 69, Low: 0
+2025-03-18 19:06:36,657 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:06:36,689 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:06:36,689 [INFO] app.utils.project_manager: Saved results for: OIP-C.jpg
+2025-03-18 19:06:39,080 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:06:39,097 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:06:39,098 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:06:40,163 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:06:40,163 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:06:40,170 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:06:40,273 [DEBUG] app.models.colony_detector: Found petri dish: center=(540, 390), radius=341
+2025-03-18 19:06:40,273 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (777, 1080, 3)
+2025-03-18 19:06:40,274 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:06:40,274 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:06:40,315 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:06:41,405 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:06:41,405 [DEBUG] app.models.colony_detector: After filtering: 24 colonies
+2025-03-18 19:06:41,405 [INFO] app.models.colony_detector: Detection summary - High: 2, Medium: 22, Low: 0
+2025-03-18 19:06:41,406 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:06:41,460 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:06:41,460 [INFO] app.utils.project_manager: Saved results for: 2121.jpg
+2025-03-18 19:06:45,255 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:06:45,287 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:06:45,287 [INFO] app: Application cleanup completed
+2025-03-18 19:08:07,468 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:08:07,478 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:08:07,479 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:08:07,480 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:08:07,481 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:08:07,482 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:08:07,483 [INFO] app: Application initialized successfully
+2025-03-18 19:08:30,315 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 19:08:33,760 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:08:33,790 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:08:33,791 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:08:34,677 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:08:34,678 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:08:34,693 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:08:34,947 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 19:08:34,947 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000, 3)
+2025-03-18 19:08:34,948 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:08:34,948 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:08:34,964 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:08:35,719 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:08:35,719 [DEBUG] app.models.colony_detector: After filtering: 28 colonies
+2025-03-18 19:08:35,720 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 28, Low: 0
+2025-03-18 19:08:35,720 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:08:35,759 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:08:35,760 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 19:08:38,799 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:08:38,818 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:08:38,819 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:08:39,822 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:08:39,822 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:08:39,834 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:08:39,927 [DEBUG] app.models.colony_detector: Found petri dish: center=(280, 280), radius=267
+2025-03-18 19:08:39,927 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (568, 573, 3)
+2025-03-18 19:08:39,928 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:08:39,928 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:08:39,960 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:08:40,722 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:08:40,723 [DEBUG] app.models.colony_detector: After filtering: 54 colonies
+2025-03-18 19:08:40,723 [INFO] app.models.colony_detector: Detection summary - High: 2, Medium: 52, Low: 0
+2025-03-18 19:08:40,723 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:08:40,824 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:08:40,825 [INFO] app.utils.project_manager: Saved results for: t019872959c62f44875.jpg
+2025-03-18 19:08:42,916 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:08:42,932 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:08:42,933 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:08:43,955 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:08:43,956 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:08:43,962 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:08:44,067 [DEBUG] app.models.colony_detector: Found petri dish: center=(540, 390), radius=341
+2025-03-18 19:08:44,068 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (777, 1080, 3)
+2025-03-18 19:08:44,068 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:08:44,069 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:08:44,102 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:08:45,121 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:08:45,123 [DEBUG] app.models.colony_detector: After filtering: 24 colonies
+2025-03-18 19:08:45,123 [INFO] app.models.colony_detector: Detection summary - High: 1, Medium: 23, Low: 0
+2025-03-18 19:08:45,123 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:08:45,175 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:08:45,175 [INFO] app.utils.project_manager: Saved results for: 2121.jpg
+2025-03-18 19:08:48,160 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:08:48,170 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:08:48,171 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:08:49,376 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:08:49,377 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:08:49,379 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:08:49,420 [DEBUG] app.models.colony_detector: Found petri dish: center=(238, 240), radius=230
+2025-03-18 19:08:49,420 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (474, 474, 3)
+2025-03-18 19:08:49,420 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:08:49,421 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:08:49,483 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:08:50,169 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:08:50,170 [DEBUG] app.models.colony_detector: After filtering: 74 colonies
+2025-03-18 19:08:50,170 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 74, Low: 0
+2025-03-18 19:08:50,171 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:08:50,201 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:08:50,202 [INFO] app.utils.project_manager: Saved results for: OIP-C.jpg
+2025-03-18 19:08:59,788 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:08:59,788 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:08:59,794 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:08:59,890 [DEBUG] app.models.colony_detector: Found petri dish: center=(540, 390), radius=341
+2025-03-18 19:08:59,890 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (777, 1080, 3)
+2025-03-18 19:08:59,890 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:08:59,891 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:08:59,927 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:09:00,867 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:09:00,867 [DEBUG] app.models.colony_detector: After filtering: 24 colonies
+2025-03-18 19:09:00,867 [INFO] app.models.colony_detector: Detection summary - High: 1, Medium: 23, Low: 0
+2025-03-18 19:09:00,872 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:09:00,872 [INFO] app.utils.project_manager: Saved results for: 2121.jpg
+2025-03-18 19:09:00,872 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:09:00,872 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:09:00,879 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:09:01,021 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 19:09:01,022 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000, 3)
+2025-03-18 19:09:01,023 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:09:01,024 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:09:01,026 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:09:01,685 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:09:01,686 [DEBUG] app.models.colony_detector: After filtering: 28 colonies
+2025-03-18 19:09:01,686 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 28, Low: 0
+2025-03-18 19:09:01,690 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:09:01,690 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 19:09:01,690 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:09:01,690 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:09:01,691 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:09:01,722 [DEBUG] app.models.colony_detector: Found petri dish: center=(238, 240), radius=230
+2025-03-18 19:09:01,722 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (474, 474, 3)
+2025-03-18 19:09:01,722 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:09:01,723 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:09:01,724 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:09:02,456 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:09:02,458 [DEBUG] app.models.colony_detector: After filtering: 74 colonies
+2025-03-18 19:09:02,458 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 74, Low: 0
+2025-03-18 19:09:02,470 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:09:02,471 [INFO] app.utils.project_manager: Saved results for: OIP-C.jpg
+2025-03-18 19:09:02,471 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:09:02,505 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 19:09:02,505 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:09:02,512 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:09:03,276 [DEBUG] app.models.colony_detector: Found petri dish: center=(706, 684), radius=679
+2025-03-18 19:09:03,277 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1377, 1387, 3)
+2025-03-18 19:09:03,278 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:09:03,279 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:09:03,283 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:09:04,049 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:09:04,051 [DEBUG] app.models.colony_detector: After filtering: 6 colonies
+2025-03-18 19:09:04,051 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 5, Low: 1
+2025-03-18 19:09:04,055 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:09:04,056 [INFO] app.utils.project_manager: Saved results for: R-C.jpg
+2025-03-18 19:09:04,056 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:09:04,056 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:09:04,061 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:09:04,150 [DEBUG] app.models.colony_detector: Found petri dish: center=(280, 280), radius=267
+2025-03-18 19:09:04,151 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (568, 573, 3)
+2025-03-18 19:09:04,151 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:09:04,151 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:09:04,152 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:09:04,838 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:09:04,838 [DEBUG] app.models.colony_detector: After filtering: 54 colonies
+2025-03-18 19:09:04,839 [INFO] app.models.colony_detector: Detection summary - High: 2, Medium: 52, Low: 0
+2025-03-18 19:09:04,844 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:09:04,844 [INFO] app.utils.project_manager: Saved results for: t019872959c62f44875.jpg
+2025-03-18 19:09:04,860 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:09:04,863 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:09:04,864 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:09:06,983 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:09:06,990 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:09:06,991 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:09:09,861 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:09:09,888 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:09:09,888 [INFO] app: Application cleanup completed
+2025-03-18 19:11:05,269 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:11:05,272 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:11:05,273 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:11:05,274 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:11:05,277 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:11:05,278 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:11:05,278 [INFO] app: Application initialized successfully
+2025-03-18 19:11:19,574 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 19:11:29,438 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:11:29,459 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:11:29,460 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-18 19:11:30,096 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:11:30,110 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:11:30,111 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:11:31,472 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:11:31,473 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:11:31,489 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:11:31,765 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 19:11:31,765 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000, 3)
+2025-03-18 19:11:31,766 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:11:31,767 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:11:31,784 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:11:32,453 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:11:32,453 [DEBUG] app.models.colony_detector: After filtering: 49 colonies
+2025-03-18 19:11:32,454 [INFO] app.models.colony_detector: Detection summary - High: 49, Medium: 0, Low: 0
+2025-03-18 19:11:32,454 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:11:32,499 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:11:32,500 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 19:12:05,970 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:12:05,982 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:12:05,984 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:12:07,202 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:12:07,203 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:12:07,205 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:12:07,244 [DEBUG] app.models.colony_detector: Found petri dish: center=(238, 240), radius=230
+2025-03-18 19:12:07,244 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (474, 474, 3)
+2025-03-18 19:12:07,244 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:12:07,245 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:12:07,281 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:12:08,031 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:12:08,032 [DEBUG] app.models.colony_detector: After filtering: 64 colonies
+2025-03-18 19:12:08,032 [INFO] app.models.colony_detector: Detection summary - High: 64, Medium: 0, Low: 0
+2025-03-18 19:12:08,032 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-18 19:12:08,059 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:12:08,059 [INFO] app.utils.project_manager: Saved results for: OIP-C.jpg
+2025-03-18 19:12:09,254 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 19:12:09,280 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:12:09,281 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 19:12:10,658 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 19:12:10,658 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:12:10,671 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:12:11,382 [DEBUG] app.models.colony_detector: Found petri dish: center=(706, 684), radius=679
+2025-03-18 19:12:11,383 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1377, 1387, 3)
+2025-03-18 19:12:11,383 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:12:11,384 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:12:11,419 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:12:12,157 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:12:12,158 [DEBUG] app.models.colony_detector: After filtering: 14 colonies
+2025-03-18 19:12:12,158 [INFO] app.models.colony_detector: Detection summary - High: 14, Medium: 0, Low: 0
+2025-03-18 19:12:12,159 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-18 19:12:12,743 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:12:12,743 [INFO] app.utils.project_manager: Saved results for: R-C.jpg
+2025-03-18 19:12:21,074 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:12:21,101 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:12:21,103 [INFO] app: Application cleanup completed
+2025-03-18 19:13:23,354 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:13:23,365 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:13:23,365 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:13:23,366 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:13:23,368 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:13:23,369 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:13:23,369 [INFO] app: Application initialized successfully
+2025-03-18 19:13:52,114 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 19:13:52,968 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:13:53,005 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:13:53,005 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:13:54,237 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:13:54,237 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:13:54,244 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:13:54,454 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 19:13:54,455 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000, 3)
+2025-03-18 19:13:54,455 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:13:54,456 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:13:54,473 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:13:55,179 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:13:55,180 [DEBUG] app.models.colony_detector: After filtering: 28 colonies
+2025-03-18 19:13:55,180 [INFO] app.models.colony_detector: Detection summary - High: 2, Medium: 26, Low: 0
+2025-03-18 19:13:55,180 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:13:55,220 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:13:55,220 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 19:13:56,883 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:13:56,905 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:13:56,906 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:13:58,144 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:13:58,145 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:13:58,159 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:13:58,261 [DEBUG] app.models.colony_detector: Found petri dish: center=(280, 280), radius=267
+2025-03-18 19:13:58,261 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (568, 573, 3)
+2025-03-18 19:13:58,262 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:13:58,262 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:13:58,295 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:13:59,072 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:13:59,073 [DEBUG] app.models.colony_detector: After filtering: 48 colonies
+2025-03-18 19:13:59,073 [INFO] app.models.colony_detector: Detection summary - High: 7, Medium: 41, Low: 0
+2025-03-18 19:13:59,074 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-18 19:13:59,168 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:13:59,168 [INFO] app.utils.project_manager: Saved results for: t019872959c62f44875.jpg
+2025-03-18 19:14:01,211 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:14:01,233 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:14:01,233 [INFO] app: Application cleanup completed
+2025-03-18 19:17:06,940 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:17:06,951 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:17:06,952 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:17:06,953 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:17:06,954 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:17:06,955 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:17:06,955 [INFO] app: Application initialized successfully
+2025-03-18 19:18:00,235 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 19:18:01,126 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:18:01,157 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:18:01,158 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:18:02,479 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:18:02,480 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:18:02,494 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:18:02,717 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 19:18:02,717 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000, 3)
+2025-03-18 19:18:02,718 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:18:02,718 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:18:02,732 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:18:03,450 [DEBUG] app.models.colony_detector: Found 100 potential colonies
+2025-03-18 19:18:03,450 [DEBUG] app.models.colony_detector: After filtering: 22 colonies
+2025-03-18 19:18:03,450 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 22, Low: 0
+2025-03-18 19:18:03,451 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:18:03,487 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:18:03,487 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 19:18:08,398 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:18:08,428 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:18:08,429 [INFO] app: Application cleanup completed
+2025-03-18 19:19:21,828 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:19:21,831 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:19:21,831 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:19:21,831 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:19:21,832 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:19:21,833 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:19:21,834 [INFO] app: Application initialized successfully
+2025-03-18 19:20:01,933 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 19:20:02,872 [DEBUG] app.gui.main_window: Loading image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:20:02,907 [DEBUG] app.gui.main_window: Image loaded successfully
+2025-03-18 19:20:02,907 [DEBUG] app.gui.main_window: Found existing results for C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:20:03,995 [INFO] app.models.colony_detector: Starting colony detection for: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:20:03,995 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 19:20:04,004 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 19:20:04,223 [DEBUG] app.models.colony_detector: Found petri dish: center=(498, 502), radius=493
+2025-03-18 19:20:04,224 [DEBUG] app.models.colony_detector: Image loaded and preprocessed, shape: (1000, 1000, 3)
+2025-03-18 19:20:04,224 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 19:20:04,226 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 19:20:04,240 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 19:20:04,957 [DEBUG] app.models.colony_detector: Found 31 potential colonies
+2025-03-18 19:20:04,957 [DEBUG] app.models.colony_detector: After filtering: 16 colonies
+2025-03-18 19:20:04,958 [INFO] app.models.colony_detector: Detection summary - High: 0, Medium: 1, Low: 15
+2025-03-18 19:20:04,958 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-18 19:20:04,994 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:20:04,994 [INFO] app.utils.project_manager: Saved results for: 2021041310020608608.jpg
+2025-03-18 19:23:58,344 [INFO] app.utils.project_manager: Saved project: 123
+2025-03-18 19:23:58,369 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:23:58,370 [INFO] app: Application cleanup completed
+2025-03-18 19:27:57,706 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:27:57,708 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:27:57,708 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:27:57,709 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:27:57,709 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:27:57,710 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:27:57,710 [INFO] app: Application initialized successfully
+2025-03-18 19:27:58,070 [ERROR] __main__: Fatal error: 'MainWindow' object has no attribute 'on_image_selected'
+Traceback (most recent call last):
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\main.py", line 78, in main
+    window = MainWindow(config)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\main_window.py", line 29, in __init__
+    self.setup_ui()
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\main_window.py", line 51, in setup_ui
+    self.image_list.image_selected.connect(self.on_image_selected)
+                                           ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MainWindow' object has no attribute 'on_image_selected'
+2025-03-18 19:27:58,075 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:27:58,075 [INFO] app: Application cleanup completed
+2025-03-18 19:29:02,354 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:29:02,358 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:29:02,359 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:29:02,361 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:29:02,361 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:29:02,362 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:29:02,363 [INFO] app: Application initialized successfully
+2025-03-18 19:40:21,831 [ERROR] app.utils.project_manager: Project file not found: C:\Users\º«ÌÎ\OneDrive\Desktop\123\project.json\project.json
+2025-03-18 19:40:49,299 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:40:49,299 [INFO] app: Application cleanup completed
+2025-03-18 19:42:36,336 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:42:36,347 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:42:36,348 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:42:36,350 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:42:36,351 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:42:36,352 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:42:36,352 [INFO] app: Application initialized successfully
+2025-03-18 19:42:47,849 [ERROR] app.utils.project_manager: Project file not found: C:\Users\º«ÌÎ\OneDrive\Desktop\123\project.json\project.json
+2025-03-18 19:42:52,071 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:42:52,072 [INFO] app: Application cleanup completed
+2025-03-18 19:44:19,690 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:44:19,692 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:44:19,693 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:44:19,694 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:44:19,695 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:44:19,695 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:44:19,696 [INFO] app: Application initialized successfully
+2025-03-18 19:44:44,849 [ERROR] app.utils.project_manager: Project file not found: C:\Users\º«ÌÎ\OneDrive\Desktop\123\project.json\project.json
+2025-03-18 19:44:50,795 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:44:50,796 [INFO] app: Application cleanup completed
+2025-03-18 19:45:57,626 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:45:57,629 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:45:57,629 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:45:57,629 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:45:57,631 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:45:57,631 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:45:57,632 [INFO] app: Application initialized successfully
+2025-03-18 19:46:24,210 [ERROR] app.utils.project_manager: Error saving project: [WinError 183] µ±ÎÄ¼þÒÑ´æÔÚÊ±£¬ÎÞ·¨´´½¨¸ÃÎÄ¼þ¡£: 'C:/Users/º«ÌÎ/OneDrive/Desktop/123\\project.json'
+2025-03-18 19:46:53,194 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:46:53,196 [INFO] app: Application cleanup completed
+2025-03-18 19:48:04,405 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:48:04,416 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:48:04,417 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:48:04,417 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:48:04,418 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:48:04,419 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:48:04,419 [INFO] app: Application initialized successfully
+2025-03-18 19:48:42,000 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:48:42,001 [INFO] app: Application cleanup completed
+2025-03-18 19:51:44,951 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:51:44,955 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:51:44,955 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:51:44,956 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:51:44,957 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:51:44,957 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:51:44,958 [INFO] app: Application initialized successfully
+2025-03-18 19:51:55,764 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 19:52:05,604 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:52:05,604 [INFO] app: Application cleanup completed
+2025-03-18 19:54:00,093 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:54:00,104 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:54:00,104 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:54:00,106 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:54:00,107 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:54:00,109 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:54:00,109 [INFO] app: Application initialized successfully
+2025-03-18 19:54:00,462 [ERROR] __main__: Fatal error: name 'QPushButton' is not defined
+Traceback (most recent call last):
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\main.py", line 78, in main
+    window = MainWindow(config)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\main_window.py", line 31, in __init__
+    self.setup_ui()
+  File "C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\gui\main_window.py", line 53, in setup_ui
+    add_image_btn = QPushButton("Ìí¼ÓÍ¼Ïñ")
+                    ^^^^^^^^^^^
+NameError: name 'QPushButton' is not defined
+2025-03-18 19:54:00,465 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:54:00,465 [INFO] app: Application cleanup completed
+2025-03-18 19:55:35,477 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:55:35,487 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:55:35,488 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:55:35,488 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:55:35,489 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:55:35,490 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:55:35,491 [INFO] app: Application initialized successfully
+2025-03-18 19:55:46,317 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 19:56:06,585 [INFO] app.utils.project_manager: Added image: 2121.jpg
+2025-03-18 19:56:06,589 [INFO] app.utils.project_manager: Added image: 2021041310020608608.jpg
+2025-03-18 19:56:06,591 [INFO] app.utils.project_manager: Added image: OIP-C.jpg
+2025-03-18 19:56:06,593 [INFO] app.utils.project_manager: Added image: R-C.jpg
+2025-03-18 19:56:06,595 [INFO] app.utils.project_manager: Added image: t019872959c62f44875.jpg
+2025-03-18 19:56:07,509 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/OIP-C.jpg
+2025-03-18 19:56:08,349 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/2021041310020608608.jpg
+2025-03-18 19:56:08,975 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/OIP-C.jpg
+2025-03-18 19:56:09,843 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/R-C.jpg
+2025-03-18 19:56:10,284 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/t019872959c62f44875.jpg
+2025-03-18 19:56:10,882 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/2121.jpg
+2025-03-18 19:56:11,357 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/2021041310020608608.jpg
+2025-03-18 19:56:11,943 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/2121.jpg
+2025-03-18 19:56:18,361 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/OIP-C.jpg
+2025-03-18 19:56:19,075 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/213/images/2021041310020608608.jpg
+2025-03-18 19:56:27,517 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:56:27,518 [INFO] app: Application cleanup completed
+2025-03-18 19:57:18,720 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 19:57:18,723 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 19:57:18,723 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 19:57:18,725 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 19:57:18,727 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 19:57:18,728 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 19:57:18,728 [INFO] app: Application initialized successfully
+2025-03-18 19:57:21,968 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 19:57:21,969 [INFO] app: Application cleanup completed
+2025-03-18 20:00:39,808 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 20:00:39,810 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 20:00:39,811 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 20:00:39,811 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 20:00:39,812 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 20:00:39,812 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 20:00:39,813 [INFO] app: Application initialized successfully
+2025-03-18 20:00:52,907 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 20:00:53,570 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\OIP-C.jpg
+2025-03-18 20:00:57,124 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 20:00:57,132 [ERROR] app.models.colony_detector: Error during detection: Failed to load image
+2025-03-18 20:00:57,132 [ERROR] app.gui.main_window: ·ÖÎöÊ§°Ü: Failed to load image
+2025-03-18 20:01:01,844 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 20:01:01,845 [INFO] app: Application cleanup completed
+2025-03-18 20:02:29,622 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 20:02:29,633 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 20:02:29,634 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 20:02:29,635 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 20:02:29,636 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 20:02:29,637 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 20:02:29,640 [INFO] app: Application initialized successfully
+2025-03-18 20:02:42,271 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 20:02:42,927 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\OIP-C.jpg
+2025-03-18 20:02:44,097 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 20:02:44,100 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 20:02:44,252 [DEBUG] app.models.colony_detector: Found petri dish: center=(238 240) radius=230
+2025-03-18 20:02:44,253 [DEBUG] app.models.colony_detector: Image loaded and preprocessed shape: (474 474 3)
+2025-03-18 20:02:44,253 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 20:02:44,255 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 20:02:44,260 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 20:02:44,260 [DEBUG] app.models.colony_detector: Found 18 potential colonies
+2025-03-18 20:02:44,261 [DEBUG] app.models.colony_detector: After filtering: 18 colonies
+2025-03-18 20:02:44,261 [INFO] app.models.colony_detector: Detection summary - High: 5 Medium: 13 Low: 0
+2025-03-18 20:02:44,261 [DEBUG] app.models.colony_detector: Annotating image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\OIP-C.jpg
+2025-03-18 20:02:44,263 [ERROR] app.gui.main_window: ·ÖÎöÊ§°Ü: 'ImageViewer' object has no attribute 'set_pixmap'
+2025-03-18 20:02:46,458 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 20:02:46,460 [INFO] app: Application cleanup completed
+2025-03-18 20:12:51,614 [INFO] app.utils.resource_checker: Checking Directories...
+2025-03-18 20:12:51,625 [INFO] app.utils.resource_checker: Checking Configuration...
+2025-03-18 20:12:51,626 [INFO] app.utils.resource_checker: Checking Translations...
+2025-03-18 20:12:51,628 [INFO] app.utils.resource_checker: Checking Themes...
+2025-03-18 20:12:51,630 [INFO] app.utils.resource_checker: All resource checks passed
+2025-03-18 20:12:51,632 [INFO] app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-18 20:12:51,632 [INFO] app: Application initialized successfully
+2025-03-18 20:13:05,830 [INFO] app.utils.project_manager: Opened project: 123
+2025-03-18 20:13:06,719 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\2121.jpg
+2025-03-18 20:13:08,046 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\t019872959c62f44875.jpg
+2025-03-18 20:13:08,379 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\R-C.jpg
+2025-03-18 20:13:08,691 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\OIP-C.jpg
+2025-03-18 20:13:09,008 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\2121.jpg
+2025-03-18 20:13:10,196 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\2021041310020608608.jpg
+2025-03-18 20:13:10,632 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\R-C.jpg
+2025-03-18 20:13:11,766 [DEBUG] app.models.colony_detector: Loading image...
+2025-03-18 20:13:11,780 [DEBUG] app.models.colony_detector: Preprocessing image...
+2025-03-18 20:13:12,564 [DEBUG] app.models.colony_detector: Found petri dish: center=(706 684) radius=679
+2025-03-18 20:13:12,564 [DEBUG] app.models.colony_detector: Image loaded and preprocessed shape: (1377 1387 3)
+2025-03-18 20:13:12,565 [DEBUG] app.models.colony_detector: Converting color space...
+2025-03-18 20:13:12,566 [DEBUG] app.models.colony_detector: Converting to tensor...
+2025-03-18 20:13:12,572 [DEBUG] app.models.colony_detector: Running model inference...
+2025-03-18 20:13:12,572 [DEBUG] app.models.colony_detector: Found 16 potential colonies
+2025-03-18 20:13:12,573 [DEBUG] app.models.colony_detector: After filtering: 15 colonies
+2025-03-18 20:13:12,573 [INFO] app.models.colony_detector: Detection summary - High: 5 Medium: 10 Low: 0
+2025-03-18 20:13:12,574 [DEBUG] app.models.colony_detector: Annotating image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-18 20:13:12,585 [ERROR] app.utils.project_manager: Error saving project: Object of type ndarray is not JSON serializable
+2025-03-18 20:13:13,217 [DEBUG] app.gui.main_window: Loading image: C:/Users/º«ÌÎ/OneDrive/Desktop/123\t019872959c62f44875.jpg
+2025-03-18 20:13:15,141 [INFO] app.utils.config: Configuration saved to apps\app\resources\config.json
+2025-03-18 20:13:15,141 [INFO] app: Application cleanup completed

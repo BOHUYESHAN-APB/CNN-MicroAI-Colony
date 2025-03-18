@@ -106,6 +106,7 @@ class SettingsDialog(QDialog):
         self.tabs.addTab(self.create_general_tab(), tr("settings.tab.general"))
         self.tabs.addTab(self.create_display_tab(), tr("settings.tab.display"))
         self.tabs.addTab(self.create_analysis_tab(), tr("settings.tab.analysis"))
+        self.tabs.addTab(self.create_preprocessing_tab(), tr("settings.tab.preprocessing"))
         
         self.layout().addWidget(self.tabs)
         
@@ -268,7 +269,7 @@ class SettingsDialog(QDialog):
 
         tab.setLayout(layout)
         return tab
-        
+
     def load_settings(self):
         """Load current settings"""
         # General settings
@@ -276,25 +277,32 @@ class SettingsDialog(QDialog):
         index = self.language_combo.findData(locale)
         if index >= 0:
             self.language_combo.setCurrentIndex(index)
-            
+
         self.path_edit.setText(self.config.get("project.default_path", get_default_project_path()))
         self.autosave_check.setChecked(self.config.get("project.auto_save", True))
-        
+
         # Display settings
-        theme = self.config.get("theme.default", "siui_dark")
+        theme = self.theme_combo.currentData()
         index = self.theme_combo.findData(theme)
         if index >= 0:
             self.theme_combo.setCurrentIndex(index)
-            
+
         self.maximized_check.setChecked(self.config.get("interface.start_maximized", False))
         self.statusbar_check.setChecked(self.config.get("interface.status_bar", True))
-        
+
         # Analysis settings
         self.confidence_spin.setValue(self.config.get("analysis.confidence_threshold", 0.5))
         self.min_size_spin.setValue(self.config.get("analysis.min_size", 5))
         self.max_size_spin.setValue(self.config.get("analysis.max_size", 100))
         self.gpu_check.setChecked(self.config.get("analysis.use_gpu", True))
-        
+
+        # Preprocessing settings
+        self.remove_glare_check.setChecked(self.config.get("preprocessing.remove_glare", True))
+        self.normalize_lighting_check.setChecked(self.config.get("preprocessing.normalize_lighting", True))
+        self.clahe_check.setChecked(self.config.get("preprocessing.clahe", True))
+        self.gaussian_blur_check.setChecked(self.config.get("preprocessing.gaussian_blur", False))
+        self.adaptive_thresholding_check.setChecked(self.config.get("preprocessing.adaptive_thresholding", False))
+
     def apply_settings(self):
         """Apply current settings"""
         # General settings
@@ -303,40 +311,35 @@ class SettingsDialog(QDialog):
             self.config.set("locale", new_locale)
             # Let the main window handle language switching
             self.parent().change_language(new_locale)
-            
+
         self.config.set("project.default_path", self.path_edit.text())
         self.config.set("project.auto_save", self.autosave_check.isChecked())
-        
+
         # Display settings
         new_theme = self.theme_combo.currentData()
         if new_theme != self.config.get("theme.default"):
             self.config.set("theme.default", new_theme)
             self.theme.apply_theme(new_theme)
-            
+
         self.config.set("interface.start_maximized", self.maximized_check.isChecked())
         self.config.set("interface.status_bar", self.statusbar_check.isChecked())
-        
+
         # Analysis settings
         self.config.set("analysis.confidence_threshold", self.confidence_spin.value())
         self.config.set("analysis.min_size", self.min_size_spin.value())
         self.config.set("analysis.max_size", self.max_size_spin.value())
         self.config.set("analysis.use_gpu", self.gpu_check.isChecked())
-        self.config.set("analysis.adaptive_thresh_method", self.adaptive_thresh_combo.currentData())
-        
-        # CLAHE parameters
-        self.config.set("analysis.clahe_clip_limit", self.clahe_clip_spin.value())
-        self.config.set("analysis.clahe_tile_grid_size", self.clahe_grid_spin.value())
 
-        # Blur kernel size
-        self.config.set("analysis.blur_kernel_size", self.blur_kernel_spin.value())
+        # Preprocessing settings
+        self.config.set("preprocessing.remove_glare", self.remove_glare_check.isChecked())
+        self.config.set("preprocessing.normalize_lighting", self.normalize_lighting_check.isChecked())
+        self.config.set("preprocessing.clahe", self.clahe_check.isChecked())
+        self.config.set("preprocessing.gaussian_blur", self.gaussian_blur_check.isChecked())
+        self.config.set("preprocessing.adaptive_thresholding", self.adaptive_thresholding_check.isChecked())
 
-        # Canny thresholds
-        self.config.set("analysis.canny_min_threshold", self.canny_min_spin.value())
-        self.config.set("analysis.canny_max_threshold", self.canny_max_spin.value())
-        
         # Save changes
         self.config.save()
-        
+
     def browse_path(self):
         """Open directory browser"""
         path = QFileDialog.getExistingDirectory(
@@ -346,8 +349,112 @@ class SettingsDialog(QDialog):
         )
         if path:
             self.path_edit.setText(path)
-            
+
     def accept(self):
         """Handle dialog accept"""
         self.apply_settings()
         super().accept()
+</final_file_content>
+
+IMPORTANT: For any future changes to this file, use the final_file_content shown above as your reference. This content reflects the current state of the file, including any auto-formatting (e.g., if you used single quotes but the formatter converted them to double quotes). Always base your SEARCH/REPLACE operations on this final version to ensure accuracy.
+</error><environment_details>
+# VSCode Visible Files
+apps/app/models/colony_detector.py
+
+# VSCode Open Tabs
+apps/app/utils/config.py
+apps/app/gui/result_visualizer.py
+apps/app/main.py
+apps/app/gui/image_viewer.py
+apps/app/__init__.py
+apps/app/gui/image_list_widget.py
+apps/app/gui/main_window.py
+apps/app/models/__init__.py
+apps/app/utils/resource_checker.py
+apps/test_app.py
+apps/app/gui/__init__.py
+app/gui/result_visualizer.py
+apps/app/utils/image_preprocessing.py
+apps/app/models/colony_detector.py
+apps_old/app_old/gui/settings_dialog.py
+apps/app/gui/project_dialog.py
+apps/app/gui/progress_dialog.py
+apps/app/utils/project_manager.py
+apps/app/utils/thumbnail.py
+apps/app/models/import_test.py
+
+# Current Time
+2025/3/18 下午4:31:19 (Asia/Shanghai, UTC+8:00)
+
+# Current Mode
+ACT MODE
+"""
+Settings Dialog for application preferences
+"""
+import logging
+from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QTabWidget,
+                            QPushButton, QWidget, QFormLayout, QLabel,
+                            QComboBox, QSpinBox, QDoubleSpinBox, QCheckBox,
+                            QLineEdit, QFileDialog, QMessageBox)
+from PyQt6.QtCore import Qt
+
+from ..utils.i18n import tr, get_locales, set_locale
+from ..utils.config import ConfigManager
+from ..utils.path_manager import get_default_project_path
+from ..utils.theme_manager import ThemeManager
+
+logger = logging.getLogger(__name__)
+
+class SettingsDialog(QDialog):
+    """Application settings dialog"""
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.config = ConfigManager()
+        self.theme = ThemeManager()
+        self.tabs = None  # Store reference to tabs
+        self.language_combo = None
+        self.path_edit = None
+        self.autosave_check = None
+        self.theme_combo = None
+        self.maximized_check = None
+        self.statusbar_check = None
+        self.confidence_spin = None
+        self.min_size_spin = None
+        self.max_size_spin = None
+        self.gpu_check = None
+        
+        self.setup_ui()
+        self.load_settings()
+
+    def rebuild_ui(self):
+        """Rebuild UI with new translations"""
+        # Store current values
+        current_values = self.get_current_values()
+        
+        # Clear layout
+        self.layout().removeWidget(self.tabs)
+        self.tabs.deleteLater()
+        self.tabs = None
+        
+        # Rebuild UI
+        self.setup_ui()
+        
+        # Restore values
+        self.set_values(current_values)
+
+    def get_current_values(self):
+        """Get current values from UI elements"""
+        return {
+            'language': self.language_combo.currentData(),
+            'path': self.path_edit.text(),
+            'auto_save': self.autosave_check.isChecked(),
+            'theme': self.theme_combo.currentData(),
+            'maximized': self.maximized_check.isChecked(),
+            'status_bar': self.statusbar_check.isChecked(),
+            'confidence': self.confidence_spin.value(),
+            'min_size': self.min_size_spin.value(),
+            'max_size': self.max_size_spin.value(),
+            'use_gpu': self.gpu_check.isChecked()
+        }
+        

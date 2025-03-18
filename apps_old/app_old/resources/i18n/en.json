@@ -27,5 +27,15 @@
     "about.deps.numpy": "Numerical computing and data processing",
     "about.deps.tensorflow": "Deep learning and AI",
     "about.github.description": "Visit our GitHub repository for documentation, issue reporting, and contributing:",
-    "error.license_load_failed": "Failed to load license content"
+    "error.license_load_failed": "Failed to load license content",
+    "settings.tab.preprocessing": "Preprocessing",
+    "settings.remove_glare": "Remove Glare",
+    "settings.normalize_lighting": "Normalize Lighting",
+    "settings.clahe": "CLAHE",
+    "settings.gaussian_blur": "Gaussian Blur",
+    "settings.adaptive_thresholding": "Adaptive Thresholding",
+    "settings.select_project_dir": "Select Project Directory",
+    "settings.browse": "Browse",
+    "settings.default_path": "Default Project Path",
+    "settings.auto_save": "Auto-save Project"
 }
