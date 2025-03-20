@@ -1,70 +1,62 @@
 """
-Thumbnail creation utility
+Thumbnail generation utilities
 缩略图生成工具
 """
-import os
 import cv2
 import numpy as np
 import logging
+from pathlib import Path
 from PyQt6.QtGui import QImage
-from PyQt6.QtCore import QDir
-from .image_preprocessing import load_image
 
 logger = logging.getLogger(__name__)
 
-def create_thumbnail(image_path, size=(64, 64)):
-    """Create a thumbnail for an image file
+def create_thumbnail(path, size=(64, 64)):
+    """Create thumbnail from image file
     
     Args:
-        image_path (str): Path to image file
-        size (tuple): Target size (width, height)
+        path (str): Image file path
+        size (tuple): Target thumbnail size (width, height)
         
     Returns:
-        QImage: Thumbnail image
-        
-    Raises:
-        ValueError: If image cannot be loaded or processed
+        QImage: Thumbnail image, or None if failed
     """
     try:
-        logger.debug(f"Creating thumbnail for: {image_path}")
+        # Convert path to proper Path object
+        img_path = Path(path)
         
-        # Convert path to native format
-        abs_path = QDir.toNativeSeparators(os.path.abspath(image_path))
-        
-        # Load image using our preprocessing utility
-        image = load_image(abs_path)
+        # Read image using numpy to handle Unicode paths
+        with open(img_path, 'rb') as f:
+            img_array = np.frombuffer(f.read(), dtype=np.uint8)
+            image = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            
         if image is None:
             raise ValueError("Cannot load image")
             
+        # Get original dimensions
+        height, width = image.shape[:2]
+        
+        # Calculate scaling factor
+        scale = min(size[0]/width, size[1]/height)
+        
+        # Calculate new dimensions
+        new_width = int(width * scale)
+        new_height = int(height * scale)
+        
+        # Resize image
+        resized = cv2.resize(image, (new_width, new_height),
+                           interpolation=cv2.INTER_AREA)
+                           
         # Convert to RGB
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        rgb = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
         
-        # Calculate target size maintaining aspect ratio
-        h, w = image.shape[:2]
-        scale = min(size[0]/w, size[1]/h)
-        new_size = (int(w * scale), int(h * scale))
-        
-        # Resize
-        image = cv2.resize(image, new_size, interpolation=cv2.INTER_AREA)
-        
-        # Add padding to make square
-        target_w, target_h = size
-        pad_x = (target_w - new_size[0]) // 2
-        pad_y = (target_h - new_size[1]) // 2
-        
-        padded = np.full((target_h, target_w, 3), 32, dtype=np.uint8)
-        padded[pad_y:pad_y+new_size[1], pad_x:pad_x+new_size[0]] = image
-        
-        # Convert to QImage
-        height, width, channel = padded.shape
+        # Create QImage
+        height, width, channel = rgb.shape
         bytes_per_line = 3 * width
-        qimage = QImage(padded.data, width, height, bytes_per_line, 
+        qimg = QImage(rgb, width, height, bytes_per_line,
                      QImage.Format.Format_RGB888)
-        
-        logger.debug(f"Successfully created thumbnail for: {abs_path}")
-        return qimage
+                     
+        return qimg
         
     except Exception as e:
         logger.error(f"Failed to create thumbnail: {str(e)}")
-        logger.debug(f"Attempted path: {image_path}", exc_info=True)
-        raise ValueError(f"Cannot create thumbnail: {str(e)}")
+        return None
