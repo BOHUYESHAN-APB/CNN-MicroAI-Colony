@@ -1,9 +1,6 @@
 """
 Test Colony Detection Model
 """
-import sys
-import os
-sys.path.insert(0, os.getcwd()) # Add project root to Python path
 import cv2
 import json
 import torch
@@ -46,11 +43,9 @@ def main():
         with open("test-pic/result.json", "r", encoding='utf-8') as f:
             ground_truth = json.load(f)
         
-        # Test images in test-pic folder with UTF-8 encoding
-        test_dir = Path("test-pic").resolve()
-        test_images = list(test_dir.glob("*.jpg"))
-        if not test_images:
-            raise FileNotFoundError(f"No test images found in {test_dir}")
+        # Test images in test-pic folder
+        test_dir = Path("test-pic")
+        test_images = [f for f in test_dir.glob("*.jpg")]
         
         output_dir = Path("test_outputs") # Define output_dir here
 

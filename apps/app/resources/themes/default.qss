@@ -1,0 +1,22 @@
+
+/* Default Light Theme */
+QMainWindow {
+    background-color: #f0f0f0;
+}
+
+QStatusBar {
+    background-color: #e0e0e0;
+}
+
+QMenuBar {
+    background-color: #f0f0f0;
+}
+
+QMenu {
+    background-color: #ffffff;
+}
+
+QToolBar {
+    background-color: #f0f0f0;
+    border: none;
+}

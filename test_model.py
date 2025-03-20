@@ -8,7 +8,7 @@ import cv2
 import json
 import torch
 import numpy as np
-from app.analysis_core import ColonyDetector
+from app_old.analysis_core import ColonyDetector
 from datetime import datetime
 
 def main():

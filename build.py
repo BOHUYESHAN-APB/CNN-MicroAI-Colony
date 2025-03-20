@@ -20,7 +20,7 @@ def cleanup_build():
 def export_model(checkpoint_path, output_path):
     """Export PyTorch model to ONNX"""
     print("Exporting model to ONNX format...")
-    from app.utils.export_onnx import export_to_onnx
+    from app_old.utils.export_onnx import export_to_onnx
     export_to_onnx(checkpoint_path, output_path)
 
 def build_executable(debug=False):
