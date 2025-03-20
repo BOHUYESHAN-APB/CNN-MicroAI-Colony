@@ -3704,3 +3704,8 @@ AssertionError: targets should not be none when in training mode
 2025-03-20 20:29:15,898 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/韩涛/OneDrive/Desktop/123
 2025-03-20 20:29:35,619 [INFO] apps.app.gui.dock_manager: Saved dock layout
 2025-03-20 20:29:35,671 [INFO] __main__: Application cleanup completed
+2025-03-20 20:56:13,067 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-20 20:56:17,212 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\韩涛\OneDrive\文档\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-20 20:56:17,488 [INFO] __main__: Application initialized successfully
+2025-03-20 20:56:18,866 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-20 20:56:18,900 [INFO] __main__: Application cleanup completed
