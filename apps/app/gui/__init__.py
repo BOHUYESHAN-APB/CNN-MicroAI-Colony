@@ -1,12 +1,15 @@
 """
-GUI Components
-图形界面组件
+GUI module initialization
+图形界面模块初始化
 """
 from .main_window import MainWindow
-from .project_dialog import NewProjectDialog, OpenProjectDialog
+from .image_viewer import ImageViewer
+from .result_visualizer import ResultVisualizer
+from .project_dialog import ProjectDialog
 
 __all__ = [
     'MainWindow',
-    'NewProjectDialog',
-    'OpenProjectDialog'
+    'ImageViewer',
+    'ResultVisualizer',
+    'ProjectDialog'
 ]

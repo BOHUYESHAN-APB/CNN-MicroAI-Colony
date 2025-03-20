@@ -32,5 +32,8 @@
         "last_project": "",
         "last_image_dir": "",
         "export_dir": "results"
+    },
+    "preprocessing": {
+        "auto_optimize": true
     }
 }
