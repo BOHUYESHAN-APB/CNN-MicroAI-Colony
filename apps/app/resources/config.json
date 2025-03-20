@@ -1,0 +1,39 @@
+{
+    "interface": {
+        "theme": "default",
+        "language": "en",
+        "start_maximized": false
+    },
+    "analysis": {
+        "model": {
+            "type": "faster_rcnn_resnet50",
+            "confidence_threshold": 0.5,
+            "use_gpu": false
+        },
+        "detection": {
+            "min_size": 5,
+            "max_size": 100,
+            "overlap_threshold": 0.3
+        },
+        "preprocessing": {
+            "use_clahe": true,
+            "clahe_clip": 3.0,
+            "clahe_grid": [
+                8,
+                8
+            ],
+            "blur_kernel": [
+                5,
+                5
+            ]
+        }
+    },
+    "paths": {
+        "last_project": "",
+        "last_image_dir": "",
+        "export_dir": "results"
+    },
+    "preprocessing": {
+        "auto_optimize": true
+    }
+}

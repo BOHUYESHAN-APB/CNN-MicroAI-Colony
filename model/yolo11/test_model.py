@@ -1,5 +1,5 @@
 """
-Test Colony Detection Model (DAMO-YOLO)
+Test Colony Detection Model (YOLOv11)
 """
 import cv2
 import json
@@ -14,41 +14,38 @@ from scipy.ndimage import maximum_filter
 
 # Add parent directory to Python path for app imports
 sys.path.append(str(Path(__file__).parent.parent.absolute()))
-from app_old.analysis_core import ColonyDetector
-from .src.utils.config import Config
-from .src.utils.dataset import create_dataloader
-from .src.utils.transforms import get_test_transforms
+# from app.analysis_core import ColonyDetector # Commented out
+from yolo11.src.utils.config import Config
+from yolo11.src.utils.dataset import create_dataloader
+from yolo11.src.utils.transforms import get_test_transforms
 
 def safe_mean(values):
     """Calculate mean safely for empty lists."""
     return np.mean(values) if values else 0
 
-def main(model_path=None):
-    """Test DAMO-YOLO colony detection model."""
+def main(model_path): # Modified to accept model_path
+    """Test YOLOv11 colony detection model."""
     print("Main function started...")
-    print("Testing DAMO-YOLO colony detection...")
-    
-    if not initialize_dependencies():
-        return
+    print("Testing YOLOv11 colony detection...")
 
     # Setup paths
     base_dir = Path(__file__).parent.absolute()
     project_root = base_dir.parent
 
     # Load configuration
-    config = Config()
-    model_config = config.get_model_config()
-    testing_config = config.get_testing_config()
-    data_config = config.get_data_config()
+    config = Config("yolo11/config.yaml")
+    model_config = config['model']
+    testing_config = config['testing']
+    data_config = config['data']
 
     # Initialize test directory
-    test_dir = project_root / data_config['test']
+    test_dir = project_root / 'test-pic'  # Modified to use test-pic/
     if not test_dir.exists():
         print(f"Error: Test directory not found at {test_dir}")
         return
 
     # Load class names
-    classes_path = project_root / data_config['classes']
+    classes_path = project_root / data_config['classes_path']
     if not classes_path.exists():
         print(f"Warning: classes.txt not found at {classes_path}")
         classes = ['colony']
@@ -59,27 +56,29 @@ def main(model_path=None):
 
     # Initialize model
     try:
-        from src.models.damo import DAMODetector
+        from src.models.yolo11 import YOLO11Detector
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
         print(f"Using device: {device}")
 
-        print(f"Loading model from: {checkpoint_path}")
-        model = DAMODetector(num_classes=model_config['num_classes'])
+        # Load checkpoint
+        print(f"Loading model from: {model_path}")
+        model = YOLO11Detector(num_classes=model_config['num_classes'])
         model.to(device)
 
-        # Load checkpoint
-        checkpoint = torch.load(checkpoint_path, map_location=device)
+        checkpoint = torch.load(model_path, map_location=device)
         state_dict = checkpoint['state_dict'] if 'state_dict' in checkpoint else checkpoint
         model.load_state_dict(state_dict, strict=False)
         model.eval()
         print("Model initialized and ready.")
 
     except Exception as e:
-        print(f"Error loading model: {e}")
+        img_path_str = str(img_file.absolute()) # Get absolute path
+        print(f"Attempting to load image (absolute): {img_path_str}")  # Print absolute image path
+        print(f"Error loading model: {e}") # Move print and return inside except block
         return
 
     # Create test dataloader
-    test_transforms = get_test_transforms(input_size=model_config['input_size'])
+    test_transforms = get_test_transforms(input_size=model_config['image_size'])
     test_loader = create_dataloader(
         data_root=str(test_dir),
         batch_size=1,
@@ -89,7 +88,9 @@ def main(model_path=None):
     )
 
     # Initialize ColonyDetector for preprocessing
-    colony_detector = ColonyDetector()
+    # colony_detector = ColonyDetector() # Commented out
+
+    # colony_detector = ColonyDetector()
 
     # Process images
     total_detection_count = 0
@@ -99,12 +100,24 @@ def main(model_path=None):
     print("\nStarting testing...")
     with torch.no_grad():
         for i, (images, targets, metadata) in enumerate(test_loader):
+            # Load test images
+            test_dir = project_root / 'test-pic'
+            test_images = list(test_dir.glob("*.jpg"))
+            if not test_images:
+                print(f"Error: No test images found in {test_dir}")
             img_path = test_images[i]
             print(f"\nProcessing {img_path.name}...")
 
             # Get ground truth data
-            gt_count = metadata['colony_count'].item()
-            print(f"Ground truth - Total: {gt_count}")
+            gt_data = next((item for item in ground_truth if item["图片名称"] == img_path.name), None)
+            if gt_data:
+                gt_count = gt_data["实际菌落数"]
+                merged_count = gt_data["合并菌落数"]
+                print(f"Ground truth - Total: {gt_count}, Merged: {merged_count}")
+            else:
+                gt_count = 0
+                merged_count = 0
+                print("Warning: No ground truth data found for this image")
             total_ground_truth += gt_count
 
             # Load and preprocess image
@@ -161,36 +174,36 @@ def main(model_path=None):
             }
             all_results.append(results)
 
-            total_detection_count += len(colonies)
-            print(f"Found {len(colonies)} colonies (Ground truth: {gt_count})")
+            total_detection_count += results['count']
+            print(f"Found {results['count']} colonies (Ground truth: {gt_count})")
+            print(f"Difference: {results['difference']} ({results['error_rate']:.1f}% error)")
+            print(f"Processing time: {results['time']:.2f} seconds")
 
-    print("\nProcessing complete!")
+        # Print summary
+        print("\n" + "="*50)
+        print("OVERALL RESULTS")
+        print("="*50)
+        print(f"Total detections: {total_detection_count}")
+        print(f"Total ground truth: {total_ground_truth}")
 
-    # Print summary
-    print("\n" + "="*50)
-    print("OVERALL RESULTS")
-    print("="*50)
-    print(f"Total detections: {total_detection_count}")
-    print(f"Total ground truth: {total_ground_truth}")
+        # Calculate average error rate
+        valid_errors = [r['error_rate'] for r in all_results if r['error_rate'] != float('inf')]
+        if valid_errors:
+            avg_error_rate = safe_mean(valid_errors)
+            print(f"Average error rate: {avg_error_rate:.1f}%")
+        else:
+            print("No valid error rates to average")
 
-    # Calculate average error rate (excluding infinite values)
-    valid_errors = [r['error_rate'] for r in all_results if r['error_rate'] != float('inf')]
-    if valid_errors:
-        avg_error = sum(valid_errors) / len(valid_errors)
-        print(f"Average error rate: {avg_error:.1f}%")
-    else:
-        print("No valid error rates to average")
+        print(f"Total processing time: {total_time:.2f} seconds")
 
-    print(f"Total processing time: {processing_time:.2f} seconds")
-
-    # Print detailed results
-    print("\nDetailed Results:")
-    print("-" * 40)
-    for result in all_results:
-        print(f"{result['filename']}:")
-        print(f"  Detected: {result['count']}")
-        print(f"  Ground Truth: {result['ground_truth']}")
-        print(f"  Error Rate: {result['error_rate']:.1f}%")
+        # Print detailed results
+        print("\nDetailed Results:")
+        print("-" * 40)
+        for result in all_results:
+            print(f"Filename: {result['filename']}")
+            print(f"  Detected colonies: {result['count']}")
+            print(f"  Ground Truth: {result['ground_truth']}")
+            print(f"  Error Rate: {result['error_rate']:.2f}%")
 
     return all_results
 
