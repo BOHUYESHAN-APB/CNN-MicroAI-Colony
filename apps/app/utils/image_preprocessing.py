@@ -269,6 +269,23 @@ def canny_edge_detection(image, low_threshold=100, high_threshold=200):
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
     return cv2.Canny(blurred, low_threshold, high_threshold)
 
+def load_image(file_path):
+    """Load image with OpenCV handling Unicode paths"""
+    try:
+        # Read file bytes and decode
+        with open(file_path, 'rb') as f:
+            buffer = f.read()
+        array = np.frombuffer(buffer, dtype=np.uint8)
+        image = cv2.imdecode(array, cv2.IMREAD_COLOR)
+        
+        if image is None:
+            raise ValueError("Invalid image data or format")
+        return image
+    except Exception as e:
+        logger.error(f"Error loading image: {str(e)}")
+        logger.debug(f"Attempted path: {file_path}", exc_info=True)
+        raise
+
 def preprocess_image(image, config=None, auto_optimize=False):
     """
     Apply preprocessing steps to image with support for default, manual, and auto modes.

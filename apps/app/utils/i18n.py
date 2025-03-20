@@ -1,6 +1,6 @@
 """
-Internationalization utilities
-国际化工具
+Internationalization support
+国际化支持
 """
 import os
 import json
@@ -8,47 +8,48 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class I18n:
+class I18nManager:
+    """Internationalization manager"""
+    
     def __init__(self):
         self.translations = {}
-        self.current_language = "zh_CN"
-        
-    def load_translations(self):
-        """Load translations from JSON files"""
+        self.current_locale = 'zh_CN'
+    
+    def initialize(self):
+        """Initialize i18n system"""
         try:
-            base_path = os.path.join("apps", "app", "resources", "i18n")
-            file_path = os.path.join(base_path, f"{self.current_language}.json")
+            # 加载中文翻译文件
+            trans_file = os.path.join(os.path.dirname(__file__), 
+                                    '..', 'resources', 'i18n',
+                                    f'{self.current_locale}.json')
             
-            if os.path.exists(file_path):
-                with open(file_path, "r", encoding="utf-8") as f:
+            if os.path.exists(trans_file):
+                with open(trans_file, 'r', encoding='utf-8') as f:
                     self.translations = json.load(f)
-                logger.info(f"Loaded translations for {self.current_language}")
+                logger.info(f"Loaded translations from {trans_file}")
             else:
-                logger.warning(f"Translation file not found: {file_path}")
+                logger.warning(f"Translation file not found: {trans_file}")
                 
+            return True
+            
         except Exception as e:
-            logger.error(f"Failed to load translations: {e}")
-            self.translations = {}
-            
-    def get(self, key, default=None):
-        """Get translation for key"""
-        try:
-            # Split key by dots
-            parts = key.split(".")
-            value = self.translations
-            
-            for part in parts:
-                value = value[part]
-                
-            return value
-            
-        except (KeyError, TypeError):
-            return default or key
-            
-# Global instance
-i18n = I18n()
-i18n.load_translations()
+            logger.error(f"Failed to initialize i18n: {e}")
+            return False
+    
+    def translate(self, text):
+        """Translate text based on current locale"""
+        # 如果有翻译则使用翻译，否则返回原文
+        return self.translations.get(text, text)
+    
+    @staticmethod
+    def _static_translate(text):
+        """Static translation method for compatibility"""
+        return text
 
-def tr(key, default=None):
-    """Get translation for key"""
-    return i18n.get(key, default)
+# Global i18n manager instance
+_i18n_manager = I18nManager()
+
+def translate(text):
+    """Translate text based on current locale"""
+    # Use global manager instance
+    return _i18n_manager.translate(text)

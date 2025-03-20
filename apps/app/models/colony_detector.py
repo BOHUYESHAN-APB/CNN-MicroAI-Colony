@@ -1,238 +1,262 @@
 """
-Colony detection implementation
-菌落检测实现
+Colony detection model implementation
+菌落检测模型实现
 """
 import os
 import cv2
 import torch
-import logging
 import numpy as np
+from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from torchvision.transforms import functional as F
-from ..utils.image_preprocessing import preprocess_image
+import logging
 
 logger = logging.getLogger(__name__)
 
-def create_model(model_type="faster_rcnn"):
-    """Create colony detection model"""
-    return FasterRCNNColonyDetectionModel()
-
-class FasterRCNNColonyDetectionModel:
-    """Colony detection using Faster R-CNN model"""
+class ColonyDetector:
+    """Colony detection model wrapper"""
     
-    def __init__(self):
-        self.model = None
+    def __init__(self, model_type='fasterrcnn'):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model = None
+        self.model_type = model_type
+        # 可配置参数
+        self.confidence_threshold = 0.2
+        self.min_size = 600
+        self.max_size = 1000
+        self.rpn_pre_nms_top_n = 2000
+        self.rpn_post_nms_top_n = 1000
+        self.nms_thresh = 0.2
+        self.max_detections = 500
+        self.aspect_ratio_range = (0.7, 1.3)
+        self.min_area_ratio = 0.0001
+        self.max_area_ratio = 0.01
+        self.overlap_threshold = 0.3
         
-    def load_model(self):
-        """Load the model from checkpoint"""
-        if self.model is None:
-            # TODO: Load actual model
-            # For now just create a dummy model
-            self.model = True
-            
-    def detect(self, image_path, preprocess_config=None, auto_optimize=False):
-        """
-        Detect colonies in image
+        # 模型路径配置
+        self.model_paths = {
+            'fasterrcnn': 'faster_rcnn_resnet50/checkpoints/checkpoint_epoch_31.pth',
+            'yolov11': 'yolov11/checkpoints/best.pt'
+        }
+        self.initialized = False
         
-        Args:
-            image_path (str): Path to image file
-            preprocess_config (dict): Preprocessing configuration
-            auto_optimize (bool): Whether to auto optimize parameters
-            
-        Returns:
-            dict: Detection results
-        """
+    def initialize(self):
+        """Initialize model and load weights"""
         try:
-            # Normalize path
-            image_path = os.path.normpath(image_path)
+            logger.info(f"Initializing model on device: {self.device}")
             
-            # Load image
-            logger.debug("Loading image...")
-            image = cv2.imdecode(
-                np.fromfile(image_path, dtype=np.uint8),
-                cv2.IMREAD_COLOR
-            )
-            if image is None:
-                raise ValueError("Failed to load image")
-
-            # Preprocess image
-            logger.debug("Preprocessing image...")
-            processed, mask, circle_params = preprocess_image(
-                image, 
-                config=preprocess_config,
-                auto_optimize=auto_optimize
+            # 创建基础模型（不加载预训练权重）
+            self.model = fasterrcnn_resnet50_fpn(
+                pretrained=False,
+                weights=None,
+                min_size=600,  # 增加最小尺寸以提高小目标检测
+                max_size=1000,
+                box_score_thresh=0.2,  # 降低分数阈值
+                rpn_pre_nms_top_n_test=2000,  # 增加RPN候选框数量
+                rpn_post_nms_top_n_test=1000,
+                box_nms_thresh=0.2,  # 降低NMS阈值以减少重叠抑制
+                box_detections_per_img=500  # 增加每张图片的最大检测数
             )
             
-            if circle_params:
-                logger.debug(f"Found petri dish: center=({circle_params[0]} {circle_params[1]}) radius={circle_params[2]}")
+            # 修改分类器以支持二分类
+            in_features = self.model.roi_heads.box_predictor.cls_score.in_features
+            self.model.roi_heads.box_predictor.cls_score = torch.nn.Linear(in_features, 2)
+            self.model.roi_heads.box_predictor.bbox_pred = torch.nn.Linear(in_features, 4 * 2)
             
-            # Get image shape
-            height, width = processed.shape[:2]
-            logger.debug(f"Image loaded and preprocessed shape: ({height} {width} {processed.shape[2]})")
-
-            # Convert to model input format
-            logger.debug("Converting color space...")
-            processed = cv2.cvtColor(processed, cv2.COLOR_BGR2RGB)
-            
-            # Convert to tensor
-            logger.debug("Converting to tensor...")
-            image_tensor = F.to_tensor(processed)
-            
-            # Run inference
-            logger.debug("Running model inference...")
-            self.load_model()
-            
-            # TODO: Run actual model inference
-            # For now just return dummy results
-            results = self._dummy_detect(image, mask)
-            logger.debug(f"Found {len(results['boxes'])} potential colonies")
-            
-            # Filter results
-            filtered_results = self._filter_results(results, mask)
-            logger.debug(f"After filtering: {len(filtered_results['boxes'])} colonies")
-            
-            # Count by confidence
-            high = sum(1 for conf in filtered_results['scores'] if conf >= 0.9)
-            med = sum(1 for conf in filtered_results['scores'] if 0.7 <= conf < 0.9)
-            low = sum(1 for conf in filtered_results['scores'] if conf < 0.7)
-            logger.info(f"Detection summary - High: {high} Medium: {med} Low: {low}")
-            
-            return filtered_results
+            # 根据模型类型加载对应权重
+            model_path = self.model_paths.get(self.model_type)
+            if not model_path:
+                logger.error(f"Unsupported model type: {self.model_type}")
+                return False
+                
+            if os.path.exists(model_path):
+                # 加载检查点
+                checkpoint = torch.load(model_path, map_location=self.device)
+                
+                # 处理权重文件中的键名，移除"model."前缀
+                state_dict = checkpoint['model_state_dict']
+                new_state_dict = {}
+                for key, value in state_dict.items():
+                    if key.startswith('model.'):
+                        new_key = key[6:]  # 移除"model."前缀
+                    else:
+                        new_key = key
+                    new_state_dict[new_key] = value
+                
+                # 加载修改后的权重并设置为评估模式
+                try:
+                    self.model.to(self.device)
+                    self.model.load_state_dict(new_state_dict)
+                    self.model.eval()  # 确保在加载权重后设置为评估模式
+                    logger.info(f"Successfully loaded {self.model_type} checkpoint from {model_path}")
+                    self.initialized = True  # 只在成功加载后设置为已初始化
+                    logger.info("Model initialized successfully with modified head")
+                    return True
+                except Exception as e:
+                    logger.error(f"Error loading state dict: {e}")
+                    return False
+            else:
+                logger.error(f"Checkpoint file not found at {self.model_path}")
+                return False
             
         except Exception as e:
-            logger.error(f"Error during detection: {str(e)}")
-            raise
+            logger.error(f"Error initializing model: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
+            return False
             
-    def annotate_image(self, image_path, results):
-        """
-        Draw detection results on image
+    def preprocess_image(self, image):
+        """Preprocess image for model input"""
+        # BGR转RGB
+        if len(image.shape) == 2:
+            image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+        elif image.shape[2] == 3:
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            
+        # 保存原始尺寸
+        original_size = image.shape[:2]
         
-        Args:
-            image_path (str): Path to image file
-            results (dict): Detection results
-            
-        Returns:
-            numpy.ndarray: Annotated image
-        """
+        # 图像预处理
+        image = image.astype(np.float32) / 255.0
+        
+        # 应用图像增强
+        image = cv2.GaussianBlur(image, (3, 3), 0)
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2LAB)
+        image[:,:,0] = clahe.apply(np.uint8(image[:,:,0] * 255)) / 255.0
+        image = cv2.cvtColor(image, cv2.COLOR_LAB2RGB)
+        
+        # 对比度增强
+        image = np.clip(image * 1.2, 0, 1)
+        
+        # 转为tensor并标准化
+        image = F.to_tensor(image)
+        image = F.normalize(image, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        
+        return image, original_size
+        
+    def detect_colonies(self, image):
+        """Detect colonies in image"""
+        if not self.initialized:
+            if not self.initialize():
+                return None
+                
         try:
-            logger.debug(f"Annotating image: {image_path}")
+            # 预处理图像
+            input_tensor, original_size = self.preprocess_image(image)
+            input_tensor = input_tensor.unsqueeze(0).to(self.device)
             
-            # Normalize path and load image
-            image_path = os.path.normpath(image_path)
-            image = cv2.imdecode(
-                np.fromfile(image_path, dtype=np.uint8),
-                cv2.IMREAD_COLOR
-            )
-            if image is None:
-                raise ValueError("Failed to load image")
+            # 运行推理
+            with torch.no_grad():
+                prediction = self.model(input_tensor)[0]
                 
-            # Draw detections
-            for i, (box, score) in enumerate(zip(results['boxes'], results['scores'])):
-                x1, y1, x2, y2 = map(int, box)
-                
-                # Color based on confidence
-                if score >= 0.9:
-                    color = (0, 255, 0)  # Green
-                elif score >= 0.7:
-                    color = (0, 255, 255)  # Yellow
-                else:
-                    color = (0, 0, 255)  # Red
+            # 提取结果
+            boxes = prediction['boxes'].cpu().numpy()
+            scores = prediction['scores'].cpu().numpy()
+            labels = prediction['labels'].cpu().numpy()
+            
+            # 应用后处理
+            filtered_indices = []
+            for i, (box, score) in enumerate(zip(boxes, scores)):
+                if score < self.confidence_threshold:
+                    continue
                     
-                # Draw box
-                cv2.rectangle(image, (x1, y1), (x2, y2), color, 2)
+                # 基于形状的过滤
+                width = box[2] - box[0]
+                height = box[3] - box[1]
+                aspect_ratio = width / height
+                if not (0.7 < aspect_ratio < 1.3):  # 更严格的圆形条件
+                    continue
+                    
+                # 基于大小的过滤
+                area = width * height
+                min_area = (original_size[0] * original_size[1]) * 0.0001  # 最小面积
+                max_area = (original_size[0] * original_size[1]) * 0.01   # 最大面积
+                if not (min_area < area < max_area):
+                    continue
+                    
+                # 检查重叠
+                has_overlap = False
+                for j in filtered_indices:
+                    other_box = boxes[j]
+                    # 计算IoU
+                    intersection = self._calculate_intersection(box, other_box)
+                    if intersection > 0.3:  # 允许30%重叠
+                        has_overlap = True
+                        break
+                if has_overlap:
+                    continue
+                    
+                filtered_indices.append(i)
+            
+            # 过滤结果
+            boxes = boxes[filtered_indices]
+            scores = scores[filtered_indices]
+            labels = labels[filtered_indices]
+            
+            # 转换为检测列表
+            detections = []
+            for box, score, label in zip(boxes, scores, labels):
+                x1, y1, x2, y2 = box
+                center_x = (x1 + x2) / 2
+                center_y = (y1 + y2) / 2
+                width = x2 - x1
+                height = y2 - y1
+                diameter = (width + height) / 2
                 
-                # Draw label
-                label = f"{i+1}: {score:.2f}"
-                cv2.putText(image, label, (x1, y1-5),
-                          cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1)
+                detection = {
+                    'center': (int(center_x), int(center_y)),
+                    'diameter': int(diameter),
+                    'confidence': float(score),
+                    'box': box.astype(int).tolist(),
+                    'label': int(label)
+                }
+                detections.append(detection)
                 
-            return image
+            return detections
             
         except Exception as e:
-            logger.error(f"Error annotating image: {str(e)}")
-            raise
+            logger.error(f"Error during detection: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
+            return None
             
-    def _dummy_detect(self, image, mask):
-        """Generate dummy detection results for testing"""
-        height, width = image.shape[:2]
-        boxes = []
-        scores = []
+    def _calculate_intersection(self, box1, box2):
+        """计算两个边界框的IoU"""
+        x1 = max(box1[0], box2[0])
+        y1 = max(box1[1], box2[1])
+        x2 = min(box1[2], box2[2])
+        y2 = min(box1[3], box2[3])
         
-        # Generate some random boxes
-        for _ in range(20):
-            x1 = np.random.randint(0, width-50)
-            y1 = np.random.randint(0, height-50)
-            w = np.random.randint(20, 50)
-            h = np.random.randint(20, 50)
-            x2 = min(x1 + w, width)
-            y2 = min(y1 + h, height)
+        if x2 <= x1 or y2 <= y1:
+            return 0.0
             
-            # Check if center is in mask
-            center_x = (x1 + x2) // 2
-            center_y = (y1 + y2) // 2
-            if mask is None or mask[center_y, center_x] > 0:
-                boxes.append([x1, y1, x2, y2])
-                scores.append(np.random.uniform(0.7, 1.0))
+        intersection = (x2 - x1) * (y2 - y1)
+        area1 = (box1[2] - box1[0]) * (box1[3] - box1[1])
+        area2 = (box2[2] - box2[0]) * (box2[3] - box2[1])
         
-        return {
-            'boxes': boxes,
-            'scores': scores
+        return intersection / min(area1, area2)
+            
+    def get_statistics(self, detections, image_shape):
+        """Calculate detection statistics"""
+        if not detections:
+            return {
+                'total_count': 0,
+                'high_confidence': 0,
+                'medium_confidence': 0,
+                'low_confidence': 0,
+                'average_confidence': 0.0,
+                'average_diameter': 0.0,
+                'density': 0.0
+            }
+            
+        stats = {
+            'total_count': len(detections),
+            'high_confidence': len([d for d in detections if d['confidence'] >= 0.8]),
+            'medium_confidence': len([d for d in detections if 0.6 <= d['confidence'] < 0.8]),
+            'low_confidence': len([d for d in detections if d['confidence'] < 0.6]),
+            'average_confidence': np.mean([d['confidence'] for d in detections]),
+            'average_diameter': np.mean([d['diameter'] for d in detections]),
+            'density': len(detections) / (image_shape[0] * image_shape[1] / 1000000)  # colonies/mm²
         }
         
-    def _filter_results(self, results, mask=None):
-        """Filter detection results"""
-        filtered_boxes = []
-        filtered_scores = []
-        
-        # Convert to numpy arrays
-        boxes = np.array(results['boxes'])
-        scores = np.array(results['scores'])
-        
-        # Sort by confidence
-        indices = np.argsort(scores)[::-1]
-        boxes = boxes[indices]
-        scores = scores[indices]
-        
-        def get_iou(box1, box2):
-            """Calculate IoU of two boxes"""
-            x11, y11, x12, y12 = box1
-            x21, y21, x22, y22 = box2
-            
-            xi1 = max(x11, x21)
-            yi1 = max(y11, y21)
-            xi2 = min(x12, x22)
-            yi2 = min(y12, y22)
-            
-            inter_width = max(0, xi2 - xi1)
-            inter_height = max(0, yi2 - yi1)
-            inter_area = inter_width * inter_height
-            
-            box1_area = (x12 - x11) * (y12 - y11)
-            box2_area = (x22 - x21) * (y22 - y21)
-            
-            union_area = box1_area + box2_area - inter_area
-            
-            return inter_area / union_area
-        
-        # Non-maximum suppression
-        while len(boxes) > 0:
-            box = boxes[0]
-            filtered_boxes.append(box)
-            filtered_scores.append(scores[0])
-            
-            other_boxes = boxes[1:]
-            other_scores = scores[1:]
-            
-            # Remove overlapping boxes
-            keep = []
-            for i, other_box in enumerate(other_boxes):
-                if get_iou(box, other_box) < 0.3:  # IoU threshold
-                    keep.append(i)
-                    
-            boxes = other_boxes[keep]
-            scores = other_scores[keep]
-            
-        return {
-            'boxes': filtered_boxes,
-            'scores': filtered_scores
-        }
+        return stats

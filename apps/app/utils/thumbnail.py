@@ -1,65 +1,70 @@
 """
-Thumbnail Generator
-缩略图生成器
+Thumbnail creation utility
+缩略图生成工具
 """
 import os
+import cv2
+import numpy as np
 import logging
-from typing import Optional
-from PIL import Image
-from PyQt6.QtGui import QImage, QPixmap
-from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QImage
+from PyQt6.QtCore import QDir
+from .image_preprocessing import load_image
 
 logger = logging.getLogger(__name__)
 
-class ThumbnailGenerator:
-    """Thumbnail generator with caching"""
+def create_thumbnail(image_path, size=(64, 64)):
+    """Create a thumbnail for an image file
     
-    def __init__(self, cache_dir: str = None):
-        self.cache_dir = cache_dir or os.path.join(os.path.expanduser("~"), ".colony_analyzer", "thumbs")
-        os.makedirs(self.cache_dir, exist_ok=True)
+    Args:
+        image_path (str): Path to image file
+        size (tuple): Target size (width, height)
         
-    def get_thumbnail(self, image_path: str, size: int = 200) -> Optional[QPixmap]:
-        """Get thumbnail for image, create if not exists"""
-        try:
-            # Get cache path
-            cache_name = f"{os.path.basename(image_path)}_{size}.jpg"
-            cache_path = os.path.join(self.cache_dir, cache_name)
+    Returns:
+        QImage: Thumbnail image
+        
+    Raises:
+        ValueError: If image cannot be loaded or processed
+    """
+    try:
+        logger.debug(f"Creating thumbnail for: {image_path}")
+        
+        # Convert path to native format
+        abs_path = QDir.toNativeSeparators(os.path.abspath(image_path))
+        
+        # Load image using our preprocessing utility
+        image = load_image(abs_path)
+        if image is None:
+            raise ValueError("Cannot load image")
             
-            # Return cached thumbnail if exists
-            if os.path.exists(cache_path):
-                thumb = QImage(cache_path)
-                if not thumb.isNull():
-                    return QPixmap.fromImage(thumb)
-            
-            # Create thumbnail
-            with Image.open(image_path) as img:
-                # Convert to RGB if needed
-                if img.mode != 'RGB':
-                    img = img.convert('RGB')
-                    
-                # Calculate new size keeping aspect ratio
-                ratio = min(size / img.width, size / img.height)
-                new_size = (int(img.width * ratio), int(img.height * ratio))
-                
-                # Resize image
-                thumb = img.resize(new_size, Image.Resampling.LANCZOS)
-                
-                # Save to cache
-                thumb.save(cache_path, "JPEG", quality=85)
-                
-                # Convert to QPixmap
-                qimg = QImage(cache_path)
-                return QPixmap.fromImage(qimg)
-                
-        except Exception as e:
-            logger.error(f"Failed to create thumbnail for {image_path}: {e}")
-            return None
-            
-    def clear_cache(self):
-        """Clear thumbnail cache"""
-        try:
-            for file in os.listdir(self.cache_dir):
-                os.remove(os.path.join(self.cache_dir, file))
-            logger.info("Thumbnail cache cleared")
-        except Exception as e:
-            logger.error(f"Failed to clear thumbnail cache: {e}")
+        # Convert to RGB
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        
+        # Calculate target size maintaining aspect ratio
+        h, w = image.shape[:2]
+        scale = min(size[0]/w, size[1]/h)
+        new_size = (int(w * scale), int(h * scale))
+        
+        # Resize
+        image = cv2.resize(image, new_size, interpolation=cv2.INTER_AREA)
+        
+        # Add padding to make square
+        target_w, target_h = size
+        pad_x = (target_w - new_size[0]) // 2
+        pad_y = (target_h - new_size[1]) // 2
+        
+        padded = np.full((target_h, target_w, 3), 32, dtype=np.uint8)
+        padded[pad_y:pad_y+new_size[1], pad_x:pad_x+new_size[0]] = image
+        
+        # Convert to QImage
+        height, width, channel = padded.shape
+        bytes_per_line = 3 * width
+        qimage = QImage(padded.data, width, height, bytes_per_line, 
+                     QImage.Format.Format_RGB888)
+        
+        logger.debug(f"Successfully created thumbnail for: {abs_path}")
+        return qimage
+        
+    except Exception as e:
+        logger.error(f"Failed to create thumbnail: {str(e)}")
+        logger.debug(f"Attempted path: {image_path}", exc_info=True)
+        raise ValueError(f"Cannot create thumbnail: {str(e)}")

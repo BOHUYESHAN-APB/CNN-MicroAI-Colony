@@ -1,11 +1,7 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 """
-Model package
-模型包
+Model implementations
+模型实现
 """
-from .colony_detector import FasterRCNNColonyDetectionModel, create_model
+from .colony_detector import ColonyDetector
 
-__all__ = ['FasterRCNNColonyDetectionModel', 'create_model']
+__all__ = ['ColonyDetector']

@@ -1,99 +1,75 @@
 """
-Application Entry Point
-应用程序入口
+Main application entry point
+应用程序入口点
 """
 import os
 import sys
 import logging
-import signal
+from logging.handlers import RotatingFileHandler  # 导入 RotatingFileHandler
+
 from PyQt6.QtWidgets import QApplication
-from PyQt6.QtCore import Qt
 
-# Add parent directory to Python path to allow importing app module
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-if parent_dir not in sys.path:
-    sys.path.append(parent_dir)
+# Setup logging
+log_formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(name)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
-from app.gui.main_window import MainWindow
-from app.utils.config import ConfigManager
-from app import initialize_app, cleanup, APP_NAME, APP_ORGANIZATION, APP_DOMAIN
+# Console logger (输出到控制台)
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(log_formatter)
 
-logger = logging.getLogger(__name__)
+# File logger (输出到文件, 每天生成新的日志文件, 保留最近7天的日志)
+file_handler = RotatingFileHandler(
+    'logs/app.log',  # 日志文件路径
+    maxBytes=10*1024*1024,  # 每个日志文件最大 10MB
+    backupCount=5  # 最多保留 5 个备份文件
+)
+file_handler.setFormatter(log_formatter)
 
-def signal_handler(signum, frame):
-    """Handle system signals"""
-    logger.info(f"Received signal {signum}")
-    cleanup()
-    sys.exit(0)
+try:
+    logging.basicConfig(
+        level=logging.DEBUG,  # 设置为 DEBUG 级别，记录更详细的日志
+        handlers=[console_handler, file_handler] # 同时使用控制台和文件日志处理器
+    )
+    logger = logging.getLogger(__name__)
+    logger.debug("Logging system initialized")  # 添加启动日志消息
+except Exception as e:
+    print(f"Error initializing logging: {e}") # 打印到控制台，即使文件日志失败也能看到
+    logging.basicConfig() # 尝试基本配置，至少保证控制台日志可用
+    logger = logging.getLogger(__name__)
 
-def setup_environment() -> bool:
-    """Setup application environment"""
-    try:
-        # Handle high DPI displays
-        if hasattr(Qt, 'AA_EnableHighDpiScaling'):
-            QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
-        if hasattr(Qt, 'AA_UseHighDpiPixmaps'):
-            QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
-            
-        # Set Qt platform plugin path if packaged
-        if getattr(sys, 'frozen', False):
-            os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = os.path.join(
-                os.path.dirname(sys.executable), 'platforms'
-            )
-            
-        return True
-    except Exception as e:
-        logger.error(f"Error setting up environment: {e}")
-        return False
+# Add project root to path
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+sys.path.insert(0, project_root)
+
+from apps.app.gui.main_window import MainWindow
+from apps.app.utils.i18n import I18nManager
 
 def main():
-    """Application entry point"""
+    """Application main entry point"""
     try:
-        # Setup environment
-        if not setup_environment():
-            logger.error("Environment setup failed")
+        # Create application
+        app = QApplication(sys.argv)
+        
+        # Initialize i18n
+        i18n = I18nManager()
+        if not i18n.initialize():
+            logger.error("Failed to initialize i18n")
             return 1
             
-        # Register signal handlers
-        signal.signal(signal.SIGINT, signal_handler)
-        signal.signal(signal.SIGTERM, signal_handler)
-        
-        # Create Qt application
-        qt_app = QApplication(sys.argv)
-                
-        # Initialize application components
-        if not initialize_app():
-            logger.error("Application initialization failed")
-            return 1
-
-        # Set application attributes
-        qt_app.setApplicationName(APP_NAME)
-        qt_app.setOrganizationName(APP_ORGANIZATION)
-        qt_app.setOrganizationDomain(APP_DOMAIN)
-
-        # Load configuration
-        config = ConfigManager()
-
         # Create main window
-        window = MainWindow(config)
-            
-        if config.get("interface.start_maximized", False):
-            window.showMaximized()
-        else:
-            window.show()
-            
-        # Execute application
-        result = qt_app.exec()
+        window = MainWindow()
+        window.show()
         
-        # Cleanup
-        cleanup()
-        
-        return result
+        # Start event loop
+        logger.info("Application initialized successfully")
+        return app.exec()
         
     except Exception as e:
-        logger.exception(f"Fatal error: {e}")
-        cleanup()
+        logger.error(f"Application failed to start: {e}")
         return 1
+    
+    finally:
+        # Cleanup
+        logger.info("Application cleanup completed")
 
 if __name__ == "__main__":
     sys.exit(main())

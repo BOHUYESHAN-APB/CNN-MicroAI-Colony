@@ -1,361 +1,340 @@
 """
-Main Window implementation
+Main window implementation
 主窗口实现
 """
 import os
+import cv2
+import numpy as np
 import logging
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
-                            QLabel, QTreeView, QFileDialog, QMessageBox,
-                            QStatusBar, QMenu, QDockWidget, QPushButton)
-from PyQt6.QtGui import QIcon, QAction, QImage, QPixmap
-from PyQt6.QtCore import Qt
+                            QPushButton, QMessageBox, QFileDialog, QDockWidget,
+                            QToolBar, QStatusBar, QMenu)
+from PyQt6.QtCore import Qt, QSize, QTimer, QDir
+from PyQt6.QtGui import QAction
 
+from .project_dialog import ProjectDialog
+from .image_list_dock import ImageListDock
+from .image_viewer_dock import ImageViewerDock
+from .result_image_dock import ResultImageDock
+from .result_stats_dock import ResultStatsDock
+from .result_table_dock import ResultTableDock
+from .dock_manager import DockManager
+from .toolbar_constants import MEDIUM_ICON_SIZE, TOOLBAR_STYLE
+from ..models.colony_detector import ColonyDetector
 from ..utils.project_manager import ProjectManager
-from ..models.colony_detector import create_model
-from .project_dialog import NewProjectDialog, OpenProjectDialog
-from .image_list_widget import ImageListWidget
-from .image_viewer import ImageViewer
-from .result_visualizer import ResultVisualizer
-from .progress_dialog import ProgressDialog
-from .preprocessing_dialog import PreprocessingDialog
+from ..utils.i18n import translate
+from ..utils.image_preprocessing import load_image
 
 logger = logging.getLogger(__name__)
 
-DIALOG_STYLE = """
-QPushButton {
-    background-color: #3a3a3a;
-    color: #e0e0e0;
-    border: 1px solid #505050;
-    border-radius: 4px;
-    padding: 5px 15px;
-    min-width: 80px;
-}
-QPushButton:hover {
-    background-color: #454545;
-}
-QPushButton:pressed {
-    background-color: #303030;
-}
-"""
-
 class MainWindow(QMainWindow):
-    """Main application window"""
+    """Main window of the application"""
     
-    def __init__(self, config):
+    # Class-level translation function
+    _ = staticmethod(translate)
+    
+    def __init__(self):
         super().__init__()
-        self.config = config
+        
+        # Initialize core components
+        self.detector = ColonyDetector()
         self.project_manager = ProjectManager()
-        self.colony_detector = create_model("faster_rcnn")
-        self.preprocess_config = self.config.get('preprocessing', {})
+        
+        # Initialize UI
         self.setup_ui()
+        self.setup_docks()
+        self.setup_menu()
+        
+        # Setup dock manager
+        self.dock_manager = DockManager(self)
+        self.register_docks()
+        self.dock_manager.setup_docks()
+        
+        # State
+        self.current_image = None
+        self.current_path = None
+        self.current_project = None
+        self.results_cache = {}  # Cache detection results
+        
+        # Timer for auto-save
+        self.save_timer = QTimer()
+        self.save_timer.timeout.connect(self.auto_save)
+        self.save_timer.start(60000)  # Auto-save every minute
         
     def setup_ui(self):
         """Setup user interface"""
-        self.setWindowTitle("菌落分析")
-        self.resize(1200, 800)
-        self.setStyleSheet(DIALOG_STYLE)
+        self.setWindowTitle(self._("菌落计数系统"))
+        self.setMinimumSize(1200, 800)
         
-        # Central widget
-        central = QWidget()
-        self.setCentralWidget(central)
-        layout = QHBoxLayout(central)
+        # Create main toolbar
+        self.main_toolbar = QToolBar(self._("主工具栏"))
+        self.main_toolbar.setObjectName("main_toolbar")
+        self.main_toolbar.setIconSize(MEDIUM_ICON_SIZE)
+        self.main_toolbar.setStyleSheet(TOOLBAR_STYLE)
+        self.addToolBar(self.main_toolbar)
         
-        # Left panel - Image viewer
-        viewer_panel = QWidget()
-        viewer_layout = QVBoxLayout(viewer_panel)
+        # Add toolbar buttons
+        self.open_btn = QPushButton(self._("打开项目"))
+        self.open_btn.clicked.connect(self.open_project)
+        self.main_toolbar.addWidget(self.open_btn)
         
-        self.image_viewer = ImageViewer()
-        viewer_layout.addWidget(self.image_viewer)
+        self.analyze_btn = QPushButton(self._("分析"))
+        self.analyze_btn.clicked.connect(self.start_analysis)
+        self.analyze_btn.setEnabled(False)
+        self.main_toolbar.addWidget(self.analyze_btn)
         
-        # Analysis button
-        analyze_btn = QPushButton("分析当前图像")
-        analyze_btn.clicked.connect(self.start_analysis)
-        analyze_btn.setToolTip("分析当前显示的图像")
-        viewer_layout.addWidget(analyze_btn)
+        self.save_btn = QPushButton(self._("保存结果"))
+        self.save_btn.clicked.connect(self.save_results)
+        self.save_btn.setEnabled(False)
+        self.main_toolbar.addWidget(self.save_btn)
         
-        layout.addWidget(viewer_panel, stretch=2)
+        # Create status bar
+        self.statusBar = QStatusBar()
+        self.setStatusBar(self.statusBar)
+        self.statusBar.showMessage(self._("就绪"))
         
-        # Right panel
-        right_panel = QWidget()
-        right_layout = QVBoxLayout(right_panel)
+        # Apply dark theme
+        self.apply_theme()
         
-        # Image controls
-        image_controls = QHBoxLayout()
-        add_image_btn = QPushButton("添加图像")
-        add_image_btn.clicked.connect(self.add_images)
-        add_image_btn.setToolTip("将图像添加到当前项目")
-        image_controls.addWidget(add_image_btn)
-        right_layout.addLayout(image_controls)
-        
-        # Image list
-        self.image_list = ImageListWidget()
+    def setup_docks(self):
+        """Create dock widgets"""
+        # Create docks
+        self.image_list = ImageListDock(self)
         self.image_list.image_selected.connect(self.on_image_selected)
-        right_layout.addWidget(self.image_list)
         
-        # Results
-        self.result_visualizer = ResultVisualizer()
-        right_layout.addWidget(self.result_visualizer)
+        self.image_viewer = ImageViewerDock(self)
+        self.setCentralWidget(self.image_viewer)
         
-        layout.addWidget(right_panel, stretch=1)
+        self.result_image = ResultImageDock(self)
+        self.result_stats = ResultStatsDock(self)
+        self.result_table = ResultTableDock(self)
         
-        # Setup menus
-        self.create_menus()
+    def setup_menu(self):
+        """Setup menu bar"""
+        # View menu
+        view_menu = self.menuBar().addMenu(self._("视图"))
         
-        # Status bar
-        self.statusBar().showMessage("就绪")
-
-    def create_menus(self):
-        """Create menu bars"""
-        # File menu
-        file_menu = self.menuBar().addMenu("文件")
+        # Dock visibility actions
+        view_menu.addAction(self.image_list.toggleViewAction())
+        view_menu.addAction(self.result_image.toggleViewAction())
+        view_menu.addAction(self.result_stats.toggleViewAction())
+        view_menu.addAction(self.result_table.toggleViewAction())
+        view_menu.addAction(self.main_toolbar.toggleViewAction())
+        view_menu.addSeparator()
         
-        new_project_action = file_menu.addAction("新建项目")
-        new_project_action.triggered.connect(self.new_project)
-        new_project_action.setToolTip("创建新的项目文件夹")
+        # Layout management
+        layout_menu = view_menu.addMenu(self._("布局"))
+        layout_menu.addAction(self._("保存布局..."), 
+                            lambda: self.dock_manager.save_layout())
+        layout_menu.addAction(self._("加载布局..."), 
+                            lambda: self.dock_manager.load_layout())
+        layout_menu.addAction(self._("重置布局"), 
+                            lambda: self.dock_manager.reset_layout())
         
-        open_project_action = file_menu.addAction("打开项目...")
-        open_project_action.triggered.connect(self.open_project)
-        open_project_action.setToolTip("打开已有的项目文件夹")
+    def register_docks(self):
+        """Register docks with dock manager"""
+        self.dock_manager.register_dock("image_list_dock", self.image_list)
+        self.dock_manager.register_dock("image_viewer_dock", self.image_viewer)
+        self.dock_manager.register_dock("result_image_dock", self.result_image)
+        self.dock_manager.register_dock("result_stats_dock", self.result_stats)
+        self.dock_manager.register_dock("result_table_dock", self.result_table)
         
-        file_menu.addSeparator()
+    def apply_theme(self):
+        """Apply dark theme to window"""
+        self.setStyleSheet("""
+            QMainWindow {
+                background-color: #1e1e1e;
+            }
+            QMenuBar {
+                background-color: #2d2d2d;
+                color: #e0e0e0;
+            }
+            QMenuBar::item:selected {
+                background-color: #505050;
+            }
+            QMenu {
+                background-color: #2d2d2d;
+                color: #e0e0e0;
+                border: 1px solid #505050;
+            }
+            QMenu::item:selected {
+                background-color: #505050;
+            }
+            QPushButton {
+                background-color: #424242;
+                color: #e0e0e0;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-size: 14px;
+                min-width: 80px;
+            }
+            QPushButton:hover {
+                background-color: #505050;
+            }
+            QPushButton:pressed {
+                background-color: #616161;
+            }
+            QPushButton:disabled {
+                background-color: #2d2d2d;
+                color: #808080;
+            }
+            QStatusBar {
+                background-color: #2d2d2d;
+                color: #e0e0e0;
+            }
+        """)
         
-        add_images_action = file_menu.addAction("添加图像...")
-        add_images_action.triggered.connect(self.add_images)
-        add_images_action.setToolTip("向当前项目添加图像文件")
-        
-        file_menu.addSeparator()
-        
-        exit_action = file_menu.addAction("退出")
-        exit_action.triggered.connect(self.close)
-        
-        # Analysis menu
-        analysis_menu = self.menuBar().addMenu("分析")
-        
-        preprocess_action = analysis_menu.addAction("预处理设置...")
-        preprocess_action.triggered.connect(self.show_preprocessing_settings)
-        preprocess_action.setToolTip("配置图像预处理参数")
-        
-        analysis_menu.addSeparator()
-        
-        analyze_action = analysis_menu.addAction("分析当前图像")
-        analyze_action.triggered.connect(self.start_analysis)
-        analyze_action.setToolTip("分析当前显示的图像")
-        
-        batch_action = analysis_menu.addAction("批量分析...")
-        batch_action.triggered.connect(self.start_batch_analysis)
-        batch_action.setToolTip("分析项目中的所有图像")
-
-    def add_images(self):
-        """Add images to project"""
-        if not self.project_manager.current_project:
-            QMessageBox.warning(self, "警告", "请先打开或创建项目")
-            return
-        
-        files, _ = QFileDialog.getOpenFileNames(
-            self,
-            "选择图像",
-            os.path.expanduser("~"),
-            "图像文件 (*.png *.jpg *.jpeg *.bmp)"
-        )
-        
-        if files:
-            progress = ProgressDialog(self)
-            progress.setWindowTitle("添加图像")
-            progress.show()
-            
-            total = len(files)
-            added = 0
-            
-            for i, file in enumerate(files):
-                percent = int((i + 1) / total * 100)
-                progress.set_progress(percent, f"正在添加图像: {i+1}/{total}")
-                
-                if self.project_manager.add_image(file):
-                    self.image_list.add_image(file)
-                    added += 1
-                    
-                if progress.was_cancelled():
-                    break
-            
-            progress.close()
-            self.show_status_message(f"已添加 {added} 个图像")
-
-    def show_preprocessing_settings(self):
-        """Show preprocessing settings dialog"""
-        dialog = PreprocessingDialog(self)
-        if self.preprocess_config:
-            dialog.load_config(self.preprocess_config)
-            
+    def open_project(self):
+        """Open project dialog"""
+        logger.debug(f"open_project: current_project={self.current_project}, current_path={self.current_path}")
+        dialog = ProjectDialog(self)
         if dialog.exec():
-            self.preprocess_config = dialog.get_config()
-            if self.preprocess_config:
-                self.config.set('preprocessing', self.preprocess_config)
-                mode = "自动优化" if self.preprocess_config.get('auto_optimize') else "自定义参数"
-                self.show_status_message(f"预处理设置已更新: {mode}")
-            else:
-                self.preprocess_config = None
-                self.config.set('preprocessing', {})
-                self.show_status_message("使用默认预处理参数")
-
-    def start_analysis(self):
-        """Start colony analysis"""
-        current_image = self.image_viewer.get_current_path()
-        if not current_image:
-            QMessageBox.warning(self, "警告", "请先选择要分析的图像")
-            return
-
-        try:
-            progress = ProgressDialog(self)
-            progress.setWindowTitle("正在分析")
-            progress.show()
-
-            # Get preprocessing settings
-            auto_optimize = self.preprocess_config.get('auto_optimize', False) if self.preprocess_config else False
-            config = self.preprocess_config if self.preprocess_config and not auto_optimize else None
+            self.current_project = dialog.get_project_path()
+            logger.info(self._("打开项目: ") + f"{self.current_project}")
+            self.image_list.add_btn.setEnabled(True)
             
-            # Analyze image
-            progress.set_progress(30, "分析图像...")
-            results = self.colony_detector.detect(
-                current_image,
-                preprocess_config=config,
-                auto_optimize=auto_optimize
+    def on_image_selected(self, path):
+        """Handle image selection from list"""
+        logger.debug(f"Attempting to load image: {path}")
+        try:
+            # Convert path to native format
+            abs_path = QDir.toNativeSeparators(os.path.abspath(path))
+            logger.debug(f"Normalized path: {abs_path}")
+            
+            if self.image_viewer.load_image(abs_path):
+                self.current_path = abs_path
+                self.analyze_btn.setEnabled(True)
+                logger.info(f"Successfully loaded image: {abs_path}")
+                if path in self.results_cache:
+                    self.show_cached_results(path)
+            else:
+                logger.error(f"Failed to load image: {abs_path}")
+                QMessageBox.critical(
+                    self,
+                    self._("错误"),
+                    self._("加载图片失败: {}").format(abs_path)
+                )
+                
+        except Exception as e:
+            logger.error(f"Image load error: {str(e)}")
+            QMessageBox.critical(
+                self,
+                self._("错误"),
+                self._("加载图片时发生错误: {}").format(str(e))
             )
             
-            # Generate visualization
-            progress.set_progress(70, "生成结果...")
-            annotated = self.colony_detector.annotate_image(current_image, results)
-            
-            # Convert to QPixmap
-            height, width, channel = annotated.shape
-            qimg = QImage(annotated.data, width, height, width * channel, 
-                         QImage.Format.Format_BGR888)
-            pixmap = QPixmap.fromImage(qimg)
-            
-            # Show results
-            self.image_viewer.set_pixmap(pixmap)
-            self.result_visualizer.show_results(results)
-            self.project_manager.save_results(current_image, results)
-            
-            # Done
-            progress.close()
-            total = len(results['boxes'])
-            self.show_status_message(f"分析完成: 检测到 {total} 个菌落")
-            
-        except Exception as e:
-            logger.error(f"分析失败: {e}")
-            QMessageBox.critical(self, "错误", f"分析失败: {str(e)}")
-
-    def start_batch_analysis(self):
-        """Start batch analysis"""
-        if not self.project_manager.current_project:
-            QMessageBox.warning(self, "警告", "请先打开或创建项目")
-            return
-            
-        images = self.project_manager.get_images()
-        if not images:
-            QMessageBox.warning(self, "警告", "项目中没有图像")
-            return
-            
+    def show_cached_results(self, path):
+        """Show cached detection results"""
+        cache = self.results_cache[path]
+        self.result_image.display_image(cache['image'])
+        self.result_stats.display_stats(cache['stats'])
+        self.result_table.display_results(cache['detections'])
+        
+    def start_analysis(self):
+        """Start colony detection"""
+        logger.debug(f"start_analysis: current_project={self.current_project}, current_path={self.current_path}")
         try:
-            progress = ProgressDialog(self)
-            progress.setWindowTitle("批量分析")
-            progress.show()
+            # Check current image
+            if not self.current_path:
+                QMessageBox.warning(
+                    self,
+                    self._("警告"),
+                    self._("请先打开一张图片进行分析。")
+                )
+                return
             
-            total = len(images)
-            processed = 0
-            
-            # Get preprocessing settings
-            auto_optimize = self.preprocess_config.get('auto_optimize', False) if self.preprocess_config else False
-            config = self.preprocess_config if self.preprocess_config and not auto_optimize else None
-            
-            for i, image_path in enumerate(images):
-                if progress.was_cancelled():
-                    break
-                    
-                percent = int((i + 1) / total * 100)
-                progress.set_progress(percent, f"正在分析: {i+1}/{total}")
-                
-                try:
-                    # Analyze image
-                    results = self.colony_detector.detect(
-                        image_path,
-                        preprocess_config=config,
-                        auto_optimize=auto_optimize
+            # Initialize detector if needed
+            if not self.detector.initialized:
+                if not self.detector.initialize():
+                    QMessageBox.critical(
+                        self,
+                        self._("错误"),
+                        self._("模型初始化失败，请检查模型文件是否存在。")
                     )
-                    
-                    # Save results
-                    self.project_manager.save_results(image_path, results)
-                    processed += 1
-                    
-                except Exception as e:
-                    logger.error(f"分析图像失败 {image_path}: {e}")
-                    continue
+                    return
             
-            progress.close()
-            self.show_status_message(f"批量分析完成: {processed}/{total} 个图像")
+            # Load and preprocess image
+            logger.debug(self._("加载图像: ") + f"{self.current_path}")
+            
+            # Load image using preprocessing utility
+            image = load_image(self.current_path)
+            if image is None:
+                QMessageBox.critical(
+                    self,
+                    self._("错误"),
+                    self._("图片加载失败: ") + self.current_path
+                )
+                return
+                
+            # Detect colonies
+            detections = self.detector.detect_colonies(image)
+            if detections is None:
+                QMessageBox.critical(
+                    self,
+                    self._("错误"),
+                    self._("菌落检测失败。")
+                )
+                return
+                
+            # Calculate statistics
+            stats = self.detector.get_statistics(detections, image.shape[:2])
+            
+            # Cache results
+            self.results_cache[self.current_path] = {
+                'image': image,
+                'detections': detections,
+                'stats': stats
+            }
+            
+            # Display results
+            self.result_image.display_results(image, detections)
+            self.result_stats.display_stats(stats)
+            self.result_table.display_results(detections)
+            
+            # Enable save button
+            self.save_btn.setEnabled(True)
             
         except Exception as e:
-            logger.error(f"批量分析失败: {e}")
-            QMessageBox.critical(self, "错误", f"批量分析失败: {str(e)}")
-
-    def show_status_message(self, message: str):
-        """Show message in status bar"""
-        self.statusBar().showMessage(message, 3000)
-
-    def new_project(self):
-        """Create new project"""
-        dialog = NewProjectDialog(self)
-        if dialog.exec():
-            name, path = dialog.get_project_info()
-            if self.project_manager.create_project(name, path):
-                self.show_status_message(f"项目已创建：{name}")
-                self.image_list.clear()
-                self.update_ui()
-
-    def open_project(self):
-        """Open existing project"""
-        dialog = OpenProjectDialog(self)
-        if dialog.exec():
-            path = dialog.get_project_path()
-            if self.project_manager.open_project(path):
-                self.show_status_message("项目已打开")
-                self.image_list.clear()
-                self.update_ui()
-                for image in self.project_manager.get_images():
-                    self.image_list.add_image(image)
-
-    def update_ui(self):
-        """Update UI state"""
-        has_project = self.project_manager.current_project is not None
-        self.image_list.setEnabled(has_project)
-        self.result_visualizer.setEnabled(has_project)
-
-    def on_image_selected(self, image_path):
-        """Handle image selection from image list"""
+            logger.error(self._("分析失败: ") + f"{e}")
+            QMessageBox.critical(
+                self,
+                self._("错误"),
+                self._("分析过程中出现错误: ") + str(e)
+            )
+            
+    def save_results(self):
+        """Save detection results"""
+        if not self.current_project or not self.current_path:
+            return
+            
         try:
-            if self.image_viewer.load_image(image_path):
-                logger.debug(f"Loading image: {image_path}")
-                self.show_status_message(f"已加载图像: {os.path.basename(image_path)}")
-                
-                self.result_visualizer.set_image_path(image_path)
-                
-                results = self.project_manager.get_results(image_path)
-                if results:
-                    logger.debug(f"Found existing results for {image_path}")
-                    self.result_visualizer.show_results(results)
-                    
-                    # Show annotated image
-                    annotated = self.colony_detector.annotate_image(image_path, results)
-                    height, width, channel = annotated.shape
-                    qimg = QImage(annotated.data, width, height, width * channel,
-                                QImage.Format.Format_BGR888)
-                    pixmap = QPixmap.fromImage(qimg)
-                    self.image_viewer.set_pixmap(pixmap)
-                else:
-                    self.result_visualizer.clear_results()
-            else:
-                self.show_status_message("加载图像失败")
+            cache = self.results_cache.get(self.current_path)
+            if cache:
+                # Save results using project manager
+                self.project_manager.save_results(
+                    self.current_project,
+                    self.current_path,
+                    cache['detections'],
+                    cache['stats']
+                )
+                logger.info(self._("保存项目结果: ") + f"{self.current_project}")
                 
         except Exception as e:
-            logger.error(f"Error loading image: {e}")
-            self.show_status_message("加载图像时出错")
+            logger.error(self._("保存结果失败: ") + f"{e}")
+            QMessageBox.critical(
+                self,
+                self._("错误"),
+                self._("保存结果失败: ") + str(e)
+            )
+            
+    def auto_save(self):
+        """Auto save current results"""
+        if self.current_project and self.current_path:
+            self.save_results()
+            
+    def closeEvent(self, event):
+        """Handle window close event"""
+        # Save layout before closing
+        self.dock_manager.save_layout()
+        super().closeEvent(event)
