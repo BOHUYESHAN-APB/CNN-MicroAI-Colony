@@ -41,9 +41,9 @@ class MainWindow(QMainWindow):
         self.detector = ColonyDetector()
         self.project_manager = ProjectManager()
         
-        # Initialize UI
+        # Setup UI components
+        self.setup_docks()  # Must be called before setup_menu
         self.setup_ui()
-        self.setup_docks()
         self.setup_menu()
         
         # Setup dock manager
@@ -371,7 +371,16 @@ class MainWindow(QMainWindow):
     def show_cached_results(self, path):
         """Show cached detection results"""
         cache = self.results_cache[path]
-        self.result_image.display_image(cache['image'])
+        
+        # Convert back to RGB for display if needed
+        image = cache['image']
+        if len(image.shape) == 2:
+            display_image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+        else:
+            display_image = image.copy()
+            
+        # Show results
+        self.result_image.display_results(display_image, cache['detections'])
         self.result_stats.display_stats(cache['stats'])
         self.result_table.display_results(cache['detections'])
         self.statusBar.showMessage(self._("已加载缓存结果"))
@@ -411,24 +420,32 @@ class MainWindow(QMainWindow):
                 )
                 return
                 
+            # Make a copy for display
+            display_image = image.copy()
+                
             # Apply preprocessing if configured and enabled
             if self.preprocessing_config and self.enable_preprocess_action.isChecked():
-                config = PreprocessingConfig.from_dict(self.preprocessing_config)
-                image = preprocess_image(image, config)
-                if image is None:
+                # Convert config to dict if it's a PreprocessingConfig object
+                config_dict = vars(self.preprocessing_config) if isinstance(self.preprocessing_config, PreprocessingConfig) else self.preprocessing_config
+                config = PreprocessingConfig.from_dict(config_dict)
+                processed = preprocess_image(image, config)
+                if processed is None:
                     QMessageBox.critical(
                         self,
                         self._("错误"),
                         self._("图像预处理失败。")
                     )
                     return
+                image = processed
 
-            # Convert to grayscale if needed
+            # Convert to grayscale for detection if needed
             if len(image.shape) == 3:
-                image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+                detect_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+            else:
+                detect_image = image
                 
             # Detect colonies
-            detections = self.detector.detect_colonies(image)
+            detections = self.detector.detect_colonies(detect_image)
             if detections is None:
                 QMessageBox.critical(
                     self,
@@ -438,17 +455,17 @@ class MainWindow(QMainWindow):
                 return
                 
             # Calculate statistics
-            stats = self.detector.get_statistics(detections, image.shape[:2])
+            stats = self.detector.get_statistics(detections, detect_image.shape[:2])
             
             # Cache results
             self.results_cache[self.current_path] = {
-                'image': image,
+                'image': display_image,  # Store original RGB image
                 'detections': detections,
                 'stats': stats
             }
             
             # Display results
-            self.result_image.display_results(image, detections)
+            self.result_image.display_results(display_image, detections)
             self.result_stats.display_stats(stats)
             self.result_table.display_results(detections)
             
