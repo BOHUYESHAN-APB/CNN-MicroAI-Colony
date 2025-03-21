@@ -100,6 +100,15 @@ class ImageViewerDock(BaseDockWidget):
         """Fit image to window"""
         self.viewer.zoom_level = 1.0
         self.viewer.update_display()
+        
+    def reset_zoom(self):
+        """Reset zoom to original size"""
+        self.viewer.zoom_level = 1.0
+        self.viewer.update_display()
+
+    def clear(self):
+        """Clear current image"""
+        self.viewer.clear()
 
     def minimumSizeHint(self):
         """Provide reasonable minimum size"""
