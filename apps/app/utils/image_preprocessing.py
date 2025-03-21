@@ -33,14 +33,18 @@ class PreprocessingConfig:
         self.block_size = 11
         self.c_value = 2
         
+        # New parameters
+        self.auto_optimize = False
+        self.mask = None  # Will store the mask array
+        
     @classmethod
     def from_dict(cls, config: Dict[str, Any]) -> 'PreprocessingConfig':
         """Create config from dictionary"""
         conf = cls()
         if config:
             if 'auto_optimize' in config:
-                # TODO: Implement auto parameter optimization
-                pass
+                conf.auto_optimize = True
+                # Auto-optimize parameters will be determined during processing
             else:
                 conf.remove_glare = config.get('remove_glare', True)
                 conf.glare_threshold = config.get('glare_threshold', 220)
@@ -53,6 +57,7 @@ class PreprocessingConfig:
                 conf.adaptive_threshold = config.get('adaptive_threshold', True)
                 conf.block_size = config.get('block_size', 11)
                 conf.c_value = config.get('c_value', 2)
+                conf.mask = config.get('mask', None)
         return conf
 
 def load_image(path: str) -> Optional[np.ndarray]:
@@ -85,6 +90,46 @@ def load_image(path: str) -> Optional[np.ndarray]:
         logger.error(f"Error loading image {path}: {str(e)}")
         return None
 
+def auto_optimize_params(image: np.ndarray) -> PreprocessingConfig:
+    """Automatically optimize preprocessing parameters
+    
+    Args:
+        image: Input image
+        
+    Returns:
+        Optimized preprocessing configuration
+    """
+    config = PreprocessingConfig()
+    
+    # Convert to grayscale if needed
+    if len(image.shape) == 3:
+        gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+    else:
+        gray = image
+        
+    # Analyze image and set parameters
+    mean_val = np.mean(gray)
+    std_val = np.std(gray)
+    
+    # Adjust parameters based on image statistics
+    if std_val < 30:  # Low contrast image
+        config.clahe = True
+        config.clahe_clip = 3.0
+        config.clahe_grid = 8
+    else:
+        config.clahe = False
+        
+    if mean_val > 180:  # Bright image
+        config.remove_glare = True
+        config.glare_threshold = 200
+    else:
+        config.remove_glare = False
+        
+    config.gaussian_blur = True
+    config.blur_kernel = 3 if std_val > 50 else 5
+    
+    return config
+
 def preprocess_image(image: np.ndarray, config: Optional[PreprocessingConfig] = None) -> Optional[np.ndarray]:
     """Preprocess image for colony detection
     
@@ -103,6 +148,10 @@ def preprocess_image(image: np.ndarray, config: Optional[PreprocessingConfig] = 
         if config is None:
             config = PreprocessingConfig()
             
+        # Auto-optimize parameters if requested
+        if config.auto_optimize:
+            config = auto_optimize_params(image)
+            
         # Make a copy to avoid modifying original
         processed = image.copy()
             
@@ -111,6 +160,10 @@ def preprocess_image(image: np.ndarray, config: Optional[PreprocessingConfig] = 
             gray = cv2.cvtColor(processed, cv2.COLOR_RGB2GRAY)
         else:
             gray = processed
+            
+        # Apply mask if provided
+        if config.mask is not None:
+            gray = cv2.multiply(gray, config.mask)
         
         # Remove glare
         if config.remove_glare:
@@ -168,56 +221,3 @@ def preprocess_image(image: np.ndarray, config: Optional[PreprocessingConfig] = 
         logger.error(f"Error preprocessing image: {str(e)}")
         logger.debug("Error details:", exc_info=True)
         return None
-
-def draw_detections(image: np.ndarray, detections: list, color: tuple = (0, 255, 0)) -> Optional[np.ndarray]:
-    """Draw colony detections on image
-    
-    Args:
-        image: RGB image to draw on
-        detections: List of detection dictionaries
-        color: RGB color for drawings
-        
-    Returns:
-        Image with detections drawn
-    """
-    try:
-        if image is None:
-            return None
-            
-        # Make copy for drawing
-        result = image.copy()
-        
-        # Draw each detection
-        for det in detections:
-            # Get detection info
-            box = det.get("box", [0, 0, 0, 0])
-            center = det.get("center", (0, 0))
-            diameter = det.get("diameter", 0)
-            confidence = det.get("confidence", 0)
-            
-            # Draw bounding box
-            cv2.rectangle(result,
-                         (int(box[0]), int(box[1])),
-                         (int(box[2]), int(box[3])),
-                         color, 2)
-            
-            # Draw center point and circle
-            cv2.circle(result, 
-                      (int(center[0]), int(center[1])),
-                      3, color, -1)
-            cv2.circle(result,
-                      (int(center[0]), int(center[1])),
-                      int(diameter/2), color, 2)
-            
-            # Add confidence text
-            cv2.putText(result,
-                       f"{confidence:.2f}",
-                       (int(box[0]), int(box[1]-5)),
-                       cv2.FONT_HERSHEY_SIMPLEX,
-                       0.6, color, 2)
-                       
-        return result
-        
-    except Exception as e:
-        logger.error(f"Error drawing detections: {str(e)}")
-        return image
