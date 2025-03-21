@@ -8,6 +8,8 @@ import logging
 from pathlib import Path
 from PyQt6.QtGui import QImage
 
+from .image_preprocessing import load_image
+
 logger = logging.getLogger(__name__)
 
 def create_thumbnail(path, size=(64, 64)):
@@ -21,14 +23,8 @@ def create_thumbnail(path, size=(64, 64)):
         QImage: Thumbnail image, or None if failed
     """
     try:
-        # Convert path to proper Path object
-        img_path = Path(path)
-        
-        # Read image using numpy to handle Unicode paths
-        with open(img_path, 'rb') as f:
-            img_array = np.frombuffer(f.read(), dtype=np.uint8)
-            image = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-            
+        # Load image using our Unicode safe loader
+        image = load_image(path)
         if image is None:
             raise ValueError("Cannot load image")
             
@@ -46,13 +42,10 @@ def create_thumbnail(path, size=(64, 64)):
         resized = cv2.resize(image, (new_width, new_height),
                            interpolation=cv2.INTER_AREA)
                            
-        # Convert to RGB
-        rgb = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
-        
         # Create QImage
-        height, width, channel = rgb.shape
+        height, width, channel = resized.shape
         bytes_per_line = 3 * width
-        qimg = QImage(rgb, width, height, bytes_per_line,
+        qimg = QImage(resized.data, width, height, bytes_per_line,
                      QImage.Format.Format_RGB888)
                      
         return qimg
