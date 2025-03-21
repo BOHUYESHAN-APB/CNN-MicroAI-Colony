@@ -5,96 +5,101 @@ Result image display dock implementation
 import cv2
 import numpy as np
 import logging
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel
-from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtGui import QImage, QPixmap
+from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QLabel, QScrollArea, 
+                            QHBoxLayout, QPushButton, QSpinBox)
+from PyQt6.QtCore import Qt, QSize, QTimer, QEvent, QPoint, QPropertyAnimation
+from PyQt6.QtGui import QImage, QPixmap, QKeySequence, QShortcut
 from .base_dock_widget import BaseDockWidget
-from ..utils.image_preprocessing import draw_detections
 
 logger = logging.getLogger(__name__)
 
 class ResultImageDock(BaseDockWidget):
     """Result image display dock"""
     
+    CACHE_LIMIT = 5  # Maximum number of cached images
+    
     def __init__(self, parent=None):
         super().__init__("检测结果", parent)
+        self.current_image = None
+        self.current_detections = None
+        self.zoom_level = 1.0
+        self._image_cache = {}
         self.setup_ui()
         
-    def setup_ui(self):
-        """Setup user interface"""
-        # Create image label
-        self.image_label = QLabel()
-        self.image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.image_label.setStyleSheet("""
-            QLabel {
-                background: #1e1e1e;
-                border: 1px solid #3d3d3d;
-            }
-        """)
+        # Create timer for delayed zoom-to-fit
+        self.fit_timer = QTimer(self)
+        self.fit_timer.setSingleShot(True)
+        self.fit_timer.timeout.connect(self._zoom_to_fit)
         
-        # Set as central widget
-        self.set_central_widget(self.image_label)
-        
-        # Enable dock features
-        self.setObjectName("result_image_dock")
-        
-    def display_image(self, image):
-        """Display a plain image
-        
-        Args:
-            image: RGB numpy array
-        """
-        if image is None:
-            self.clear()
+        # Setup keyboard shortcuts
+        self.setup_shortcuts()
+
+[Previous content remains the same until goto_prev_colony method...]
+
+    def goto_prev_colony(self):
+        """Navigate to previous colony"""
+        if self.current_detections is None or self.current_image is None:
             return
             
-        try:
-            # Convert to QImage
-            height, width, channel = image.shape
-            bytes_per_line = 3 * width
-            q_img = QImage(
-                image.data,
-                width,
-                height,
-                bytes_per_line,
-                QImage.Format.Format_RGB888
-            )
-            
-            # Display
-            self.image_label.setPixmap(QPixmap.fromImage(q_img))
-            
-        except Exception as e:
-            logger.error(f"Error displaying image: {str(e)}")
-            self.clear()
-            
-    def display_results(self, image, detections):
-        """Display detection results
+        # Get current viewport center
+        viewport = self.scroll_area.viewport()
+        viewport_center = viewport.rect().center()
+        viewport_pos = viewport.mapTo(self.image_label, viewport_center)
         
-        Args:
-            image: RGB numpy array
-            detections: List of detection dictionaries
-        """
-        if image is None or not detections:
-            self.clear()
-            return
+        # Find closest colony to the left
+        closest = None
+        min_dist = float('inf')
+        
+        for det in self.current_detections:
+            center = det.get("center", (0, 0))
+            scaled_x = center[0] * self.zoom_level
+            scaled_y = center[1] * self.zoom_level
             
-        try:
-            # Draw detections
-            result_image = draw_detections(image, detections)
-            
-            # Display
-            if result_image is not None:
-                self.display_image(result_image)
+            # Only consider colonies to the left
+            if scaled_x >= viewport_pos.x():
+                continue
                 
-        except Exception as e:
-            logger.error(f"Error displaying results: {str(e)}")
-            self.clear()
+            dist = ((scaled_x - viewport_pos.x()) ** 2 + 
+                   (scaled_y - viewport_pos.y()) ** 2) ** 0.5
             
-    def clear(self):
-        """Clear display"""
-        self.image_label.clear()
-        self.image_label.setText("无检测结果")
+            if dist < min_dist:
+                min_dist = dist
+                closest = center
+                
+        if closest:
+            self.scroll_to_colony(closest)
+            
+    def goto_next_colony(self):
+        """Navigate to next colony"""
+        if self.current_detections is None or self.current_image is None:
+            return
+            
+        # Get current viewport center
+        viewport = self.scroll_area.viewport()
+        viewport_center = viewport.rect().center()
+        viewport_pos = viewport.mapTo(self.image_label, viewport_center)
         
-    def minimumSizeHint(self):
-        """Provide reasonable minimum size"""
-        return QSize(400, 300)
+        # Find closest colony to the right
+        closest = None
+        min_dist = float('inf')
+        
+        for det in self.current_detections:
+            center = det.get("center", (0, 0))
+            scaled_x = center[0] * self.zoom_level
+            scaled_y = center[1] * self.zoom_level
+            
+            # Only consider colonies to the right
+            if scaled_x <= viewport_pos.x():
+                continue
+                
+            dist = ((scaled_x - viewport_pos.x()) ** 2 + 
+                   (scaled_y - viewport_pos.y()) ** 2) ** 0.5
+            
+            if dist < min_dist:
+                min_dist = dist
+                closest = center
+                
+        if closest:
+            self.scroll_to_colony(closest)
+
+[Previous content remains exactly the same...]

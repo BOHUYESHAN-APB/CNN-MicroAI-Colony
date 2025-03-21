@@ -5,12 +5,24 @@ Preview widget for preprocessing results
 import cv2
 import numpy as np
 import logging
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QScrollArea, QHBoxLayout
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QImage, QPixmap
-from pathlib import Path
 
 logger = logging.getLogger(__name__)
+
+class PreviewLabel(QLabel):
+    """Custom label with size hint override"""
+    def __init__(self, text=""):
+        super().__init__(text)
+        self.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.setMinimumSize(400, 300)
+        
+    def sizeHint(self):
+        """Provide size hint"""
+        if self.pixmap():
+            return self.pixmap().size()
+        return QSize(400, 300)
 
 class PreviewWidget(QWidget):
     """Widget for displaying image preprocessing preview"""
@@ -26,9 +38,27 @@ class PreviewWidget(QWidget):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         
-        # Create preview labels
-        self.original_label = QLabel("原图")
-        self.original_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        # Create scroll areas with labels for previews
+        self.original_scroll = QScrollArea()
+        self.original_scroll.setWidgetResizable(True)
+        self.original_scroll.setFrameShape(self.original_scroll.Shape.NoFrame)
+        
+        self.processed_scroll = QScrollArea()
+        self.processed_scroll.setWidgetResizable(True)
+        self.processed_scroll.setFrameShape(self.processed_scroll.Shape.NoFrame)
+        
+        # Create preview labels with titles
+        original_container = QWidget()
+        original_layout = QVBoxLayout(original_container)
+        original_layout.setContentsMargins(0, 0, 0, 0)
+        
+        title_layout = QHBoxLayout()
+        title_layout.addStretch()
+        title_layout.addWidget(QLabel("原图"))
+        title_layout.addStretch()
+        original_layout.addLayout(title_layout)
+        
+        self.original_label = PreviewLabel()
         self.original_label.setStyleSheet("""
             QLabel {
                 background: #1e1e1e;
@@ -37,10 +67,20 @@ class PreviewWidget(QWidget):
                 color: #e0e0e0;
             }
         """)
-        layout.addWidget(self.original_label)
+        original_layout.addWidget(self.original_label)
+        self.original_scroll.setWidget(original_container)
         
-        self.processed_label = QLabel("处理后")
-        self.processed_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        processed_container = QWidget()
+        processed_layout = QVBoxLayout(processed_container)
+        processed_layout.setContentsMargins(0, 0, 0, 0)
+        
+        title_layout = QHBoxLayout()
+        title_layout.addStretch()
+        title_layout.addWidget(QLabel("预处理结果"))
+        title_layout.addStretch()
+        processed_layout.addLayout(title_layout)
+        
+        self.processed_label = PreviewLabel()
         self.processed_label.setStyleSheet("""
             QLabel {
                 background: #1e1e1e;
@@ -49,7 +89,12 @@ class PreviewWidget(QWidget):
                 color: #e0e0e0;
             }
         """)
-        layout.addWidget(self.processed_label)
+        processed_layout.addWidget(self.processed_label)
+        self.processed_scroll.setWidget(processed_container)
+        
+        # Add scroll areas to layout
+        layout.addWidget(self.original_scroll)
+        layout.addWidget(self.processed_scroll)
         
     def set_image(self, image):
         """Set original image for preview
@@ -83,21 +128,43 @@ class PreviewWidget(QWidget):
             return
             
         try:
-            # Get preview size (maintain aspect ratio)
-            preview_height = 200
+            # Calculate preview size to fit widget while maintaining aspect ratio
             height, width = self.original_image.shape[:2]
-            preview_width = int(width * (preview_height / height))
+            max_height = self.height() // 2 - 40  # Account for titles and padding
+            scale = max_height / height if height > max_height else 1.0
+            preview_width = int(width * scale)
+            preview_height = int(height * scale)
             
-            # Original image preview
+            # Original image preview with mask overlay
             orig_preview = cv2.resize(
-                self.original_image, 
+                self.original_image,
                 (preview_width, preview_height),
                 interpolation=cv2.INTER_AREA
             )
+            
+            # Draw mask overlay on original if mask exists
+            if self.config and hasattr(self.config, 'mask') and self.config.mask is not None:
+                mask_preview = cv2.resize(
+                    self.config.mask,
+                    (preview_width, preview_height),
+                    interpolation=cv2.INTER_NEAREST
+                )
+                # Create semi-transparent red overlay
+                overlay = np.zeros_like(orig_preview)
+                overlay[..., 2] = 128  # Red channel
+                orig_preview = cv2.addWeighted(
+                    orig_preview,
+                    1,
+                    cv2.multiply(overlay, mask_preview[..., None]),
+                    0.3,
+                    0
+                )
+            
+            # Convert and display original
             orig_qimg = self._array_to_qimage(orig_preview)
             self.original_label.setPixmap(QPixmap.fromImage(orig_qimg))
             
-            # Processed image preview
+            # Process and display result
             if self.config:
                 from ..utils.image_preprocessing import preprocess_image
                 processed = preprocess_image(self.original_image, self.config)
@@ -134,13 +201,9 @@ class PreviewWidget(QWidget):
             image.data,
             width,
             height,
-            bytes_per_line, 
+            bytes_per_line,
             QImage.Format.Format_RGB888
         )
-                     
-    def minimumSizeHint(self):
-        """Provide reasonable minimum size"""
-        return QSize(300, 400)
         
     def clear(self):
         """Clear previews"""
@@ -149,4 +212,9 @@ class PreviewWidget(QWidget):
         self.original_label.clear()
         self.processed_label.clear()
         self.original_label.setText("原图")
-        self.processed_label.setText("处理后")
+        self.processed_label.setText("预处理结果")
+        
+    def resizeEvent(self, event):
+        """Handle resize event"""
+        super().resizeEvent(event)
+        self.update_preview()
