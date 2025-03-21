@@ -1,232 +1,233 @@
 """
-Dialog for configuring image preprocessing settings
+Preprocessing settings dialog
+预处理设置对话框
 """
-from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QFormLayout,
-                           QCheckBox, QSpinBox, QDoubleSpinBox, QPushButton,
-                           QGroupBox, QComboBox, QLabel)
-from PyQt6.QtCore import Qt
+import logging
+from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel, 
+                            QSpinBox, QDoubleSpinBox, QCheckBox, QPushButton,
+                            QGroupBox)
+from PyQt6.QtCore import Qt, QSize
+from .preview_widget import PreviewWidget
+from ..utils.image_preprocessing import PreprocessingConfig
 
-DIALOG_STYLE = """
-QDialog {
-    background-color: #2b2b2b;
-    color: #e0e0e0;
-}
-QGroupBox {
-    color: #e0e0e0;
-    border: 1px solid #3a3a3a;
-    border-radius: 4px;
-    margin-top: 12px;
-    padding-top: 12px;
-}
-QGroupBox::title {
-    color: #e0e0e0;
-    padding: 0 3px;
-}
-QLabel {
-    color: #e0e0e0;
-}
-QComboBox, QSpinBox, QDoubleSpinBox {
-    background-color: #3a3a3a;
-    color: #e0e0e0;
-    border: 1px solid #505050;
-    border-radius: 4px;
-    padding: 3px;
-}
-QCheckBox {
-    color: #e0e0e0;
-}
-QPushButton {
-    background-color: #3a3a3a;
-    color: #e0e0e0;
-    border: 1px solid #505050;
-    border-radius: 4px;
-    padding: 5px 15px;
-    min-width: 80px;
-}
-QPushButton:hover {
-    background-color: #454545;
-}
-QPushButton:pressed {
-    background-color: #303030;
-}
-"""
+logger = logging.getLogger(__name__)
 
 class PreprocessingDialog(QDialog):
-    def __init__(self, parent=None):
+    """Dialog for configuring preprocessing parameters"""
+    
+    def __init__(self, parent=None, image=None):
         super().__init__(parent)
-        self.setWindowTitle("图像预处理设置")
-        self.setMinimumWidth(400)
-        self.setStyleSheet(DIALOG_STYLE)
+        self.image = image
+        self.config = PreprocessingConfig()
         self.setup_ui()
-
+        
     def setup_ui(self):
-        """Setup dialog UI"""
-        layout = QVBoxLayout(self)
-        layout.setSpacing(10)
-        layout.setContentsMargins(10, 10, 10, 10)
+        """Setup user interface"""
+        self.setWindowTitle("图像预处理设置")
+        self.setMinimumWidth(800)
         
-        # Mode selection
-        mode_group = QGroupBox("处理模式", self)
-        mode_layout = QVBoxLayout()
+        # Create layout
+        layout = QHBoxLayout(self)
         
-        # Add mode description labels
-        mode_descriptions = {
-            "默认参数": "使用标准参数进行基础预处理",
-            "自定义参数": "手动配置预处理步骤和参数",
-            "自动优化": "根据图像特征自动调整参数"
-        }
+        # Left side: settings
+        settings_layout = QVBoxLayout()
         
-        self.mode_combo = QComboBox()
-        self.mode_combo.addItems(list(mode_descriptions.keys()))
-        self.mode_combo.currentIndexChanged.connect(self.on_mode_changed)
-        mode_layout.addWidget(self.mode_combo)
+        # Glare removal
+        glare_group = QGroupBox("光晕去除")
+        glare_layout = QVBoxLayout()
+        self.remove_glare_cb = QCheckBox("启用光晕去除")
+        self.remove_glare_cb.setChecked(self.config.remove_glare)
+        self.remove_glare_cb.stateChanged.connect(self.on_param_changed)
+        glare_layout.addWidget(self.remove_glare_cb)
         
-        # Description label
-        self.desc_label = QLabel()
-        self.desc_label.setWordWrap(True)
-        self.desc_label.setStyleSheet("color: #909090; font-size: 11px;")
-        mode_layout.addWidget(self.desc_label)
+        thresh_layout = QHBoxLayout()
+        thresh_layout.addWidget(QLabel("阈值:"))
+        self.glare_threshold_sb = QSpinBox()
+        self.glare_threshold_sb.setRange(0, 255)
+        self.glare_threshold_sb.setValue(self.config.glare_threshold)
+        self.glare_threshold_sb.valueChanged.connect(self.on_param_changed)
+        thresh_layout.addWidget(self.glare_threshold_sb)
+        glare_layout.addLayout(thresh_layout)
+        glare_group.setLayout(glare_layout)
+        settings_layout.addWidget(glare_group)
         
-        mode_group.setLayout(mode_layout)
-        layout.addWidget(mode_group)
+        # Normalization
+        norm_group = QGroupBox("亮度归一化")
+        norm_layout = QVBoxLayout()
+        self.normalize_cb = QCheckBox("启用归一化")
+        self.normalize_cb.setChecked(self.config.normalize)
+        self.normalize_cb.stateChanged.connect(self.on_param_changed)
+        norm_layout.addWidget(self.normalize_cb)
+        norm_group.setLayout(norm_layout)
+        settings_layout.addWidget(norm_group)
         
-        # Settings group
-        settings_group = QGroupBox("处理步骤")
-        settings_layout = QFormLayout()
-        settings_layout.setSpacing(8)
+        # CLAHE
+        clahe_group = QGroupBox("对比度增强 (CLAHE)")
+        clahe_layout = QVBoxLayout()
+        self.clahe_cb = QCheckBox("启用CLAHE")
+        self.clahe_cb.setChecked(self.config.clahe)
+        self.clahe_cb.stateChanged.connect(self.on_param_changed)
+        clahe_layout.addWidget(self.clahe_cb)
         
-        # Enable controls with descriptions
-        self.remove_glare_check = QCheckBox("启用")
-        self.normalize_check = QCheckBox("启用")
-        self.clahe_check = QCheckBox("启用")
-        self.blur_check = QCheckBox("启用")
-        self.threshold_check = QCheckBox("启用")
+        clip_layout = QHBoxLayout()
+        clip_layout.addWidget(QLabel("对比度限制:"))
+        self.clahe_clip_sb = QDoubleSpinBox()
+        self.clahe_clip_sb.setRange(0.1, 10.0)
+        self.clahe_clip_sb.setSingleStep(0.1)
+        self.clahe_clip_sb.setValue(self.config.clahe_clip)
+        self.clahe_clip_sb.valueChanged.connect(self.on_param_changed)
+        clip_layout.addWidget(self.clahe_clip_sb)
+        clahe_layout.addLayout(clip_layout)
         
-        # Parameter controls with tooltips
-        self.glare_threshold = QSpinBox()
-        self.glare_threshold.setRange(100, 255)
-        self.glare_threshold.setValue(220)
-        self.glare_threshold.setToolTip("调整光晕检测的亮度阈值")
+        grid_layout = QHBoxLayout()
+        grid_layout.addWidget(QLabel("网格大小:"))
+        self.clahe_grid_sb = QSpinBox()
+        self.clahe_grid_sb.setRange(2, 16)
+        self.clahe_grid_sb.setValue(self.config.clahe_grid)
+        self.clahe_grid_sb.valueChanged.connect(self.on_param_changed)
+        grid_layout.addWidget(self.clahe_grid_sb)
+        clahe_layout.addLayout(grid_layout)
+        clahe_group.setLayout(clahe_layout)
+        settings_layout.addWidget(clahe_group)
         
-        self.clahe_clip = QDoubleSpinBox()
-        self.clahe_clip.setRange(0.5, 10.0)
-        self.clahe_clip.setValue(2.0)
-        self.clahe_clip.setSingleStep(0.5)
-        self.clahe_clip.setToolTip("限制对比度增强的强度")
+        # Gaussian blur
+        blur_group = QGroupBox("高斯模糊")
+        blur_layout = QVBoxLayout()
+        self.blur_cb = QCheckBox("启用高斯模糊")
+        self.blur_cb.setChecked(self.config.gaussian_blur)
+        self.blur_cb.stateChanged.connect(self.on_param_changed)
+        blur_layout.addWidget(self.blur_cb)
         
-        self.clahe_grid = QSpinBox()
-        self.clahe_grid.setRange(2, 32)
-        self.clahe_grid.setValue(8)
-        self.clahe_grid.setToolTip("调整对比度增强的网格大小")
+        kernel_layout = QHBoxLayout()
+        kernel_layout.addWidget(QLabel("核大小:"))
+        self.blur_kernel_sb = QSpinBox()
+        self.blur_kernel_sb.setRange(3, 31)
+        self.blur_kernel_sb.setSingleStep(2)
+        self.blur_kernel_sb.setValue(self.config.blur_kernel)
+        self.blur_kernel_sb.valueChanged.connect(self.on_param_changed)
+        kernel_layout.addWidget(self.blur_kernel_sb)
+        blur_layout.addLayout(kernel_layout)
+        blur_group.setLayout(blur_layout)
+        settings_layout.addWidget(blur_group)
         
-        self.blur_kernel = QSpinBox()
-        self.blur_kernel.setRange(3, 15)
-        self.blur_kernel.setValue(5)
-        self.blur_kernel.setSingleStep(2)
-        self.blur_kernel.setToolTip("调整模糊处理的强度")
+        # Adaptive threshold
+        thresh_group = QGroupBox("自适应阈值")
+        thresh_layout = QVBoxLayout()
+        self.threshold_cb = QCheckBox("启用自适应阈值")
+        self.threshold_cb.setChecked(self.config.adaptive_threshold)
+        self.threshold_cb.stateChanged.connect(self.on_param_changed)
+        thresh_layout.addWidget(self.threshold_cb)
         
-        # Add to layout with descriptions
-        settings_layout.addRow("去除光晕:", self.remove_glare_check)
-        settings_layout.addRow("光晕阈值:", self.glare_threshold)
+        block_layout = QHBoxLayout()
+        block_layout.addWidget(QLabel("块大小:"))
+        self.block_size_sb = QSpinBox()
+        self.block_size_sb.setRange(3, 99)
+        self.block_size_sb.setSingleStep(2)
+        self.block_size_sb.setValue(self.config.block_size)
+        self.block_size_sb.valueChanged.connect(self.on_param_changed)
+        block_layout.addWidget(self.block_size_sb)
+        thresh_layout.addLayout(block_layout)
         
-        settings_layout.addRow("光照归一化:", self.normalize_check)
+        c_layout = QHBoxLayout()
+        c_layout.addWidget(QLabel("C值:"))
+        self.c_value_sb = QSpinBox()
+        self.c_value_sb.setRange(-10, 10)
+        self.c_value_sb.setValue(self.config.c_value)
+        self.c_value_sb.valueChanged.connect(self.on_param_changed)
+        c_layout.addWidget(self.c_value_sb)
+        thresh_layout.addLayout(c_layout)
+        thresh_group.setLayout(thresh_layout)
+        settings_layout.addWidget(thresh_group)
         
-        settings_layout.addRow("CLAHE增强:", self.clahe_check)
-        settings_layout.addRow("对比度限制:", self.clahe_clip)
-        settings_layout.addRow("网格大小:", self.clahe_grid)
-        
-        settings_layout.addRow("高斯模糊:", self.blur_check)
-        settings_layout.addRow("核大小:", self.blur_kernel)
-        
-        settings_layout.addRow("自适应阈值:", self.threshold_check)
-        
-        settings_group.setLayout(settings_layout)
-        layout.addWidget(settings_group)
+        # Add stretch to keep controls at top
+        settings_layout.addStretch()
         
         # Buttons
         button_layout = QHBoxLayout()
-        ok_button = QPushButton("确定")
-        ok_button.setDefault(True)
-        ok_button.clicked.connect(self.accept)
-        cancel_button = QPushButton("取消")
-        cancel_button.clicked.connect(self.reject)
-        button_layout.addStretch()
-        button_layout.addWidget(ok_button)
-        button_layout.addWidget(cancel_button)
-        layout.addLayout(button_layout)
+        ok_btn = QPushButton("确定")
+        ok_btn.clicked.connect(self.accept)
+        cancel_btn = QPushButton("取消")
+        cancel_btn.clicked.connect(self.reject)
+        button_layout.addWidget(ok_btn)
+        button_layout.addWidget(cancel_btn)
+        settings_layout.addLayout(button_layout)
         
-        # Set default state
-        self.set_default_values()
-        self.on_mode_changed(0)  # Update description
+        # Add settings to main layout
+        layout.addLayout(settings_layout)
         
-    def set_default_values(self):
-        """Set default values for controls"""
-        self.remove_glare_check.setChecked(True)
-        self.normalize_check.setChecked(True)
-        self.clahe_check.setChecked(True)
-        self.blur_check.setChecked(False)
-        self.threshold_check.setChecked(False)
-        self.on_mode_changed(0)  # Default mode
+        # Right side: preview
+        self.preview = PreviewWidget()
+        if self.image is not None:
+            self.preview.set_image(self.image)
+            self.preview.set_config(self.config)
+        layout.addWidget(self.preview)
         
-    def on_mode_changed(self, index):
-        """Handle mode selection change"""
-        is_manual = index == 1  # Manual mode
-        
-        # Update description
-        descriptions = [
-            "使用标准参数进行基础预处理",
-            "手动配置预处理步骤和参数",
-            "根据图像特征自动调整参数"
-        ]
-        self.desc_label.setText(descriptions[index])
-        
-        # Enable/disable parameter controls
-        for widget in [self.remove_glare_check, self.normalize_check,
-                      self.clahe_check, self.blur_check, self.threshold_check,
-                      self.glare_threshold, self.clahe_clip, self.clahe_grid,
-                      self.blur_kernel]:
-            widget.setEnabled(is_manual)
-
+    def on_param_changed(self):
+        """Handle parameter change"""
+        try:
+            # Update config from controls
+            self.config.remove_glare = self.remove_glare_cb.isChecked()
+            self.config.glare_threshold = self.glare_threshold_sb.value()
+            
+            self.config.normalize = self.normalize_cb.isChecked()
+            
+            self.config.clahe = self.clahe_cb.isChecked()
+            self.config.clahe_clip = self.clahe_clip_sb.value()
+            self.config.clahe_grid = self.clahe_grid_sb.value()
+            
+            self.config.gaussian_blur = self.blur_cb.isChecked()
+            self.config.blur_kernel = self.blur_kernel_sb.value()
+            
+            self.config.adaptive_threshold = self.threshold_cb.isChecked()
+            self.config.block_size = self.block_size_sb.value()
+            self.config.c_value = self.c_value_sb.value()
+            
+            # Update preview
+            if self.image is not None:
+                self.preview.set_config(self.config)
+                
+        except Exception as e:
+            logger.error(f"Error updating parameters: {str(e)}")
+            
     def load_config(self, config):
-        """Load configuration into dialog"""
-        if config.get('auto_optimize', False):
-            self.mode_combo.setCurrentIndex(2)  # Auto mode
-        elif config:
-            self.mode_combo.setCurrentIndex(1)  # Manual mode
-            
-            # Load enabled states
-            self.remove_glare_check.setChecked(config.get('remove_glare', True))
-            self.normalize_check.setChecked(config.get('normalize_lighting', True))
-            self.clahe_check.setChecked(config.get('clahe', True))
-            self.blur_check.setChecked(config.get('gaussian_blur', False))
-            self.threshold_check.setChecked(config.get('adaptive_thresholding', False))
-            
-            # Load parameters
-            self.glare_threshold.setValue(config.get('glare_threshold', 220))
-            self.clahe_clip.setValue(config.get('clahe_clip_limit', 2.0))
-            self.clahe_grid.setValue(config.get('clahe_grid_size', 8))
-            self.blur_kernel.setValue(config.get('blur_kernel_size', 5))
-        else:
-            self.mode_combo.setCurrentIndex(0)  # Default mode
-
-    def get_config(self):
-        """Get current configuration"""
-        mode = self.mode_combo.currentIndex()
+        """Load configuration into dialog
         
-        if mode == 0:  # Default mode
-            return None
-        elif mode == 2:  # Auto mode
-            return {'auto_optimize': True}
+        Args:
+            config: PreprocessingConfig object or dict
+        """
+        try:
+            if isinstance(config, dict):
+                config = PreprocessingConfig.from_dict(config)
+                
+            # Update controls
+            self.remove_glare_cb.setChecked(config.remove_glare)
+            self.glare_threshold_sb.setValue(config.glare_threshold)
             
-        # Manual mode
-        return {
-            'remove_glare': self.remove_glare_check.isChecked(),
-            'normalize_lighting': self.normalize_check.isChecked(),
-            'clahe': self.clahe_check.isChecked(),
-            'gaussian_blur': self.blur_check.isChecked(),
-            'adaptive_thresholding': self.threshold_check.isChecked(),
-            'glare_threshold': self.glare_threshold.value(),
-            'clahe_clip_limit': self.clahe_clip.value(),
-            'clahe_grid_size': self.clahe_grid.value(),
-            'blur_kernel_size': self.blur_kernel.value(),
-        }
+            self.normalize_cb.setChecked(config.normalize)
+            
+            self.clahe_cb.setChecked(config.clahe)
+            self.clahe_clip_sb.setValue(config.clahe_clip)
+            self.clahe_grid_sb.setValue(config.clahe_grid)
+            
+            self.blur_cb.setChecked(config.gaussian_blur)
+            self.blur_kernel_sb.setValue(config.blur_kernel)
+            
+            self.threshold_cb.setChecked(config.adaptive_threshold)
+            self.block_size_sb.setValue(config.block_size)
+            self.c_value_sb.setValue(config.c_value)
+            
+            # Update config and preview
+            self.config = config
+            if self.image is not None:
+                self.preview.set_config(config)
+                
+        except Exception as e:
+            logger.error(f"Error loading configuration: {str(e)}")
+            
+    def get_config(self):
+        """Get current configuration
+        
+        Returns:
+            Current PreprocessingConfig object
+        """
+        return self.config

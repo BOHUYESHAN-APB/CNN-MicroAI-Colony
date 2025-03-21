@@ -3775,3 +3775,86 @@ AssertionError: targets should not be none when in training mode
 2025-03-20 21:43:23,649 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
 2025-03-20 21:43:27,623 [INFO] apps.app.gui.dock_manager: Saved dock layout
 2025-03-20 21:43:27,653 [INFO] __main__: Application cleanup completed
+2025-03-20 22:16:29,821 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-20 22:16:29,883 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-20 22:16:30,146 [INFO] __main__: Application initialized successfully
+2025-03-20 22:17:52,502 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-20 22:17:52,533 [INFO] __main__: Application cleanup completed
+2025-03-20 22:32:45,330 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-20 22:32:45,418 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-20 22:32:45,688 [INFO] __main__: Application initialized successfully
+2025-03-20 22:40:41,280 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-20 22:40:41,362 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-20 22:40:41,619 [INFO] __main__: Application initialized successfully
+2025-03-20 22:40:53,141 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-20 22:40:53,184 [INFO] __main__: Application cleanup completed
+2025-03-20 22:44:04,092 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-20 22:44:04,138 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-20 22:44:04,355 [INFO] __main__: Application initialized successfully
+2025-03-20 22:47:36,760 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-20 22:47:42,964 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-20 22:47:42,966 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-20 22:47:42,977 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-20 22:47:42,990 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-20 22:47:43,002 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-20 22:47:43,619 [ERROR] apps.app.gui.image_viewer_dock: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-20 22:47:45,971 [ERROR] apps.app.gui.main_window: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-20 22:47:48,427 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-20 22:47:48,467 [INFO] __main__: Application cleanup completed
+2025-03-20 23:03:07,852 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-20 23:03:07,938 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-20 23:03:08,231 [INFO] __main__: Application initialized successfully
+2025-03-20 23:04:41,459 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-20 23:04:48,847 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-20 23:04:49,873 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-20 23:04:49,881 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-20 23:12:29,519 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-20 23:12:29,644 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-20 23:12:29,854 [INFO] __main__: Application initialized successfully
+2025-03-20 23:12:59,709 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-20 23:13:04,258 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-20 23:13:04,274 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-20 23:13:04,277 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-20 23:13:04,290 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-20 23:13:04,297 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-20 23:13:05,022 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-20 23:13:05,040 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-20 23:15:05,620 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-20 23:15:07,329 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: OpenCV(4.11.0) d:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.simd_helpers.hpp:92: error: (-15:Bad number of channels) in function '__cdecl cv::impl::`anonymous-namespace'::CvtHelper<struct cv::impl::`anonymous namespace'::Set<3,4,-1>,struct cv::impl::A0x4c23f504::Set<1,-1,-1>,struct cv::impl::A0x4c23f504::Set<0,2,5>,4>::CvtHelper(const class cv::_InputArray &,const class cv::_OutputArray &,int)'
+> Invalid number of channels in input image:
+>     'VScn::contains(scn)'
+> where
+>     'scn' is 1
+
+2025-03-20 23:15:09,108 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-20 23:15:09,111 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-20 23:15:38,671 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-20 23:15:38,716 [INFO] __main__: Application cleanup completed
+2025-03-20 23:19:56,108 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-20 23:19:56,202 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-20 23:19:56,550 [INFO] __main__: Application initialized successfully
+2025-03-20 23:21:02,671 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-20 23:21:12,589 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\2121.jpg
+2025-03-20 23:21:12,603 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\2021041310020608608.jpg
+2025-03-20 23:21:12,605 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\OIP-C.jpg
+2025-03-20 23:21:12,619 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\R-C.jpg
+2025-03-20 23:21:12,627 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\t019872959c62f44875.jpg
+2025-03-20 23:21:13,502 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\2021041310020608608.jpg
+2025-03-20 23:21:13,524 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\2021041310020608608.jpg
+2025-03-20 23:21:49,311 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\2121.jpg
+2025-03-20 23:21:49,319 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\2121.jpg
+2025-03-20 23:21:50,116 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\2021041310020608608.jpg
+2025-03-20 23:21:50,137 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\images\images\2021041310020608608.jpg
+2025-03-20 23:21:50,787 [ERROR] apps.app.models.colony_detector: Colony detection failed: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\contours_new.cpp:330: error: (-2:Unspecified error) in function 'class std::shared_ptr<struct ContourScanner_> __cdecl ContourScanner_::create(class cv::Mat,int,int,class cv::Point_<int>)'
+> Modes other than RETR_FLOODFILL and RETR_CCOMP support only CV_8UC1 images (expected: 'img.type() == CV_8UC1'), where
+>     'img.type()' is 16 (CV_8UC3)
+> must be equal to
+>     'CV_8UC1' is 0 (CV_8UC1)
+
+2025-03-20 23:21:52,847 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-20 23:21:52,893 [INFO] __main__: Application cleanup completed
+2025-03-21 08:09:46,030 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 08:09:46,120 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 08:09:46,412 [INFO] __main__: Application initialized successfully
+2025-03-21 08:09:55,159 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-21 08:09:55,209 [INFO] __main__: Application cleanup completed
