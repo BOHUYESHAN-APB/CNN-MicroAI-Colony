@@ -3858,3 +3858,192 @@ AssertionError: targets should not be none when in training mode
 2025-03-21 08:09:46,412 [INFO] __main__: Application initialized successfully
 2025-03-21 08:09:55,159 [INFO] apps.app.gui.dock_manager: Saved dock layout
 2025-03-21 08:09:55,209 [INFO] __main__: Application cleanup completed
+2025-03-21 08:25:59,378 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 08:25:59,472 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 08:25:59,767 [INFO] __main__: Application initialized successfully
+2025-03-21 08:26:08,677 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 08:26:14,554 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 08:26:14,579 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:26:14,588 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 08:26:14,618 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-21 08:26:14,635 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-21 08:26:15,648 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:26:15,670 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:26:16,828 [ERROR] apps.app.gui.result_image_dock: Error displaying image: not enough values to unpack (expected 3, got 2)
+2025-03-21 08:26:20,681 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 08:26:20,681 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 08:26:21,507 [ERROR] apps.app.gui.result_image_dock: Error displaying image: not enough values to unpack (expected 3, got 2)
+2025-03-21 08:26:22,844 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-21 08:26:22,863 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-21 08:26:23,767 [ERROR] apps.app.gui.result_image_dock: Error displaying image: not enough values to unpack (expected 3, got 2)
+2025-03-21 08:26:24,946 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-21 08:26:25,037 [INFO] __main__: Application cleanup completed
+2025-03-21 08:34:37,226 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 08:34:37,354 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 08:34:37,758 [INFO] __main__: Application initialized successfully
+2025-03-21 08:34:45,077 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 08:34:50,167 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 08:34:50,191 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:34:50,199 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 08:34:50,215 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-21 08:34:50,233 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-21 08:34:50,803 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:34:50,823 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:35:11,105 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-21 08:35:12,464 [ERROR] apps.app.gui.main_window: ·ÖÎöÊ§°Ü: argument of type 'PreprocessingConfig' is not iterable
+2025-03-21 08:35:15,379 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-21 08:35:15,455 [INFO] __main__: Application cleanup completed
+2025-03-21 08:39:12,918 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 08:39:13,004 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 08:39:13,327 [INFO] __main__: Application initialized successfully
+2025-03-21 08:39:21,490 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 08:39:28,225 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 08:39:28,254 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:39:28,258 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 08:39:28,282 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-21 08:39:28,298 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-21 08:39:28,798 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 08:39:28,818 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 08:39:44,561 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 08:39:44,589 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 08:40:13,109 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-21 08:40:13,229 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 08:40:13,229 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 08:40:13,241 [INFO] __main__: Application cleanup completed
+2025-03-21 08:40:32,712 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 08:40:32,831 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 08:40:33,247 [INFO] __main__: Application initialized successfully
+2025-03-21 08:40:49,390 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 08:40:54,946 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 08:40:54,970 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:40:54,974 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 08:40:54,999 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-21 08:40:55,017 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-21 08:40:55,589 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:40:55,618 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 08:41:12,491 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-21 08:41:32,674 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-21 08:41:32,741 [INFO] __main__: Application cleanup completed
+2025-03-21 11:34:01,912 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 11:34:01,947 [ERROR] apps.app.resources: Failed to load resource module 'icons': No module named 'apps.app.resources.icons.icons'
+2025-03-21 11:34:01,981 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 11:34:02,025 [ERROR] __main__: Application failed to start: 'MainWindow' object has no attribute 'on_image_selected'
+2025-03-21 11:34:02,025 [INFO] __main__: Application cleanup completed
+2025-03-21 11:39:16,280 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 11:39:16,316 [ERROR] apps.app.resources: Failed to load resource module 'icons': No module named 'apps.app.resources.icons.icons'
+2025-03-21 11:39:16,357 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 11:39:16,406 [ERROR] __main__: Application failed to start: 'MainWindow' object has no attribute 'on_image_selected'
+2025-03-21 11:39:16,407 [INFO] __main__: Application cleanup completed
+2025-03-21 11:42:09,606 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 11:42:09,636 [ERROR] apps.app.resources: Failed to load resource module 'icons': No module named 'apps.app.resources.icons.icons'
+2025-03-21 11:42:09,689 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 11:42:09,771 [ERROR] __main__: Application failed to start: 'MainWindow' object has no attribute 'open_project'
+2025-03-21 11:42:09,774 [INFO] __main__: Application cleanup completed
+2025-03-21 11:49:20,644 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 11:49:20,680 [ERROR] apps.app.resources: Failed to load resource module 'icons': No module named 'apps.app.resources.icons.icons'
+2025-03-21 11:49:20,742 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 11:49:20,836 [ERROR] __main__: Application failed to start: 'MainWindow' object has no attribute 'open_project'
+2025-03-21 11:49:20,838 [INFO] __main__: Application cleanup completed
+2025-03-21 17:07:11,358 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 17:07:11,422 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 17:34:51,236 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 17:42:40,187 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 17:42:40,222 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 17:42:40,700 [INFO] __main__: Application initialized successfully
+2025-03-21 17:42:52,435 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 17:42:57,097 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 17:42:57,113 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 17:42:57,113 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 17:42:57,131 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-21 17:42:57,145 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-21 17:42:59,422 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 17:42:59,438 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 17:43:04,996 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:06,558 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:09,270 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:09,872 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:10,476 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:11,156 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:13,298 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:14,521 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:15,333 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:16,458 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:17,521 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:18,758 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:19,510 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:20,288 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:20,967 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:21,709 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 17:43:40,312 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 17:43:40,327 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 17:43:42,708 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-21 17:43:42,734 [INFO] __main__: Application cleanup completed
+2025-03-21 18:05:54,899 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 18:05:54,949 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 18:05:55,007 [ERROR] __main__: Application failed to start: 'ResultImageDock' object has no attribute 'zoom_to_fit'
+2025-03-21 18:05:55,008 [INFO] __main__: Application cleanup completed
+2025-03-21 18:10:00,547 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 18:10:00,612 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 18:10:01,228 [INFO] __main__: Application initialized successfully
+2025-03-21 18:10:10,231 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 18:10:14,681 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 18:10:14,681 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 18:10:14,681 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 18:10:14,698 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-21 18:10:14,715 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-21 18:10:15,235 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 18:10:15,260 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 18:53:15,043 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-21 18:53:15,088 [INFO] apps.app.utils.i18n: Loaded translations from c:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-21 18:53:15,773 [INFO] __main__: Application initialized successfully
+2025-03-21 19:02:05,928 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 19:02:12,749 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 19:02:12,776 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-21 19:02:12,783 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 19:02:12,796 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-21 19:02:12,801 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-21 19:02:13,803 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 19:02:13,806 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-21 19:02:48,995 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 19:02:52,312 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 19:02:54,409 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 19:02:57,937 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 19:02:57,993 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 19:02:58,589 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 19:02:58,686 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 19:02:59,336 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-21 19:03:08,687 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 19:03:08,687 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-21 19:03:13,723 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-21 19:03:25,144 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 19:03:25,145 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 19:03:47,317 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 19:03:47,317 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 19:04:15,229 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 19:04:15,230 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-21 19:04:59,125 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-21 19:04:59,151 [INFO] __main__: Application cleanup completed
