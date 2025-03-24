@@ -15,13 +15,11 @@ def setup_environment():
             
         # Create required directories
         dirs = [
-            "app/config/defaults",
-            "app/resources/i18n/qm",
-            "app/resources/i18n/ts",
-            "app/resources/themes",
-            "app/data/projects",
-            "app/logs",
-            "app/results"
+            "apps/app/logs",
+            "apps/app/resources/i18n/qm",
+            "apps/app/resources/i18n/ts",
+            "apps/app/resources/themes",
+            "apps/app/resources/models"
         ]
         
         for d in dirs:
@@ -40,6 +38,7 @@ def check_dependencies():
         import numpy
         import cv2
         import matplotlib
+        import torch  # 添加PyTorch依赖检查
         return True
         
     except ImportError as e:
@@ -59,7 +58,7 @@ def main():
             return 1
             
         # Import and run application
-        from app_old.main import main
+        from apps.app.main import main
         return main()
         
     except Exception as e:
