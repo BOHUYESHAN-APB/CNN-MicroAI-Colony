@@ -1,422 +1,272 @@
 """
-Preprocessing settings dialog
-预处理设置对话框
+Preprocessing dialog implementation
+预处理对话框实现
 """
 import cv2
 import numpy as np
-import logging
-from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel, 
-                            QSpinBox, QDoubleSpinBox, QCheckBox, QPushButton,
-                            QGroupBox, QWidget, QSplitter)
-from PyQt6.QtCore import Qt, QSize, pyqtSignal, QPoint
-from PyQt6.QtGui import QPainter, QPen, QColor, QMouseEvent, QImage
+from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QPushButton,
+                            QLabel, QTabWidget, QWidget, QScrollArea,
+                            QSplitter, QApplication, QToolTip, QSizePolicy) # 显式导入 QSizePolicy
+from PyQt6.QtCore import Qt, QSettings
+from PyQt6.QtGui import QIcon, QScreen
+
 from .preview_widget import PreviewWidget
-from ..utils.image_preprocessing import PreprocessingConfig
-
-logger = logging.getLogger(__name__)
-
-class MaskDrawingWidget(QWidget):
-    """Widget for drawing mask"""
-    mask_updated = pyqtSignal(object)  # Emits the mask array
-    
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.drawing = False
-        self.mask_points = []
-        self.current_mask = None
-        self.image = None
-        self.scaled_image = None
-        self.scale_factor = 1.0
-        self.setMouseTracking(True)
-        self.setMinimumSize(300, 200)
-        
-    def set_image(self, image):
-        """Set background image"""
-        self.image = image
-        self.update_scaled_image()
-        self.update()
-        
-    def update_scaled_image(self):
-        """Update scaled version of image"""
-        if self.image is None:
-            return
-            
-        h, w = self.image.shape[:2]
-        widget_w = self.width()
-        widget_h = self.height()
-        
-        # Calculate scale to fit widget while maintaining aspect ratio
-        scale_w = widget_w / w
-        scale_h = widget_h / h
-        self.scale_factor = min(scale_w, scale_h)
-        
-        new_w = int(w * self.scale_factor)
-        new_h = int(h * self.scale_factor)
-        
-        self.scaled_image = cv2.resize(self.image, (new_w, new_h))
-        self.current_mask = np.ones((new_h, new_w), dtype=np.uint8)
-        
-    def mousePressEvent(self, event: QMouseEvent):
-        """Handle mouse press"""
-        if event.button() == Qt.MouseButton.LeftButton:
-            self.drawing = True
-            self.mask_points = [event.pos()]
-            self.update()
-            
-    def mouseMoveEvent(self, event: QMouseEvent):
-        """Handle mouse move"""
-        if self.drawing:
-            self.mask_points.append(event.pos())
-            self.update()
-            
-    def mouseReleaseEvent(self, event: QMouseEvent):
-        """Handle mouse release"""
-        if event.button() == Qt.MouseButton.LeftButton and self.drawing:
-            self.drawing = False
-            self.finalize_mask()
-            
-    def finalize_mask(self):
-        """Create mask from drawn points"""
-        if not self.mask_points or self.scaled_image is None:
-            return
-            
-        # Convert points to numpy array
-        points = np.array([(p.x(), p.y()) for p in self.mask_points])
-        
-        # Create mask
-        mask = np.zeros_like(self.current_mask)
-        cv2.fillPoly(mask, [points.astype(np.int32)], 1)
-        
-        # Update current mask
-        self.current_mask = mask
-        
-        # Scale mask back to original image size
-        h, w = self.image.shape[:2]
-        original_size_mask = cv2.resize(mask, (w, h))
-        
-        # Emit mask
-        self.mask_updated.emit(original_size_mask)
-        
-    def paintEvent(self, event):
-        """Paint widget"""
-        painter = QPainter(self)
-        
-        # Draw background image
-        if self.scaled_image is not None:
-            height, width = self.scaled_image.shape[:2]
-            
-            # Calculate position to center image
-            x = (self.width() - width) // 2
-            y = (self.height() - height) // 2
-            
-            # Convert image to QImage
-            bytes_per_line = 3 * width
-            q_img = QImage(
-                self.scaled_image.data,
-                width,
-                height,
-                bytes_per_line,
-                QImage.Format.Format_RGB888
-            )
-            painter.drawImage(x, y, q_img)
-            
-            # Draw current mask
-            if self.current_mask is not None:
-                painter.setOpacity(0.3)
-                mask_color = QColor(255, 0, 0)  # Red for masked areas
-                for i in range(height):
-                    for j in range(width):
-                        if self.current_mask[i, j] == 1:
-                            painter.fillRect(x + j, y + i, 1, 1, mask_color)
-            
-            # Draw current line
-            if self.drawing and len(self.mask_points) > 1:
-                painter.setOpacity(1.0)
-                pen = QPen(Qt.GlobalColor.yellow, 2)
-                painter.setPen(pen)
-                for i in range(len(self.mask_points)-1):
-                    painter.drawLine(self.mask_points[i], self.mask_points[i+1])
-                
-    def resizeEvent(self, event):
-        """Handle resize"""
-        super().resizeEvent(event)
-        self.update_scaled_image()
-        
-    def clear_mask(self):
-        """Clear current mask"""
-        if self.current_mask is not None:
-            self.current_mask.fill(1)
-            self.mask_points = []
-            self.update()
-            # Emit cleared mask
-            h, w = self.image.shape[:2]
-            self.mask_updated.emit(np.ones((h, w), dtype=np.uint8))
+from .mask_drawer import MaskDrawer
+from .adjustment_widget import AdjustmentWidget
+from .advanced_processing_widget import AdvancedProcessingWidget
+from .optimizationwidget import Optimizationwidget # 导入 Optimizationwidget (全部小写)
 
 class PreprocessingDialog(QDialog):
-    """Dialog for configuring preprocessing parameters"""
+    """Image preprocessing configuration dialog"""
     
     def __init__(self, parent=None, image=None):
+        """Initialize dialog
+        
+        Args:
+            parent: Parent widget
+            image: Input image (numpy array)
+        """
         super().__init__(parent)
-        self.image = image
-        self.config = PreprocessingConfig()
+        
+        self.original_image = image
+        self.current_image = image.copy() if image is not None else None
+        self.result_mask = None
+        self.settings = QSettings('MicroAI', 'ColonyCounter')
+        
         self.setup_ui()
+        self.load_settings()
+        self.update_preview()
         
     def setup_ui(self):
-        """Setup user interface"""
-        self.setWindowTitle("图像预处理设置")
-        self.setMinimumWidth(1200)
+        """Setup UI elements"""
+        # Set title and size (80% of screen)
+        self.setWindowTitle("图像预处理")
+        screen = QApplication.primaryScreen().geometry()
+        self.resize(int(screen.width() * 0.8), int(screen.height() * 0.8))
         
-        # Create main layout
+        # Create layout
         layout = QVBoxLayout(self)
+        layout.setContentsMargins(5, 5, 5, 5)
         
-        # Create horizontal splitter
+        # Create main splitter
         splitter = QSplitter(Qt.Orientation.Horizontal)
         
-        # Left side: settings
-        settings_widget = QWidget()
-        settings_layout = QVBoxLayout(settings_widget)
-        settings_layout.setContentsMargins(0, 0, 0, 0)
+        # Left panel - Parameters
+        param_panel = QWidget()
+        param_panel.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        param_layout = QVBoxLayout(param_panel)
+        param_layout.setContentsMargins(0, 0, 0, 0)
         
-        # Quick mode selection
-        mode_group = QGroupBox("快速模式选择")
-        mode_layout = QHBoxLayout()
+        # Add scroll area
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         
-        self.default_btn = QPushButton("默认参数")
-        self.default_btn.clicked.connect(self.use_default_params)
-        mode_layout.addWidget(self.default_btn)
+        scroll_content = QWidget()
+        scroll_layout = QVBoxLayout(scroll_content)
         
-        self.auto_btn = QPushButton("自动优化")
-        self.auto_btn.clicked.connect(self.use_auto_params)
-        mode_layout.addWidget(self.auto_btn)
+        # Tab widget
+        tab_widget = QTabWidget()
         
-        mode_group.setLayout(mode_layout)
-        settings_layout.addWidget(mode_group)
+        # Advanced processing tab (prioritized)
+        self.advanced_widget = AdvancedProcessingWidget()
+        self.advanced_widget.settingsChanged.connect(self.update_preview)
+        tab_widget.addTab(self.advanced_widget, "高级处理")
         
-        # Mask drawing
-        mask_group = QGroupBox("培养基区域选择")
-        mask_layout = QVBoxLayout()
+        # Basic adjustment tab
+        self.adjustment_widget = AdjustmentWidget()
+        self.adjustment_widget.settingsChanged.connect(self.update_preview)
+        tab_widget.addTab(self.adjustment_widget, "基础调整")
         
-        self.mask_widget = MaskDrawingWidget()
-        if self.image is not None:
-            self.mask_widget.set_image(self.image)
-        self.mask_widget.mask_updated.connect(self.on_mask_updated)
-        mask_layout.addWidget(self.mask_widget)
+        # Optimization tab
+        self.optimization_widget = Optimizationwidget() # 使用 Optimizationwidget (全部小写)
+        self.optimization_widget.settingsChanged.connect(self.update_preview)
+        tab_widget.addTab(self.optimization_widget, "优化")
         
-        mask_buttons = QHBoxLayout()
-        clear_mask_btn = QPushButton("清除区域")
-        clear_mask_btn.clicked.connect(self.mask_widget.clear_mask)
-        mask_buttons.addWidget(clear_mask_btn)
-        mask_layout.addLayout(mask_buttons)
+        # Add tabs to scroll layout
+        scroll_layout.addWidget(tab_widget)
         
-        mask_group.setLayout(mask_layout)
-        settings_layout.addWidget(mask_group)
+        # Quick preset buttons
+        preset_layout = QHBoxLayout()
         
-        # Parameter groups
-        params_group = QGroupBox("预处理参数")
-        params_layout = QVBoxLayout()
+        default_btn = QPushButton("默认增强")
+        default_btn.setToolTip("应用基本图像增强，适合大多数情况")
+        default_btn.clicked.connect(self.apply_default_preset)
+        preset_layout.addWidget(default_btn)
         
-        # Glare removal
-        glare_layout = QVBoxLayout()
-        self.remove_glare_cb = QCheckBox("启用光晕去除")
-        self.remove_glare_cb.setChecked(self.config.remove_glare)
-        self.remove_glare_cb.stateChanged.connect(self.on_param_changed)
-        glare_layout.addWidget(self.remove_glare_cb)
+        auto_btn = QPushButton("自动优化")
+        auto_btn.setToolTip("自动分析图像并应用最佳参数")
+        auto_btn.clicked.connect(self.apply_auto_preset)
+        preset_layout.addWidget(auto_btn)
         
-        thresh_layout = QHBoxLayout()
-        thresh_layout.addWidget(QLabel("阈值:"))
-        self.glare_threshold_sb = QSpinBox()
-        self.glare_threshold_sb.setRange(0, 255)
-        self.glare_threshold_sb.setValue(self.config.glare_threshold)
-        self.glare_threshold_sb.valueChanged.connect(self.on_param_changed)
-        thresh_layout.addWidget(self.glare_threshold_sb)
-        glare_layout.addLayout(thresh_layout)
-        params_layout.addLayout(glare_layout)
+        scroll_layout.addLayout(preset_layout)
         
-        # Normalization
-        norm_layout = QVBoxLayout()
-        self.normalize_cb = QCheckBox("启用亮度归一化")
-        self.normalize_cb.setChecked(self.config.normalize)
-        self.normalize_cb.stateChanged.connect(self.on_param_changed)
-        norm_layout.addWidget(self.normalize_cb)
-        params_layout.addLayout(norm_layout)
-        
-        # CLAHE
-        clahe_layout = QVBoxLayout()
-        self.clahe_cb = QCheckBox("启用CLAHE对比度增强")
-        self.clahe_cb.setChecked(self.config.clahe)
-        self.clahe_cb.stateChanged.connect(self.on_param_changed)
-        clahe_layout.addWidget(self.clahe_cb)
-        
-        clahe_params = QHBoxLayout()
-        clahe_params.addWidget(QLabel("对比度限制:"))
-        self.clahe_clip_sb = QDoubleSpinBox()
-        self.clahe_clip_sb.setRange(0.1, 10.0)
-        self.clahe_clip_sb.setSingleStep(0.1)
-        self.clahe_clip_sb.setValue(self.config.clahe_clip)
-        self.clahe_clip_sb.valueChanged.connect(self.on_param_changed)
-        clahe_params.addWidget(self.clahe_clip_sb)
-        
-        clahe_params.addWidget(QLabel("网格大小:"))
-        self.clahe_grid_sb = QSpinBox()
-        self.clahe_grid_sb.setRange(2, 16)
-        self.clahe_grid_sb.setValue(self.config.clahe_grid)
-        self.clahe_grid_sb.valueChanged.connect(self.on_param_changed)
-        clahe_params.addWidget(self.clahe_grid_sb)
-        
-        clahe_layout.addLayout(clahe_params)
-        params_layout.addLayout(clahe_layout)
-        
-        # Gaussian blur
-        blur_layout = QVBoxLayout()
-        self.blur_cb = QCheckBox("启用高斯模糊")
-        self.blur_cb.setChecked(self.config.gaussian_blur)
-        self.blur_cb.stateChanged.connect(self.on_param_changed)
-        blur_layout.addWidget(self.blur_cb)
-        
-        blur_params = QHBoxLayout()
-        blur_params.addWidget(QLabel("核大小:"))
-        self.blur_kernel_sb = QSpinBox()
-        self.blur_kernel_sb.setRange(3, 31)
-        self.blur_kernel_sb.setSingleStep(2)
-        self.blur_kernel_sb.setValue(self.config.blur_kernel)
-        self.blur_kernel_sb.valueChanged.connect(self.on_param_changed)
-        blur_params.addWidget(self.blur_kernel_sb)
-        blur_layout.addLayout(blur_params)
-        params_layout.addLayout(blur_layout)
-        
-        # Adaptive threshold
-        thresh_layout = QVBoxLayout()
-        self.threshold_cb = QCheckBox("启用自适应阈值")
-        self.threshold_cb.setChecked(self.config.adaptive_threshold)
-        self.threshold_cb.stateChanged.connect(self.on_param_changed)
-        thresh_layout.addWidget(self.threshold_cb)
-        
-        thresh_params = QHBoxLayout()
-        thresh_params.addWidget(QLabel("块大小:"))
-        self.block_size_sb = QSpinBox()
-        self.block_size_sb.setRange(3, 99)
-        self.block_size_sb.setSingleStep(2)
-        self.block_size_sb.setValue(self.config.block_size)
-        self.block_size_sb.valueChanged.connect(self.on_param_changed)
-        thresh_params.addWidget(self.block_size_sb)
-        
-        thresh_params.addWidget(QLabel("C值:"))
-        self.c_value_sb = QSpinBox()
-        self.c_value_sb.setRange(-10, 10)
-        self.c_value_sb.setValue(self.config.c_value)
-        self.c_value_sb.valueChanged.connect(self.on_param_changed)
-        thresh_params.addWidget(self.c_value_sb)
-        
-        thresh_layout.addLayout(thresh_params)
-        params_layout.addLayout(thresh_layout)
-        
-        params_group.setLayout(params_layout)
-        settings_layout.addWidget(params_group)
-        
-        # Bottom buttons
+        # Add buttons
         button_layout = QHBoxLayout()
-        ok_btn = QPushButton("确定")
-        ok_btn.clicked.connect(self.accept)
-        cancel_btn = QPushButton("取消")
-        cancel_btn.clicked.connect(self.reject)
-        button_layout.addWidget(ok_btn)
-        button_layout.addWidget(cancel_btn)
-        settings_layout.addLayout(button_layout)
         
-        # Add settings widget to splitter
-        splitter.addWidget(settings_widget)
+        self.ok_button = QPushButton("确定")
+        self.ok_button.clicked.connect(self.accept)
         
-        # Right side: preview
+        self.cancel_button = QPushButton("取消")
+        self.cancel_button.clicked.connect(self.reject)
+        self.reset_button = QPushButton("重置")
+        self.reset_button.clicked.connect(self.reset_params)
+        
+        button_layout.addWidget(self.reset_button)
+        button_layout.addStretch()
+        button_layout.addWidget(self.ok_button)
+        button_layout.addWidget(self.cancel_button)
+        
+        scroll_layout.addLayout(button_layout)
+        scroll_layout.addStretch()
+        
+        scroll.setWidget(scroll_content)
+        param_layout.addWidget(scroll)
+        splitter.addWidget(param_panel)
+        
+        # Right splitter for preview and mask
+        right_splitter = QSplitter(Qt.Orientation.Vertical)
+        
+        # Preview panel
+        preview_panel = QWidget()
+        preview_panel.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        preview_layout = QVBoxLayout(preview_panel)
+        preview_layout.setContentsMargins(0, 0, 0, 0)
+        
         self.preview = PreviewWidget()
-        if self.image is not None:
-            self.preview.set_image(self.image)
-            self.preview.set_config(self.config)
-        splitter.addWidget(self.preview)
+        preview_layout.addWidget(self.preview)
         
-        # Set initial sizes
-        splitter.setSizes([400, 800])
+        right_splitter.addWidget(preview_panel)
         
-        # Add splitter to main layout
+        # Mask panel
+        mask_panel = QWidget()
+        mask_panel.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        mask_layout = QVBoxLayout(mask_panel)
+        mask_layout.setContentsMargins(0, 0, 0, 0)
+        
+        mask_label = QLabel("遮罩绘制")
+        mask_layout.addWidget(mask_label)
+        
+        self.mask_drawer = MaskDrawer(self) # Pass self as parent
+        self.mask_drawer.mask_updated.connect(self._on_mask_updated)
+        mask_layout.addWidget(self.mask_drawer)
+        
+        right_splitter.addWidget(mask_panel)
+        
+        # Set stretch factors for right splitter
+        right_splitter.setStretchFactor(0, 3)  # Preview takes more space
+        right_splitter.setStretchFactor(1, 2)  # Mask drawer takes less space
+        
+        splitter.addWidget(right_splitter)
+        
+        # Set stretch factors for main splitter
+        splitter.setStretchFactor(0, 0)  # Parameter panel - fixed width
+        splitter.setStretchFactor(1, 1)  # Right panel - stretchable
+        
+        # Set minimum width for parameter panel
+        param_panel.setMinimumWidth(350)
+        
         layout.addWidget(splitter)
         
-    def use_default_params(self):
-        """Use default parameters"""
-        self.config = PreprocessingConfig()
-        self.update_controls()
-        self.preview.set_config(self.config)
-        
-    def use_auto_params(self):
-        """Use auto-optimized parameters"""
-        self.config = PreprocessingConfig()
-        self.config.auto_optimize = True
-        self.preview.set_config(self.config)
-        
-    def on_mask_updated(self, mask):
-        """Handle mask updates"""
-        if self.config:
-            self.config.mask = mask
-            self.preview.set_config(self.config)
-        
-    def update_controls(self):
-        """Update controls from config"""
-        # Glare removal
-        self.remove_glare_cb.setChecked(self.config.remove_glare)
-        self.glare_threshold_sb.setValue(self.config.glare_threshold)
-        
-        # Normalization
-        self.normalize_cb.setChecked(self.config.normalize)
-        
-        # CLAHE
-        self.clahe_cb.setChecked(self.config.clahe)
-        self.clahe_clip_sb.setValue(self.config.clahe_clip)
-        self.clahe_grid_sb.setValue(self.config.clahe_grid)
-        
-        # Gaussian blur
-        self.blur_cb.setChecked(self.config.gaussian_blur)
-        self.blur_kernel_sb.setValue(self.config.blur_kernel)
-        
-        # Adaptive threshold
-        self.threshold_cb.setChecked(self.config.adaptive_threshold)
-        self.block_size_sb.setValue(self.config.block_size)
-        self.c_value_sb.setValue(self.config.c_value)
-        
-    def on_param_changed(self):
-        """Handle parameter change"""
+    def load_settings(self):
+        """Load saved settings"""
         try:
-            # Update config from controls
-            self.config.remove_glare = self.remove_glare_cb.isChecked()
-            self.config.glare_threshold = self.glare_threshold_sb.value()
-            
-            self.config.normalize = self.normalize_cb.isChecked()
-            
-            self.config.clahe = self.clahe_cb.isChecked()
-            self.config.clahe_clip = self.clahe_clip_sb.value()
-            self.config.clahe_grid = self.clahe_grid_sb.value()
-            
-            self.config.gaussian_blur = self.blur_cb.isChecked()
-            self.config.blur_kernel = self.blur_kernel_sb.value()
-            
-            self.config.adaptive_threshold = self.threshold_cb.isChecked()
-            self.config.block_size = self.block_size_sb.value()
-            self.config.c_value = self.c_value_sb.value()
-            
-            # Update preview
-            if self.image is not None:
-                self.preview.set_config(self.config)
+            size = self.settings.value('PreprocessingDialog/size')
+            if size:
+                self.resize(size)
+                
+            if self.settings.value('PreprocessingDialog/use_saved_params', False, type=bool):
+                # Load advanced processing settings
+                self.advanced_widget.edge_type.setCurrentIndex(
+                    self.settings.value('PreprocessingDialog/edge_type', 0, type=int))
+                self.advanced_widget.morph_type.setCurrentIndex(
+                    self.settings.value('PreprocessingDialog/morph_type', 0, type=int))
+                self.advanced_widget.filter_type.setCurrentIndex(
+                    self.settings.value('PreprocessingDialog/filter_type', 0, type=int))
                 
         except Exception as e:
-            logger.error(f"Error updating parameters: {str(e)}")
+            print(f"Error loading settings: {str(e)}")
             
-    def load_config(self, config):
-        """Load configuration into dialog"""
-        if isinstance(config, dict):
-            self.config = PreprocessingConfig.from_dict(config)
-        else:
-            self.config = config
-        self.update_controls()
-        if self.image is not None:
-            self.preview.set_config(self.config)
+    def save_settings(self):
+        """Save current settings"""
+        try:
+            self.settings.setValue('PreprocessingDialog/size', self.size())
+            self.settings.setValue('PreprocessingDialog/use_saved_params', True)
             
-    def get_config(self):
-        """Get current configuration"""
-        return self.config
+            # Save advanced processing settings
+            self.settings.setValue('PreprocessingDialog/edge_type', 
+                                 self.advanced_widget.edge_type.currentIndex())
+            self.settings.setValue('PreprocessingDialog/morph_type',
+                                 self.advanced_widget.morph_type.currentIndex())
+            self.settings.setValue('PreprocessingDialog/filter_type',
+                                 self.advanced_widget.filter_type.currentIndex())
+                                 
+        except Exception as e:
+            print(f"Error saving settings: {str(e)}")
+            
+    def closeEvent(self, event):
+        """Handle dialog close"""
+        self.save_settings()
+        super().closeEvent(event)
+        
+    def update_preview(self):
+        """Update preview image with current parameters"""
+        if self.current_image is None:
+            return
+            
+        try:
+            # Start with original image
+            processed = self.original_image.copy()
+            
+            # Apply advanced processing first
+            processed = self.advanced_widget.process_image(processed)
+            
+            # Apply basic adjustments
+            processed = self.adjustment_widget.process_image(processed)
+            
+            # Apply mask if exists
+            if self.result_mask is not None:
+                processed = cv2.bitwise_and(processed, processed, 
+                                          mask=self.result_mask)
+            
+            # Update preview
+            self.preview.set_image(processed)
+            self.current_image = processed
+            
+            # Update mask drawer background if needed
+            if self.mask_drawer.image is None:
+                self.mask_drawer.set_image(self.original_image)
+            
+        except Exception as e:
+            print(f"Error updating preview: {str(e)}")
+            
+    def _on_mask_updated(self, mask):
+        """Handle mask update from drawer"""
+        self.result_mask = mask
+        self.update_preview()
+            
+    def reset_params(self):
+        """Reset all parameters to defaults"""
+        self.advanced_widget.reset()
+        self.adjustment_widget.reset()
+        self.result_mask = None
+        self.mask_drawer.clear_mask()
+        self.update_preview()
+        
+    def apply_default_preset(self):
+        """Apply default enhancement preset"""
+        self.advanced_widget.apply_default_preset()
+        self.adjustment_widget.reset()
+        
+    def apply_auto_preset(self):
+        """Apply automatic optimization preset"""
+        self.advanced_widget.apply_auto_preset()
+        self.adjustment_widget.reset()
+        
+    def get_result(self):
+        """Get processed image"""
+        return self.current_image
+        
+    def get_mask(self):
+        """Get current mask"""
+        return self.result_mask

@@ -108,8 +108,8 @@ class ResultTableDock(BaseDockWidget):
         # Enable dock features
         self.setObjectName("result_table_dock")
         
-    def display_results(self, detections):
-        """Display detection results in table"""
+    def update_results(self, detections):
+        """Update detection results in table"""
         try:
             # Clear existing items
             self.table.setRowCount(0)

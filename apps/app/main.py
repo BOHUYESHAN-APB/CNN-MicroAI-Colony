@@ -1,75 +1,53 @@
 """
-Main application entry point
+Application entry point
 应用程序入口点
 """
-import os
 import sys
-import logging
-from logging.handlers import RotatingFileHandler  # 导入 RotatingFileHandler
+import os
+sys.path.insert(0, os.getcwd())
 
+import logging
 from PyQt6.QtWidgets import QApplication
+from PyQt6.QtCore import Qt
+
+from apps.app.utils.i18n import init_translations
+from apps.app.gui.main_window import MainWindow
 
 # Setup logging
-log_formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(name)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-
-# Console logger (输出到控制台)
-console_handler = logging.StreamHandler()
-console_handler.setFormatter(log_formatter)
-
-# File logger (输出到文件, 每天生成新的日志文件, 保留最近7天的日志)
-file_handler = RotatingFileHandler(
-    'logs/app.log',  # 日志文件路径
-    maxBytes=10*1024*1024,  # 每个日志文件最大 10MB
-    backupCount=5  # 最多保留 5 个备份文件
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
 )
-file_handler.setFormatter(log_formatter)
 
-try:
-    logging.basicConfig(
-        level=logging.DEBUG,  # 设置为 DEBUG 级别，记录更详细的日志
-        handlers=[console_handler, file_handler] # 同时使用控制台和文件日志处理器
-    )
-    logger = logging.getLogger(__name__)
-    logger.debug("Logging system initialized")  # 添加启动日志消息
-except Exception as e:
-    print(f"Error initializing logging: {e}") # 打印到控制台，即使文件日志失败也能看到
-    logging.basicConfig() # 尝试基本配置，至少保证控制台日志可用
-    logger = logging.getLogger(__name__)
-
-# Add project root to path
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-sys.path.insert(0, project_root)
-
-from apps.app.gui.main_window import MainWindow
-from apps.app.utils.i18n import I18nManager
+logger = logging.getLogger(__name__)
 
 def main():
-    """Application main entry point"""
+    """Application main entry"""
     try:
+        # Initialize translations
+        init_translations()
+        
         # Create application
         app = QApplication(sys.argv)
+        app.setApplicationName("微生物菌落计数分析")
         
-        # Initialize i18n
-        i18n = I18nManager()
-        if not i18n.initialize():
-            logger.error("Failed to initialize i18n")
-            return 1
-            
-        # Create main window
+        # Create and show main window
         window = MainWindow()
         window.show()
         
-        # Start event loop
         logger.info("Application initialized successfully")
+        
+        # Start event loop
         return app.exec()
         
     except Exception as e:
-        logger.error(f"Application failed to start: {e}")
+        logger.error(f"Application failed to start: {str(e)}")
+        logger.debug("Error details:", exc_info=True)
         return 1
-    
     finally:
-        # Cleanup
         logger.info("Application cleanup completed")
 
 if __name__ == "__main__":
+    logger.debug("Logging system initialized")
     sys.exit(main())

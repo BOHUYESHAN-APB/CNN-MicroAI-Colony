@@ -1,162 +1,95 @@
 """
-Dock widget management implementation
-停靠窗口管理实现
+Dock manager implementation
+停靠窗口管理器实现
 """
+import os
+import json
 import logging
-from PyQt6.QtWidgets import QMainWindow
-from PyQt6.QtCore import Qt, QSettings, QByteArray, QSize
-from PyQt6.QtGui import QBitmap
+from PyQt6.QtWidgets import QDockWidget
+from PyQt6.QtCore import Qt
 
 logger = logging.getLogger(__name__)
 
 class DockManager:
-    """Manager for dock widget states and layouts"""
+    """Manager for dock widgets"""
     
     def __init__(self, main_window):
-        """Initialize dock manager
-        
-        Args:
-            main_window (QMainWindow): Parent main window
-        """
         self.main_window = main_window
-        self.dock_widgets = {}  # name -> widget mapping
+        self.docks = {}  # name -> dock widget
+        self.layout_file = os.path.join(
+            os.path.dirname(__file__), 
+            "..", 
+            "resources",
+            "dock_layout.json"
+        )
         
-        # Default dock positions
-        self.default_positions = {
-            "image_list_dock": Qt.DockWidgetArea.LeftDockWidgetArea,
-            "image_viewer_dock": Qt.DockWidgetArea.RightDockWidgetArea,
-            "result_image_dock": Qt.DockWidgetArea.RightDockWidgetArea,
-            "result_stats_dock": Qt.DockWidgetArea.RightDockWidgetArea,
-            "result_table_dock": Qt.DockWidgetArea.BottomDockWidgetArea
-        }
-        
-        # Dock relationships for splitting
-        self.dock_relationships = {
-            "result_stats_dock": ("result_image_dock", Qt.Orientation.Vertical),
-            "result_table_dock": ("result_stats_dock", Qt.Orientation.Vertical)
-        }
-        
-    def register_dock(self, name, widget, area=None):
+    def register_dock(self, dock):
         """Register a dock widget
         
         Args:
-            name (str): Unique name for the dock
-            widget (QDockWidget): Dock widget to register
-            area (Qt.DockWidgetArea, optional): Default dock area
+            dock: QDockWidget instance
         """
-        self.dock_widgets[name] = widget
-        if area:
-            self.default_positions[name] = area
+        if not isinstance(dock, QDockWidget):
+            raise TypeError("dock must be a QDockWidget")
             
-    def setup_docks(self):
-        """Setup initial dock layout"""
-        # Add all docks in their default positions
-        for name, widget in self.dock_widgets.items():
-            if name in self.default_positions:
-                self.main_window.addDockWidget(self.default_positions[name], widget)
-                
-        # Setup relationships (splits)
-        for child, (parent, orientation) in self.dock_relationships.items():
-            if child in self.dock_widgets and parent in self.dock_widgets:
-                self.main_window.splitDockWidget(
-                    self.dock_widgets[parent],
-                    self.dock_widgets[child],
-                    orientation
-                )
-                
-    def save_layout(self, settings_path=None):
-        """Save current dock layout
+        name = dock.objectName()
+        if not name:
+            raise ValueError("dock must have an object name")
+            
+        self.docks[name] = dock
         
-        Args:
-            settings_path (str, optional): Path to save settings file
-        """
+    def get_dock(self, name):
+        """Get dock widget by name"""
+        return self.docks.get(name)
+        
+    def save_layouts(self):
+        """Save dock layouts to file"""
         try:
-            if settings_path:
-                settings = QSettings(settings_path, QSettings.Format.IniFormat)
-            else:
-                settings = QSettings('MicroAI', 'ColonyCounter')
-                
-            settings.setValue("windowGeometry", self.main_window.saveGeometry())
-            settings.setValue("windowState", self.main_window.saveState())
-            
-            # Save individual dock states
-            for name, widget in self.dock_widgets.items():
-                settings.setValue(f"dock_{name}_visible", widget.isVisible())
-                settings.setValue(f"dock_{name}_floating", widget.isFloating())
-                if widget.isFloating():
-                    settings.setValue(f"dock_{name}_geometry", widget.saveGeometry())
+            layouts = {}
+            for name, dock in self.docks.items():
+                # Convert DockWidgetArea to int 
+                area = self.main_window.dockWidgetArea(dock)
+                if isinstance(area, Qt.DockWidgetArea):
+                    area = int(area.value)
                     
-            logger.info("Saved dock layout")
+                layouts[name] = {
+                    'area': area,
+                    'floating': dock.isFloating(),
+                    'geometry': bytes(dock.saveGeometry()).hex()
+                }
+                
+            # Create directory if needed
+            os.makedirs(os.path.dirname(self.layout_file), exist_ok=True)
             
+            with open(self.layout_file, 'w', encoding='utf-8') as f:
+                json.dump(layouts, f, indent=2)
+                logger.info("Saved dock layout")
+                
         except Exception as e:
-            logger.error(f"Failed to save dock layout: {str(e)}")
+            logger.error(f"Error saving dock layout: {str(e)}")
             
-    def load_layout(self, settings_path=None):
-        """Load saved dock layout
-        
-        Args:
-            settings_path (str, optional): Path to settings file
-        """
+    def restore_layouts(self):
+        """Restore dock layouts from file"""
         try:
-            if settings_path:
-                settings = QSettings(settings_path, QSettings.Format.IniFormat)
-            else:
-                settings = QSettings('MicroAI', 'ColonyCounter')
+            if not os.path.exists(self.layout_file):
+                return
                 
-            # Restore window state
-            geometry = settings.value("windowGeometry", QByteArray())
-            state = settings.value("windowState", QByteArray())
-            
-            if geometry:
-                self.main_window.restoreGeometry(geometry)
-            if state:
-                self.main_window.restoreState(state)
+            with open(self.layout_file, 'r', encoding='utf-8') as f:
+                layouts = json.load(f)
                 
-            # Restore individual dock states
-            for name, widget in self.dock_widgets.items():
-                visible = settings.value(f"dock_{name}_visible", True, type=bool)
-                floating = settings.value(f"dock_{name}_floating", False, type=bool)
-                
-                widget.setVisible(visible)
-                widget.setFloating(floating)
-                
-                if floating:
-                    geometry = settings.value(f"dock_{name}_geometry", QByteArray())
-                    if geometry:
-                        widget.restoreGeometry(geometry)
+            for name, layout in layouts.items():
+                dock = self.get_dock(name)
+                if dock:
+                    # Restore geometry
+                    if 'geometry' in layout:
+                        dock.restoreGeometry(bytes.fromhex(layout['geometry']))
                         
-            logger.info("Restored dock layout")
-            
+                    # Restore area and floating state
+                    self.main_window.addDockWidget(
+                        Qt.DockWidgetArea(layout.get('area', Qt.DockWidgetArea.LeftDockWidgetArea.value)),
+                        dock
+                    )
+                    dock.setFloating(layout.get('floating', False))
+                    
         except Exception as e:
-            logger.error(f"Failed to load dock layout: {str(e)}")
-            
-    def reset_layout(self):
-        """Reset docks to default layout"""
-        try:
-            # Remove all docks
-            for widget in self.dock_widgets.values():
-                self.main_window.removeDockWidget(widget)
-                widget.setVisible(False)
-                widget.setFloating(False)
-                
-            # Re-add in default positions
-            self.setup_docks()
-            
-            # Show all docks
-            for widget in self.dock_widgets.values():
-                widget.setVisible(True)
-                
-            logger.info("Reset dock layout to default")
-            
-        except Exception as e:
-            logger.error(f"Failed to reset dock layout: {str(e)}")
-            
-    def create_layout_preset(self, name, layout):
-        """Create a new layout preset
-        
-        Args:
-            name (str): Preset name
-            layout (dict): Layout configuration
-        """
-        # TODO: Implement layout preset creation
-        pass
+            logger.error(f"Error restoring dock layout: {str(e)}")

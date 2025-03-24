@@ -1,13 +1,25 @@
 """
-Utility module initialization
-工具模块初始化
+Utils package initialization
+工具包初始化
 """
-from .config import ConfigManager
-from .i18n import translate
+from .config import load_config, save_config, get_default_config
+from .i18n import translate, init_translations
 from .project_manager import ProjectManager
-from .image_preprocessing import preprocess_image
+from .image_preprocessing import load_image
 
-# Create global config instance
-config_manager = ConfigManager()
-load_config = config_manager.load
-save_config = config_manager.save
+__all__ = [
+    # Config functions
+    'load_config',
+    'save_config', 
+    'get_default_config',
+    
+    # I18n functions
+    'translate',
+    'init_translations',
+    
+    # Project management
+    'ProjectManager',
+    
+    # Image processing
+    'load_image'
+]

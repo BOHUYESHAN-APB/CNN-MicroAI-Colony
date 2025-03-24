@@ -61,6 +61,9 @@ class StatsForm(QWidget):
         
         self.density = QLabel("0.0")
         layout.addRow(translate("密度(个/cm²):"), self.density)
+
+        self.process_time = QLabel("0.0")
+        layout.addRow(translate("处理时间(秒):"), self.process_time)
         
         # Size distribution
         self.dist_label = QLabel(translate("大小分布:"))
@@ -71,6 +74,26 @@ class StatsForm(QWidget):
         self.dist_list.setWordWrap(True)
         self.dist_list.setStyleSheet("color: #a0a0a0; font-size: 11px;")
         layout.addRow(self.dist_list)
+        
+        # Confidence distribution
+        self.conf_label = QLabel(translate("置信度分布:"))
+        layout.addRow(self.conf_label)
+        
+        # Confidence distribution list
+        self.conf_list = QLabel()
+        self.conf_list.setWordWrap(True)
+        self.conf_list.setStyleSheet("color: #a0a0a0; font-size: 11px;")
+        layout.addRow(self.conf_list)
+        
+        # Parameters used
+        self.param_label = QLabel(translate("使用参数:"))
+        layout.addRow(self.param_label)
+        
+        # Parameters list
+        self.param_list = QLabel()
+        self.param_list.setWordWrap(True)
+        self.param_list.setStyleSheet("color: #a0a0a0; font-size: 11px;")
+        layout.addRow(self.param_list)
 
 class ResultStatsDock(BaseDockWidget):
     """Result statistics dock widget with enhanced docking capabilities"""
@@ -123,6 +146,7 @@ class ResultStatsDock(BaseDockWidget):
             self.stats_form.avg_conf.setText(f"{stats.get('avg_confidence', 0.0):.3f}")
             self.stats_form.total_area.setText(f"{stats.get('total_area', 0.0):.1f}")
             self.stats_form.density.setText(f"{stats.get('density', 0.0):.2f}")
+            self.stats_form.process_time.setText(f"{stats.get('process_time', 0.0):.3f}")
             
             # Update size distribution
             dist = stats.get("size_distribution", [])
@@ -134,6 +158,28 @@ class ResultStatsDock(BaseDockWidget):
                 self.stats_form.dist_list.setText(dist_text)
             else:
                 self.stats_form.dist_list.setText(translate("暂无数据"))
+                
+            # Update confidence distribution
+            conf_dist = stats.get("confidence_distribution", [])
+            if conf_dist:
+                conf_text = "\n".join([
+                    f"{d['range']}: {d['count']}个"
+                    for d in conf_dist if d['count'] > 0
+                ])
+                self.stats_form.conf_list.setText(conf_text)
+            else:
+                self.stats_form.conf_list.setText(translate("暂无数据"))
+                
+            # Update parameters
+            params = stats.get("parameters", {})
+            if params:
+                param_text = "\n".join([
+                    f"{k}: {v}"
+                    for k, v in params.items()
+                ])
+                self.stats_form.param_list.setText(param_text)
+            else:
+                self.stats_form.param_list.setText(translate("暂无数据"))
             
             logger.debug("Updated statistics display")
             
