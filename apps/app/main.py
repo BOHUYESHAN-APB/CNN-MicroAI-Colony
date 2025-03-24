@@ -8,6 +8,7 @@ import logging
 from logging.handlers import RotatingFileHandler  # 导入 RotatingFileHandler
 
 from PyQt6.QtWidgets import QApplication
+from apps.app.utils.gpu_utils import check_gpu_available, get_device
 
 # Setup logging
 log_formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(name)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
@@ -46,6 +47,10 @@ from apps.app.utils.i18n import I18nManager
 def main():
     """Application main entry point"""
     try:
+        # Check GPU availability
+        device = get_device()
+        logger.info(f"Using device: {device}")
+        
         # Create application
         app = QApplication(sys.argv)
         
