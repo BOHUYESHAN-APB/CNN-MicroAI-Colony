@@ -171,3 +171,219 @@
             * 支持多图像对比查看
             * 提供图像测量工具
             * 实现图像标注功能
+
+## 工程文件结构
+
+项目采用模块化架构设计，文件结构清晰合理，便于维护和扩展。
+
+```
+CNN-MicroAI-Colony/
+├── src/                       # 源代码目录
+│   ├── main.py                # 程序入口点
+│   ├── core/                  # 核心功能模块
+│   │   ├── __init__.py
+│   │   ├── detection/         # 菌落检测模块
+│   │   │   ├── __init__.py
+│   │   │   ├── detector.py    # 检测器基类
+│   │   │   ├── faster_rcnn.py # Faster R-CNN 实现
+│   │   │   ├── yolo.py        # YOLO 实现
+│   │   │   └── post_process.py # 检测结果后处理
+│   │   ├── image_processing/  # 图像处理模块
+│   │   │   ├── __init__.py
+│   │   │   ├── preprocessor.py # 预处理类
+│   │   │   ├── algorithms.py   # 预处理算法实现
+│   │   │   └── density.py      # 菌落密度计算
+│   │   └── analysis/         # 结果分析模块
+│   │       ├── __init__.py
+│   │       ├── statistics.py  # 统计分析
+│   │       └── visualizer.py  # 结果可视化
+│   ├── gui/                   # 图形界面模块
+│   │   ├── __init__.py
+│   │   ├── main_window.py     # 主窗口
+│   │   ├── image_viewer.py    # 图像查看器
+│   │   ├── result_panel.py    # 结果面板
+│   │   ├── parameter_panel.py # 参数设置面板
+│   │   ├── project_panel.py   # 项目管理面板
+│   │   └── widgets/          # 自定义控件
+│   │       ├── __init__.py
+│   │       └── custom_widgets.py
+│   ├── utils/                 # 工具类
+│   │   ├── __init__.py
+│   │   ├── config_manager.py  # 配置管理
+│   │   ├── logger.py          # 日志工具
+│   │   └── gpu_utils.py       # GPU 相关工具
+│   └── resources/             # 资源文件
+│       ├── icons/            # 图标文件
+│       ├── themes/           # 主题文件
+│       └── i18n/             # 国际化翻译文件
+├── models/                    # 预训练模型目录
+│   ├── faster_rcnn/          # Faster R-CNN 模型
+│   └── yolo/                 # YOLO 模型
+├── configs/                   # 配置文件
+│   ├── default_config.json   # 默认配置
+│   └── user_config.json      # 用户配置
+├── data/                      # 数据目录
+│   ├── samples/              # 示例图像
+│   └── output/               # 输出结果保存
+├── tests/                     # 测试代码
+│   ├── unit/                 # 单元测试
+│   └── integration/          # 集成测试
+├── docs/                      # 文档
+│   ├── api/                  # API文档
+│   ├── user_guide/           # 用户指南
+│   └── developer_guide/      # 开发者指南
+├── requirements.txt           # 依赖包列表
+├── setup.py                   # 安装脚本
+├── LICENSE                    # 许可证文件
+└── README.md                  # 项目说明文件
+```
+
+## 工程文件逻辑
+
+为确保用户工作的连续性和数据的完整性，系统设计了完善的工程文件逻辑，方便用户保存、加载和管理多个微生物计数项目。
+
+### 1. 工程文件结构
+
+工程文件采用JSON格式保存，包含以下主要组件:
+
+```
+{
+  "project_info": {
+    "name": "项目名称",
+    "created_time": "创建时间",
+    "modified_time": "最后修改时间",
+    "version": "软件版本号",
+    "description": "项目描述"
+  },
+  "images": [
+    {
+      "id": "图像唯一标识符",
+      "path": "图像相对或绝对路径",
+      "filename": "图像文件名",
+      "resolution": [宽, 高],
+      "scale_factor": "比例因子(单位像素/mm)",
+      "preprocessing": {
+        "enabled": true/false,
+        "applied_methods": ["方法1", "方法2", ...],
+        "parameters": {
+          "方法1": {参数键值对},
+          "方法2": {参数键值对},
+          ...
+        },
+        "preprocessed_path": "预处理图像保存路径"
+      },
+      "detection_results": {
+        "model": "使用的检测模型名称",
+        "parameters": {
+          "confidence_threshold": 0.5,
+          "nms_threshold": 0.45,
+          ...
+        },
+        "colonies": [
+          {
+            "id": 1,
+            "bbox": [x, y, w, h],
+            "center": [x, y],
+            "confidence": 0.95,
+            "diameter": 10.5,
+            "area": 86.6,
+            "color_value": [r, g, b],
+            "type": "分类类型(如有)"
+          },
+          ...
+        ],
+        "statistics": {
+          "total_count": 120,
+          "average_confidence": 0.87,
+          "coverage_area": 0.15,
+          "density": 0.023,
+          "size_distribution": {},
+          "confidence_distribution": {},
+          "processing_time": 2.5
+        }
+      }
+    },
+    ...
+  ],
+  "global_settings": {
+    "detection_model": "默认检测模型",
+    "preprocessing": {
+      "default_methods": [],
+      "default_parameters": {}
+    },
+    "visualization": {
+      "color_scheme": "默认配色方案",
+      "marker_size": 1.0,
+      "show_labels": true
+    }
+  }
+}
+```
+
+### 2. 工程文件操作流程
+
+#### 创建新项目
+1. 用户通过UI选择"新建项目"
+2. 输入项目基本信息(名称、描述等)
+3. 系统创建空项目结构，分配唯一标识符
+4. 用户可立即开始添加图像并进行分析
+
+#### 保存项目
+1. 支持自动保存(默认10分钟间隔)和手动保存
+2. 保存时，系统将:
+   - 更新项目修改时间
+   - 清理临时文件
+   - 选择性地复制图像文件(用户可配置)
+   - 导出完整的JSON工程文件
+   - 提供保存成功的反馈
+
+#### 载入项目
+1. 用户选择现有项目文件
+2. 系统验证文件格式和版本兼容性
+3. 依次加载项目信息、设置和图像数据
+4. 重建分析结果和可视化内容
+5. 检查图像文件可访问性，处理丢失文件情况
+
+#### 工程文件版本兼容
+1. 每个工程文件包含版本号信息
+2. 当载入旧版本工程文件时，系统自动升级到当前版本
+3. 提供降级兼容机制，确保新版本创建的项目可部分兼容旧版软件
+
+### 3. 工程文件管理功能
+
+#### 项目模板
+- 支持将当前项目设置保存为模板
+- 新建项目时可基于模板快速设置参数
+
+#### 批量导入/导出
+- 支持批量导入图像到当前项目
+- 可将多个分析结果一次性导出为报告
+
+#### 项目导出格式
+- 支持导出为便携式工程包(.mcproj)，包含所有图像和数据
+- 支持导出为纯结果文件(.mcres)，仅包含分析结果
+- 支持导出为报告格式(.pdf/.html)，包含可视化结果和统计数据
+
+#### 项目历史记录
+- 保存项目的操作历史，支持撤销/重做
+- 记录关键操作时间点，便于追溯实验流程
+
+### 4. 多用户协作支持
+
+#### 用户权限管理
+- 支持为项目设置访问权限：只读/编辑/管理
+- 项目创建者具有完全控制权
+
+#### 变更追踪
+- 记录每次修改的用户信息和修改内容
+- 提供变更日志查看功能
+
+#### 注释和标记
+- 支持在图像和结果上添加注释
+- 可标记特定区域或菌落进行讨论
+
+### 5. 自动恢复机制
+
+- 系统崩溃后，自动从最近的保存点恢复
+- 定期创建项目快照，支持回滚到特定时间点
+- 临时文件管理机制，防止磁盘空间占用过大

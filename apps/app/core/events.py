@@ -1,21 +1,18 @@
-from typing import Any
-from dataclasses import dataclass
-from ..models.image_data import ImageData
+"""
+Core event classes
+核心事件类
+"""
+from .models.image_data import ImageData
 
-class Event:
-    """基础事件类"""
-    def dispatch(self):
-        """分发事件到事件总线"""
-        # 这里需要实现事件分发逻辑，例如：
-        # EventBus.dispatch(self)
-        pass
+class ImageLoadedEvent:
+    """Image loaded event"""
+    
+    def __init__(self, image_data: ImageData):
+        self.image_data = image_data
 
-@dataclass
-class ImageLoadedEvent(Event):
-    """图像加载完成事件"""
-    image_data: ImageData
-
-@dataclass
-class ProcessingCompletedEvent(Event):
-    """图像处理完成事件"""
-    result: ImageData
+class ProcessingCompletedEvent:
+    """Processing completed event"""
+    
+    def __init__(self, image_data: ImageData, results=None):
+        self.image_data = image_data
+        self.results = results
