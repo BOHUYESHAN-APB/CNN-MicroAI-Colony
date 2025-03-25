@@ -1,0 +1,72 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "file_name": "11761.jpg",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "id": 2,
+      "file_name": "11764.jpg",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "id": 3,
+      "file_name": "11773.jpg",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "id": 4,
+      "file_name": "11884.jpg",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "id": 5,
+      "file_name": "11890.jpg",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "id": 6,
+      "file_name": "11924.jpg",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "id": 7,
+      "file_name": "11955.jpg",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "id": 8,
+      "file_name": "12028.jpg",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "id": 9,
+      "file_name": "12031.jpg",
+      "width": 1280,
+      "height": 1280
+    },
+    {
+      "id": 10,
+      "file_name": "12033.jpg",
+      "width": 1280,
+      "height": 1280
+    }
+  ],
+  "annotations": [],
+  "categories": [
+    {
+      "id": 1,
+      "name": "colony",
+      "supercategory": "bacteria"
+    }
+  ]
+}
