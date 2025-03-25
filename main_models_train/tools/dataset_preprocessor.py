@@ -38,7 +38,7 @@ class DatasetPreprocessor:
         if sum(split_ratio.values()) != 1.0:
             raise ValueError("Split ratios must sum to 1.0")
             
-        self.target_dir = Path(target_dir)
+        self.target_dir = Path('main_models_train/train')
         self.img_size = img_size
         self.split_ratio = split_ratio
         self.annotation_id = 0
