@@ -16,7 +16,14 @@ model = dict(
         norm_cfg=dict(type='BN', requires_grad=True),
         norm_eval=True,
         style='pytorch',
-        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50')
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50'),
+        plugins=[
+            dict(
+                cfg=dict(type='ContextBlock', ratio=1./4),
+                stages=(False, True, True, True),
+                position='after_conv3'
+            )
+        ]
     ),
     neck=dict(
         type='FPN',
@@ -28,10 +35,11 @@ model = dict(
         type='RPNHead',
         in_channels=256,
         feat_channels=256,
+        # Optimized anchor sizes for colony detection
         anchor_generator=dict(
             type='AnchorGenerator',
-            scales=[4, 8, 16],
-            ratios=[0.5, 1.0, 2.0],
+            scales=[2, 4, 8, 16],  # Added smaller scale for tiny colonies
+            ratios=[0.5, 1.0, 1.5],  # Added 1.5 ratio for oval colonies
             strides=[4, 8, 16, 32, 64]
         ),
         bbox_coder=dict(
@@ -158,13 +166,28 @@ img_norm_cfg = dict(
     to_rgb=True
 )
 
+# Enhanced training pipeline with augmentations
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
     dict(
         type='Resize',
-        img_scale=(1280, 1280),
+        img_scale=[(1280, 1280), (800, 800)],  # Multi-scale training
+        multiscale_mode='range',
         keep_ratio=True
+    ),
+    dict(
+        type='AutoAugment',
+        policies=[
+            [
+                dict(type='RandomRotate', prob=0.5, level=5),
+                dict(type='BrightnessTransform', level=5)
+            ],
+            [
+                dict(type='RandomContrast', prob=0.5),
+                dict(type='Blur', prob=0.3)
+            ]
+        ]
     ),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
@@ -213,10 +236,26 @@ data = dict(
     )
 )
 
-# Training configuration
-# 训练配置
-optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001)
-optimizer_config = dict(grad_clip=None)
+# Enhanced training configuration
+# 增强的训练配置
+optimizer = dict(
+    type='AdamW',  # Switch to AdamW
+    lr=0.0001,
+    betas=(0.9, 0.999),
+    weight_decay=0.05,
+    paramwise_cfg=dict(
+        custom_keys={
+            'absolute_pos_embed': dict(decay_mult=0.),
+            'relative_position_bias_table': dict(decay_mult=0.),
+            'norm': dict(decay_mult=0.)
+        }
+    )
+)
+optimizer_config = dict(
+    grad_clip=dict(max_norm=35, norm_type=2),
+    type='Fp16OptimizerHook',  # Enable mixed precision
+    loss_scale=dict(init_scale=512)
+)
 lr_config = dict(
     policy='step',
     warmup='linear',
@@ -226,14 +265,28 @@ lr_config = dict(
 )
 runner = dict(type='EpochBasedRunner', max_epochs=12)
 
-# Runtime configuration
-# 运行时配置
-checkpoint_config = dict(interval=1)
+# Enhanced runtime configuration
+# 增强的运行时配置
+checkpoint_config = dict(
+    interval=1,
+    max_keep_ckpts=3,  # Only keep latest 3 checkpoints
+    save_optimizer=True,
+    save_last=True  # Always save last checkpoint for resuming
+)
 log_config = dict(
     interval=50,
     hooks=[
         dict(type='TextLoggerHook'),
-        dict(type='TensorboardLoggerHook')
+        dict(type='TensorboardLoggerHook'),
+        dict(type='MMDetWandbHook',
+             init_kwargs={
+                 'project': 'colony-detection',
+                 'group': 'faster-rcnn',
+             },
+             interval=50,
+             log_checkpoint=True,
+             log_checkpoint_metadata=True,
+             num_eval_images=100)
     ]
 )
 custom_hooks = [dict(type='NumClassCheckHook')]
@@ -242,5 +295,14 @@ log_level = 'INFO'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
+# Performance optimization
+# 性能优化
 opencv_num_threads = 0
 mp_start_method = 'fork'
+seed = 42
+deterministic = True  # Ensure reproducibility
+cudnn_benchmark = True  # Enable cudnn benchmark for faster training
+
+# Auto-scaling config
+# 自动缩放配置
+auto_scale_lr = dict(enable=True, base_batch_size=16)

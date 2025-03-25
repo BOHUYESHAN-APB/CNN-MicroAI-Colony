@@ -77,6 +77,17 @@ class PerformanceEstimator:
                              batch_size: int,
                              epochs: int,
                              image_size: tuple) -> dict:
+        """Validate input parameters"""
+        if not isinstance(dataset_path, (str, Path)):
+            raise ValueError("dataset_path must be a string or Path object")
+        if not Path(dataset_path).exists():
+            raise FileNotFoundError(f"Dataset path does not exist: {dataset_path}")
+        if batch_size < 1:
+            raise ValueError("batch_size must be positive")
+        if epochs < 1:
+            raise ValueError("epochs must be positive")
+        if len(image_size) != 2 or not all(isinstance(x, int) and x > 0 for x in image_size):
+            raise ValueError("image_size must be tuple of two positive integers")
         """
         Estimate training time based on system performance and dataset size
         基于系统性能和数据集大小估算训练时间
@@ -91,12 +102,18 @@ class PerformanceEstimator:
             image_size: Input image size (height, width)
                        输入图像尺寸（高度，宽度）
         """
-        # Count number of images
-        # 统计图像数量
-        dataset_path = Path(dataset_path)
-        n_images = sum(1 for _ in dataset_path.rglob('*.jpg'))
-        n_images += sum(1 for _ in dataset_path.rglob('*.jpeg'))
-        n_images += sum(1 for _ in dataset_path.rglob('*.png'))
+        try:
+            # Count number of images
+            # 统计图像数量
+            dataset_path = Path(dataset_path)
+            n_images = sum(1 for _ in dataset_path.rglob('*.jpg'))
+            n_images += sum(1 for _ in dataset_path.rglob('*.jpeg'))
+            n_images += sum(1 for _ in dataset_path.rglob('*.png'))
+            
+            if n_images == 0:
+                raise ValueError(f"No image files found in {dataset_path}")
+        except Exception as e:
+            raise RuntimeError(f"Error accessing dataset: {str(e)}")
         
         # Estimate memory requirements
         # 估算内存需求
@@ -111,7 +128,14 @@ class PerformanceEstimator:
             props = torch.cuda.get_device_properties(self.device)
             compute_power = props.multi_processor_count * (float(f"{props.major}.{props.minor}"))
             base_speed = compute_power * 5  # Empirical factor
-            estimated_speed = min(base_speed, props.total_memory / (batch_memory * 1024**3))
+            
+            # Get current GPU memory usage
+            current_memory = torch.cuda.memory_allocated(self.device) / (1024**3)  # GB
+            reserved_memory = torch.cuda.memory_reserved(self.device) / (1024**3)  # GB
+            available_memory = props.total_memory / (1024**3) - current_memory - reserved_memory
+            
+            # Factor in current memory usage
+            estimated_speed = min(base_speed, available_memory / batch_memory)
         else:
             # CPU estimation based on cores and frequency
             # 基于核心数和频率的CPU估算
@@ -124,16 +148,26 @@ class PerformanceEstimator:
         total_iterations = iterations_per_epoch * epochs
         estimated_hours = total_iterations / (estimated_speed * 3600)
         
-        # Memory requirement check
-        # 内存需求检查
+        # Memory requirement check with detailed info
+        # 内存需求检查并提供详细信息
         if self.device.type == 'cuda':
-            available_memory = torch.cuda.get_device_properties(self.device).total_memory / (1024**3)
+            total_memory = torch.cuda.get_device_properties(self.device).total_memory / (1024**3)
+            current_memory = torch.cuda.memory_allocated(self.device) / (1024**3)
+            reserved_memory = torch.cuda.memory_reserved(self.device) / (1024**3)
+            available_memory = total_memory - current_memory - reserved_memory
             memory_warning = batch_memory > available_memory * 0.8
+            
+            memory_info = {
+                'total_gpu_memory': total_memory,
+                'current_gpu_usage': current_memory,
+                'reserved_gpu_memory': reserved_memory,
+                'available_gpu_memory': available_memory
+            }
         else:
             available_memory = psutil.virtual_memory().available / (1024**3)
             memory_warning = batch_memory > available_memory * 0.5
             
-        return {
+        result = {
             'device': self.device.type,
             'dataset_size': n_images,
             'batch_memory_gb': batch_memory,
@@ -143,6 +177,12 @@ class PerformanceEstimator:
             'estimated_speed': estimated_speed,
             'system_info': self.system_info
         }
+        
+        # Add GPU memory info if available
+        if self.device.type == 'cuda':
+            result['gpu_memory_info'] = memory_info
+            
+        return result
         
     def print_estimate_report(self, estimate_results: dict):
         """
@@ -168,6 +208,14 @@ class PerformanceEstimator:
         print(f"CPU频率: {estimate_results['system_info']['cpu_freq']}MHz")
         print(f"系统内存: {estimate_results['system_info']['memory_total']:.1f}GB")
         print(f"可用内存: {estimate_results['system_info']['memory_available']:.1f}GB")
+        
+        if estimate_results.get('gpu_memory_info'):
+            print("\nGPU内存信息:")
+            info = estimate_results['gpu_memory_info']
+            print(f"总GPU内存: {info['total_gpu_memory']:.1f}GB")
+            print(f"当前GPU使用: {info['current_gpu_usage']:.1f}GB")
+            print(f"预留GPU内存: {info['reserved_gpu_memory']:.1f}GB")
+            print(f"可用GPU内存: {info['available_gpu_memory']:.1f}GB")
 
 if __name__ == "__main__":
     # Example usage

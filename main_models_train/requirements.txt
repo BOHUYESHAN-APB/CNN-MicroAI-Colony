@@ -1,13 +1,30 @@
+# Core dependencies
 torch==2.0.0
 torchvision==0.15.0
-opencv-python>=4.5.0
-numpy>=1.19.0
-Pillow>=8.0.0
-psutil>=5.8.0  # Added for system monitoring
+numpy==1.24.3
+Pillow==10.1.0
+opencv-python==4.8.1.78
+psutil==5.9.6
 
-# First install MMCV
---find-links https://download.openmmlab.com/mmcv/dist/cu117/torch2.0.0/index.html
+# MMDetection ecosystem
 mmcv-full==1.7.0
-
-# Then install MMDetection
 mmdet==2.28.2
+mmengine==0.8.4  # 添加mmengine依赖
+
+# Image augmentation
+albumentations==1.3.1
+
+# Experiment tracking and visualization
+wandb==0.15.12
+tensorboard==2.14.0
+matplotlib==3.8.0
+
+# Performance optimization
+pandas==2.1.1  # For data analysis
+PyYAML==6.0.1  # For config handling
+tqdm==4.66.1   # For progress bars
+
+# Optional: Development tools
+pytest==7.4.2  # For testing
+black==23.9.1  # For code formatting
+isort==5.12.0  # For import sorting
