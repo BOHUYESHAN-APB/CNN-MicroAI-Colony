@@ -295,6 +295,7 @@ log_level = 'INFO'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
+work_dir = 'work_dirs/faster_rcnn_colony'  # 明确模型输出位置
 # Performance optimization
 # 性能优化
 opencv_num_threads = 0
