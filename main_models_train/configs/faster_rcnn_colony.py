@@ -159,7 +159,7 @@ model = dict(
 # Dataset configuration
 # 数据集配置
 dataset_type = 'COCODataset'
-data_root = 'main_models_train/data/processed_dataset/'
+data_root = 'main_models_train/train/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53],
     std=[58.395, 57.12, 57.375],
