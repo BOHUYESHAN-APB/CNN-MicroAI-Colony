@@ -1,6 +1,0 @@
-C.albicans
-E.coli
-P.aeruginosa
-S.aureus
-B.subtilis
-Contamination
