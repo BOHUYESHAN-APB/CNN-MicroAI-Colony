@@ -4,7 +4,6 @@ Faster R-CNN configuration for colony detection
 """
 
 # Model configuration
-# 模型配置
 model = dict(
     type='FasterRCNN',
     backbone=dict(
@@ -35,11 +34,10 @@ model = dict(
         type='RPNHead',
         in_channels=256,
         feat_channels=256,
-        # Optimized anchor sizes for colony detection
         anchor_generator=dict(
             type='AnchorGenerator',
-            scales=[2, 4, 8, 16],  # Added smaller scale for tiny colonies
-            ratios=[0.5, 1.0, 1.5],  # Added 1.5 ratio for oval colonies
+            scales=[2, 4, 8, 16],
+            ratios=[0.5, 1.0, 1.5],
             strides=[4, 8, 16, 32, 64]
         ),
         bbox_coder=dict(
@@ -75,7 +73,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=1,  # Only colony class
+            num_classes=1,
             bbox_coder=dict(
                 type='DeltaXYWHBBoxCoder',
                 target_means=[0., 0., 0., 0.],
@@ -157,7 +155,6 @@ model = dict(
 )
 
 # Dataset configuration
-# 数据集配置
 dataset_type = 'COCODataset'
 data_root = 'main_models_train/train/'
 img_norm_cfg = dict(
@@ -166,13 +163,12 @@ img_norm_cfg = dict(
     to_rgb=True
 )
 
-# Enhanced training pipeline with augmentations
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
     dict(
         type='Resize',
-        img_scale=[(1280, 1280), (800, 800)],  # Multi-scale training
+        img_scale=[(1280, 1280), (800, 800)],
         multiscale_mode='range',
         keep_ratio=True
     ),
@@ -218,42 +214,41 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'train/annotations/_annotations.coco.json',
-        img_prefix=data_root + 'train/images',
+        ann_file=data_root + 'train/_annotations.coco.json',
+        img_prefix=data_root + 'train',
         pipeline=train_pipeline
     ),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'val/annotations/_annotations.coco.json',
-        img_prefix=data_root + 'val/images',
+        ann_file=data_root + 'valid/_annotations.coco.json',
+        img_prefix=data_root + 'valid',
         pipeline=test_pipeline
     ),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'test/annotations/_annotations.coco.json',
-        img_prefix=data_root + 'test/images',
+        ann_file=data_root + 'test/_annotations.coco.json',
+        img_prefix=data_root + 'test',
         pipeline=test_pipeline
     )
 )
 
-# Enhanced training configuration
-# 增强的训练配置
+# Training configuration
 optimizer = dict(
-    type='AdamW',  # Switch to AdamW
+    type='AdamW',
     lr=0.0001,
     betas=(0.9, 0.999),
     weight_decay=0.05,
     paramwise_cfg=dict(
         custom_keys={
             'absolute_pos_embed': dict(decay_mult=0.),
-            'relative_position_bias_table': dict(decay_mult=0.),
+            'relative_position_b bias_table': dict(decay_mult=0.),
             'norm': dict(decay_mult=0.)
         }
     )
 )
 optimizer_config = dict(
     grad_clip=dict(max_norm=35, norm_type=2),
-    type='Fp16OptimizerHook',  # Enable mixed precision
+    type='Fp16OptimizerHook',
     loss_scale=dict(init_scale=512)
 )
 lr_config = dict(
@@ -265,13 +260,12 @@ lr_config = dict(
 )
 runner = dict(type='EpochBasedRunner', max_epochs=12)
 
-# Enhanced runtime configuration
-# 增强的运行时配置
+# Runtime configuration
 checkpoint_config = dict(
     interval=1,
-    max_keep_ckpts=3,  # Only keep latest 3 checkpoints
+    max_keep_ckpts=3,
     save_optimizer=True,
-    save_last=True  # Always save last checkpoint for resuming
+    save_last=True
 )
 log_config = dict(
     interval=50,
@@ -295,15 +289,14 @@ log_level = 'INFO'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
-work_dir = 'work_dirs/faster_rcnn_colony'  # 明确模型输出位置
+work_dir = '/root/autodl-tmp'  # 模型输出目录设置为/root/autodl-tmp
+
 # Performance optimization
-# 性能优化
 opencv_num_threads = 0
 mp_start_method = 'fork'
 seed = 42
-deterministic = True  # Ensure reproducibility
-cudnn_benchmark = True  # Enable cudnn benchmark for faster training
+deterministic = True
+cudnn_benchmark = True
 
 # Auto-scaling config
-# 自动缩放配置
 auto_scale_lr = dict(enable=True, base_batch_size=16)
