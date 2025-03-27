@@ -113,7 +113,6 @@ def get_gpu_info():
         handle = pynvml.nvmlDeviceGetHandleByIndex(gpu)
         info = pynvml.nvmlDeviceGetMemoryInfo(handle)
         
-        # 获取实际的显存使用情况（以GB为单位）
         memory_used = info.used / 1024**3
         memory_total = info.total / 1024**3
         memory_free = info.free / 1024**3
@@ -121,7 +120,6 @@ def get_gpu_info():
         util = pynvml.nvmlDeviceGetUtilizationRates(handle)
         gpu_util = util.gpu
         
-        # 获取进程信息
         processes = pynvml.nvmlDeviceGetComputeRunningProcesses(handle)
         current_pid = os.getpid()
         current_process_memory = 0
@@ -139,13 +137,12 @@ def get_gpu_info():
             'process_memory': current_process_memory
         }
     except:
-        # 如果NVML不可用，回退到torch的内存统计
         memory_allocated = torch.cuda.memory_allocated(gpu) / 1024**3
         memory_reserved = torch.cuda.memory_reserved(gpu) / 1024**3
         memory_total = torch.cuda.get_device_properties(gpu).total_memory / 1024**3
         
         return {
-            'memory_used': memory_reserved,  # 使用reserved而不是allocated
+            'memory_used': memory_reserved,
             'memory_total': memory_total,
             'memory_free': memory_total - memory_reserved,
             'gpu_util': 0,
@@ -162,28 +159,23 @@ def format_time(seconds):
     return f"{hours:02d}:{minutes:02d}:{secs:02d}"
 
 def estimate_time_stats(stats, epoch, num_epochs, batch_info, epoch_start_time):
-    """实时计算和更新时间统计"""
     current_time = time.time()
     elapsed_time = current_time - epoch_start_time
     
-    # 计算当前epoch的完成百分比
     epoch_progress = batch_info['percentage'] / 100
     
-    # 估算当前epoch剩余时间
     if epoch_progress > 0:
         epoch_total_time = elapsed_time / epoch_progress
         epoch_remaining = epoch_total_time - elapsed_time
     else:
         epoch_remaining = 0
     
-    # 如果有历史数据，使用移动平均更新每个epoch的预期时间
     if epoch > 0 and 'time_per_epoch' in stats:
         stats['time_per_epoch'] = (0.7 * stats['time_per_epoch'] + 
                                  0.3 * (elapsed_time / epoch_progress))
     else:
         stats['time_per_epoch'] = elapsed_time / epoch_progress if epoch_progress > 0 else 0
     
-    # 计算总体剩余时间
     remaining_epochs = num_epochs - epoch - 1
     remaining_time = (remaining_epochs * stats['time_per_epoch'] +
                      epoch_remaining)
@@ -198,14 +190,30 @@ def estimate_time_stats(stats, epoch, num_epochs, batch_info, epoch_start_time):
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def initialize_stats(optimizer):
+    """初始化训练统计信息"""
+    return {
+        'Train Loss': {'current': float('inf'), 'best': float('inf'), 'best_epoch': 0},
+        'Valid Loss': {'current': float('inf'), 'best': float('inf'), 'best_epoch': 0},
+        'Test Loss': {'current': float('inf'), 'best': float('inf'), 'best_epoch': 0},
+        'learning_rate': {'current': optimizer.param_groups[0]['lr']},
+        'loss_history': [],
+        'time_per_epoch': 0
+    }
+
 def print_stats(stats, epoch, num_epochs, current_time, batch_info=None, time_stats=None):
+    # 确保所有必要的键都存在
+    required_keys = ['Train Loss', 'Valid Loss', 'Test Loss', 'learning_rate']
+    for key in required_keys:
+        if key not in stats:
+            stats[key] = {'current': float('inf'), 'best': float('inf'), 'best_epoch': 0}
+    
     clear_terminal()
     term_width = shutil.get_terminal_size().columns
     print("=" * term_width)
     print(f"Colony Detection Training Monitor - {current_time}".center(term_width))
     print("=" * term_width)
     
-    # 1. 进度信息
     print(f"\n📊 Progress")
     print(f"{'Epoch':<15}: {epoch}/{num_epochs}")
     if batch_info:
@@ -213,7 +221,6 @@ def print_stats(stats, epoch, num_epochs, current_time, batch_info=None, time_st
         print(f"{'Progress':<15}: {batch_info['percentage']:.1f}%")
     print("-" * term_width)
     
-    # 2. 性能指标
     print(f"\n📈 Performance Metrics")
     metrics_header = f"{'Metric':<20} {'Current':<15} {'Best':<15} {'Best Epoch':<10}"
     print(metrics_header)
@@ -231,7 +238,6 @@ def print_stats(stats, epoch, num_epochs, current_time, batch_info=None, time_st
         
         print(f"{metric:<20} {current:<15} {best:<15} {best_epoch:<10}")
     
-    # 3. 学习率信息
     print(f"\n⚙️ Training Parameters")
     lr = stats.get('learning_rate', {}).get('current', 'N/A')
     if isinstance(lr, float):
@@ -240,7 +246,6 @@ def print_stats(stats, epoch, num_epochs, current_time, batch_info=None, time_st
         print(f"Learning Rate   : {lr}")
     print("-" * term_width)
     
-    # 4. GPU信息
     if torch.cuda.is_available():
         gpu_info = get_gpu_info()
         print(f"\n🖥️ GPU Status")
@@ -250,14 +255,12 @@ def print_stats(stats, epoch, num_epochs, current_time, batch_info=None, time_st
         print(f"Process Memory  : {gpu_info['process_memory']:.1f}GB")
         print(f"GPU Utilization : {gpu_info['gpu_util']}%")
         
-        # 添加缓存信息
         cache_allocated = torch.cuda.memory_allocated() / 1024**3
         cache_reserved = torch.cuda.memory_reserved() / 1024**3
         print(f"CUDA Allocated  : {cache_allocated:.1f}GB")
         print(f"CUDA Reserved   : {cache_reserved:.1f}GB")
         print("-" * term_width)
 
-    # 5. 最近的损失变化趋势
     if 'loss_history' in stats and len(stats['loss_history']) > 1:
         print(f"\n📉 Recent Loss Trend (last 5 updates)")
         history = stats['loss_history'][-5:]
@@ -266,7 +269,6 @@ def print_stats(stats, epoch, num_epochs, current_time, batch_info=None, time_st
         print(f"Trend: {trend}")
         print("-" * term_width)
     
-    # 6. 时间统计
     if time_stats:
         print(f"\n⏱️ Time Statistics")
         print(f"Elapsed time    : {format_time(time_stats['elapsed'])}")
@@ -282,6 +284,56 @@ def print_stats(stats, epoch, num_epochs, current_time, batch_info=None, time_st
     print("=" * term_width)
     sys.stdout.flush()
 
+def save_checkpoint(model, optimizer, scheduler, stats, epoch, is_best=False, is_interrupt=False):
+    """保存训练检查点
+    Args:
+        model: 模型
+        optimizer: 优化器
+        scheduler: 学习率调度器
+        stats: 训练统计信息
+        epoch: 当前epoch
+        is_best: 是否为最佳模型
+        is_interrupt: 是否为中断保存
+    """
+    checkpoint = {
+        'epoch': epoch + 1,
+        'model_state_dict': model.state_dict(),
+        'optimizer_state_dict': optimizer.state_dict(),
+        'scheduler_state_dict': scheduler.state_dict(),
+        'stats': stats,
+        'hyperparameters': {
+            'learning_rate': optimizer.param_groups[0]['lr'],
+            'batch_size': 4,
+            'weight_decay': optimizer.param_groups[0]['weight_decay'],
+            'scheduler_config': {
+                'max_lr': scheduler.max_lr,
+                'pct_start': scheduler.pct_start,
+                'div_factor': scheduler.div_factor,
+                'final_div_factor': scheduler.final_div_factor
+            }
+        },
+        'architecture_config': {
+            'backbone': 'resnet50',
+            'num_classes': 2,
+            'anchor_sizes': ((32, 64, 128, 256, 512),),
+            'aspect_ratios': ((0.5, 1.0, 1.5),),
+            'rpn_batch_size_per_image': 256,
+            'box_batch_size_per_image': 512
+        },
+        'saved_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        'is_interrupt': is_interrupt,
+        'is_best': is_best
+    }
+    
+    if is_interrupt:
+        save_path = f'/root/autodl-tmp/faster_rcnn_colony_interrupted_epoch{epoch+1}.pth'
+    elif is_best:
+        save_path = '/root/autodl-tmp/faster_rcnn_colony_best.pth'
+    else:
+        save_path = f'/root/autodl-tmp/faster_rcnn_colony_epoch{epoch+1}.pth'
+    
+    torch.save(checkpoint, save_path)
+    return save_path
 
 @torch.no_grad()
 def evaluate(model, data_loader, device):
@@ -290,14 +342,38 @@ def evaluate(model, data_loader, device):
     total_batches = 0
     
     for images, targets in data_loader:
-        images = [image.to(device) for image in images]
-        targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
-        
-        loss_dict = model(images, targets)
-        losses = sum(loss for loss in loss_dict.values())
-        total_loss += losses.item()
-        total_batches += 1
+        try:
+            images = [image.to(device) for image in images]
+            targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
+            
+            # 修复损失计算部分
+            loss_dict = model(images, targets)
+            if isinstance(loss_dict, dict):
+                # 如果是字典，求所有损失值的和
+                total_batch_loss = sum(v.item() for v in loss_dict.values())
+            elif isinstance(loss_dict, (list, tuple)):
+                # 如果是列表或元组，确保所有元素都是张量并求和
+                total_batch_loss = sum(v.item() if torch.is_tensor(v) else v for v in loss_dict)
+            elif torch.is_tensor(loss_dict):
+                # 如果是单个张量
+                total_batch_loss = loss_dict.item()
+            else:
+                # 其他情况视为无效
+                print(f"Warning: Unexpected loss type: {type(loss_dict)}")
+                continue
+            
+            total_loss += total_batch_loss
+            total_batches += 1
+            
+        except Exception as e:
+            print(f"Error in evaluation batch: {str(e)}")
+            print(f"Loss dict type: {type(loss_dict)}")
+            print(f"Loss dict content: {loss_dict}")
+            continue
     
+    if total_batches == 0:
+        return float('inf')
+        
     return total_loss / total_batches
 
 def find_latest_checkpoint():
@@ -314,216 +390,177 @@ def find_latest_checkpoint():
     return latest_checkpoint, max_epoch
 
 def main():
-    print("\n🚀 Starting training pipeline...")
+    max_retries = 3
+    retry_count = 0
     
-    device = torch.device('cuda')
-    torch.cuda.set_device(0)
-    
-    print(f"💻 Using device: {device}")
-    
-    # 创建数据集
-    train_dataset = ColonyDataset(
-        root='/root/full_dataset/train',
-        ann_file='/root/full_dataset/train/_annotations.coco.json'
-    )
-    
-    valid_dataset = ColonyDataset(
-        root='/root/full_dataset/valid',
-        ann_file='/root/full_dataset/valid/_annotations.coco.json'
-    )
-    
-    test_dataset = ColonyDataset(
-        root='/root/full_dataset/test',
-        ann_file='/root/full_dataset/test/_annotations.coco.json'
-    )
-    
-    train_loader = DataLoader(
-        train_dataset,
-        batch_size=4,
-        shuffle=True,
-        num_workers=8,
-        pin_memory=True,
-        collate_fn=lambda x: tuple(zip(*x))
-    )
-    
-    valid_loader = DataLoader(
-        valid_dataset,
-        batch_size=4,
-        shuffle=False,
-        num_workers=8,
-        pin_memory=True,
-        collate_fn=lambda x: tuple(zip(*x))
-    )
-    
-    test_loader = DataLoader(
-        test_dataset,
-        batch_size=4,
-        shuffle=False,
-        num_workers=8,
-        pin_memory=True,
-        collate_fn=lambda x: tuple(zip(*x))
-    )
-    
-    # 初始化模型
-    model = get_model()
-    model.to(device)
-    
-    # 配置优化器
-    params = [p for p in model.parameters() if p.requires_grad]
-    optimizer = torch.optim.AdamW(params, lr=0.0001, weight_decay=0.05)
-    scheduler = torch.optim.lr_scheduler.OneCycleLR(
-        optimizer,
-        max_lr=0.001,
-        epochs=12,
-        steps_per_epoch=len(train_loader),
-        pct_start=0.2
-    )
-    
-    # 修改统计信息初始化
-    stats = {
-        'Train Loss': {'current': float('inf'), 'best': float('inf'), 'best_epoch': 0},
-        'Valid Loss': {'current': float('inf'), 'best': float('inf'), 'best_epoch': 0},
-        'Test Loss': {'current': float('inf'), 'best': float('inf'), 'best_epoch': 0},
-        'learning_rate': {'current': optimizer.param_groups[0]['lr']},
-        'loss_history': [],
-        'time_per_epoch': 0
-    }
-    
-    # 加载检查点
-    latest_checkpoint, start_epoch = find_latest_checkpoint()
-    if latest_checkpoint:
-        print(f"\n♻️ Found checkpoint: {latest_checkpoint}")
-        print(f"📌 Resuming from epoch {start_epoch}")
-        
-        checkpoint = torch.load(latest_checkpoint)
-        model.load_state_dict(checkpoint['model_state_dict'])
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
-        stats = checkpoint.get('stats', stats)
-        
-        print("✅ Checkpoint loaded successfully")
-    else:
-        start_epoch = 0
-    
-    num_epochs = 12
-    update_interval = 1  # 更新显示的间隔（秒）
-    
-    try:
-        for epoch in range(start_epoch, num_epochs):
-            epoch_start_time = time.time()
-            model.train()
-            epoch_loss = 0
-            num_batches = 0
-            last_update = time.time()
+    while retry_count < max_retries:
+        try:
+            print(f"\n🚀 {'Starting' if retry_count == 0 else 'Resuming'} training pipeline...")
             
-            for i, (images, targets) in enumerate(train_loader):
-                images = [image.to(device) for image in images]
-                targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
-                
-                loss_dict = model(images, targets)
-                losses = sum(loss for loss in loss_dict.values())
-                
-                optimizer.zero_grad()
-                losses.backward()
-                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-                optimizer.step()
-                scheduler.step()
-                
-                # 更新loss统计
-                current_loss = losses.item()
-                epoch_loss += current_loss
-                num_batches = i + 1
-                
-                # 更新显示
-                current_time = time.time()
-                if current_time - last_update > update_interval:
-                    avg_loss = epoch_loss / (i + 1)
-                    stats['Train Loss']['current'] = avg_loss
-                    stats['learning_rate']['current'] = optimizer.param_groups[0]['lr']
+            device = torch.device('cuda')
+            torch.cuda.set_device(0)
+            
+            train_dataset = ColonyDataset(
+                root='/root/full_dataset/train',
+                ann_file='/root/full_dataset/train/_annotations.coco.json'
+            )
+            
+            valid_dataset = ColonyDataset(
+                root='/root/full_dataset/valid',
+                ann_file='/root/full_dataset/valid/_annotations.coco.json'
+            )
+            
+            train_loader = DataLoader(
+                train_dataset, batch_size=4, shuffle=True,
+                num_workers=8, pin_memory=True,
+                collate_fn=lambda x: tuple(zip(*x))
+            )
+            
+            valid_loader = DataLoader(
+                valid_dataset, batch_size=4, shuffle=False,
+                num_workers=8, pin_memory=True,
+                collate_fn=lambda x: tuple(zip(*x))
+            )
+            
+            model = get_model()
+            model.to(device)
+            
+            params = [p for p in model.parameters() if p.requires_grad]
+            optimizer = torch.optim.AdamW(params, lr=0.0001, weight_decay=0.05)
+            scheduler = torch.optim.lr_scheduler.OneCycleLR(
+                optimizer,
+                max_lr=0.001,
+                epochs=12,
+                steps_per_epoch=len(train_loader),
+                pct_start=0.2
+            )
+            
+            # 初始化 stats
+            stats = initialize_stats(optimizer)
+            
+            latest_checkpoint, start_epoch = find_latest_checkpoint()
+            if latest_checkpoint:
+                print(f"\n♻️ Found checkpoint: {latest_checkpoint}")
+                try:
+                    checkpoint = torch.load(latest_checkpoint)
+                    model.load_state_dict(checkpoint['model_state_dict'])
+                    optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+                    scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
                     
-                    batch_info = {
-                        'current': i + 1,
-                        'total': len(train_loader),
-                        'percentage': ((i + 1) / len(train_loader)) * 100
-                    }
+                    # 合并保存的stats和默认stats
+                    saved_stats = checkpoint.get('stats', {})
+                    for key in stats:
+                        if key in saved_stats:
+                            stats[key] = saved_stats[key]
                     
-                    # 新增：计算时间统计
-                    time_stats = estimate_time_stats(
-                        stats, 
-                        epoch, 
-                        num_epochs, 
-                        batch_info, 
-                        epoch_start_time
-                    )
+                    start_epoch = checkpoint['epoch']
+                    print(f"✅ Successfully restored from epoch {start_epoch}")
+                except Exception as e:
+                    print(f"⚠️ Error loading checkpoint: {str(e)}")
+                    start_epoch = 0
+                    stats = initialize_stats(optimizer)
+            else:
+                start_epoch = 0
+            
+            num_epochs = 12
+            for epoch in range(start_epoch, num_epochs):
+                try:
+                    epoch_start_time = time.time()
+                    model.train()
+                    epoch_loss = 0
+                    num_batches = 0
+                    last_update = time.time()
                     
-                    # 修改：添加time_stats参数
-                    print_stats(
-                        stats, 
-                        epoch + 1, 
-                        num_epochs,
-                        datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        batch_info,
-                        time_stats
-                    )
-                    last_update = current_time
-            
-            # 验证阶段
-            print("\n📊 Evaluating on validation set...")
-            valid_loss = evaluate(model, valid_loader, device)
-            stats['Valid Loss']['current'] = valid_loss
-            
-            if valid_loss < stats['Valid Loss']['best']:
-                stats['Valid Loss']['best'] = valid_loss
-                stats['Valid Loss']['best_epoch'] = epoch + 1
+                    for i, (images, targets) in enumerate(train_loader):
+                        images = [image.to(device) for image in images]
+                        targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
+                        
+                        loss_dict = model(images, targets)
+                        losses = sum(loss for loss in loss_dict.values())
+                        
+                        optimizer.zero_grad()
+                        losses.backward()
+                        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+                        optimizer.step()
+                        scheduler.step()
+                        
+                        current_loss = losses.item()
+                        epoch_loss += current_loss
+                        num_batches = i + 1
+                        
+                        current_time = time.time()
+                        if current_time - last_update > 1:  # 每秒更新一次
+                            avg_loss = epoch_loss / num_batches
+                            stats['Train Loss']['current'] = avg_loss
+                            stats['learning_rate']['current'] = optimizer.param_groups[0]['lr']
+                            
+                            if avg_loss < stats['Train Loss']['best']:
+                                stats['Train Loss']['best'] = avg_loss
+                                stats['Train Loss']['best_epoch'] = epoch + 1
+                            
+                            batch_info = {
+                                'current': i + 1,
+                                'total': len(train_loader),
+                                'percentage': (num_batches / len(train_loader)) * 100
+                            }
+                            
+                            time_stats = estimate_time_stats(
+                                stats,
+                                epoch,
+                                num_epochs,
+                                batch_info,
+                                epoch_start_time
+                            )
+                            
+                            stats['loss_history'].append(avg_loss)
+                            if len(stats['loss_history']) > 100:
+                                stats['loss_history'] = stats['loss_history'][-100:]
+                            
+                            print_stats(stats, epoch + 1, num_epochs,
+                                      datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                      batch_info, time_stats)
+                            last_update = current_time
+                    
+                    print("\n📊 Evaluating on validation set...")
+                    valid_loss = evaluate(model, valid_loader, device)
+                    stats['Valid Loss']['current'] = valid_loss
+                    
+                    if valid_loss < stats['Valid Loss']['best']:
+                        stats['Valid Loss']['best'] = valid_loss
+                        stats['Valid Loss']['best_epoch'] = epoch + 1
+                        save_checkpoint(model, optimizer, scheduler, stats, epoch, is_best=True)
+                    
+                    save_checkpoint(model, optimizer, scheduler, stats, epoch)
+                    
+                except Exception as e:
+                    print(f"\n❌ Error during epoch {epoch+1}: {str(e)}")
+                    save_path = save_checkpoint(model, optimizer, scheduler, stats, epoch, is_interrupt=True)
+                    print(f"💾 Saved emergency checkpoint to: {save_path}")
+                    retry_count += 1
+                    print(f"🔄 Retrying... (attempt {retry_count}/{max_retries})")
+                    time.sleep(5)
+                    break
+            else:
+                print("\n✨ Training completed successfully!")
+                return
                 
-                torch.save({
-                    'epoch': epoch + 1,
-                    'model_state_dict': model.state_dict(),
-                    'optimizer_state_dict': optimizer.state_dict(),
-                    'scheduler_state_dict': scheduler.state_dict(),
-                    'stats': stats,
-                }, '/root/autodl-tmp/faster_rcnn_colony_best.pth')
-
-            # 定期在测试集上评估
-            if (epoch + 1) % 2 == 0:  # 每两个epoch评估一次测试集
-                print("\n📊 Evaluating on test set...")
-                test_loss = evaluate(model, test_loader, device)
-                stats['Test Loss']['current'] = test_loss
-                
-                if test_loss < stats['Test Loss']['best']:
-                    stats['Test Loss']['best'] = test_loss
-                    stats['Test Loss']['best_epoch'] = epoch + 1
+        except KeyboardInterrupt:
+            print("\n\n⚠️ Training interrupted by user!")
+            save_path = save_checkpoint(model, optimizer, scheduler, stats, epoch, is_interrupt=True)
+            print(f"💾 Saved interrupt checkpoint to: {save_path}")
+            return
             
-            # 更新时间统计
-            epoch_time = time.time() - epoch_start_time
-            stats['time_per_epoch'] = epoch_time
-            
-            # 保存常规检查点
-            checkpoint = {
-                'epoch': epoch + 1,
-                'model_state_dict': model.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                'scheduler_state_dict': scheduler.state_dict(),
-                'stats': stats,
-            }
-            
-            save_path = f'/root/autodl-tmp/faster_rcnn_colony_epoch{epoch+1}.pth'
-            torch.save(checkpoint, save_path)
-            
-            print_stats(stats, epoch + 1, num_epochs,
-                       datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        except Exception as e:
+            print(f"\n❌ Critical error: {str(e)}")
+            retry_count += 1
+            if retry_count < max_retries:
+                print(f"🔄 Retrying from last checkpoint... (attempt {retry_count}/{max_retries})")
+                time.sleep(5)
+            else:
+                print("❌ Maximum retries reached. Training failed.")
+                return
     
-    except KeyboardInterrupt:
-        print("\n\n⚠️ Training interrupted!")
-        print("💾 Saving current state...")
-        interrupt_save_path = f'/root/autodl-tmp/faster_rcnn_colony_interrupted_epoch{epoch+1}.pth'
-        torch.save(checkpoint, interrupt_save_path)
-        print(f"✅ Saved interrupt checkpoint: {interrupt_save_path}")
-        return
-    
-    print("\n✨ Training completed!")
-    print(f"Best validation loss: {stats['Valid Loss']['best']:.4f} at epoch {stats['Valid Loss']['best_epoch']}")
-    print(f"Best test loss: {stats['Test Loss']['best']:.4f} at epoch {stats['Test Loss']['best_epoch']}")
+    print("❌ Training terminated after maximum retries.")
 
 if __name__ == '__main__':
     main()
