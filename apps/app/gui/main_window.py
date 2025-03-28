@@ -21,7 +21,7 @@ from .result_stats_dock import ResultStatsDock
 from .result_table_dock import ResultTableDock
 from .dock_manager import DockManager
 from .toolbar_constants import MEDIUM_ICON_SIZE, TOOLBAR_STYLE
-from ..models.colony_detector import ColonyDetector
+from apps.app.core.models.colony_detector import ColonyDetector
 from ..utils.project_manager import ProjectManager
 from ..utils.i18n import translate
 from ..utils.image_preprocessing import load_image, preprocess_image, PreprocessingConfig
@@ -34,8 +34,9 @@ class MainWindow(QMainWindow):
     # Class-level translation function
     _ = staticmethod(translate)
     
-    def __init__(self):
+    def __init__(self, config):
         super().__init__()
+        self.config = config
         
         # Initialize core components
         self.detector = ColonyDetector()
@@ -177,6 +178,10 @@ class MainWindow(QMainWindow):
         layout_menu.addAction(self._("重置布局"), 
                             lambda: self.dock_manager.reset_layout())
                             
+        # Settings menu
+        settings_menu = self.menuBar().addMenu(self._("设置"))
+        settings_menu.addAction(self._("参数设置..."), self.show_settings_dialog)
+        
         # Help menu
         help_menu = self.menuBar().addMenu(self._("帮助"))
         help_menu.addAction(self._("使用说明"), self.show_help)
@@ -265,11 +270,18 @@ class MainWindow(QMainWindow):
         if self.preprocessing_config:
             dialog.load_config(self.preprocessing_config)
             
+        # Connect config change signal to force re-analysis
+        dialog.config_changed.connect(
+            lambda: self.start_analysis(force_reanalyze=True)
+        )
+            
         if dialog.exec():
             self.preprocessing_config = dialog.get_config()
             logger.info("Updated preprocessing configuration")
             self.statusBar.showMessage(self._("已更新预处理配置"))
-            
+            # Force re-analysis with new config
+            self.start_analysis(force_reanalyze=True)
+                
     def set_preprocess_mode(self, mode):
         """Set preprocessing mode
         
@@ -316,6 +328,24 @@ class MainWindow(QMainWindow):
                    "6. 保存结果")
         )
         
+    def show_settings_dialog(self):
+        """Show settings dialog"""
+        from .settings_dialog import SettingsDialog
+        dialog = SettingsDialog(self, self.config)
+        if dialog.exec():
+            settings = dialog.get_settings()
+            if settings['model_path']:
+                self.config.model_path = settings['model_path']
+                # Reinitialize detector with new model path
+                self.detector = ColonyDetector(self.config.model_path)
+                if not self.detector.initialize():
+                    QMessageBox.warning(
+                        self,
+                        self._("警告"),
+                        self._("模型加载失败，请检查模型文件路径")
+                    )
+            self.statusBar.showMessage(self._("设置已更新"))
+            
     def show_about(self):
         """Show about dialog"""
         QMessageBox.about(
@@ -385,8 +415,12 @@ class MainWindow(QMainWindow):
         self.result_table.display_results(cache['detections'])
         self.statusBar.showMessage(self._("已加载缓存结果"))
         
-    def start_analysis(self):
-        """Start colony detection"""
+    def start_analysis(self, force_reanalyze=False):
+        """Start colony detection
+        
+        Args:
+            force_reanalyze: Whether to force re-analysis even if results exist
+        """
         logger.debug(f"start_analysis: current_project={self.current_project}, current_path={self.current_path}")
         try:
             # Check current image
@@ -397,16 +431,16 @@ class MainWindow(QMainWindow):
                     self._("请先打开一张图片进行分析。")
                 )
                 return
+                
+            # Clear previous results if forcing re-analysis
+            if force_reanalyze and self.current_path in self.results_cache:
+                del self.results_cache[self.current_path]
+                self.clear_results()
             
-            # Initialize detector if needed
-            if not self.detector.initialized:
-                if not self.detector.initialize():
-                    QMessageBox.critical(
-                        self,
-                        self._("错误"),
-                        self._("模型初始化失败，请检查模型文件是否存在。")
-                    )
-                    return
+            # Check if we already have results for this image
+            if not force_reanalyze and self.current_path in self.results_cache:
+                self.show_cached_results(self.current_path)
+                return
                     
             # Load and preprocess image
             logger.debug(self._("加载图像: ") + f"{self.current_path}")
@@ -481,8 +515,12 @@ class MainWindow(QMainWindow):
                 self._("分析过程中出现错误: ") + str(e)
             )
             
-    def save_results(self):
-        """Save detection results"""
+    def save_results(self, export_image=False):
+        """Save detection results
+        
+        Args:
+            export_image: Whether to export annotated image
+        """
         if not self.current_project or not self.current_path:
             return
             
@@ -498,6 +536,18 @@ class MainWindow(QMainWindow):
                 )
                 logger.info(self._("保存项目结果: ") + f"{self.current_project}")
                 self.statusBar.showMessage(self._("已保存分析结果"))
+                
+                # Export annotated image if requested
+                if export_image and hasattr(self, 'result_image'):
+                    annotated_img = self.result_image.get_annotated_image()
+                    if annotated_img is not None:
+                        img_path = Path(self.current_path)
+                        export_path = img_path.parent / f"{img_path.stem}_annotated{img_path.suffix}"
+                        cv2.imwrite(str(export_path), annotated_img)
+                        logger.info(f"Exported annotated image to: {export_path}")
+                        self.statusBar.showMessage(
+                            self._("已保存标记图片: ") + str(export_path.name)
+                        )
                 
         except Exception as e:
             logger.error(self._("保存结果失败: ") + f"{e}")

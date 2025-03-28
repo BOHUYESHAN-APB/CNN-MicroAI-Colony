@@ -156,3 +156,7 @@ class ResultTableDock(BaseDockWidget):
     def minimumSizeHint(self):
         """Provide reasonable minimum size"""
         return QSize(400, 200)
+        
+    def clear(self):
+        """Clear table data (alias for clear_table)"""
+        self.clear_table()

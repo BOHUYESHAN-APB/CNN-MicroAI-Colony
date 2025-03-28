@@ -35,3 +35,54 @@
 2025-03-21 18:10:00 [DEBUG] __main__: Logging system initialized
 2025-03-21 18:53:14 [DEBUG] __main__: Logging system initialized
 2025-03-24 11:11:59 [DEBUG] __main__: Logging system initialized
+2025-03-27 13:16:29 [DEBUG] __main__: Logging system initialized
+2025-03-27 13:16:29 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 13:16:29 [INFO] __main__: Using device: cpu
+2025-03-27 13:16:29 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\韩涛\OneDrive\文档\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 13:16:29 [ERROR] __main__: Application failed to start: 'MainWindow' object has no attribute 'setup_docks'
+2025-03-27 13:16:29 [INFO] __main__: Application cleanup completed
+2025-03-27 13:50:25 [DEBUG] __main__: Logging system initialized
+2025-03-27 13:50:25 [INFO] apps.app.utils.gpu_utils: Using CPU
+2025-03-27 13:50:25 [INFO] __main__: Using device: cpu
+2025-03-27 13:50:25 [INFO] apps.app.utils.i18n: Loaded translations for en
+2025-03-27 13:50:25 [INFO] apps.app.utils.i18n: Loaded translations for zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '主工具栏' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '退出' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '预处理' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '预处理模式' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '默认模式' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '自定义参数' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '自动优化' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '设置' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '启用预处理' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '预处理设置...' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '开始分析' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '停靠窗口' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '布局' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '保存布局...' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '加载布局...' in zh_CN
+2025-03-27 13:50:25 [DEBUG] apps.app.utils.i18n: Missing translation for '重置布局' in zh_CN
+2025-03-27 13:50:25 [INFO] apps.app.gui.dock_manager: Reset dock layout
+2025-03-27 13:50:25 [INFO] __main__: Application initialized successfully
+2025-03-27 13:50:36 [DEBUG] apps.app.utils.i18n: Missing translation for '模型文件:' in zh_CN
+2025-03-27 13:50:36 [DEBUG] apps.app.utils.i18n: Missing translation for '浏览...' in zh_CN
+2025-03-27 13:50:36 [DEBUG] apps.app.utils.i18n: Missing translation for '配置文件:' in zh_CN
+2025-03-27 13:50:36 [DEBUG] apps.app.utils.i18n: Missing translation for '浏览...' in zh_CN
+2025-03-27 13:50:37 [DEBUG] apps.app.utils.i18n: Missing translation for '选择模型文件' in zh_CN
+2025-03-27 13:50:37 [DEBUG] apps.app.utils.i18n: Missing translation for 'Model files (*.pth *.pt);;All files (*.*)' in zh_CN
+2025-03-27 13:50:54 [DEBUG] apps.app.utils.i18n: Missing translation for '请选择有效的配置文件。' in zh_CN
+2025-03-27 13:50:55 [DEBUG] apps.app.utils.i18n: Missing translation for '选择配置文件' in zh_CN
+2025-03-27 13:50:55 [DEBUG] apps.app.utils.i18n: Missing translation for 'Config files (*.py *.yaml *.yml);;All files (*.*)' in zh_CN
+2025-03-27 13:51:16 [INFO] apps.app.gui.dock_manager: Reset dock layout
+2025-03-27 13:51:19 [DEBUG] apps.app.utils.i18n: Missing translation for '1. 打开项目文件夹
+2. 添加图片
+3. 选择预处理模式
+4. 开始分析
+5. 查看结果
+6. 保存结果' in zh_CN
+2025-03-27 13:51:23 [DEBUG] apps.app.utils.i18n: Missing translation for '菌落计数系统 v1.0
+
+基于深度学习的菌落自动检测与计数系统' in zh_CN
+2025-03-27 13:51:30 [DEBUG] apps.app.gui.main_window: Starting analysis: project=None, image=None
+2025-03-27 13:51:36 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 13:51:36 [INFO] __main__: Application cleanup completed
