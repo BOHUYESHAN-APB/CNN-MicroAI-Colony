@@ -4086,3 +4086,642 @@ AssertionError: targets should not be none when in training mode
 2025-03-24 11:34:26,596 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
 2025-03-24 11:34:28,226 [INFO] apps.app.gui.dock_manager: Saved dock layout
 2025-03-24 11:34:28,324 [INFO] apps.app.main: Application cleanup completed
+2025-03-27 14:29:32,314 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 14:29:34,823 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 14:29:34,823 [INFO] __main__: Using device: cpu
+2025-03-27 14:29:34,868 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 14:29:35,564 [INFO] __main__: Application initialized successfully
+2025-03-27 14:30:03,797 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:30:10,121 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:30:10,144 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:30:10,147 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:30:10,168 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 14:30:10,182 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 14:30:11,086 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:30:11,095 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:30:11,432 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:30:11,446 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:30:25,846 [INFO] apps.app.models.colony_detector: Loading model from: D:/train/faster_rcnn_colony_epoch8.pth
+2025-03-27 14:30:29,710 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:30:29,713 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:30:34,978 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:30:34,978 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:30:37,980 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:30:37,990 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:30:39,980 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:30:40,000 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:30:41,584 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:30:41,587 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:30:42,092 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 14:30:42,105 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 14:30:43,674 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 14:30:43,695 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 14:30:55,180 [INFO] apps.app.models.colony_detector: Loading model from: D:/train/faster_rcnn_colony_epoch12.pth
+2025-03-27 14:30:57,876 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:30:57,881 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:31:13,960 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 14:31:18,076 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 14:31:18,092 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 14:31:31,148 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 14:31:39,515 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 14:31:39,530 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 14:32:10,108 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 14:32:21,965 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:32:21,982 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:32:22,471 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:32:22,478 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:32:34,968 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:32:34,970 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:32:37,194 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 14:32:51,707 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218385770401_W23_T960_jpg.rf.c2ed6ca4dad3fb7ca62b0d048901cac3.jpg
+2025-03-27 14:32:51,711 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387044201_W23_T960_jpg.rf.a650e29229eb251925a9b026f0272957.jpg
+2025-03-27 14:32:51,714 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387473301_W23_T960_jpg.rf.78be74422aabcca5d062f1442e171103.jpg
+2025-03-27 14:32:52,583 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218385770401_W23_T960_jpg.rf.c2ed6ca4dad3fb7ca62b0d048901cac3.jpg
+2025-03-27 14:32:52,589 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218385770401_W23_T960_jpg.rf.c2ed6ca4dad3fb7ca62b0d048901cac3.jpg
+2025-03-27 14:33:07,825 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 14:33:10,140 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387044201_W23_T960_jpg.rf.a650e29229eb251925a9b026f0272957.jpg
+2025-03-27 14:33:10,145 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387044201_W23_T960_jpg.rf.a650e29229eb251925a9b026f0272957.jpg
+2025-03-27 14:33:13,980 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387473301_W23_T960_jpg.rf.78be74422aabcca5d062f1442e171103.jpg
+2025-03-27 14:33:13,985 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387473301_W23_T960_jpg.rf.78be74422aabcca5d062f1442e171103.jpg
+2025-03-27 14:33:18,398 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387044201_W23_T960_jpg.rf.a650e29229eb251925a9b026f0272957.jpg
+2025-03-27 14:33:18,405 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387044201_W23_T960_jpg.rf.a650e29229eb251925a9b026f0272957.jpg
+2025-03-27 14:33:19,056 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218385770401_W23_T960_jpg.rf.c2ed6ca4dad3fb7ca62b0d048901cac3.jpg
+2025-03-27 14:33:19,061 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218385770401_W23_T960_jpg.rf.c2ed6ca4dad3fb7ca62b0d048901cac3.jpg
+2025-03-27 14:33:19,727 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387044201_W23_T960_jpg.rf.a650e29229eb251925a9b026f0272957.jpg
+2025-03-27 14:33:19,736 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387044201_W23_T960_jpg.rf.a650e29229eb251925a9b026f0272957.jpg
+2025-03-27 14:33:20,294 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387473301_W23_T960_jpg.rf.78be74422aabcca5d062f1442e171103.jpg
+2025-03-27 14:33:20,299 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\2ClassBlur.v1i.coco-mmdetection\valid\54218387473301_W23_T960_jpg.rf.78be74422aabcca5d062f1442e171103.jpg
+2025-03-27 14:33:34,975 [ERROR] apps.app.utils.project_manager: Failed to save results: path is on mount 'D:', start on mount 'C:'
+2025-03-27 14:33:34,976 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:33:49,329 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\overfit test.v1i.coco-mmdetection\train\3YSQClDila2HfjLRjxcE0I7uEFGDltYg3jtzWOQJ_jpg.rf.b6b3b6a5337be3037f6fb9db5a841d56.jpg
+2025-03-27 14:33:49,330 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\overfit test.v1i.coco-mmdetection\train\4_JPG_jpg.rf.aade4963476f8b7571817fb5e207ba8f.jpg
+2025-03-27 14:33:49,331 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\overfit test.v1i.coco-mmdetection\train\4wCGTBLz6xHdNTBewvBpvUoFdMlLUVnqUnmVRLRF_jpg.rf.3fe912ca3ad6889f21664f09303847ad.jpg
+2025-03-27 14:33:50,565 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\overfit test.v1i.coco-mmdetection\train\3YSQClDila2HfjLRjxcE0I7uEFGDltYg3jtzWOQJ_jpg.rf.b6b3b6a5337be3037f6fb9db5a841d56.jpg
+2025-03-27 14:33:50,567 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\overfit test.v1i.coco-mmdetection\train\3YSQClDila2HfjLRjxcE0I7uEFGDltYg3jtzWOQJ_jpg.rf.b6b3b6a5337be3037f6fb9db5a841d56.jpg
+2025-03-27 14:33:54,332 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 14:34:09,805 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 14:34:10,678 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\overfit test.v1i.coco-mmdetection\train\4_JPG_jpg.rf.aade4963476f8b7571817fb5e207ba8f.jpg
+2025-03-27 14:34:10,681 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\overfit test.v1i.coco-mmdetection\train\4_JPG_jpg.rf.aade4963476f8b7571817fb5e207ba8f.jpg
+2025-03-27 14:34:13,708 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\overfit test.v1i.coco-mmdetection\train\3YSQClDila2HfjLRjxcE0I7uEFGDltYg3jtzWOQJ_jpg.rf.b6b3b6a5337be3037f6fb9db5a841d56.jpg
+2025-03-27 14:34:13,713 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\overfit test.v1i.coco-mmdetection\train\3YSQClDila2HfjLRjxcE0I7uEFGDltYg3jtzWOQJ_jpg.rf.b6b3b6a5337be3037f6fb9db5a841d56.jpg
+2025-03-27 14:34:17,843 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\overfit test.v1i.coco-mmdetection\train\4wCGTBLz6xHdNTBewvBpvUoFdMlLUVnqUnmVRLRF_jpg.rf.3fe912ca3ad6889f21664f09303847ad.jpg
+2025-03-27 14:34:17,848 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\overfit test.v1i.coco-mmdetection\train\4wCGTBLz6xHdNTBewvBpvUoFdMlLUVnqUnmVRLRF_jpg.rf.3fe912ca3ad6889f21664f09303847ad.jpg
+2025-03-27 14:34:34,966 [ERROR] apps.app.utils.project_manager: Failed to save results: path is on mount 'D:', start on mount 'C:'
+2025-03-27 14:34:34,967 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:34:39,511 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\S. Aureus Plates.v3-1280-x-1280-training-version.coco-mmdetection\test\1230_jpg.rf.f90c6205599bcce443dcddfd15dc8fac.jpg
+2025-03-27 14:34:39,522 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\S. Aureus Plates.v3-1280-x-1280-training-version.coco-mmdetection\test\2930_jpg.rf.f6234dbcc016602bb5d11be0795229ab.jpg
+2025-03-27 14:34:40,602 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\S. Aureus Plates.v3-1280-x-1280-training-version.coco-mmdetection\test\1230_jpg.rf.f90c6205599bcce443dcddfd15dc8fac.jpg
+2025-03-27 14:34:40,615 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\S. Aureus Plates.v3-1280-x-1280-training-version.coco-mmdetection\test\1230_jpg.rf.f90c6205599bcce443dcddfd15dc8fac.jpg
+2025-03-27 14:34:44,721 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 14:35:00,306 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 14:35:03,582 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 14:35:05,759 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 14:35:07,482 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 14:35:08,186 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 14:35:08,676 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 14:35:08,966 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 14:35:09,393 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 14:35:10,046 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 14:35:10,434 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\S. Aureus Plates.v3-1280-x-1280-training-version.coco-mmdetection\test\2930_jpg.rf.f6234dbcc016602bb5d11be0795229ab.jpg
+2025-03-27 14:35:10,448 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\S. Aureus Plates.v3-1280-x-1280-training-version.coco-mmdetection\test\2930_jpg.rf.f6234dbcc016602bb5d11be0795229ab.jpg
+2025-03-27 14:35:15,703 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\S. Aureus Plates.v3-1280-x-1280-training-version.coco-mmdetection\test\1230_jpg.rf.f90c6205599bcce443dcddfd15dc8fac.jpg
+2025-03-27 14:35:15,716 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\S. Aureus Plates.v3-1280-x-1280-training-version.coco-mmdetection\test\1230_jpg.rf.f90c6205599bcce443dcddfd15dc8fac.jpg
+2025-03-27 14:35:23,841 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 14:35:23,886 [INFO] __main__: Application cleanup completed
+2025-03-27 14:44:32,749 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 14:44:34,945 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 14:44:34,946 [INFO] __main__: Using device: cpu
+2025-03-27 14:44:34,974 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 14:44:35,564 [INFO] __main__: Application initialized successfully
+2025-03-27 14:44:42,706 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:44:48,033 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:44:48,045 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:44:48,047 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:44:48,060 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 14:44:48,067 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 14:44:48,840 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 14:44:48,856 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 14:44:50,268 [INFO] apps.app.models.colony_detector: Using default model
+2025-03-27 14:44:53,092 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:44:53,107 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:44:55,298 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:44:55,300 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:44:57,044 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:44:57,052 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:44:59,509 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 14:44:59,522 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 14:45:03,043 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 14:45:03,077 [INFO] __main__: Application cleanup completed
+2025-03-27 14:45:10,299 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 14:45:12,787 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 14:45:12,788 [INFO] __main__: Using device: cpu
+2025-03-27 14:45:12,828 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 14:45:13,776 [INFO] __main__: Application initialized successfully
+2025-03-27 14:45:35,110 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:45:42,929 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 14:45:42,940 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 14:45:42,943 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 14:45:42,954 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 14:45:42,961 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 14:45:58,388 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\608_jpg.rf.cb7abba00164936430dc7ae902d1e355.jpg
+2025-03-27 14:45:58,391 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\654_jpg.rf.96a3111afee98dacba6c6a88baba5e70.jpg
+2025-03-27 14:45:59,626 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\608_jpg.rf.cb7abba00164936430dc7ae902d1e355.jpg
+2025-03-27 14:45:59,629 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\608_jpg.rf.cb7abba00164936430dc7ae902d1e355.jpg
+2025-03-27 14:46:00,874 [INFO] apps.app.models.colony_detector: Using default model
+2025-03-27 14:46:11,599 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\654_jpg.rf.96a3111afee98dacba6c6a88baba5e70.jpg
+2025-03-27 14:46:11,601 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\654_jpg.rf.96a3111afee98dacba6c6a88baba5e70.jpg
+2025-03-27 14:46:21,227 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\608_jpg.rf.cb7abba00164936430dc7ae902d1e355.jpg
+2025-03-27 14:46:21,230 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\608_jpg.rf.cb7abba00164936430dc7ae902d1e355.jpg
+2025-03-27 14:46:22,991 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:46:22,992 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:46:24,570 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\654_jpg.rf.96a3111afee98dacba6c6a88baba5e70.jpg
+2025-03-27 14:46:24,571 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\S. Aureus Plates.v1-training-yolov5-notebook.coco-mmdetection\test\654_jpg.rf.96a3111afee98dacba6c6a88baba5e70.jpg
+2025-03-27 14:46:31,486 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:46:31,487 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 14:46:34,544 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 14:46:34,583 [INFO] __main__: Application cleanup completed
+2025-03-27 15:03:45,577 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 15:04:11,235 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 15:08:00,365 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 15:10:19,476 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 15:18:41,962 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 15:18:46,789 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 15:18:46,790 [INFO] __main__: Using device: cpu
+2025-03-27 15:18:46,844 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 15:18:47,673 [INFO] __main__: Application initialized successfully
+2025-03-27 15:19:35,011 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 15:19:46,956 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 15:19:46,965 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 15:19:46,967 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 15:19:46,978 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 15:19:46,985 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 15:19:48,040 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 15:19:48,058 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 15:19:49,333 [INFO] apps.app.core.models.colony_detector: Using default model
+2025-03-27 15:19:50,260 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 15:19:50,263 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 15:19:52,808 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 15:19:52,825 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 15:20:49,469 [INFO] apps.app.core.models.colony_detector: Loading model from: D:/train/faster_rcnn_colony_epoch12.pth
+2025-03-27 15:21:00,751 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 15:21:00,765 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 15:21:01,735 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 15:21:01,755 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 15:21:02,891 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 15:21:02,900 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 15:21:15,068 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 15:21:15,081 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 15:21:16,532 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 15:21:16,547 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 15:21:18,266 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 15:21:18,270 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 15:21:20,725 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 15:21:20,732 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 15:21:21,306 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 15:21:21,316 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 15:21:25,547 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 15:21:25,585 [INFO] __main__: Application cleanup completed
+2025-03-27 15:57:40,978 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 15:57:49,239 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 15:57:49,240 [INFO] __main__: Using device: cpu
+2025-03-27 15:57:49,309 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 15:57:49,403 [ERROR] __main__: Application failed to start: 'ResultImageDock' object has no attribute '_zoom_to_fit'
+2025-03-27 15:57:49,406 [INFO] __main__: Application cleanup completed
+2025-03-27 16:00:16,372 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 16:00:24,100 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 16:00:24,101 [INFO] __main__: Using device: cpu
+2025-03-27 16:00:24,168 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 16:00:25,392 [INFO] __main__: Application initialized successfully
+2025-03-27 16:01:45,047 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 16:01:50,720 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 16:01:50,743 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:01:50,747 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 16:01:50,775 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 16:01:50,787 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 16:01:51,829 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:01:51,847 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:01:56,777 [INFO] apps.app.core.models.colony_detector: Loading model from: D:/train/faster_rcnn_colony_epoch12.pth
+2025-03-27 16:02:06,846 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 16:02:06,849 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 16:02:13,213 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 16:02:13,230 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 16:02:16,096 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 16:02:16,111 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 16:02:20,814 [ERROR] apps.app.gui.main_window: ·ÖÎöÊ§°Ü: 'ResultStatsDock' object has no attribute 'clear'
+2025-03-27 16:02:23,832 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 16:02:23,887 [INFO] __main__: Application cleanup completed
+2025-03-27 16:05:35,617 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 16:05:43,042 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 16:05:43,043 [INFO] __main__: Using device: cpu
+2025-03-27 16:05:43,110 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 16:05:44,185 [INFO] __main__: Application initialized successfully
+2025-03-27 16:06:06,070 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 16:06:15,550 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 16:06:15,569 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:06:15,574 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 16:06:15,597 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 16:06:15,610 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 16:06:16,481 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:06:16,501 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:06:21,084 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 16:06:21,091 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 16:06:24,020 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 16:06:24,024 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 16:06:33,197 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 16:06:33,249 [INFO] __main__: Application cleanup completed
+2025-03-27 16:07:07,810 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 16:07:15,160 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 16:07:15,161 [INFO] __main__: Using device: cpu
+2025-03-27 16:07:15,237 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 16:07:16,476 [INFO] __main__: Application initialized successfully
+2025-03-27 16:07:28,232 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 16:07:36,750 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 16:07:36,772 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:07:36,777 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 16:07:36,800 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 16:07:36,814 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 16:07:37,676 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:07:37,694 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:07:42,550 [ERROR] apps.app.gui.main_window: ·ÖÎöÊ§°Ü: 'ResultTableDock' object has no attribute 'clear'
+2025-03-27 16:07:48,375 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 16:07:48,467 [INFO] __main__: Application cleanup completed
+2025-03-27 16:14:15,956 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 16:14:22,938 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 16:14:22,939 [INFO] __main__: Using device: cpu
+2025-03-27 16:14:23,019 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 16:14:24,109 [INFO] __main__: Application initialized successfully
+2025-03-27 16:14:34,158 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 16:14:40,183 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 16:14:40,203 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:14:40,207 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 16:14:40,231 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 16:14:40,245 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 16:14:40,610 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:14:40,629 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:15:17,757 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: D:\train\My First Project.v2i.coco-mmdetection\test\3583_jpg.rf.03c09cb0f46ecbabdafa87027d44f07c.jpg
+2025-03-27 16:15:18,629 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: D:\train\My First Project.v2i.coco-mmdetection\test\3583_jpg.rf.03c09cb0f46ecbabdafa87027d44f07c.jpg
+2025-03-27 16:15:18,635 [INFO] apps.app.gui.main_window: Successfully loaded image: D:\train\My First Project.v2i.coco-mmdetection\test\3583_jpg.rf.03c09cb0f46ecbabdafa87027d44f07c.jpg
+2025-03-27 16:15:25,189 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 16:15:49,359 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-27 16:15:53,520 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 16:15:53,586 [INFO] __main__: Application cleanup completed
+2025-03-27 16:41:37,035 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 16:41:44,649 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 16:41:44,650 [INFO] __main__: Using device: cpu
+2025-03-27 16:41:44,686 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 16:41:45,690 [INFO] __main__: Application initialized successfully
+2025-03-27 16:42:17,296 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 16:42:22,646 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 16:42:22,665 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:42:22,670 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 16:42:22,698 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 16:42:22,711 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 16:42:23,477 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 16:42:23,502 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 17:00:38,618 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 17:00:46,358 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 17:00:46,359 [INFO] __main__: Using device: cpu
+2025-03-27 17:00:46,438 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 17:00:47,771 [INFO] __main__: Application initialized successfully
+2025-03-27 17:01:02,017 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 17:01:06,756 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 17:01:06,778 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 17:01:06,783 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 17:01:06,808 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 17:01:06,821 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 17:01:07,321 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 17:01:07,330 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 17:01:07,591 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 17:01:07,614 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 17:42:07,603 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 21:16:53,400 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 21:39:24,095 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 21:39:28,063 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 21:39:28,064 [INFO] __main__: Using device: cpu
+2025-03-27 21:39:28,117 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 21:39:29,116 [INFO] __main__: Application initialized successfully
+2025-03-27 21:39:37,653 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 21:39:52,917 [ERROR] apps.app.utils.image_preprocessing: Error loading image C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 21:39:52,918 [ERROR] apps.app.gui.image_list_dock: Failed to add image: fromImage(image: QImage, flags: Qt.ImageConversionFlag = Qt.AutoColor): argument 1 has unexpected type 'NoneType'
+2025-03-27 21:39:54,181 [ERROR] apps.app.utils.image_preprocessing: Error loading image C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 21:39:54,181 [ERROR] apps.app.gui.image_list_dock: Failed to add image: fromImage(image: QImage, flags: Qt.ImageConversionFlag = Qt.AutoColor): argument 1 has unexpected type 'NoneType'
+2025-03-27 21:39:55,346 [ERROR] apps.app.utils.image_preprocessing: Error loading image C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 21:39:55,346 [ERROR] apps.app.gui.image_list_dock: Failed to add image: fromImage(image: QImage, flags: Qt.ImageConversionFlag = Qt.AutoColor): argument 1 has unexpected type 'NoneType'
+2025-03-27 21:39:55,494 [ERROR] apps.app.utils.image_preprocessing: Error loading image C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 21:39:55,496 [ERROR] apps.app.gui.image_list_dock: Failed to add image: fromImage(image: QImage, flags: Qt.ImageConversionFlag = Qt.AutoColor): argument 1 has unexpected type 'NoneType'
+2025-03-27 21:39:55,803 [ERROR] apps.app.utils.image_preprocessing: Error loading image C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg: Failed to load image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 21:39:55,803 [ERROR] apps.app.gui.image_list_dock: Failed to add image: fromImage(image: QImage, flags: Qt.ImageConversionFlag = Qt.AutoColor): argument 1 has unexpected type 'NoneType'
+2025-03-27 21:39:56,677 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 21:39:56,714 [INFO] __main__: Application cleanup completed
+2025-03-27 21:56:37,049 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 21:56:40,792 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 21:56:40,792 [INFO] __main__: Using device: cpu
+2025-03-27 21:56:40,841 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 21:56:41,818 [INFO] __main__: Application initialized successfully
+2025-03-27 21:57:39,650 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 22:05:28,960 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 22:05:31,026 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 22:05:31,027 [INFO] __main__: Using device: cpu
+2025-03-27 22:05:31,062 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 22:05:31,063 [ERROR] __main__: Application failed to start: MainWindow.__init__() takes 1 positional argument but 2 were given
+2025-03-27 22:05:31,064 [INFO] __main__: Application cleanup completed
+2025-03-27 23:25:23,079 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 23:25:27,014 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 23:25:27,014 [INFO] __main__: Using device: cpu
+2025-03-27 23:25:27,059 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 23:25:27,869 [INFO] __main__: Application initialized successfully
+2025-03-27 23:27:25,898 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123/213
+2025-03-27 23:27:32,857 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\213\images\2121.jpg
+2025-03-27 23:27:32,874 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\213\images\2021041310020608608.jpg
+2025-03-27 23:27:32,878 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\213\images\OIP-C.jpg
+2025-03-27 23:27:32,891 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\213\images\R-C.jpg
+2025-03-27 23:27:32,899 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\213\images\t019872959c62f44875.jpg
+2025-03-27 23:27:33,796 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\213\images\2021041310020608608.jpg
+2025-03-27 23:27:33,804 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\213\images\2021041310020608608.jpg
+2025-03-27 23:27:58,658 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\213\images\OIP-C.jpg
+2025-03-27 23:27:58,661 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\213\images\OIP-C.jpg
+2025-03-27 23:32:34,987 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 23:32:42,341 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 23:32:42,342 [INFO] __main__: Using device: cpu
+2025-03-27 23:32:42,441 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 23:32:43,608 [INFO] __main__: Application initialized successfully
+2025-03-27 23:32:52,793 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 23:33:04,049 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 23:33:04,070 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 23:33:04,076 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 23:33:04,104 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 23:33:04,119 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 23:33:04,885 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 23:33:04,905 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 23:33:05,782 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 23:33:05,793 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 23:33:28,774 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 23:33:33,878 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 23:33:37,460 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-27 23:33:42,665 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 23:33:42,666 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 23:33:46,487 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 23:33:46,507 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 23:33:48,716 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 23:33:48,721 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 23:34:21,106 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 23:34:21,263 [INFO] __main__: Application cleanup completed
+2025-03-27 23:35:34,479 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 23:35:42,025 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 23:35:42,026 [INFO] __main__: Using device: cpu
+2025-03-27 23:35:42,100 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 23:35:43,572 [INFO] __main__: Application initialized successfully
+2025-03-27 23:36:41,652 [INFO] apps.app.core.models.colony_detector: Loading model from: D:/train/faster_rcnn_colony_epoch8.pth
+2025-03-27 23:36:51,183 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-27 23:37:01,000 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 23:37:01,027 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 23:37:01,097 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\model_analysis.png
+2025-03-27 23:37:01,101 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 23:37:01,358 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\performance_metrics.png
+2025-03-27 23:37:01,380 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 23:37:01,395 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 23:37:01,409 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_loss.png
+2025-03-27 23:37:01,686 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-27 23:37:02,632 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\model_analysis.png
+2025-03-27 23:37:02,657 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\model_analysis.png
+2025-03-27 23:37:06,336 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 23:37:06,341 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 23:37:06,349 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 23:37:06,354 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-27 23:37:06,356 [INFO] apps.app.gui.image_list_dock: Successfully removed image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\model_analysis.png
+2025-03-27 23:37:07,184 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\performance_metrics.png
+2025-03-27 23:37:07,376 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\performance_metrics.png
+2025-03-27 23:37:08,174 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 23:37:08,196 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 23:37:08,217 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 23:37:08,233 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 23:37:08,234 [INFO] apps.app.gui.image_list_dock: Successfully removed image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\performance_metrics.png
+2025-03-27 23:37:08,702 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_loss.png
+2025-03-27 23:37:08,719 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_loss.png
+2025-03-27 23:37:09,707 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-27 23:37:09,895 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-27 23:37:10,087 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-27 23:37:10,267 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-27 23:37:10,268 [INFO] apps.app.gui.image_list_dock: Successfully removed image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_loss.png
+2025-03-27 23:37:11,478 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 23:37:11,492 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 23:37:11,498 [INFO] apps.app.gui.image_list_dock: Successfully removed image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-27 23:37:12,499 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 23:37:12,509 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-27 23:37:20,102 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 23:37:20,118 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-27 23:37:22,099 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 23:37:22,116 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-27 23:37:24,421 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 23:37:24,434 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-27 23:37:26,573 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 23:37:26,659 [INFO] __main__: Application cleanup completed
+2025-03-27 23:40:33,914 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-27 23:40:40,270 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-27 23:40:40,271 [INFO] __main__: Using device: cpu
+2025-03-27 23:40:40,350 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-27 23:40:41,581 [INFO] __main__: Application initialized successfully
+2025-03-27 23:49:49,548 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-27 23:49:49,667 [INFO] __main__: Application cleanup completed
+2025-03-28 07:48:06,023 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-28 07:48:09,433 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-28 07:48:09,434 [INFO] __main__: Using device: cpu
+2025-03-28 07:48:09,479 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-28 07:48:09,950 [INFO] __main__: Application initialized successfully
+2025-03-28 07:48:18,108 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-28 07:48:26,345 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 07:48:26,355 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-28 07:48:26,371 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\model_analysis.png
+2025-03-28 07:48:26,374 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-28 07:48:26,476 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\performance_metrics.png
+2025-03-28 07:48:26,487 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-28 07:48:26,493 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-28 07:48:26,500 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_loss.png
+2025-03-28 07:48:26,604 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-28 07:48:28,246 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-28 07:48:28,253 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-28 07:48:29,020 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 07:48:29,023 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 07:50:22,524 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-28 07:50:25,830 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-28 07:50:25,831 [INFO] __main__: Using device: cpu
+2025-03-28 07:50:25,866 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-28 07:50:26,396 [INFO] __main__: Application initialized successfully
+2025-03-28 07:50:33,925 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-28 07:50:41,798 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 07:50:41,812 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-28 07:50:41,829 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\model_analysis.png
+2025-03-28 07:50:41,831 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-28 07:50:41,957 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\performance_metrics.png
+2025-03-28 07:50:41,970 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-28 07:50:41,976 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-28 07:50:41,984 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_loss.png
+2025-03-28 07:50:42,110 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-28 07:50:42,641 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 07:50:42,648 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 07:50:51,199 [INFO] apps.app.gui.main_window: Updated preprocessing configuration
+2025-03-28 07:50:59,622 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-28 07:50:59,625 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-28 07:51:01,004 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-28 07:51:01,015 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-28 07:51:17,188 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-28 07:51:17,208 [INFO] __main__: Application cleanup completed
+2025-03-28 07:59:25,039 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-28 07:59:27,754 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-28 07:59:27,754 [INFO] __main__: Using device: cpu
+2025-03-28 07:59:27,776 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-28 07:59:28,030 [INFO] __main__: Application initialized successfully
+2025-03-28 07:59:36,955 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-28 07:59:41,938 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 07:59:41,948 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-28 07:59:41,963 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\model_analysis.png
+2025-03-28 07:59:41,965 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-28 07:59:42,074 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\performance_metrics.png
+2025-03-28 07:59:42,085 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-28 07:59:42,091 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-28 07:59:42,098 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_loss.png
+2025-03-28 07:59:42,205 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-28 07:59:43,012 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 07:59:43,019 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 08:02:23,690 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-28 08:02:27,275 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-28 08:02:27,275 [INFO] __main__: Using device: cpu
+2025-03-28 08:02:27,331 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-28 08:02:27,830 [INFO] __main__: Application initialized successfully
+2025-03-28 08:03:03,949 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-28 08:03:18,556 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 08:03:18,566 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-28 08:03:18,584 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\model_analysis.png
+2025-03-28 08:03:18,587 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-28 08:03:18,700 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\performance_metrics.png
+2025-03-28 08:03:18,715 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-28 08:03:18,722 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-28 08:03:18,736 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_loss.png
+2025-03-28 08:03:18,863 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-28 08:03:19,666 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-28 08:03:19,682 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-28 08:03:27,398 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-28 08:03:27,398 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-28 08:03:34,412 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:36,093 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:37,048 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:37,910 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:38,668 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:41,281 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:41,795 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:42,658 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:43,584 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:46,584 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:50,525 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:03:56,551 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-28 08:03:56,581 [INFO] __main__: Application cleanup completed
+2025-03-28 08:12:27,908 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-28 08:12:31,594 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-28 08:12:31,594 [INFO] __main__: Using device: cpu
+2025-03-28 08:12:31,639 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-28 08:12:32,403 [INFO] __main__: Application initialized successfully
+2025-03-28 08:12:40,614 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-28 08:12:47,482 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2121.jpg
+2025-03-28 08:12:47,500 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\2021041310020608608.jpg
+2025-03-28 08:12:47,503 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-28 08:12:47,517 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-28 08:12:47,521 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-28 08:12:48,058 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-28 08:12:48,058 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\OIP-C.jpg
+2025-03-28 08:12:48,325 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-28 08:12:48,334 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\R-C.jpg
+2025-03-28 08:12:48,596 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-28 08:12:48,614 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\images\t019872959c62f44875.jpg
+2025-03-28 08:12:53,496 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:53,501 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:57,800 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:57,835 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:57,867 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:57,896 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:57,932 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:57,960 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:57,991 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,015 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,034 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,061 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,093 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,116 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,150 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,175 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,709 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,758 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,787 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,833 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,866 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,909 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,939 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:58,975 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:59,009 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:59,041 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:59,071 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:59,099 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:59,133 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:59,898 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:59,927 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:59,958 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:12:59,975 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:13:00,002 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:13:00,026 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:13:00,047 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:13:02,325 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-28 08:13:02,359 [INFO] __main__: Application cleanup completed
+2025-03-28 08:17:07,287 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-03-28 08:17:10,597 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-03-28 08:17:10,597 [INFO] __main__: Using device: cpu
+2025-03-28 08:17:10,635 [INFO] apps.app.utils.i18n: Loaded translations from C:\Users\º«ÌÎ\OneDrive\ÎÄµµ\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-03-28 08:17:11,368 [INFO] __main__: Application initialized successfully
+2025-03-28 08:17:18,981 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/OneDrive/Desktop/123
+2025-03-28 08:17:25,932 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 08:17:25,938 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2021041310020608608.jpg
+2025-03-28 08:17:25,949 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\model_analysis.png
+2025-03-28 08:17:25,959 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\OIP-C.jpg
+2025-03-28 08:17:26,078 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\performance_metrics.png
+2025-03-28 08:17:26,097 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\R-C.jpg
+2025-03-28 08:17:26,111 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\t019872959c62f44875.jpg
+2025-03-28 08:17:26,125 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_loss.png
+2025-03-28 08:17:26,256 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\OneDrive\Desktop\123\training_progress.png
+2025-03-28 08:17:26,642 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 08:17:26,642 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\OneDrive\Desktop\123\2121.jpg
+2025-03-28 08:17:27,468 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:17:27,474 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:17:30,928 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:17:31,528 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:17:31,981 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:17:32,353 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:17:33,332 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:17:33,622 [ERROR] apps.app.utils.image_preprocessing: Error preprocessing image: 'PreprocessingConfig' object has no attribute 'auto_optimize'
+2025-03-28 08:17:36,839 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:17:37,889 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:17:41,008 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:665: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-03-28 08:17:50,854 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-03-28 08:17:50,890 [INFO] __main__: Application cleanup completed

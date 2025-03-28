@@ -97,8 +97,13 @@ class ProjectManager:
     def save_results(self, project_path, image_path, detections, stats):
         """Save detection results"""
         try:
-            # Get relative image path
-            rel_path = os.path.relpath(image_path, project_path)
+            # Handle cross-drive paths
+            if os.path.splitdrive(project_path)[0] != os.path.splitdrive(image_path)[0]:
+                # If on different drives, use basename only
+                rel_path = os.path.basename(image_path)
+            else:
+                # Same drive - use relative path
+                rel_path = os.path.relpath(image_path, project_path)
             
             # Prepare result data
             result_data = {

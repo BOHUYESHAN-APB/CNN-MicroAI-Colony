@@ -5,21 +5,32 @@ Colony detection model implementation
 import cv2
 import numpy as np
 import logging
+import torch
 from pathlib import Path
+from typing import Optional
 
 logger = logging.getLogger(__name__)
 
 class ColonyDetector:
     """Colony detection model"""
     
-    def __init__(self):
+    def __init__(self, model_path: Optional[str] = None):
         self.initialized = False
         self.model = None
+        self.model_path = model_path
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
     def initialize(self):
-        """Initialize the model"""
+        """Initialize the model with optional custom model path"""
         try:
-            # TODO: Load actual ML model
+            if self.model_path:
+                logger.info(f"Loading model from: {self.model_path}")
+                # TODO: Load model from custom path
+                self.model = None  # Placeholder for actual model loading
+            else:
+                logger.info("Using default model")
+                # TODO: Load default model
+            
             self.initialized = True
             return True
         except Exception as e:

@@ -509,6 +509,37 @@ class ResultImageDock(BaseDockWidget):
             logger.error(f"Error displaying results: {str(e)}")
             self.clear()
             
+    def get_annotated_image(self):
+        """Get the current annotated image with detection results"""
+        if self.current_image is None or not self.current_detections:
+            return None
+            
+        # Make a copy of the image
+        annotated_img = self.current_image.copy()
+        
+        # Draw detections
+        for det in self.current_detections:
+            center = det.get("center", (0, 0))
+            diameter = det.get("diameter", 0)
+            confidence = det.get("confidence", 0)
+            
+            # Color based on confidence
+            color = (
+                int(255 * (1 - confidence)),  # Red
+                int(255 * confidence),       # Green
+                0                            # Blue
+            )
+            
+            # Draw circle
+            cv2.circle(annotated_img, center, diameter // 2, color, 2)
+            
+            # Draw confidence text
+            cv2.putText(annotated_img, f"{confidence:.2f}",
+                       (center[0], center[1] - diameter // 2 - 5),
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+                       
+        return annotated_img
+            
     def clear(self):
         """Clear display"""
         self.current_image = None

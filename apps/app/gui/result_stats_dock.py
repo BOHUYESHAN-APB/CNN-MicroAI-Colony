@@ -149,3 +149,14 @@ class ResultStatsDock(BaseDockWidget):
     def minimumSizeHint(self):
         """Provide reasonable minimum size"""
         return QSize(250, 300)
+        
+    def clear(self):
+        """Clear all statistics display"""
+        self.stats_form.colony_count.setText("0")
+        self.stats_form.avg_size.setText("0.0")
+        self.stats_form.min_size.setText("0.0")
+        self.stats_form.max_size.setText("0.0")
+        self.stats_form.avg_conf.setText("0.0")
+        self.stats_form.total_area.setText("0.0")
+        self.stats_form.density.setText("0.0")
+        self.stats_form.dist_list.setText(translate("暂无数据"))
