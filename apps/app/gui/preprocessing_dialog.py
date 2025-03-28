@@ -7,7 +7,7 @@ import numpy as np
 import logging
 from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel, 
                             QSpinBox, QDoubleSpinBox, QCheckBox, QPushButton,
-                            QGroupBox, QWidget, QSplitter)
+                            QGroupBox, QWidget, QSplitter, QComboBox, QScrollArea)
 from PyQt6.QtCore import Qt, QSize, pyqtSignal, QPoint
 from PyQt6.QtGui import QPainter, QPen, QColor, QMouseEvent, QImage
 from .preview_widget import PreviewWidget
@@ -154,6 +154,7 @@ class MaskDrawingWidget(QWidget):
 
 class PreprocessingDialog(QDialog):
     """Dialog for configuring preprocessing parameters"""
+    config_changed = pyqtSignal()  # Emitted when config changes
     
     def __init__(self, parent=None, image=None):
         super().__init__(parent)
@@ -164,7 +165,8 @@ class PreprocessingDialog(QDialog):
     def setup_ui(self):
         """Setup user interface"""
         self.setWindowTitle("图像预处理设置")
-        self.setMinimumWidth(1200)
+        self.setMinimumSize(800, 600)  # 更小的最小尺寸
+        self.resize(1000, 700)  # 更合理的初始大小
         
         # Create main layout
         layout = QVBoxLayout(self)
@@ -172,10 +174,13 @@ class PreprocessingDialog(QDialog):
         # Create horizontal splitter
         splitter = QSplitter(Qt.Orientation.Horizontal)
         
-        # Left side: settings
+        # Left side: settings with scroll area
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
         settings_widget = QWidget()
         settings_layout = QVBoxLayout(settings_widget)
-        settings_layout.setContentsMargins(0, 0, 0, 0)
+        settings_layout.setContentsMargins(5, 5, 5, 5)
+        settings_layout.setSpacing(10)
         
         # Quick mode selection
         mode_group = QGroupBox("快速模式选择")
@@ -313,6 +318,124 @@ class PreprocessingDialog(QDialog):
         params_group.setLayout(params_layout)
         settings_layout.addWidget(params_group)
         
+        # Edge detection
+        edge_layout = QVBoxLayout()
+        self.edge_cb = QCheckBox("启用边缘检测")
+        self.edge_cb.setChecked(self.config.edge_detection)
+        self.edge_cb.stateChanged.connect(self.on_param_changed)
+        edge_layout.addWidget(self.edge_cb)
+
+        edge_type_layout = QHBoxLayout()
+        edge_type_layout.addWidget(QLabel("边缘检测类型:"))
+        self.edge_type_cb = QComboBox()
+        self.edge_type_cb.addItems(["Canny", "Sobel"])
+        self.edge_type_cb.setCurrentText(self.config.edge_type.capitalize())
+        self.edge_type_cb.currentTextChanged.connect(self.on_param_changed)
+        edge_type_layout.addWidget(self.edge_type_cb)
+        edge_layout.addLayout(edge_type_layout)
+
+        # Canny params
+        canny_layout = QHBoxLayout()
+        canny_layout.addWidget(QLabel("阈值1:"))
+        self.canny_thresh1_sb = QSpinBox()
+        self.canny_thresh1_sb.setRange(0, 255)
+        self.canny_thresh1_sb.setValue(self.config.canny_threshold1)
+        self.canny_thresh1_sb.valueChanged.connect(self.on_param_changed)
+        canny_layout.addWidget(self.canny_thresh1_sb)
+
+        canny_layout.addWidget(QLabel("阈值2:"))
+        self.canny_thresh2_sb = QSpinBox()
+        self.canny_thresh2_sb.setRange(0, 255)
+        self.canny_thresh2_sb.setValue(self.config.canny_threshold2)
+        self.canny_thresh2_sb.valueChanged.connect(self.on_param_changed)
+        canny_layout.addWidget(self.canny_thresh2_sb)
+        edge_layout.addLayout(canny_layout)
+
+        # Sobel params
+        sobel_layout = QHBoxLayout()
+        sobel_layout.addWidget(QLabel("dx:"))
+        self.sobel_dx_sb = QSpinBox()
+        self.sobel_dx_sb.setRange(0, 2)
+        self.sobel_dx_sb.setValue(self.config.sobel_dx)
+        self.sobel_dx_sb.valueChanged.connect(self.on_param_changed)
+        sobel_layout.addWidget(self.sobel_dx_sb)
+
+        sobel_layout.addWidget(QLabel("dy:"))
+        self.sobel_dy_sb = QSpinBox()
+        self.sobel_dy_sb.setRange(0, 2)
+        self.sobel_dy_sb.setValue(self.config.sobel_dy)
+        self.sobel_dy_sb.valueChanged.connect(self.on_param_changed)
+        sobel_layout.addWidget(self.sobel_dy_sb)
+
+        sobel_layout.addWidget(QLabel("核大小:"))
+        self.sobel_ksize_sb = QSpinBox()
+        self.sobel_ksize_sb.setRange(1, 7)
+        self.sobel_ksize_sb.setSingleStep(2)
+        self.sobel_ksize_sb.setValue(self.config.sobel_ksize)
+        self.sobel_ksize_sb.valueChanged.connect(self.on_param_changed)
+        sobel_layout.addWidget(self.sobel_ksize_sb)
+        edge_layout.addLayout(sobel_layout)
+
+        params_layout.addLayout(edge_layout)
+
+        # Morphological operations
+        morph_layout = QVBoxLayout()
+        self.morph_cb = QCheckBox("启用形态学操作")
+        self.morph_cb.setChecked(self.config.morphology)
+        self.morph_cb.stateChanged.connect(self.on_param_changed)
+        morph_layout.addWidget(self.morph_cb)
+
+        morph_type_layout = QHBoxLayout()
+        morph_type_layout.addWidget(QLabel("操作类型:"))
+        self.morph_type_cb = QComboBox()
+        self.morph_type_cb.addItems(["膨胀", "腐蚀", "开运算", "闭运算"])
+        self.morph_type_cb.setCurrentText({
+            'dilate': '膨胀',
+            'erode': '腐蚀',
+            'open': '开运算',
+            'close': '闭运算'
+        }[self.config.morph_op])
+        self.morph_type_cb.currentTextChanged.connect(self.on_param_changed)
+        morph_type_layout.addWidget(self.morph_type_cb)
+        morph_layout.addLayout(morph_type_layout)
+
+        morph_params = QHBoxLayout()
+        morph_params.addWidget(QLabel("核大小:"))
+        self.morph_kernel_sb = QSpinBox()
+        self.morph_kernel_sb.setRange(1, 15)
+        self.morph_kernel_sb.setValue(self.config.morph_kernel)
+        self.morph_kernel_sb.valueChanged.connect(self.on_param_changed)
+        morph_params.addWidget(self.morph_kernel_sb)
+
+        morph_params.addWidget(QLabel("迭代次数:"))
+        self.morph_iter_sb = QSpinBox()
+        self.morph_iter_sb.setRange(1, 10)
+        self.morph_iter_sb.setValue(self.config.morph_iterations)
+        self.morph_iter_sb.valueChanged.connect(self.on_param_changed)
+        morph_params.addWidget(self.morph_iter_sb)
+        morph_layout.addLayout(morph_params)
+
+        params_layout.addLayout(morph_layout)
+
+        # Shape presets for mask
+        shape_group = QGroupBox("形状预设")
+        shape_layout = QHBoxLayout()
+        
+        self.circle_btn = QPushButton("圆形")
+        self.circle_btn.clicked.connect(lambda: self.add_shape_preset('circle'))
+        shape_layout.addWidget(self.circle_btn)
+        
+        self.rect_btn = QPushButton("矩形") 
+        self.rect_btn.clicked.connect(lambda: self.add_shape_preset('rect'))
+        shape_layout.addWidget(self.rect_btn)
+        
+        self.polygon_btn = QPushButton("多边形")
+        self.polygon_btn.clicked.connect(lambda: self.add_shape_preset('polygon'))
+        shape_layout.addWidget(self.polygon_btn)
+        
+        shape_group.setLayout(shape_layout)
+        settings_layout.addWidget(shape_group)
+
         # Bottom buttons
         button_layout = QHBoxLayout()
         ok_btn = QPushButton("确定")
@@ -344,18 +467,21 @@ class PreprocessingDialog(QDialog):
         self.config = PreprocessingConfig()
         self.update_controls()
         self.preview.set_config(self.config)
+        self.config_changed.emit()
         
     def use_auto_params(self):
         """Use auto-optimized parameters"""
         self.config = PreprocessingConfig()
         self.config.auto_optimize = True
         self.preview.set_config(self.config)
+        self.config_changed.emit()
         
     def on_mask_updated(self, mask):
         """Handle mask updates"""
         if self.config:
             self.config.mask = mask
             self.preview.set_config(self.config)
+            self.config_changed.emit()
         
     def update_controls(self):
         """Update controls from config"""
@@ -380,6 +506,26 @@ class PreprocessingDialog(QDialog):
         self.block_size_sb.setValue(self.config.block_size)
         self.c_value_sb.setValue(self.config.c_value)
         
+        # Edge detection
+        self.edge_cb.setChecked(self.config.edge_detection)
+        self.edge_type_cb.setCurrentText(self.config.edge_type.capitalize())
+        self.canny_thresh1_sb.setValue(self.config.canny_threshold1)
+        self.canny_thresh2_sb.setValue(self.config.canny_threshold2)
+        self.sobel_dx_sb.setValue(self.config.sobel_dx)
+        self.sobel_dy_sb.setValue(self.config.sobel_dy)
+        self.sobel_ksize_sb.setValue(self.config.sobel_ksize)
+        
+        # Morphological operations
+        self.morph_cb.setChecked(self.config.morphology)
+        self.morph_type_cb.setCurrentText({
+            'dilate': '膨胀',
+            'erode': '腐蚀',
+            'open': '开运算',
+            'close': '闭运算'
+        }[self.config.morph_op])
+        self.morph_kernel_sb.setValue(self.config.morph_kernel)
+        self.morph_iter_sb.setValue(self.config.morph_iterations)
+        
     def on_param_changed(self):
         """Handle parameter change"""
         try:
@@ -400,9 +546,33 @@ class PreprocessingDialog(QDialog):
             self.config.block_size = self.block_size_sb.value()
             self.config.c_value = self.c_value_sb.value()
             
+            # Edge detection
+            self.config.edge_detection = self.edge_cb.isChecked()
+            self.config.edge_type = self.edge_type_cb.currentText().lower()
+            self.config.canny_threshold1 = self.canny_thresh1_sb.value()
+            self.config.canny_threshold2 = self.canny_thresh2_sb.value()
+            self.config.sobel_dx = self.sobel_dx_sb.value()
+            self.config.sobel_dy = self.sobel_dy_sb.value()
+            self.config.sobel_ksize = self.sobel_ksize_sb.value()
+            
+            # Morphological operations
+            self.config.morphology = self.morph_cb.isChecked()
+            morph_op_map = {
+                '膨胀': 'dilate',
+                '腐蚀': 'erode',
+                '开运算': 'open',
+                '闭运算': 'close'
+            }
+            self.config.morph_op = morph_op_map.get(self.morph_type_cb.currentText(), 'dilate')
+            self.config.morph_kernel = self.morph_kernel_sb.value()
+            self.config.morph_iterations = self.morph_iter_sb.value()
+            
             # Update preview
             if self.image is not None:
                 self.preview.set_config(self.config)
+                
+            # Notify config change
+            self.config_changed.emit()
                 
         except Exception as e:
             logger.error(f"Error updating parameters: {str(e)}")
@@ -417,6 +587,43 @@ class PreprocessingDialog(QDialog):
         if self.image is not None:
             self.preview.set_config(self.config)
             
+    def add_shape_preset(self, shape_type):
+        """Add shape preset to mask"""
+        if self.image is None or self.mask_widget.scaled_image is None:
+            return
+            
+        if not hasattr(self.mask_widget, 'scaled_image') or self.mask_widget.scaled_image.size == 0:
+            return
+            
+        h, w = self.mask_widget.scaled_image.shape[:2]
+        mask = np.zeros((h, w), dtype=np.uint8)
+        
+        if shape_type == 'circle':
+            center = (w//2, h//2)
+            radius = min(w, h) // 3
+            cv2.circle(mask, center, radius, 1, -1)
+        elif shape_type == 'rect':
+            x1, y1 = w//4, h//4
+            x2, y2 = 3*w//4, 3*h//4
+            cv2.rectangle(mask, (x1, y1), (x2, y2), 1, -1)
+        elif shape_type == 'polygon':
+            points = np.array([
+                [w//4, h//4],
+                [3*w//4, h//4],
+                [3*w//4, 3*h//4],
+                [w//4, 3*h//4]
+            ])
+            cv2.fillPoly(mask, [points], 1)
+            
+        # Update mask widget
+        self.mask_widget.current_mask = mask
+        self.mask_widget.update()
+        
+        # Scale mask back to original size and emit
+        h_orig, w_orig = self.image.shape[:2]
+        original_size_mask = cv2.resize(mask, (w_orig, h_orig))
+        self.mask_widget.mask_updated.emit(original_size_mask)
+
     def get_config(self):
         """Get current configuration"""
         return self.config

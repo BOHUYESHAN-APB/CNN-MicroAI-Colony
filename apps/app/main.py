@@ -9,6 +9,7 @@ from logging.handlers import RotatingFileHandler  # 导入 RotatingFileHandler
 
 from PyQt6.QtWidgets import QApplication
 from apps.app.utils.gpu_utils import check_gpu_available, get_device
+from apps.app.utils.config_manager import ConfigManager
 
 # Setup logging
 log_formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(name)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
@@ -38,9 +39,10 @@ except Exception as e:
     logger = logging.getLogger(__name__)
 
 # Add project root to path
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, project_root)
 
+# Use absolute imports
 from apps.app.gui.main_window import MainWindow
 from apps.app.utils.i18n import I18nManager
 
@@ -60,8 +62,11 @@ def main():
             logger.error("Failed to initialize i18n")
             return 1
             
-        # Create main window
-        window = MainWindow()
+        # Initialize config
+        config = ConfigManager()
+        
+        # Create main window with config
+        window = MainWindow(config)
         window.show()
         
         # Start event loop

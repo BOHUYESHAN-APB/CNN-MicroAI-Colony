@@ -14,26 +14,48 @@ class PreprocessingConfig:
     """Image preprocessing configuration"""
     
     def __init__(self):
-        # Default parameters
+        # Processing flags
+        self.enable_processing = True  # Master switch for all processing
+        
+        # Glare removal
         self.remove_glare = True
         self.glare_threshold = 220
         
+        # Normalization
         self.normalize = True
         self.norm_min = 0
         self.norm_max = 255
         
+        # CLAHE
         self.clahe = True
         self.clahe_clip = 2.0
         self.clahe_grid = 8
         
+        # Gaussian blur
         self.gaussian_blur = True
         self.blur_kernel = 5
         
+        # Adaptive threshold
         self.adaptive_threshold = True
         self.block_size = 11
         self.c_value = 2
         
-        # New parameters
+        # Edge detection
+        self.edge_detection = False
+        self.edge_type = 'canny'  # 'canny', 'sobel'
+        self.canny_threshold1 = 100
+        self.canny_threshold2 = 200
+        self.sobel_dx = 1
+        self.sobel_dy = 1
+        self.sobel_ksize = 3
+        
+        # Morphological operations
+        self.morphology = False
+        self.morph_op = 'dilate'  # 'erode', 'dilate', 'open', 'close'
+        self.morph_kernel = 3
+        self.morph_iterations = 1
+        
+        # Auto optimization
         self.auto_optimize = False
         self.mask = None  # Will store the mask array
         
@@ -163,7 +185,11 @@ def preprocess_image(image: np.ndarray, config: Optional[PreprocessingConfig] = 
             
         # Apply mask if provided
         if config.mask is not None:
-            gray = cv2.multiply(gray, config.mask)
+            # Ensure mask has same dimensions and type as image
+            mask = config.mask.astype(gray.dtype)
+            if mask.shape != gray.shape:
+                mask = cv2.resize(mask, (gray.shape[1], gray.shape[0]))
+            gray = cv2.multiply(gray, mask)
         
         # Remove glare
         if config.remove_glare:
@@ -209,13 +235,34 @@ def preprocess_image(image: np.ndarray, config: Optional[PreprocessingConfig] = 
                 config.c_value
             )
             
+        # Edge detection
+        if config.edge_detection and config.enable_processing:
+            if config.edge_type == 'canny':
+                gray = cv2.Canny(gray, config.canny_threshold1, config.canny_threshold2)
+            elif config.edge_type == 'sobel':
+                gray = cv2.Sobel(gray, cv2.CV_64F, config.sobel_dx, config.sobel_dy, ksize=config.sobel_ksize)
+                gray = np.absolute(gray)
+                gray = np.uint8(255 * gray / np.max(gray))
+        
+        # Morphological operations
+        if config.morphology and config.enable_processing:
+            kernel = np.ones((config.morph_kernel, config.morph_kernel), np.uint8)
+            if config.morph_op == 'erode':
+                gray = cv2.erode(gray, kernel, iterations=config.morph_iterations)
+            elif config.morph_op == 'dilate':
+                gray = cv2.dilate(gray, kernel, iterations=config.morph_iterations)
+            elif config.morph_op == 'open':
+                gray = cv2.morphologyEx(gray, cv2.MORPH_OPEN, kernel)
+            elif config.morph_op == 'close':
+                gray = cv2.morphologyEx(gray, cv2.MORPH_CLOSE, kernel)
+        
         # Convert back to RGB for display if needed
         if len(image.shape) == 3:
             processed = cv2.cvtColor(gray, cv2.COLOR_GRAY2RGB)
         else:
             processed = gray
             
-        return processed
+        return processed if config.enable_processing else image.copy()
         
     except Exception as e:
         logger.error(f"Error preprocessing image: {str(e)}")
