@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菌落分析系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .batch-results {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .result-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">菌落分析系统</a>
+                <div class="d-flex align-items-center">
+                    <div class="form-check form-switch me-3">
+                        <input class="form-check-input" type="checkbox" id="themeSwitch">
+                        <label class="form-check-label" for="themeSwitch">夜间模式</label>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary" id="settingsBtn">
+                        <i class="bi bi-gear"></i> 设置
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>分析控制</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">选择模型</label>
+                            <select class="form-select" id="model-type">
+                                <option value="lightweight">轻量版(快速)</option>
+                                <option value="balanced" selected>平衡版(推荐)</option>
+                                <option value="accurate">精确版</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">图像预处理</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="preprocess_methods" value="grayscale" id="grayscaleCheck" checked>
+                                <label class="form-check-label" for="grayscaleCheck">灰度化</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="preprocess_methods" value="hist_equal" id="histEqualCheck">
+                                <label class="form-check-label" for="histEqualCheck">直方图均衡化</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="preprocess_methods" value="gaussian_blur" id="blurCheck">
+                                <label class="form-check-label" for="blurCheck">高斯模糊</label>
+                                <input type="range" class="form-range" min="1" max="9" step="2" value="3" id="blurSize">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="preprocess_methods" value="edge_detect" id="edgeCheck">
+                                <label class="form-check-label" for="edgeCheck">边缘检测</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="preprocess_methods" value="watershed" id="watershedCheck">
+                                <label class="form-check-label" for="watershedCheck">分水岭分割</label>
+                                <input type="range" class="form-range" min="0.1" max="0.5" step="0.1" value="0.3" id="watershedThreshold">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">置信度阈值</label>
+                            <input type="range" class="form-range" min="0.1" max="0.9" step="0.1" value="0.5" id="confidenceThreshold">
+                            <div class="text-end"><span id="thresholdValue">0.5</span></div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" id="analyze-btn">单图分析</button>
+                            <button class="btn btn-secondary mt-2" id="batch-analyze-btn">批量分析</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 其他设置卡片保持不变 -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5>显示设置</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="showBoxes" checked>
+                            <label class="form-check-label" for="showBoxes">显示检测框</label>
+                        </div>
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="showScores" checked>
+                            <label class="form-check-label" for="showScores">显示置信度</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="showCenters">
+                            <label class="form-check-label" for="showCenters">显示中心点</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>图像分析</h5>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-primary active" id="single-mode-btn">单图模式</button>
+                            <button class="btn btn-sm btn-outline-secondary" id="batch-mode-btn">批量模式</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- 单图上传区域 -->
+                        <div id="single-upload-container">
+                            <div class="upload-area" id="drop-area">
+                                <p>拖放图片到此处或点击选择文件</p>
+        <input type="file" id="file-input" accept="image/*" style="display:none;">
+        <div id="debug-console" class="mt-3 p-2 border rounded bg-light"></div>
+                            </div>
+                            <div class="image-container mt-3">
+                                <canvas id="imageCanvas"></canvas>
+                                <img id="resultImage" style="display:none;">
+                            </div>
+                        </div>
+
+                        <!-- 批量上传区域 -->
+                        <div id="batch-upload-container" style="display:none;">
+                            <div class="upload-area" id="batch-drop-area">
+                                <p>拖放多个图片到此处或点击选择文件</p>
+                                <input type="file" id="batch-file-input" accept="image/*" multiple style="display:none;">
+                            </div>
+                            <div class="file-list mt-3" id="batch-file-list">
+                                <div class="file-list-header d-flex justify-content-between">
+                                    <h6>已选文件</h6>
+                                    <button class="btn btn-sm btn-outline-danger" id="clear-all-btn">清空全部</button>
+                                </div>
+                                <div class="file-list-items" id="file-list-items">
+                                    <!-- 文件列表将在这里动态生成 -->
+                                </div>
+                            </div>
+                            <div class="batch-results mt-3" id="batch-results">
+                                <!-- 批量结果将在这里动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 结果卡片保持不变 -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5>分析结果</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="result">
+                            <p>分析结果将显示在这里...</p>
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-outline-primary me-2" id="exportImageBtn">导出标记图片</button>
+                            <button class="btn btn-outline-secondary" id="exportDataBtn">导出数据(CSV)</button>
+                            <button class="btn btn-outline-success float-end" id="exportBatchBtn" style="display:none;">导出批量结果</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script>
+        // 模式切换逻辑
+        document.getElementById('single-mode-btn').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('batch-mode-btn').classList.remove('active');
+            document.getElementById('single-upload-container').style.display = 'block';
+            document.getElementById('batch-upload-container').style.display = 'none';
+            document.getElementById('exportBatchBtn').style.display = 'none';
+        });
+
+        document.getElementById('batch-mode-btn').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('single-mode-btn').classList.remove('active');
+            document.getElementById('single-upload-container').style.display = 'none';
+            document.getElementById('batch-upload-container').style.display = 'block';
+            document.getElementById('exportBatchBtn').style.display = 'inline-block';
+        });
+
+        // 批量分析逻辑
+        document.getElementById('batch-analyze-btn').addEventListener('click', async function() {
+            const files = document.getElementById('batch-file-input').files;
+            if (files.length === 0) {
+                alert('请先选择图片');
+                return;
+            }
+
+            const modelType = document.getElementById('model-type').value;
+            const formData = new FormData();
+            Array.from(files).forEach(file => {
+                formData.append('files[]', file);
+            });
+            formData.append('model_type', modelType);
+
+            const batchResults = document.getElementById('batch-results');
+            batchResults.innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="visually-hidden">加载中...</span></div></div>';
+
+            try {
+                const response = await fetch('/api/analyze_batch', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                let html = '';
+                data.forEach(result => {
+                    html += `
+                        <div class="result-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong>${result.filename}</strong>
+                                <button class="btn btn-sm btn-outline-primary view-annotated-btn" 
+                                        data-img="${result.annotated_image || ''}">
+                                    查看标注
+                                </button>
+                            </div>
+                            <div>状态: ${result.status === 'success' ? '成功' : '失败'}</div>
+                            ${result.status === 'success' ? 
+                                `<div>菌落数量: ${result.count}</div>
+                                 <div>平均大小: ${result.sizes?.length ? (result.sizes.reduce((a,b) => a + b, 0) / result.sizes.length).toFixed(2) : 0}px</div>` : 
+                                `<div class="text-danger">错误: ${result.message}</div>`}
+                        </div>
+                    `;
+                });
+                batchResults.innerHTML = html;
+                
+            } catch (error) {
+                batchResults.innerHTML = `<div class="alert alert-danger">请求失败: ${error.message}</div>`;
+            }
+        });
+    </script>
+    
+    <!-- 添加查看标注图片的模态框 -->
+    <div class="modal fade" id="annotatedImageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">标注结果</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="annotatedImageDisplay" class="img-fluid" src="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="downloadAnnotatedBtn">下载图片</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 添加查看标注图片的事件处理
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('view-annotated-btn')) {
+                const imgUrl = e.target.dataset.img;
+                if (imgUrl) {
+                    const modal = new bootstrap.Modal(document.getElementById('annotatedImageModal'));
+                    document.getElementById('annotatedImageDisplay').src = '/uploads/' + imgUrl;
+                    document.getElementById('downloadAnnotatedBtn').onclick = function() {
+                        const a = document.createElement('a');
+                        a.href = '/uploads/' + imgUrl;
+                        a.download = imgUrl;
+                        a.click();
+                    };
+                    modal.show();
+                } else {
+                    alert('没有可用的标注图片');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

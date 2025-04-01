@@ -247,3 +247,25 @@ YOLOv11是YOLO系列模型的最新版本，旨在利用最新的深度学习技
 - 对比YOLOv6和DAMO-YOLO的结果
 
 我们将继续优化这些模型，并定期更新比较结果。目标是通过深度学习方法显著超越传统机器视觉方法的性能。
+
+
+
+
+两个训练代码：
+
+轻量版模型 (faster_rcnn_resnet50):
+使用自定义的ColonyDetector类实现，继承自torch.nn.Module
+基于ResNet50作为backbone，结合FPN结构
+使用自定义的ROI Pooling层
+模型保存格式包含：model_state_dict, optimizer_state_dict, scheduler_state_dict等
+主要针对较小的数据集和设备优化
+精确版模型 (main_models_train):
+直接使用torchvision的FasterRCNN实现
+同样使用ResNet50作为backbone
+使用标准的MultiScaleRoIAlign
+有更复杂的训练监控和检查点系统
+针对更大的数据集优化，训练参数更激进
+结论：两个版本都是Faster R-CNN + ResNet50的实现，但架构略有不同：
+
+轻量版使用了更多自定义组件，更灵活但可能需要更精确的参数加载
+精确版使用了标准实现，兼容性更好但资源消耗更大

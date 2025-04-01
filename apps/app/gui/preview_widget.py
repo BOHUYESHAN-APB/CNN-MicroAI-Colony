@@ -54,7 +54,17 @@ class PreviewWidget(QWidget):
         
         title_layout = QHBoxLayout()
         title_layout.addStretch()
-        title_layout.addWidget(QLabel("原图"))
+        title_label = QLabel(" ➤ 原图(Original)")
+        title_label.setStyleSheet("""
+            QLabel {
+                font-size: 12px;
+                font-weight: bold;
+                color: #a0a0a0;
+                padding: 4px 8px;
+                margin-bottom: 10px; /* 增加底部外边距 */
+            }
+        """)
+        title_layout.addWidget(title_label)
         title_layout.addStretch()
         original_layout.addLayout(title_layout)
         
@@ -76,7 +86,16 @@ class PreviewWidget(QWidget):
         
         title_layout = QHBoxLayout()
         title_layout.addStretch()
-        title_layout.addWidget(QLabel("预处理结果"))
+        title_label = QLabel(" ➤ 预处理结果(Processed)")
+        title_label.setStyleSheet("""
+            QLabel {
+                font-size: 12px;
+                font-weight: bold;
+                color: #a0a0a0;
+                padding: 4px 8px;
+            }
+        """)
+        title_layout.addWidget(title_label)
         title_layout.addStretch()
         processed_layout.addLayout(title_layout)
         
@@ -144,21 +163,32 @@ class PreviewWidget(QWidget):
             
             # Draw mask overlay on original if mask exists
             if self.config and hasattr(self.config, 'mask') and self.config.mask is not None:
-                mask_preview = cv2.resize(
-                    self.config.mask,
-                    (preview_width, preview_height),
-                    interpolation=cv2.INTER_NEAREST
-                )
-                # Create semi-transparent red overlay
-                overlay = np.zeros_like(orig_preview)
-                overlay[..., 2] = 128  # Red channel
-                orig_preview = cv2.addWeighted(
-                    orig_preview,
-                    1,
-                    cv2.multiply(overlay, mask_preview[..., None]),
-                    0.3,
-                    0
-                )
+                try:
+                    # Ensure mask matches preview size
+                    mask_preview = cv2.resize(
+                        self.config.mask,
+                        (preview_width, preview_height),
+                        interpolation=cv2.INTER_NEAREST
+                    )
+                    
+                    # Convert mask to 3-channel if needed
+                    if len(mask_preview.shape) == 2:
+                        mask_preview = np.stack([mask_preview]*3, axis=-1)
+                    
+                    # Create semi-transparent red overlay
+                    overlay = np.zeros_like(orig_preview)
+                    overlay[..., 2] = 128  # Red channel
+                    
+                    # Apply overlay only where mask is non-zero
+                    mask_bool = mask_preview[..., 0] > 0
+                    for c in range(3):
+                        orig_preview[..., c] = np.where(
+                            mask_bool,
+                            orig_preview[..., c] * 0.7 + overlay[..., c] * 0.3,
+                            orig_preview[..., c]
+                        )
+                except Exception as e:
+                    logger.error(f"Error applying mask overlay: {str(e)}")
             
             # Convert and display original
             orig_qimg = self._array_to_qimage(orig_preview)

@@ -4086,3 +4086,256 @@ AssertionError: targets should not be none when in training mode
 2025-03-24 11:34:26,596 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/OneDrive/Desktop/123
 2025-03-24 11:34:28,226 [INFO] apps.app.gui.dock_manager: Saved dock layout
 2025-03-24 11:34:28,324 [INFO] apps.app.main: Application cleanup completed
+2025-04-01 21:14:06,060 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:14:08,582 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:14:08,583 [INFO] __main__: Using device: cpu
+2025-04-01 21:14:08,637 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:14:09,327 [INFO] __main__: Application initialized successfully
+2025-04-01 21:14:33,600 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:14:41,073 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:14:41,088 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:14:41,093 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 21:14:41,111 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\R-C.jpg
+2025-04-01 21:14:41,118 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\t019872959c62f44875.jpg
+2025-04-01 21:14:41,947 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:14:41,966 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:14:46,327 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 21:14:46,332 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 21:14:51,585 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\R-C.jpg
+2025-04-01 21:14:51,608 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\R-C.jpg
+2025-04-01 21:14:52,976 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:14:52,986 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:14:59,567 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 21:15:00,467 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 21:15:03,682 [ERROR] apps.app.gui.preview_widget: Error updating preview: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 21:15:06,004 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 21:15:06,036 [INFO] __main__: Application cleanup completed
+2025-04-01 21:16:25,880 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:16:28,203 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:16:28,203 [INFO] __main__: Using device: cpu
+2025-04-01 21:16:28,243 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:16:28,983 [INFO] __main__: Application initialized successfully
+2025-04-01 21:16:37,950 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:16:44,011 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:16:44,026 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:16:44,028 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 21:16:44,046 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\R-C.jpg
+2025-04-01 21:16:44,054 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\t019872959c62f44875.jpg
+2025-04-01 21:16:44,390 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:16:44,410 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:16:44,844 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 21:16:44,849 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 21:16:47,215 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\R-C.jpg
+2025-04-01 21:16:47,241 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\R-C.jpg
+2025-04-01 21:16:48,814 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:16:48,829 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:16:50,326 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:16:50,342 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:16:51,699 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\t019872959c62f44875.jpg
+2025-04-01 21:16:51,717 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\t019872959c62f44875.jpg
+2025-04-01 21:16:54,526 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 21:16:54,565 [INFO] __main__: Application cleanup completed
+2025-04-01 21:18:27,697 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:18:30,184 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:18:30,185 [INFO] __main__: Using device: cpu
+2025-04-01 21:18:30,215 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:18:30,860 [INFO] __main__: Application initialized successfully
+2025-04-01 21:18:41,370 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:18:48,130 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:18:48,145 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:18:48,149 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 21:18:48,170 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\R-C.jpg
+2025-04-01 21:18:48,183 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\t019872959c62f44875.jpg
+2025-04-01 21:18:49,118 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:18:49,145 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:18:49,462 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 21:18:49,466 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 21:18:54,560 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:18:54,570 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:18:55,233 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:18:55,261 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:18:57,164 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 21:18:57,198 [INFO] __main__: Application cleanup completed
+2025-04-01 21:19:08,040 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:19:10,277 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:19:10,278 [INFO] __main__: Using device: cpu
+2025-04-01 21:19:10,315 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:19:11,145 [INFO] __main__: Application initialized successfully
+2025-04-01 21:19:29,603 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:19:35,821 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:19:36,614 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:19:36,626 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:21:48,096 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 21:21:48,137 [INFO] __main__: Application cleanup completed
+2025-04-01 21:21:50,719 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:21:53,022 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:21:53,023 [INFO] __main__: Using device: cpu
+2025-04-01 21:21:53,064 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:21:53,769 [INFO] __main__: Application initialized successfully
+2025-04-01 21:22:01,588 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:22:06,867 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:22:07,858 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:22:07,872 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:22:19,127 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 21:22:19,169 [INFO] __main__: Application cleanup completed
+2025-04-01 21:25:14,729 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:25:16,884 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:25:16,885 [INFO] __main__: Using device: cpu
+2025-04-01 21:25:16,924 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:25:17,441 [INFO] __main__: Application initialized successfully
+2025-04-01 21:25:43,306 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:25:46,833 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:25:47,702 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:25:47,715 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:28:07,287 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 21:28:07,322 [INFO] __main__: Application cleanup completed
+2025-04-01 21:36:00,343 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:36:02,414 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:36:02,414 [INFO] __main__: Using device: cpu
+2025-04-01 21:36:02,443 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:36:03,003 [INFO] __main__: Application initialized successfully
+2025-04-01 21:36:13,057 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:36:17,437 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:36:17,457 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:36:18,025 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:36:18,038 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:36:18,356 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:36:18,365 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:36:20,852 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:36:20,877 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:42:46,554 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:42:48,859 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:42:48,859 [INFO] __main__: Using device: cpu
+2025-04-01 21:42:48,904 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:42:49,662 [INFO] __main__: Application initialized successfully
+2025-04-01 21:42:55,899 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:43:00,956 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:43:00,971 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:43:01,585 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:43:01,611 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:43:01,994 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:43:02,007 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:43:08,531 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 21:43:08,574 [INFO] __main__: Application cleanup completed
+2025-04-01 21:47:02,038 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:49:20,855 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:49:23,029 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:49:23,035 [INFO] __main__: Using device: cpu
+2025-04-01 21:49:23,088 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:49:23,639 [INFO] __main__: Application initialized successfully
+2025-04-01 21:49:37,257 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:49:43,544 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:49:43,561 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:49:44,277 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:49:44,296 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:51:03,633 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:51:06,072 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:51:06,073 [INFO] __main__: Using device: cpu
+2025-04-01 21:51:06,109 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:51:06,647 [INFO] __main__: Application initialized successfully
+2025-04-01 21:51:17,341 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:51:22,416 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:51:22,430 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:51:23,492 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:51:23,506 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:51:36,265 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 21:51:36,312 [INFO] __main__: Application cleanup completed
+2025-04-01 21:56:34,544 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 21:56:36,752 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 21:56:36,753 [INFO] __main__: Using device: cpu
+2025-04-01 21:56:36,783 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 21:56:37,333 [INFO] __main__: Application initialized successfully
+2025-04-01 21:57:14,264 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 21:57:18,478 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 21:57:18,494 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:57:19,110 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:57:19,131 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 21:57:22,437 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 21:57:25,195 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 21:57:26,327 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 21:57:26,846 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 21:57:29,726 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 21:57:29,760 [INFO] __main__: Application cleanup completed
+2025-04-01 22:03:42,786 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 22:03:44,940 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 22:03:44,941 [INFO] __main__: Using device: cpu
+2025-04-01 22:03:44,990 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 22:03:45,533 [INFO] __main__: Application initialized successfully
+2025-04-01 22:27:32,131 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 22:27:39,928 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 22:27:39,951 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:27:39,956 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\OIP-C.jpg
+2025-04-01 22:27:40,624 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:27:40,637 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:29:45,848 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 22:29:47,995 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 22:29:47,996 [INFO] __main__: Using device: cpu
+2025-04-01 22:29:48,035 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 22:29:48,582 [INFO] __main__: Application initialized successfully
+2025-04-01 22:29:54,828 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 22:30:00,305 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 22:30:00,322 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:30:03,574 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:30:03,596 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:32:37,361 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 22:32:39,765 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 22:32:39,766 [INFO] __main__: Using device: cpu
+2025-04-01 22:32:39,791 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 22:32:40,304 [INFO] __main__: Application initialized successfully
+2025-04-01 22:32:52,433 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 22:32:57,567 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 22:32:57,590 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:32:58,302 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:32:58,328 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:37:21,416 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 22:37:23,608 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 22:37:23,609 [INFO] __main__: Using device: cpu
+2025-04-01 22:37:23,640 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 22:37:24,176 [INFO] __main__: Application initialized successfully
+2025-04-01 22:37:52,344 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 22:37:56,937 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 22:37:56,956 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:37:57,502 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 22:37:57,511 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 22:38:04,276 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 22:38:05,250 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 22:38:05,573 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 22:38:05,823 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 22:38:06,327 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 22:38:07,031 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 22:38:09,878 [ERROR] apps.app.gui.preview_widget: Error applying mask overlay: OpenCV(4.7.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\arithm.cpp:650: error: (-209:Sizes of input arguments do not match) The operation is neither 'array op array' (where arrays have the same size and the same number of channels), nor 'array op scalar', nor 'scalar op array' in function 'cv::arithm_op'
+
+2025-04-01 22:38:14,480 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 22:38:14,510 [INFO] __main__: Application cleanup completed
+2025-04-01 22:42:59,462 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-01 22:43:01,717 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-01 22:43:01,718 [INFO] __main__: Using device: cpu
+2025-04-01 22:43:01,746 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-01 22:43:02,254 [INFO] __main__: Application initialized successfully
+2025-04-01 22:43:22,677 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 22:43:28,045 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 22:43:28,062 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:43:28,420 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:43:28,433 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:43:59,115 [INFO] apps.app.core.models.colony_detector: Loading model from: D:/train/faster_rcnn_colony_epoch12.pth
+2025-04-01 22:44:01,842 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 22:44:01,843 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/Desktop/123
+2025-04-01 22:44:02,035 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 22:44:02,047 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2121.jpg
+2025-04-01 22:44:04,354 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:44:04,381 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Desktop\123\2021041310020608608.jpg
+2025-04-01 22:44:10,387 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-01 22:44:10,423 [INFO] __main__: Application cleanup completed

@@ -39,8 +39,11 @@ except Exception as e:
     logger = logging.getLogger(__name__)
 
 # Add project root to path
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+project_root = 'd:/-Users-/Documents/GitHub/CNN-MicroAI-Colony' # Explicitly set project root
 sys.path.insert(0, project_root)
+
+print(f"Project root path (explicitly set): {project_root}")
+print(f"Python sys.path: {sys.path}")
 
 # Use absolute imports
 from apps.app.gui.main_window import MainWindow
