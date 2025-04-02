@@ -57,4 +57,4 @@ python MICROAI-COLONY/app.py
 
 ## 开源协议
 
-[AGPL-3.0](LICENSE)
+[Apache License 2.0](LICENSE)

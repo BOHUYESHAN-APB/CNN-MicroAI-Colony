@@ -52,4 +52,4 @@ python MICROAI-COLONY/app.py
 
 ## License
 
-[AGPL-3.0](LICENSE)
+[Apache License 2.0](LICENSE)
