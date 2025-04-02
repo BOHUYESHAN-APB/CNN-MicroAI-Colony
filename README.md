@@ -1,249 +1,51 @@
-# Colony Detection and Analysis System
+# 菌落检测分析系统
 
-## Version Information
+![项目图标](docs/image/logo.png)
 
-The project currently includes three versions:
+## 项目简介
 
-### PyQt5 Version (app-pyqt/)
-- Legacy version
-- For research and learning purposes only
-- Developed based on the PyQt5 framework
+开放源代码的菌落检测分析系统，基于深度学习技术实现高精度菌落计数和形态分析。
 
-### PySide6 Version (app_pyside6/)
-- Transition version
-- Migrating to the PySide6 framework
-- Maintaining basic functionality
+## 快速开始
 
-### New Version (app/)
-- Latest development version
-- Based on PySide6 and PyOneDark theme
-- Modern UI design
-- Optimized user experience
-- Improved performance and stability
-
-## New Version Features
-- Brand new dark-themed interface
-- Smooth animations
-- Better high DPI support
-- Optimized performance and memory usage
-- Modular code structure
-- Complete type hints
-- Comprehensive error handling
-
-## Directory Structure
-```
-CNN-/
-├── app/                # New version (in development)
-│   ├── config/        # Configuration files
-│   ├── database/      # Database management
-│   ├── font/         # Font resources
-│   ├── gui/          # Graphical interface
-│   ├── models/       # Model definitions
-│   ├── resources/    # Resource files
-│   │   ├── i18n/    # Internationalization files
-│   │   └── themes/  # Theme files
-│   ├── templates/    # Report templates
-│   └── utils/       # Utility functions
-├── app_pyside6/      # Transition version
-├── app-pyqt/         # Old version
-├── docs/            # Documentation
-└── src/            # Shared source code
-```
-
-## Tech Stack
-- **GUI Framework**: PySide6 6.5+
-- **Theme**: PyOneDark style
-- **Deep Learning**: PyTorch 2.0+
-- **Image Processing**: OpenCV 4.8+, incorporating Canny edge detection and Watershed algorithm in preprocessing for enhanced colony analysis.
-- **Data Processing**: NumPy, Pandas
-- **Visualization**: Matplotlib
-- **Type Checking**: mypy
-- **Code Quality**: pylint, black
-- **Testing Framework**: pytest
-
-## New Version Installation
 ```bash
-# Create a virtual environment
+# 创建虚拟环境
 python -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
 
-# Install dependencies
+# 激活环境
+# Windows
+venv\Scripts\activate
+# Linux/macOS 
+source venv/bin/activate
+
+# 安装依赖
 pip install -r requirements.txt
 
-# Run the application
-python -m app.main
+# 启动系统
+python MICROAI-COLONY/app.py
 ```
 
-## Development Notes
-- Use Python 3.9+
-- Follow PEP 8 coding style
-- Use type annotations
-- Write unit tests
-- Keep documentation updated
+## 文档目录
 
-## Licensing
-Same as before, maintain the dual licensing model:
-- Non-commercial use: AGPL v3
-- Commercial use: Proprietary license
+- [技术文档](docs/technical/)  
+- [模型对比](docs/model_comparisons/)
+- [性能报告](docs/performance_reports/)  
+- [使用指南](docs/guides/)  
+- [开发文档](docs/development/)
 
-## Contribution Guide
-1. Clone the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+## 核心功能
 
-## Contact
-- Issue Tracking: GitHub Issues
-- Feature Suggestions: Discussions
-- Security Issues: Contact the maintainer directly
+- 高精度菌落检测
+- 多模型支持
+- 批量处理能力  
+- 结果可视化
 
-## Changelog
-See CHANGELOG.md
+## 联系我们
 
-## 资源声明
-本项目开发过程中使用的GitHub Copilot为个人学生认证权益，未使用任何学校提供的物质技术条件。其中AI生成代码经过审核。
+- 问题报告: GitHub Issues
+- 讨论区: GitHub Discussions
+- 邮件: colony@example.com
 
-### **一、当前模型（Faster R-CNN + ResNet50 + Canny & Watershed + GaussianBlur）的效果**
+## 开源协议
 
-#### **1. 场景识别率**
-
-| **场景类型** | **识别率范围（%）**        | **主要挑战**                                                            |
-| -- | --------- | ------------------------------------------------------------- |
-| **标准微生物平板** | \>98 | 无明显问题，但存在冗余计算开销（ResNet50参数量超23M）       |
-| **质量略差或低像素（但清晰）** | 95-98   | 图像分辨率不足导致细节丢失，需增强特征提取能力              |
-| **黏连菌落分界难以辨识** | 85-92   | Canny边缘检测与Watershed分水岭算法对黏连区域分割失败率超40% |
-| **边界模糊或贴近培养基壁** | \<80 | 边缘特征提取困难，背景干扰严重（如培养基壁反光）            |
-| **高密度黏连菌落（>500 CFU）** | \<80 | 漏检率显著增加，RPN模块生成过多冗余候选框                   |
-
-#### **2. 核心缺陷对比表（与优化方案对比）**
-
-| **模块** | **现有方案（Faster R-CNN + ResNet50）**                                 | **预测优化方案（YOLOv12 + DAMO-YOLO）**                              | **专利风险等级**                 |
-| -- | ---------------------------------- | ------------------------------- | ------------------ |
-| **检测精度** | MAE 5.2%（菌落计数）             | MAE ≤3.5%                    | 高（RPN专利）    |
-| **形态学鉴别准确率** | 88%                              | ≥92%                         | 中（ResNet）     |
-| **预处理流程** | Canny + Watershed + GaussianBlur | HED网络 + U²-Net动态分割     | 高（形态学专利） |
-| **推理速度** | 420ms/帧（A100 GPU）             | 110ms/帧（Jetson AGX Xavier） | -                |
-| **黏连菌落分割失败率** | \>50%（高密度场景）           | \<15%（R-ELAN模块增强）    | -                |
-
----
-
-### **二、其他模型的预测结果与实际精确度**
-
-#### **1. 模型性能对比表（基于公开数据集及预测）**
-
-| **模型** | **mAP（COCO）**     | **推理速度（FPS）**     | **显存占用（GB）**   | **专利风险等级**                        | **误差率（菌落计数）**                |
-| -- | ------ | ------ | ---- | ------------------------- | ----------------- |
-| **Faster R-CNN + ResNet50** | 32.1 | 0.25 | 18 | 高（RPN + ResNet）      | 5.2%            |
-| **YOLOv6** | 40.5 | 30   | 12 | 中（锚框机制）          | 96%（实际测试） |
-| **DAMO-YOLO** | 45.2 | 40   | 9  | 低（NAS优化）           | 预测12.8%       |
-| **YOLOv12** | 48.7 | 55   | 6  | 低（无锚点+区域注意力） | 预测≤3.5%      |
-| **传统方法（Canny+Watershed+GaussianBlur）** | -    | -    | -  | 无                      | 实测20.2%       |
-
-#### **2. 关键场景性能对比**
-
-| **场景** | **当前模型（Faster R-CNN）**               | **YOLOv12预测效果**               | **DAMO-YOLO预测效果**           | **YOLOv6实际表现**          |
-| -- | ---------------- | ---------------- | ------------ | ----------- |
-| **标准场景（清晰、无黏连）** | 识别率\>98% | 识别率98%+     | 识别率99%  | 误差率96% |
-| **黏连菌落（500 CFU/plate）** | 识别率\<80% | 失败率\<15% | 误差率8.9% | 误差率96% |
-| **低像素/模糊图像** | 识别率95-98%   | 识别率97%      | 识别率96%  | 误差率96% |
-
----
-
-### **三、模型优劣势总结**
-
-#### **1. 当前模型（Faster R-CNN + ResNet50）**
-
-* **优势** ：
-
-  * 标准场景（清晰图像）识别率高（\>98%）。
-  * 传统预处理（Canny+Watershed）在简单场景表现稳定。
-* **劣势** ：
-
-  * 复杂场景（黏连、高密度）性能显著下降（误差率\>5%）。
-  * 推理速度慢（420ms/帧），显存占用高（18GB）。
-  * 存在专利风险（RPN模块和ResNet的残差结构专利）。
-
-#### **2. 优化方案模型（YOLOv12、DAMO-YOLO）**
-
-* **YOLOv12** ：
-
-  * **预测效果** ：mAP 48.7%，黏连场景失败率\<15%，延迟降至110ms/帧。
-  * **优势** ：无锚点设计规避专利，轻量化（6GB显存），支持边缘设备部署。
-* **DAMO-YOLO** ：
-
-  * **预测效果** ：误差率12.8%，形态学鉴别准确率92%+。
-  * **优势** ：NAS优化的轻量化骨干网络，适合小样本训练。
-* **YOLOv6** ：
-
-  * **实际表现** ：误差率高达96%，不适用于复杂场景（如高密度黏连）。
-
----
-
-## 性能变化
-
-为了跟踪算法的改进，我们记录了每次修改后的性能变化。下表总结了在测试模型 `test_model.py` 脚本中使用的同一组测试图像上的误差率变化。
-
-| 图像名称                  | 初始误差率 (%) | Canny & Watershed 误差率 (%) | Canny & Watershed + GaussianBlur 误差率 (%) | YOLOv6 误差率 (%) |
-|---------------------------|-----------------|---------------------------|---------------------------------------------|--------------------|
-| 2021041310020608608.jpg   | 0.9             | 12.1                      | 0.9                                         | 100.0              |
-| 2121.jpg                  | 2.5             | 12.5                      | 2.5                                         | 100.0              |
-| OIP-C.jpg                 | 27.3            | 26.1                      | 27.3                                        | 89.8               |
-| R-C.jpg                   | 56.4            | 56.4                      | 52.1                                        | 100.0              |
-| t019872959c62f44875.jpg   | 18.1            | 22.3                      | 18.1                                        | 90.4               |
-| **平均误差率**            | **21.0**        | **25.9**                  | **20.2**                                    | **96.0**           |
-
-**注意:** 上表更新了不同阶段的误差率，以更清晰地展示每次算法修改对性能的影响。"Canny & Watershed + GaussianBlur 误差率" 列对应的是当前最新的传统机器视觉模型的性能指标。
-
-**YOLOv6 模型分析 (2025/03/10更新):**
-1. 性能表现：
-   - 整体检测率极低
-   - 仅在两张图片上有少量检测结果(OIP-C.jpg和t019872959c62f44875.jpg)
-   - 三张图片完全未检测到菌落
-   - 平均误差率达到96.0%
-
-2. 可能的问题：
-   - 模型训练不充分
-   - 参数配置不合适（confidence=0.01, score_threshold=0.23）
-   - 预处理pipeline可能需要调整
-   
-3. 改进方向：
-   - 重新训练模型，增加训练样本
-   - 调整检测参数阈值
-   - 优化图像预处理流程
-   - 考虑使用数据增强
-   - 可能需要调整模型架构
-
-从表中可以看出，目前YOLOv6模型的性能远低于传统机器视觉方法。传统方法在Canny和Watershed基础上加入GaussianBlur后，平均误差率维持在20.2%的水平。而YOLOv6的96.0%平均误差率表明模型目前基本无法完成有效检测。我们需要对YOLOv6模型进行大幅优化，争取至少达到传统方法的性能水平。
-
-## DAMO-YOLO模型
-
-### 简介
-DAMO-YOLO是为菌落检测任务设计的YOLO系列模型的另一个变体。它旨在通过优化网络架构和训练策略来提高检测精度和效率。
-
-### 当前状态
-目前，DAMO-YOLO模型的实现已经完成，但尚未进行训练和测试。
-
-### 计划
-- 实施训练循环
-- 调整超参数以优化性能
-- 评估测试数据集上的性能
-- 将结果添加到性能变化表中
-
-## YOLOv11模型
-
-### 简介
-YOLOv11是YOLO系列模型的最新版本，旨在利用最新的深度学习技术实现最先进的菌落检测性能。
-
-### 当前状态
-目前，YOLOv11模型的实现已经完成，但尚未进行训练和测试。基础代码结构和测试脚本framework已经就绪。
-
-### 计划
-- 实施训练循环，包括数据增强和优化策略
-- 进行参数调优和模型优化
-- 在测试数据集上评估性能
-- 将结果整合到性能对比表中
-- 对比YOLOv6和DAMO-YOLO的结果
-
-我们将继续优化这些模型，并定期更新比较结果。目标是通过深度学习方法显著超越传统机器视觉方法的性能。
+[AGPL-3.0](LICENSE)
