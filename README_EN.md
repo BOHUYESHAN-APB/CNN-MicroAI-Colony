@@ -6,6 +6,10 @@
 
 An open source colony detection and analysis system based on deep learning technology for high-precision colony counting and morphology analysis.
 
+Current implementations:
+1. `apps/app/main.py` - PyQt6-based prototype for feature validation
+2. `MICROAI-COLONY/` - Main development direction, modern Flask-based implementation
+
 ## Quick Start
 
 ```bash
