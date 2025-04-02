@@ -47,7 +47,7 @@ qrc_*.cpp
 ui_*.h
 Makefile*
 
-# Application specific
+# Application specific 
 app/logs/
 app/data/
 app/results/
@@ -58,17 +58,6 @@ app/config/user.json
 # System
 .DS_Store
 Thumbs.db
-
-# Images and media
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.tif
-*.tiff
-*.psd
-*.ai
-*.raw
 
 # Temporary files
 *.bak
