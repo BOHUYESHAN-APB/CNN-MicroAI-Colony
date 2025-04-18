@@ -1,6 +1,8 @@
+import time
 import torch
-import torchvision  # 添加这行
+import torchvision
 import random
+import importlib.util
 from torchvision.transforms import functional as F
 from PIL import Image
 import os
@@ -13,36 +15,51 @@ from torchvision.models.detection import FasterRCNN
 from torchvision.models.detection.rpn import AnchorGenerator
 from torchvision.ops import MultiScaleRoIAlign  # 添加这行
 
-def get_model(num_classes=2):
-    """重新创建模型架构"""
-    backbone = torchvision.models.resnet50(weights="DEFAULT")
-    backbone = torch.nn.Sequential(*(list(backbone.children())[:-2]))
-    backbone.out_channels = 2048
-    
-    anchor_generator = AnchorGenerator(
-        sizes=((32, 64, 128, 256, 512),),
-        aspect_ratios=((0.5, 1.0, 1.5),)
-    )
-    
-    roi_pooler = MultiScaleRoIAlign(  # 修改这里
-        featmap_names=['0'],
-        output_size=7,
-        sampling_ratio=2
-    )
-    
-    model = FasterRCNN(
-        backbone,
-        num_classes=num_classes,
-        rpn_anchor_generator=anchor_generator,
-        box_roi_pool=roi_pooler,
-        rpn_batch_size_per_image=256,
-        box_batch_size_per_image=512,
-    )
+def get_model(model_path, num_classes=2):
+    """根据模型路径创建对应的模型架构"""
+    if "checkpoint_epoch_31" in model_path:
+        # 使用ColonyDetector架构
+        import sys
+        # 添加src目录到Python路径
+        src_dir = os.path.join('d:/-Users-/Documents/GitHub/CNN-MicroAI-Colony', 
+                             'faster_rcnn_resnet50', 'src')
+        if src_dir not in sys.path:
+            sys.path.insert(0, src_dir)
+        from models.colony_detector import ColonyDetector
+        model = ColonyDetector(num_classes=num_classes, pretrained=False)
+    else:
+        # 使用标准FasterRCNN架构
+        backbone = torchvision.models.resnet50(weights=None)
+        backbone = torch.nn.Sequential(*(list(backbone.children())[:-2]))
+        backbone.out_channels = 2048
+        
+        anchor_generator = AnchorGenerator(
+            sizes=((32, 64, 128, 256, 512),),
+            aspect_ratios=((0.5, 1.0, 1.5),)
+        )
+        
+        roi_pooler = MultiScaleRoIAlign(
+            featmap_names=['0'],
+            output_size=7,
+            sampling_ratio=2
+        )
+        
+        model = FasterRCNN(
+            backbone,
+            num_classes=num_classes,
+            rpn_anchor_generator=anchor_generator,
+            box_roi_pool=roi_pooler,
+            rpn_batch_size_per_image=256,
+            box_batch_size_per_image=512,
+        )
     
     return model
 
 class ModelEvaluator:
-    def __init__(self, valid_data_path, valid_anno_path, device='cuda'):
+    def __init__(self, valid_data_path, valid_anno_path, device='cpu'):
+        # 狂暴模式设置
+        torch.set_num_threads(os.cpu_count())  # 使用所有CPU核心
+        torch.backends.mkl.enabled = True  # 启用MKL优化
         self.device = device
         self.valid_data_path = valid_data_path
         
@@ -67,13 +84,14 @@ class ModelEvaluator:
             random.seed(seed)
             
         # 创建新模型实例
-        model = get_model()
+        model = get_model(model_path)
         
         # 加载检查点
         try:
-            checkpoint = torch.load(model_path)
+            # 强制使用CPU加载模型
+            checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
             model.load_state_dict(checkpoint['model_state_dict'])
-            model.to(self.device)
+            model.eval()
             model.eval()
             
             train_loss = checkpoint['stats'].get('Train Loss', {}).get('current', float('inf'))
@@ -100,16 +118,10 @@ class ModelEvaluator:
                 img = self.prepare_image(img_path)
                 img = img.to(self.device)
                 
-                # 计时推理
-                start_time = torch.cuda.Event(enable_timing=True)
-                end_time = torch.cuda.Event(enable_timing=True)
-                
-                start_time.record()
+                # CPU计时推理
+                start_time = time.time()
                 predictions = model([img])
-                end_time.record()
-                
-                torch.cuda.synchronize()
-                inference_time = start_time.elapsed_time(end_time)
+                inference_time = (time.time() - start_time) * 1000  # 转换为毫秒
                 
                 # 收集结果
                 pred = predictions[0]
@@ -133,25 +145,81 @@ class ModelEvaluator:
             'train_loss': train_loss
         }
 
-def analyze_checkpoints(checkpoint_dir, valid_data_path, valid_anno_path, num_samples=10):
-    """分析所有检查点"""
-    evaluator = ModelEvaluator(valid_data_path, valid_anno_path)
-    checkpoints = glob.glob(os.path.join(checkpoint_dir, 'faster_rcnn_colony*.pth'))
+import argparse
+
+def evaluate_specified_models(model_paths, test_dir, num_samples=10):
+    """评估指定的多个模型"""
+    # 创建临时标注文件结构(test_dir下需要有图片文件)
+    annotations = {
+        'images': [],
+        'annotations': []
+    }
     
-    results = []
-    for checkpoint in sorted(checkpoints):
-        if 'interrupted' in checkpoint:  # 跳过中断的检查点
-            continue
-            
+    # 添加测试图片路径
+    img_files = [f for f in os.listdir(test_dir) 
+                if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+    for i, img_file in enumerate(img_files):
+        annotations['images'].append({
+            'id': i,
+            'file_name': img_file
+        })
+    
+    # 保存临时标注文件
+    temp_anno = os.path.join(test_dir, 'temp_annotations.json')
+    with open(temp_anno, 'w') as f:
+        json.dump(annotations, f)
+    
+    # 评估每个模型
+    evaluator = ModelEvaluator(test_dir, temp_anno)
+    
+    results = {}
+    for model_path in model_paths:
+        model_name = os.path.basename(model_path)
         try:
-            result = evaluator.evaluate_model(checkpoint, num_samples=num_samples)
-            if result is not None:
-                epoch = int(checkpoint.split('epoch')[-1].split('.')[0])
-                result['epoch'] = epoch
-                result['checkpoint'] = os.path.basename(checkpoint)
-                results.append(result)
-                
+            result = evaluator.evaluate_model(
+                model_path,
+                num_samples=min(num_samples, len(img_files))
+            )
+            if result:
+                results[model_name] = {
+                    'average_inference_time_ms': result['stats']['avg_inference_time'],
+                    'average_confidence': result['stats']['avg_confidence'],
+                    'average_detections': result['stats']['avg_num_detections']
+                }
         except Exception as e:
-            print(f"Error evaluating {checkpoint}: {str(e)}")
+            print(f"Error evaluating {model_name}: {str(e)}")
+    
+    # 清理临时文件
+    os.remove(temp_anno)
     
     return results
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Evaluate Faster-RCNN models')
+    parser.add_argument('--models', type=str, required=True,
+                      help='Comma-separated paths to model checkpoints')
+    parser.add_argument('--test_dir', type=str, required=True,
+                      help='Directory containing test images')
+    parser.add_argument('--num_samples', type=int, default=5,
+                      help='Number of test samples to evaluate')
+    
+    args = parser.parse_args()
+    
+    # 解析模型路径
+    model_paths = [p.strip() for p in args.models.split(',')]
+    results = evaluate_specified_models(
+        model_paths,
+        args.test_dir,
+        args.num_samples
+    )
+    
+    # 打印结果表格
+    print("\nModel Evaluation Results:")
+    print("{:<40} {:<20} {:<20} {:<20}".format(
+        "Model", "Avg Time(ms)", "Avg Confidence", "Avg Detections"))
+    for model, res in results.items():
+        print("{:<40} {:<20.2f} {:<20.2f} {:<20.2f}".format(
+            model, 
+            res['average_inference_time_ms'],
+            res['average_confidence'],
+            res['average_detections']))

@@ -1,0 +1,20 @@
+{
+    "model": {
+        "model_size": 446.49783515930176,
+        "initial_memory": {
+            "rss": 247.53515625,
+            "vms": 650.015625
+        },
+        "loaded_memory": {
+            "rss": 888.59765625,
+            "vms": 1553.8828125
+        },
+        "memory_increase": {
+            "rss": 641.0625,
+            "vms": 903.8671875
+        },
+        "initial_gpu": null,
+        "loaded_gpu": null,
+        "gpu_increase": null
+    }
+}

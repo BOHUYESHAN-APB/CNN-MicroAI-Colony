@@ -5,13 +5,8 @@ from torchvision.models.detection import FasterRCNN
 from torchvision.models.detection.rpn import AnchorGenerator
 from torchvision.models.detection.backbone_utils import BackboneWithFPN
 from torchvision.ops.feature_pyramid_network import LastLevelMaxPool
+from torchvision.ops import MultiScaleRoIAlign
 from torchvision.models.detection.roi_heads import RoIHeads
-
-from src.ops import apply_patches
-from src.models.roi_pool import CustomMultiScaleRoIAlign
-
-# Apply patches to torchvision ops
-apply_patches()
 
 class ColonyDetector(nn.Module):
     def __init__(self, num_classes=2, pretrained=True, trainable_backbone_layers=3):
@@ -54,14 +49,14 @@ class ColonyDetector(nn.Module):
             aspect_ratios=((0.5, 1.0, 2.0),) * 5
         )
 
-        # Create custom ROI pooler
-        roi_pooler = CustomMultiScaleRoIAlign(
+        # Create ROI pooler using standard MultiScaleRoIAlign
+        roi_pooler = MultiScaleRoIAlign(
             featmap_names=['0', '1', '2', '3'],
             output_size=7,
             sampling_ratio=2
         )
 
-        # Create FasterRCNN model with custom ROI pooler
+        # Create FasterRCNN model
         self.model = FasterRCNN(
             self.backbone,
             num_classes=num_classes,

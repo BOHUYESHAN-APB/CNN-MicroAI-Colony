@@ -1,0 +1,19 @@
+{
+    "CPU": {
+        "device": "CPU",
+        "mean_latency": 208.3923363685608,
+        "std_latency": 44.17786481408049,
+        "min_latency": 151.94296836853027,
+        "max_latency": 319.6449279785156
+    },
+    "GPU": {
+        "device": "GPU",
+        "mean_latency": 69.64710235595703,
+        "std_latency": 9.022407685361044,
+        "min_latency": 57.652950286865234,
+        "max_latency": 107.14507102966309
+    },
+    "NPU": {
+        "error": "Exception from src\\inference\\src\\cpp\\core.cpp:107:\nException from src\\inference\\src\\dev\\plugin.cpp:53:\nCheck 'itMain != _impl.end()' failed at src\\plugins\\intel_npu\\src\\al\\src\\config\\config.cpp:154:\n[ NOT_FOUND ] Option 'ENABLE_PERFORMANCE_COUNTERS' is not supported for current configuration\n\n\n"
+    }
+}
