@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 基础颜色 -->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#4CAF50</color>
+    
+    <!-- 状态颜色 -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FFC107</color>
+    <color name="error">#F44336</color>
+    <color name="info">#2196F3</color>
+    
+    <!-- 文本颜色 -->
+    <color name="text_primary">#DE000000</color>
+    <color name="text_secondary">#8A000000</color>
+    <color name="text_hint">#61000000</color>
+    <color name="text_disabled">#38000000</color>
+    
+    <!-- 背景颜色 -->
+    <color name="background">#FFFFFF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F5F5F5</color>
+    
+    <!-- 状态栏和导航栏 -->
+    <color name="status_bar">#1976D2</color>
+    <color name="nav_bar">#FFFFFF</color>
+    
+    <!-- 角度指示器颜色 -->
+    <color name="angle_ideal">#4CAF50</color>
+    <color name="angle_warning">#FFC107</color>
+    <color name="angle_error">#F44336</color>
+    
+    <!-- 分析结果颜色 -->
+    <color name="confidence_high">#4CAF50</color>
+    <color name="confidence_medium">#FFC107</color>
+    <color name="confidence_low">#F44336</color>
+    
+    <!-- 深色模式颜色 -->
+    <color name="dark_background">#121212</color>
+    <color name="dark_surface">#1E1E1E</color>
+    <color name="dark_surface_variant">#2D2D2D</color>
+    <color name="dark_text_primary">#DEFFFFFF</color>
+    <color name="dark_text_secondary">#99FFFFFF</color>
+    
+    <!-- Material 3动态颜色 -->
+    <color name="seed">#2196F3</color>
+</resources>

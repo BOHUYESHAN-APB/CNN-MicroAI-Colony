@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 内部存储路径 -->
+    <files-path
+        name="internal_files"
+        path="." />
+        
+    <!-- 应用外部存储路径 -->
+    <external-files-path
+        name="external_files"
+        path="." />
+        
+    <!-- 应用缓存路径 -->
+    <cache-path
+        name="cache"
+        path="." />
+        
+    <!-- 外部缓存路径 -->
+    <external-cache-path
+        name="external_cache"
+        path="." />
+        
+    <!-- 外部媒体文件路径 -->
+    <external-media-path
+        name="media"
+        path="." />
+        
+    <!-- 共享存储路径 -->
+    <external-path
+        name="external"
+        path="." />
+        
+    <!-- 特定目录配置 -->
+    <files-path
+        name="images"
+        path="images/" />
+        
+    <external-files-path
+        name="camera_photos"
+        path="Pictures/" />
+        
+    <external-files-path
+        name="documents"
+        path="Documents/" />
+        
+    <!-- 临时文件路径 -->
+    <cache-path
+        name="temp"
+        path="temp/" />
+</paths>

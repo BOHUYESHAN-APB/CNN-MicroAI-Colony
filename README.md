@@ -28,6 +28,34 @@ pip install -r requirements.txt
 # 启动系统
 python MICROAI-COLONY/app.py
 ```
+### 本地GUI版本启动 (PyQt6)
+```bash
+# 创建虚拟环境
+python -m venv venv
+
+# 激活环境
+# Windows
+venv\Scripts\activate
+# Linux/macOS 
+source venv/bin/activate
+
+# 安装必要依赖
+pip install PyQt6 torch torchvision
+pip install py-cpuinfo psutil
+
+# 创建日志目录
+mkdir logs
+
+# 启动本地GUI版本
+cd apps/app
+python main.py
+注意事项：
+
+本地GUI版本基于PyQt6开发
+程序会自动检测并使用可用的GPU
+支持国际化(i18n)界面
+需要确保创建logs目录用于日志存储
+程序运行日志将保存在logs/app.log中，最多保留5个备份文件(每个最大10MB)
 
 ## 文档目录
 

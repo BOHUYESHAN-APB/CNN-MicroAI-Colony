@@ -1,0 +1,15 @@
+2025-04-23 17:04:06,256 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-23 17:04:38,848 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-23 17:04:42,816 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-23 17:04:42,816 [INFO] __main__: Using device: cpu
+2025-04-23 17:04:42,869 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-23 17:04:43,649 [INFO] __main__: Application initialized successfully
+2025-04-23 17:04:52,273 [INFO] apps.app.gui.main_window: 打开项目: C:/Users/韩涛/Desktop/123
+2025-04-23 17:04:55,966 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\韩涛\Desktop\微信图片_20250423170019_109.jpg
+2025-04-23 17:04:56,769 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\韩涛\Desktop\微信图片_20250423170019_109.jpg
+2025-04-23 17:04:56,785 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\韩涛\Desktop\微信图片_20250423170019_109.jpg
+2025-04-23 17:05:41,359 [INFO] apps.app.core.models.colony_detector: Loading model from: D:/train/checkpoint_epoch_31.pth
+2025-04-23 17:05:42,980 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/韩涛/Desktop/123
+2025-04-23 17:05:42,981 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/韩涛/Desktop/123
+2025-04-23 17:06:04,464 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-23 17:06:04,494 [INFO] __main__: Application cleanup completed
