@@ -1,85 +1,81 @@
 package com.microai.colony.utils
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Environment
-import dagger.hilt.android.qualifiers.ApplicationContext
+import android.webkit.MimeTypeMap
+import com.microai.colony.data.model.ModelInfo
 import java.io.File
 import java.io.FileOutputStream
-import java.text.SimpleDateFormat
+import java.security.MessageDigest
 import java.util.*
-import javax.inject.Inject
-import javax.inject.Singleton
 
-/**
- * 文件工具类
- */
-@Singleton
-class FileUtils @Inject constructor() {
-    companion object {
-        private const val IMAGE_PREFIX = "IMG_"
-        private const val IMAGE_SUFFIX = ".jpg"
-        private const val QUALITY = 100
-    }
+object FileUtils {
+    private const val MODEL_DIR = "models"
     
-    /**
-     * 创建图片文件
-     */
-    fun createImageFile(context: Context): File {
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val fileName = "${IMAGE_PREFIX}${timeStamp}${IMAGE_SUFFIX}"
-        
-        return File(
-            context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-            fileName
-        )
-    }
-    
-    /**
-     * 从Uri创建临时文件
-     */
-    fun createTempFileFromUri(context: Context, uri: Uri): File {
+    fun copyModelFile(context: Context, uri: Uri): Result<Triple<File, String, Long>> = runCatching {
         val inputStream = context.contentResolver.openInputStream(uri)
-        val bitmap = BitmapFactory.decodeStream(inputStream)
-        
-        val tempFile = createImageFile(context)
-        FileOutputStream(tempFile).use { outputStream ->
-            bitmap.compress(Bitmap.CompressFormat.JPEG, QUALITY, outputStream)
+            ?: throw IllegalStateException("Cannot open input stream")
+            
+        // 创建模型目录
+        val modelDir = File(context.filesDir, MODEL_DIR).apply { 
+            if (!exists()) mkdirs()
         }
         
-        return tempFile
-    }
-    
-    /**
-     * 清理图片缓存
-     */
-    fun clearImageCache(context: Context) {
-        context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)?.let { dir ->
-            dir.listFiles()?.forEach { file ->
-                if (file.name.startsWith(IMAGE_PREFIX) && file.name.endsWith(IMAGE_SUFFIX)) {
-                    file.delete()
-                }
+        // 生成唯一文件名
+        val fileName = UUID.randomUUID().toString()
+        val extension = getFileExtension(context, uri)
+        val targetFile = File(modelDir, "$fileName.$extension")
+        
+        // 复制文件
+        FileOutputStream(targetFile).use { outputStream ->
+            inputStream.use { input ->
+                input.copyTo(outputStream)
             }
         }
-    }
-    
-    /**
-     * 获取文件大小（MB）
-     */
-    fun getFileSizeInMB(file: File): Double {
-        return file.length().toDouble() / (1024 * 1024)
-    }
-    
-    /**
-     * 检查存储空间
-     */
-    fun checkStorageSpace(context: Context): Boolean {
-        val dir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val freeSpace = dir?.freeSpace ?: 0
-        val minRequiredSpace = 100 * 1024 * 1024 // 100MB
         
-        return freeSpace >= minRequiredSpace
+        // 计算文件hash
+        val hash = calculateFileHash(targetFile)
+        
+        Triple(targetFile, hash, targetFile.length())
+    }
+    
+    private fun getFileExtension(context: Context, uri: Uri): String {
+        val mimeType = context.contentResolver.getType(uri)
+        return MimeTypeMap.getSingleton()
+            .getExtensionFromMimeType(mimeType)
+            ?: uri.path?.substringAfterLast('.')
+            ?: "unknown"
+    }
+    
+    private fun calculateFileHash(file: File): String {
+        val digest = MessageDigest.getInstance("SHA-256")
+        file.inputStream().use { input ->
+            val buffer = ByteArray(8192)
+            var read: Int
+            while (input.read(buffer).also { read = it } > 0) {
+                digest.update(buffer, 0, read)
+            }
+        }
+        return digest.digest().fold("") { str, it -> 
+            str + "%02x".format(it) 
+        }
+    }
+    
+    fun deleteModel(context: Context, model: ModelInfo): Boolean {
+        return try {
+            File(model.path).delete()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+    
+    fun getModelFile(context: Context, model: ModelInfo): File? {
+        return try {
+            File(model.path).takeIf { it.exists() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 }
