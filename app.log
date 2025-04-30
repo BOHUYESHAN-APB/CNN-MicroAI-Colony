@@ -13,3 +13,50 @@
 2025-04-23 17:05:42,981 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/Desktop/123
 2025-04-23 17:06:04,464 [INFO] apps.app.gui.dock_manager: Saved dock layout
 2025-04-23 17:06:04,494 [INFO] __main__: Application cleanup completed
+2025-04-29 16:50:20,796 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-04-29 16:50:25,278 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-04-29 16:50:25,278 [INFO] apps.app.main: Using device: cpu
+2025-04-29 16:50:25,327 [INFO] apps.app.utils.i18n: Loaded translations from d:\-Users-/Documents/GitHub/CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-04-29 16:50:26,221 [INFO] apps.app.main: Application initialized successfully
+2025-04-29 16:50:34,555 [INFO] apps.app.gui.main_window: ´ò¿ªÏîÄ¿: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:51:34,543 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Downloads\IMG_20250429_163909.jpg
+2025-04-29 16:51:34,746 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164151.jpg
+2025-04-29 16:51:34,960 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164328.jpg
+2025-04-29 16:51:35,166 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164304.jpg
+2025-04-29 16:51:35,403 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164256.jpg
+2025-04-29 16:51:35,621 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164143.jpg
+2025-04-29 16:51:35,809 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164219.jpg
+2025-04-29 16:51:36,028 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164001.jpg
+2025-04-29 16:51:36,292 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\º«ÌÎ\Downloads\IMG_20250429_163944.jpg
+2025-04-29 16:51:37,136 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_163909.jpg
+2025-04-29 16:51:37,315 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_163909.jpg
+2025-04-29 16:51:41,555 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164151.jpg
+2025-04-29 16:51:41,744 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164151.jpg
+2025-04-29 16:51:44,240 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164328.jpg
+2025-04-29 16:51:44,382 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164328.jpg
+2025-04-29 16:51:46,702 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164304.jpg
+2025-04-29 16:51:46,865 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164304.jpg
+2025-04-29 16:51:55,441 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164256.jpg
+2025-04-29 16:51:55,574 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164256.jpg
+2025-04-29 16:51:58,154 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164143.jpg
+2025-04-29 16:51:58,330 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164143.jpg
+2025-04-29 16:52:02,515 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164219.jpg
+2025-04-29 16:52:02,676 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164219.jpg
+2025-04-29 16:52:05,454 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164001.jpg
+2025-04-29 16:52:05,595 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_164001.jpg
+2025-04-29 16:52:07,552 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_163944.jpg
+2025-04-29 16:52:07,737 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\º«ÌÎ\Downloads\IMG_20250429_163944.jpg
+2025-04-29 16:52:25,436 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:52:25,437 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:53:25,431 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:53:25,433 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:54:25,442 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:54:25,443 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:55:25,434 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:55:25,436 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:56:25,437 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:56:25,439 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:57:25,432 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:57:25,433 [INFO] apps.app.gui.main_window: ±£´æÏîÄ¿½á¹û: C:/Users/º«ÌÎ/Desktop/123
+2025-04-29 16:57:29,956 [INFO] apps.app.gui.dock_manager: Saved dock layout
+2025-04-29 16:57:29,994 [INFO] apps.app.main: Application cleanup completed
