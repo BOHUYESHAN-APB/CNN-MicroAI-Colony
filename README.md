@@ -1,88 +1,112 @@
-# 菌落检测分析系统
+# 智能菌落分析系统 V2 (Colony Analysis System)
 
 ![项目图标](docs/image/logo.png)
 
+> 注意：这是新版本的开发分支。如需查看原有版本，请参考 [README_OLD.md](README_OLD.md)。
+
 ## 项目简介
 
-开放源代码的菌落检测分析系统，基于深度学习技术实现高精度菌落计数和形态分析。
+新一代智能菌落分析系统，基于深度学习技术实现高精度菌落计数和形态分析，支持多平台部署。相比原有版本，新版本采用了更现代化的技术栈，提供了更好的跨平台支持和用户体验。
 
-当前包含两个实现版本：
-1. `apps/app/main.py` - 基于PyQt6的验证性实现，用于功能原型验证
-2. `MICROAI-COLONY/` - 主要开发方向，基于Flask的现代化实现
+## 功能特点
 
-## 快速开始
+- 多平台支持
+  - 移动端：Android/iOS应用
+  - 桌面端：Windows/macOS/Linux
+  - Web端：支持现代浏览器访问
+- 增强的检测功能
+  - 高精度菌落检测和计数
+  - 实时相机预览
+  - 水平仪功能（倾斜度检测）
+  - 5度以内绿色边框提示
+- AI增强分析
+  - 兼容OpenAI API格式
+  - 支持本地AI模型(Ollama/LM Studio)
+  - AI辅助报告生成
+- 数据管理
+  - 自定义历史记录存储
+  - 工程文件管理系统
+  - 多格式导出(JSON/CSV/Excel/PDF/Markdown)
+- 界面优化
+  - iOS风格简洁设计
+  - 自适应布局
+  - 暗黑模式支持
+  - 手势操作支持
+
+## 新版目录结构
+
+```
+colony-next/
+├── frontend/                 # Tauri + React前端
+│   ├── src/
+│   │   ├── components/      # UI组件
+│   │   ├── layouts/         # 布局组件
+│   │   └── pages/          # 页面
+├── backend/                 # Python FastAPI后端
+│   ├── core/               # 核心功能
+│   ├── api/                # API接口
+│   └── services/           # 业务服务
+└── docs/                   # 项目文档
+```
+
+## 环境配置
 
 ```bash
-# 创建虚拟环境
-python -m venv venv
+# 1. 克隆仓库
+git clone https://github.com/yourusername/colony-analysis-system.git
+cd colony-analysis-system
 
-# 激活环境
+# 2. 后端配置
+cd backend
+python -m venv venv
 # Windows
 venv\Scripts\activate
 # Linux/macOS 
 source venv/bin/activate
-
-# 安装依赖
 pip install -r requirements.txt
 
-# 启动系统
-python MICROAI-COLONY/app.py
-```
-### 本地GUI版本启动 (PyQt6)
-```bash
-# 创建虚拟环境
-python -m venv venv
+# 3. 前端配置
+cd ../frontend
+npm install
 
-# 激活环境
-# Windows
-venv\Scripts\activate
-# Linux/macOS 
-source venv/bin/activate
-
-# 安装必要依赖
-pip install PyQt6 torch torchvision
-pip install py-cpuinfo psutil
-
-# 创建日志目录
-mkdir logs
-
-# 启动本地GUI版本
-cd apps/app
+# 4. 启动开发服务
+# 终端1: 后端服务
+cd backend
 python main.py
-注意事项：
 
-本地GUI版本基于PyQt6开发
-程序会自动检测并使用可用的GPU
-支持国际化(i18n)界面
-需要确保创建logs目录用于日志存储
-程序运行日志将保存在logs/app.log中，最多保留5个备份文件(每个最大10MB)
+# 终端2: 前端开发服务
+cd frontend
+npm run tauri dev
+```
 
-## 文档目录
+## 技术栈
 
-- [技术文档](docs/technical/)  
-- [模型对比](docs/model_comparisons/)
-- [性能报告](docs/performance_reports/)  
-- [使用指南](docs/guides/)  
-- [开发文档](docs/development/)  
-- [模型分析](main_models_train/model_analysis.md)
+- 前端：
+  - Tauri (跨平台应用框架)
+  - React (UI框架)
+  - TypeScript (类型安全)
+- 后端：
+  - Python FastAPI (API服务)
+  - PyTorch (AI模型)
+  - SQLite (数据存储)
+- AI集成：
+  - OpenAI API 兼容接口
+  - Ollama 本地模型支持
+  - LM Studio 本地模型支持
 
-## 核心功能
+## 文档
 
-- 高精度菌落检测
-- 多模型支持(Faster R-CNN, YOLO系列等)
-- 批量处理能力
-- 结果可视化
-- 模型分析评估框架
-  - 支持性能指标对比
-  - 误差率统计分析
-  - 场景适应性评估
+- [部署指南](docs/deployment/)
+- [开发文档](docs/development/)
+- [API参考](docs/api/)
+- [用户指南](docs/guides/)
+- [历史版本](README_OLD.md)
+
+## 开源协议
+
+[MIT License](LICENSE)
 
 ## 联系我们
 
 - 问题报告: GitHub Issues
-- 讨论区: GitHub Discussions
-- 邮件: colony@example.com
-
-## 开源协议
-
-[Apache License 2.0](LICENSE)
+- 邮件: project@example.com

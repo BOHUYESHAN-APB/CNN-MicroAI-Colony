@@ -1,0 +1,60 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "nav": {
+    "home": "Home",
+    "analysis": "Analysis",
+    "history": "History",
+    "settings": "Settings",
+    "about": "About"
+  },
+  "settings": {
+    "camera": {
+      "title": "Camera Settings",
+      "resolution": "Resolution",
+      "fps": "Frame Rate",
+      "exposure": "Exposure",
+      "zoom": "Zoom"
+    },
+    "analysis": {
+      "title": "Analysis Settings",
+      "confidenceThreshold": "Confidence Threshold",
+      "minColonySize": "Minimum Colony Size",
+      "maxColonySize": "Maximum Colony Size"
+    },
+    "ui": {
+      "title": "UI Settings",
+      "darkMode": "Dark Mode",
+      "language": "Language",
+      "showGrid": "Show Grid",
+      "showLabels": "Show Labels"
+    }
+  },
+  "analysis": {
+    "start": "Start Analysis",
+    "stop": "Stop Analysis",
+    "selectImage": "Select Image",
+    "uploadImage": "Upload Image",
+    "analyzing": "Analyzing...",
+    "results": {
+      "title": "Analysis Results",
+      "totalCount": "Total Colony Count",
+      "averageSize": "Average Size",
+      "confidence": "Confidence"
+    }
+  },
+  "errors": {
+    "imageUpload": "Failed to upload image",
+    "analysis": "Analysis failed",
+    "camera": "Camera connection failed",
+    "settings": "Failed to save settings"
+  }
+}

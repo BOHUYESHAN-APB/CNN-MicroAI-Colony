@@ -1,0 +1,60 @@
+{
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "delete": "删除",
+    "edit": "编辑",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功"
+  },
+  "nav": {
+    "home": "首页",
+    "analysis": "分析",
+    "history": "历史记录",
+    "settings": "设置",
+    "about": "关于"
+  },
+  "settings": {
+    "camera": {
+      "title": "相机设置",
+      "resolution": "分辨率",
+      "fps": "帧率",
+      "exposure": "曝光度",
+      "zoom": "缩放"
+    },
+    "analysis": {
+      "title": "分析设置",
+      "confidenceThreshold": "置信度阈值",
+      "minColonySize": "最小菌落大小",
+      "maxColonySize": "最大菌落大小"
+    },
+    "ui": {
+      "title": "界面设置",
+      "darkMode": "深色模式",
+      "language": "语言",
+      "showGrid": "显示网格",
+      "showLabels": "显示标签"
+    }
+  },
+  "analysis": {
+    "start": "开始分析",
+    "stop": "停止分析",
+    "selectImage": "选择图片",
+    "uploadImage": "上传图片",
+    "analyzing": "分析中...",
+    "results": {
+      "title": "分析结果",
+      "totalCount": "菌落总数",
+      "averageSize": "平均大小",
+      "confidence": "置信度"
+    }
+  },
+  "errors": {
+    "imageUpload": "图片上传失败",
+    "analysis": "分析失败",
+    "camera": "相机连接失败",
+    "settings": "设置保存失败"
+  }
+}
