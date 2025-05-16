@@ -1,201 +1,138 @@
-# Colony Analysis System User Guide
+# Intelligent Colony Analysis and Inhibition Zone Detection System User Guide
 
-## Introduction
+## Table of Contents
+- [System Overview](#system-overview)
+- [Installation](#installation)
+- [Interface Guide](#interface-guide)
+- [Basic Operations](#basic-operations)
+- [Advanced Features](#advanced-features)
+- [Troubleshooting](#troubleshooting)
 
-The Colony Analysis System is a professional image analysis tool designed for automatic detection and counting of colonies in petri dishes. The system supports real-time camera preview, automatic analysis, and data export functions.
+## System Overview
 
-## Key Features
+This system is a professional software that integrates colony counting and inhibition zone detection capabilities. It features a modern interface design, supports multiple detection algorithms, and meets the daily testing needs of laboratories.
 
-1. Real-time camera preview and capture
-2. Automatic colony detection and counting
-3. Data analysis and visualization
-4. Results export and sharing
+### Key Features
+- Automatic colony counting
+- Inhibition zone measurement and analysis
+- Data statistics and report generation
+- Image archive management
 
-## Quick Start
+## Installation
 
-### 1. Launch Application
+1. System Requirements:
+   - Windows 7/10/11 operating system
+   - 4GB RAM or more
+   - 500MB available disk space
 
-- Double-click the application icon
-- Wait for system initialization
-
-### 2. Capture Image
-
-1. Click the camera button at the bottom center
-2. Adjust petri dish position within frame
-3. Observe level indicator:
-   - Green border indicates tilt within 5 degrees
-   - Red border indicates adjustment needed
-4. Press capture button
-
-### 3. Analyze Image
-
-1. Auto-enters analysis mode after capture
-2. Wait for automatic analysis (few seconds)
-3. View results:
-   - Total colony count
-   - Position markers
-   - Size distribution
-   - Confidence metrics
-
-### 4. Export Results
-
-Supports multiple formats:
-- JSON (raw data)
-- CSV/Excel (tabular data)
-- PDF report (with images and analysis)
-- Markdown document
+2. Installation Steps:
+   - Install Python 3.9 or higher
+   - Install dependencies: `pip install -r requirements.txt`
+   - Run the program: `python main.py`
 
 ## Interface Guide
 
-### Main Layout
+The main interface is divided into three areas:
 
-```
-+------------------------+
-|    Tools & Settings    | -> Top toolbar
-+------------------------+
-|                        |
-|   Preview/Analysis     | -> Main content
-|                        |
-|                        |
-+------------------------+
-| History [CAM] Settings | -> Bottom nav
-+------------------------+
-```
+1. Left Resource Explorer
+   - File browsing and selection
+   - History viewing
+   - Project management
 
-### Function Areas
+2. Central Image Display Area
+   - Image preview
+   - Real-time detection results
+   - Annotation tools
 
-1. **Top Toolbar**
-   - Parameter adjustments
-   - Model selection
-   - Export options
+3. Right Analysis Panel
+   - Detection result statistics
+   - Measurement data display
+   - Report preview
 
-2. **Main Content**
-   - Camera preview
-   - Analysis results
-   - Data visualization
+## Basic Operations
 
-3. **Bottom Navigation**
-   - History records
-   - Camera control
-   - System settings
+### Image Import
+1. Click "Open Image" button
+2. Select through resource explorer
+3. Drag and drop files into program window
 
-## Operation Guide
+### Inhibition Zone Detection
+1. Import petri dish image
+2. Click "Start Detection" button
+3. Wait for detection to complete
+4. View detection results
 
-### 1. Image Capture
-
-#### Best Practices
-- Ensure adequate, uniform lighting
-- Keep petri dish level
-- Avoid reflections and shadows
-- Use appropriate background
-
-#### Capture Steps
-1. Place petri dish on flat surface
-2. Open camera preview
-3. Adjust angle until green border shows
-4. Capture when image is clear
-
-### 2. Data Management
-
-#### Project Files
-- Uses `.colony` extension
-- Contains original images and analysis
-- Supports batch import/export
-
-#### History
-- Time-ordered
-- Search and filter support
-- Batch comparison
-
-### 3. Result Analysis
-
-#### View Data
-- Overall statistics
-- Distribution charts
-- Confidence analysis
-- Time trends
-
-#### Export Data
-1. Select records
-2. Choose format
-3. Specify save location
-4. Confirm export
-
-## Common Issues
-
-### 1. Capture Issues
-
-**Q: Why is the border always red?**
-A: Check device leveling, adjust angle until level indicator shows ±5 degrees.
-
-**Q: Blurry images?**
-A: Ensure clean lens, stable device, adjust focus.
-
-### 2. Analysis Issues
-
-**Q: Inaccurate detection?**
-A: Check lighting conditions, image clarity, adjust parameters if needed.
-
-**Q: Slow analysis?**
-A: May be due to high resolution or system resources, adjust settings.
-
-### 3. Export Issues
-
-**Q: Cannot export files?**
-A: Check storage permissions and space.
-
-**Q: PDF won't open?**
-A: Ensure PDF reader installed, check file integrity.
+### Data Management
+1. Set save directory
+2. Choose file name prefix
+3. Export analysis results
+4. Generate analysis report
 
 ## Advanced Features
 
-### 1. Batch Processing
-- Multiple image analysis
-- Automatic summary reports
-- Batch export capability
+### Manual Annotation
+1. Select "Add Annotation" function
+2. Click the position to annotate
+3. Enter annotation text
+4. Confirm addition
 
-### 2. Custom Analysis
-- Parameter adjustment
-- Model selection
-- Threshold settings
+### Measurement Calibration
+1. Set standard petri dish size
+2. Perform automatic calibration
+3. Confirm calibration results
 
-### 3. Data Sync
-- Multi-device sync
-- Cloud backup
-- Real-time collaboration
+### Batch Processing
+1. Select multiple image files
+2. Set processing parameters
+3. Start batch processing
+4. View processing results
 
-## Security Notes
+### Data Export
+1. PDF report export
+2. Excel data sheet export
+3. Image result export
+4. Raw data export
 
-1. Data Security
-   - Regular backups
-   - Project file management
-   - Timely synchronization
+## Troubleshooting
 
-2. Usage Guidelines
-   - Keep equipment clean
-   - Regular updates
-   - Follow protocols
+### Detection Issues
+1. Detection Failure
+   - Check image quality
+   - Ensure even lighting
+   - Adjust detection parameters
 
-## Support Contact
+2. Inaccurate Results
+   - Perform image calibration
+   - Adjust detection thresholds
+   - Use manual annotation
 
-- Technical Support: support@example.com
-- Issue Reporting: issues.github.com
-- User Community: forum.example.com
+### System Issues
+1. Program Won't Start
+   - Check Python environment
+   - Verify dependency installation
+   - Check error logs
+
+2. Performance Issues
+   - Close other programs
+   - Check system resources
+   - Reduce image size
+
+## Technical Support
+
+If you encounter issues, please seek help through:
+
+1. Check online documentation
+2. Submit GitHub Issues
+3. Send email to technical support
 
 ## Version History
 
-### V2.0.0 (2025/4)
-- Added real-time preview
-- Improved analysis algorithm
-- Enhanced UI
-- Added batch processing
+- v2.0.0
+  - Added inhibition zone detection
+  - Optimized user interface
+  - Added multi-language support
+  - Improved detection algorithms
 
-### V1.5.0 (2024/12)
-- Added data export
-- Performance optimization
-- Bug fixes
-
-### V1.0.0 (2024/6)
-- Initial release
-- Basic analysis
-- Data management
+- v1.0.0
+  - Initial release
+  - Basic colony counting functionality

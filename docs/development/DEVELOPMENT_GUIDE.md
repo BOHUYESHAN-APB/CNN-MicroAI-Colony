@@ -1,170 +1,230 @@
-# 开发指南
+# Development Guide
 
-## 目录
+## Project Overview
 
-1. [项目架构](#项目架构)
-2. [开发环境配置](#开发环境配置)
-3. [编码规范](#编码规范)
-4. [项目结构](#项目结构)
-5. [工作流程](#工作流程)
+This project consists of two main modules:
+1. Colony counting system
+2. Inhibition zone detection system
 
-## 项目架构
+## Architecture
 
-### 整体架构
+### Core Components
 
-```mermaid
-graph TD
-    A[前端 Tauri + React] --> B[后端 FastAPI]
-    B --> C[核心服务]
-    C --> D[图像处理]
-    C --> E[AI模型]
-    C --> F[数据存储]
+```
+core/
+├── detector.py      # Detection algorithms
+├── models.py        # Data models
+└── processor.py     # Image processing
 ```
 
-### 前端架构
+### GUI Components
 
-- Tauri: 跨平台应用框架
-- React: UI开发框架
-- 三层结构:
-  1. 顶部: 快捷操作和参数设置
-  2. 中部: 主要内容区域
-  3. 底部: 导航栏（相机按钮居中）
+```
+gui/
+├── main_window.py   # Main window
+├── image_view.py    # Image viewer
+└── report_view.py   # Report display
+```
 
-### 后端架构
+### Utility Components
 
-- FastAPI: RESTful API服务
-- 模块化设计:
-  - 核心服务层
-  - AI模型适配层
-  - 数据访问层
+```
+utils/
+├── config.py        # Configuration management
+└── i18n.py         # Internationalization
+```
 
-## 开发环境配置
+## Implementation Details
 
-### 系统要求
+### Detection Algorithm
 
-- Python 3.8+
-- Node.js 16+
-- Rust (Tauri依赖)
+The inhibition zone detection uses a multi-stage approach:
 
-### 环境搭建
+1. Petri Dish Detection
+```python
+def detect_petri_dishes(image: np.ndarray) -> List[PetriDish]:
+    # Pre-processing
+    - Gaussian blur (kernel_size=9, sigma=2)
+    # HoughCircles detection
+    - Parameters: dp=1, minDist=400, param1=50, param2=35
+    - Size limits based on image dimensions
+```
 
-1. Python环境
+2. Colony Detection
+```python
+def detect_colonies_in_dish(image: np.ndarray, dish: PetriDish) -> List[Colony]:
+    # Three complementary methods:
+    1. HSV color space analysis
+    2. Adaptive thresholding
+    3. Gradient-based detection
+```
+
+3. Inhibition Zone Analysis
+```python
+def detect_inhibition_zone(gray_image: np.ndarray, colony: Colony, dish: PetriDish):
+    # Primary zone detection
+    - Threshold range: 35-180
+    - Area ratio validation: >0.8x filter paper area
+    
+    # Secondary zone detection
+    - Threshold range: 65-160
+    - Area ratio validation: >0.6x filter paper area
+    
+    # Overlap analysis
+    - Morphological processing
+    - Circularity validation (>0.5)
+    - Minimum area filtering (50px²)
+```
+
+### User Interface
+
+The GUI is implemented using PySide6 with a three-panel layout:
+
+1. Resource Explorer
+```python
+class ResourceExplorer(QTreeView):
+    # File system model integration
+    # Directory navigation
+    # File filtering
+```
+
+2. Image Viewer
+```python
+class ImageViewer(QWidget):
+    # Image display and scaling
+    # Annotation support
+    # Interactive measurements
+```
+
+3. Report Panel
+```python
+class ReportView(QWidget):
+    # Result visualization
+    # Data statistics
+    # Report generation
+```
+
+### Data Models
+
+Core data structures:
+
+1. PetriDish
+```python
+@dataclass
+class PetriDish:
+    center: Tuple[int, int]
+    radius: int
+    colonies: List[Colony]
+    diameter_mm: float = 90.0
+```
+
+2. Colony
+```python
+@dataclass
+class Colony:
+    center: Tuple[int, int]
+    radius: int
+    contour: np.ndarray
+    primary_inhibition_zone: Optional[Tuple[int, int, int]] = None
+    secondary_inhibition_zone: Optional[Tuple[int, int, int]] = None
+    overlap_zones: List[Tuple[int, int, int]] = field(default_factory=list)
+```
+
+## Development Setup
+
+1. Environment Setup
 ```bash
 python -m venv venv
-source venv/bin/activate  # Linux/macOS
-# 或
-.\venv\Scripts\activate  # Windows
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
-2. Node.js环境
+2. Development Tools
 ```bash
-cd frontend
-npm install
+# Code formatting
+black .
+
+# Linting
+pylint opencv-circle-detection
+
+# Type checking
+mypy opencv-circle-detection
 ```
 
-3. 数据库
+3. Testing
 ```bash
-# SQLite配置在backend/config/database.py中
+# Run unit tests
+python -m unittest discover tests
+
+# Generate test images
+python create_test_image.py
 ```
 
-## 编码规范
+## Code Style Guidelines
 
-### Python代码规范
+1. Python Code Style
+- Follow PEP 8 guidelines
+- Use type hints
+- Write docstrings for all public methods
+- Keep methods focused and concise
 
-- 遵循PEP 8规范
-- 使用类型注解
-- 文档字符串使用Google风格
+2. Documentation
+- Update README.md for major changes
+- Document new features in guides
+- Keep API documentation current
 
-### React/TypeScript代码规范
+3. Git Workflow
+- Create feature branches
+- Write clear commit messages
+- Submit pull requests for review
 
-- 使用ESLint和Prettier
-- 组件使用Function Component
-- 使用TypeScript类型定义
-- 遵循React Hooks规范
+## Contributing
 
-## 项目结构
+1. Development Process
+- Fork the repository
+- Create a feature branch
+- Implement changes
+- Write tests
+- Submit pull request
 
-### 前端结构
+2. Code Review
+- All changes require review
+- Tests must pass
+- Documentation must be updated
+
+3. Release Process
+- Version bump
+- Update changelog
+- Create release notes
+- Tag release
+
+## Troubleshooting
+
+Common development issues and solutions:
+
+1. Import Issues
+```python
+# Add project root to PYTHONPATH
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent))
 ```
-frontend/
-├── src/
-│   ├── components/         # 可复用组件
-│   │   ├── Camera/        # 相机组件
-│   │   ├── LevelMeter/   # 水平仪组件
-│   │   └── shared/       # 通用组件
-│   ├── layouts/          # 布局组件
-│   ├── pages/           # 页面组件
-│   ├── services/        # API服务
-│   ├── utils/          # 工具函数
-│   └── types/          # TypeScript类型定义
+
+2. GUI Issues
+```python
+# Enable Qt debug output
+QT_DEBUG=1 python main.py
 ```
 
-### 后端结构
-```
-backend/
-├── core/               # 核心功能实现
-│   ├── image/         # 图像处理
-│   ├── models/        # AI模型
-│   └── analysis/      # 分析服务
-├── api/               # API定义
-├── services/          # 业务服务
-└── utils/            # 工具函数
+3. Performance Issues
+```python
+# Profile code
+python -m cProfile -o output.prof main.py
 ```
 
-## 工作流程
+## Contact
 
-1. 特性开发流程
-   - 创建特性分支
-   - 开发并测试
-   - 提交Pull Request
-   - 代码审查
-   - 合并到主分支
-
-2. 版本发布流程
-   - 特性冻结
-   - 全面测试
-   - 文档更新
-   - 版本标记
-   - 发布构建
-
-3. 文档维护
-   - 及时更新API文档
-   - 维护开发文档
-   - 更新用户指南
-
-## 注意事项
-
-1. 代码提交
-   - 提交前进行lint检查
-   - 遵循提交信息规范
-   - 确保测试用例通过
-
-2. 安全事项
-   - 不在代码中硬编码敏感信息
-   - API请求使用适当的认证
-   - 遵循安全最佳实践
-
-3. 性能考虑
-   - 图像处理优化
-   - 资源合理使用
-   - 避免内存泄漏
-
-## 常见问题
-
-1. 开发环境问题
-   - 环境配置问题
-   - 依赖冲突解决
-   - 跨平台兼容性
-
-2. 编译部署问题
-   - 打包注意事项
-   - 部署检查清单
-   - 常见错误处理
-
-## 参考资源
-
-- [Tauri官方文档](https://tauri.app/)
-- [FastAPI文档](https://fastapi.tiangolo.com/)
-- [React文档](https://react.dev/)
-- [TypeScript文档](https://www.typescriptlang.org/)
+- Technical Questions: GitHub Issues
+- Code Reviews: Pull Requests
+- Documentation: Wiki
