@@ -27,10 +27,10 @@ class CircleDetector:
         blurred = cv2.GaussianBlur(gray, (9, 9), 2)
         
         # 修改霍夫圆检测参数
-        plates = cv2.HoughCircles(blurred, cv2.HOUGH_GRADIENT, dp=1, minDist=150,
-                                param1=50, param2=25,  # 降低param2以检测更多圆
-                                minRadius=int(image.shape[0]/5),  # 调整最小半径
-                                maxRadius=int(image.shape[0]/1.5))  # 增加最大半径
+        plates = cv2.HoughCircles(blurred, cv2.HOUGH_GRADIENT, dp=1, minDist=300,  # 增加最小距离
+                                param1=50, param2=35,  # 提高参数2的阈值
+                                minRadius=int(image.shape[0]/3),  # 增加最小半径
+                                maxRadius=int(image.shape[0]/1.5))
         
         if plates is None:
             raise Exception("未检测到培养皿")
@@ -38,15 +38,17 @@ class CircleDetector:
         plates = np.uint16(np.around(plates[0, :]))
         petri_dishes = []
         
-        for plate in plates:
-            x, y, r = plate
-            petri_dishes.append(PetriDish(
-                center=(x, y),
-                radius=r,
-                colonies=[],
-                diameter_mm=self.plate_diameter_mm
-            ))
-            
+        # 按半径大小排序并只保留最大的圆作为培养皿
+        sorted_plates = sorted(plates, key=lambda x: x[2], reverse=True)
+        plate = sorted_plates[0]  # 只使用最大的圆
+        
+        petri_dishes.append(PetriDish(
+            center=(plate[0], plate[1]),
+            radius=plate[2],
+            colonies=[],
+            diameter_mm=self.plate_diameter_mm
+        ))
+        
         return petri_dishes
 
     def detect_colonies_in_dish(self, image: np.ndarray, dish: PetriDish) -> List[Colony]:
@@ -77,22 +79,23 @@ class CircleDetector:
         
         colonies = []
         mm_per_pixel = self.plate_diameter_mm / (2 * dish.radius)
+        min_colony_radius = int(dish.radius * 0.05)  # 最小菌落半径
+        max_colony_radius = int(dish.radius * 0.2)   # 最大菌落半径
         
         for contour in contours:
-            # 放宽面积过滤条件
-            area = cv2.contourArea(contour)
-            if area < 50:  # 降低最小面积阈值
-                continue
-                
             # 获取最小外接圆
             (x, y), radius = cv2.minEnclosingCircle(contour)
             center = (int(x), int(y))
             radius = int(radius)
             
-            # 检查是否在培养皿内，放宽限制
+            # 过滤条件
+            if radius < min_colony_radius or radius > max_colony_radius:
+                continue
+                
+            # 检查是否在培养皿内的有效区域
             dist_to_center = np.sqrt((center[0] - dish.center[0])**2 + 
                                    (center[1] - dish.center[1])**2)
-            if dist_to_center > dish.radius * 0.9:  # 增加边缘容差
+            if dist_to_center > dish.radius * 0.8:  # 排除边缘区域
                 continue
             
             # 创建Colony对象
@@ -111,7 +114,7 @@ class CircleDetector:
         """检测抑菌圈"""
         # 在菌落周围区域检测
         mask = np.zeros_like(gray)
-        search_radius = min(int(colony.radius * 3.5), int(dish.radius * 0.9))  # 增加搜索范围
+        search_radius = min(int(colony.radius * 3.5), int(dish.radius * 0.8))
         cv2.circle(mask, colony.center, search_radius, 255, -1)
         cv2.circle(mask, colony.center, colony.radius, 0, -1)  # 排除菌落区域
         
@@ -119,12 +122,12 @@ class CircleDetector:
         masked = cv2.bitwise_and(gray, gray, mask=mask)
         
         # 边缘检测，调整参数
-        edges = cv2.Canny(masked, 30, 150)  # 降低阈值
+        edges = cv2.Canny(masked, 30, 150)
         
         # 霍夫圆检测，调整参数
-        circles = cv2.HoughCircles(edges, cv2.HOUGH_GRADIENT, dp=1, minDist=colony.radius*1.5,
-                                 param1=40, param2=15,  # 降低阈值
-                                 minRadius=colony.radius,
+        circles = cv2.HoughCircles(edges, cv2.HOUGH_GRADIENT, dp=1, minDist=colony.radius*2,
+                                 param1=40, param2=15,
+                                 minRadius=int(colony.radius * 1.2),  # 确保抑菌圈大于菌落
                                  maxRadius=search_radius)
         
         if circles is not None:
@@ -136,7 +139,7 @@ class CircleDetector:
             for circle in circles:
                 x, y, r = circle
                 dist = np.sqrt((x - colony.center[0])**2 + (y - colony.center[1])**2)
-                if dist < min_dist and r > colony.radius:  # 确保抑菌圈大于菌落
+                if dist < min_dist:
                     min_dist = dist
                     best_circle = circle
             
@@ -152,18 +155,28 @@ class CircleDetector:
         for i, dish in enumerate(dishes):
             # 绘制培养皿
             cv2.circle(result, dish.center, dish.radius, (255, 0, 0), 2)
+            
+            # 安全地计算文本位置
+            text_x = np.clip(dish.center[0] - 50, 10, result.shape[1] - 200)
+            text_y = np.clip(dish.center[1] - dish.radius - 10, 30, result.shape[0] - 10)
+            
             cv2.putText(result, f'培养皿 {i+1}: {dish.diameter_mm}mm',
-                       (max(10, dish.center[0] - 50), max(30, dish.center[1] - dish.radius - 10)),
+                       (text_x, text_y),
                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
             
-            mm_per_pixel = dish.diameter_mm / (2 * dish.radius)
+            mm_per_pixel = self.plate_diameter_mm / (2 * dish.radius)
             
             for j, colony in enumerate(dish.colonies):
                 # 绘制菌落
                 cv2.drawContours(result, [colony.contour], -1, (0, 255, 255), 2)
                 colony_diameter = 2 * colony.radius * mm_per_pixel
+                
+                # 安全地计算文本位置
+                text_x = np.clip(colony.center[0] - 40, 10, result.shape[1] - 150)
+                text_y = np.clip(colony.center[1] - 10, 30, result.shape[0] - 10)
+                
                 cv2.putText(result, f'菌落 {j+1}: {colony_diameter:.1f}mm',
-                           (max(10, colony.center[0] - 40), max(30, colony.center[1] - 10)),
+                           (text_x, text_y),
                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
                 
                 # 绘制抑菌圈
@@ -171,8 +184,13 @@ class CircleDetector:
                     x, y, r = colony.inhibition_zone
                     cv2.circle(result, (x, y), r, (0, 255, 0), 2)
                     inhibition_diameter = 2 * r * mm_per_pixel
+                    
+                    # 安全地计算文本位置
+                    text_x = np.clip(x - 40, 10, result.shape[1] - 150)
+                    text_y = np.clip(y - r - 10, 30, result.shape[0] - 10)
+                    
                     cv2.putText(result, f'抑菌圈: {inhibition_diameter:.1f}mm',
-                               (max(10, x - 40), max(30, y - r - 10)),
+                               (text_x, text_y),
                                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
         
         return result
@@ -198,7 +216,7 @@ class CircleDetector:
 
 def main():
     detector = CircleDetector()
-    image_path = "test_images/2021041310020608608.jpg"
+    image_path = "test_images/R-C.jpg"
     
     try:
         result = detector.process_image(image_path)
