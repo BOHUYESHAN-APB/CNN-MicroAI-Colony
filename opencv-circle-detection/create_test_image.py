@@ -4,12 +4,12 @@ import numpy as np
 def create_test_image(size=800):
     # 创建空白图像
     img = np.zeros((size, size, 3), dtype=np.uint8)
-    img.fill(240)  # 浅灰色背景
+    img.fill(245)  # 更亮的背景色
     
     # 创建培养皿（直径90mm）
     center = (size//2, size//2)
     plate_radius = size//3
-    cv2.circle(img, center, plate_radius, (220, 220, 220), -1)  # 培养基底色
+    cv2.circle(img, center, plate_radius, (230, 230, 230), -1)  # 更亮的培养基底色
     
     # 添加纹理使其看起来更自然
     noise = np.random.normal(0, 5, img.shape).astype(np.uint8)
@@ -55,9 +55,9 @@ def create_test_image(size=800):
         # 绘制滤纸片（6mm直径）
         filter_radius = int(3 * px_per_mm)  # 3mm半径
         # 绘制滤纸片主体
-        cv2.circle(img, (x, y), filter_radius, (190, 190, 190), -1)
+        cv2.circle(img, (x, y), filter_radius, (150, 150, 150), -1)  # 更暗的滤纸片
         # 添加滤纸片边缘和纹理
-        cv2.circle(img, (x, y), filter_radius, (170, 170, 170), 1)
+        cv2.circle(img, (x, y), filter_radius, (130, 130, 130), 1)  # 更暗的边缘
         # 添加纸质纹理
         # 生成并应用纸质纹理
         size = filter_radius * 2 + 1
@@ -85,7 +85,7 @@ def create_test_image(size=800):
             img[y1:y2, x1:x2] = paper_region
     
     # 添加培养皿边缘
-    cv2.circle(img, center, plate_radius, (200, 200, 200), 2)
+    cv2.circle(img, center, plate_radius, (180, 180, 180), 3)  # 更暗且更粗的边缘
     
     return img
 
