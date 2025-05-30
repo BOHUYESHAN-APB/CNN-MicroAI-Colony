@@ -116,7 +116,7 @@ python main.py
 
 ## 许可证
 
-[MIT License](LICENSE)
+[Apache-2.0 license](LICENSE)
 
 ## 贡献指南
 
