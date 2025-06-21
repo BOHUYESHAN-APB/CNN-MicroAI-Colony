@@ -70,6 +70,10 @@
    - 区域验证算法
    - 面积计算精度：±1mm²
 
+### 2.4 浮点数精度
+- **主要精度**: 模型训练和推理过程主要使用标准的 FP32 (单精度浮点数)。
+- **TF32 加速**: 在兼容的 NVIDIA Ampere 及更新架构的 GPU 上，部分训练脚本 (例如 [`models-colony-counting/in-use/main_models_train/train.py`](models-colony-counting/in-use/main_models_train/train.py:21-22)) 会启用 TF32 (TensorFloat-32) 精度，以利用硬件加速提升训练效率，同时尽可能保持与 FP32 相近的数值范围和准确性。
+- **低精度支持**: 目前的项目代码中，没有发现明确将模型或数据转换为 FP16 (半精度浮点数) 或 FP8 等更低精度的操作。
 ## 3. 性能指标
 
 ### 3.1 检测性能
