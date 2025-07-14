@@ -112,6 +112,11 @@ python main.py
 - [用户指南](docs/guides/USER_GUIDE.md)
 - [开发文档](docs/development/DEVELOPMENT_GUIDE.md)
 - [技术规格](docs/technical/TECHNICAL_SPECS.md)
+- [检测分析报告](opencv-circle-detection/DETECTION_ANALYSIS_SUMMARY.md)
+
+- [用户指南](docs/guides/USER_GUIDE.md)
+- [开发文档](docs/development/DEVELOPMENT_GUIDE.md)
+- [技术规格](docs/technical/TECHNICAL_SPECS.md)
 - [历史版本](README_OLD.md)
 
 ## 许可证
