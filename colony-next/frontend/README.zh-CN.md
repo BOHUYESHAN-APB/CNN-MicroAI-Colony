@@ -2,6 +2,7 @@
 
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](./README.md) [![简体中文](https://img.shields.io/badge/语言-简体中文-red.svg)](./README.zh-CN.md)
 
+> **⚠️ 注意:** 当前 Web UI 由于环境配置问题暂时无法运行。此问题正在调查中。
 本项目是菌落分析系统的前端应用，使用 React、TypeScript 和 Tauri 构建。
 
 ## 开发

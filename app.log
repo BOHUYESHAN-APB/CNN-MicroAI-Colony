@@ -60,3 +60,30 @@
 2025-04-29 16:57:25,433 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/韩涛/Desktop/123
 2025-04-29 16:57:29,956 [INFO] apps.app.gui.dock_manager: Saved dock layout
 2025-04-29 16:57:29,994 [INFO] apps.app.main: Application cleanup completed
+2025-07-11 00:27:10,259 [INFO] apps.app.utils.config: Configuration loaded from apps\app\resources\config.json
+2025-07-11 00:27:15,551 [INFO] apps.app.utils.gpu_utils: No CUDA GPU available, using CPU
+2025-07-11 00:27:15,552 [INFO] __main__: Using device: cpu
+2025-07-11 00:27:15,609 [INFO] apps.app.utils.i18n: Loaded translations from D:\-Users-\Documents\GitHub\CNN-MicroAI-Colony\apps\app\utils\..\resources\i18n\zh_CN.json
+2025-07-11 00:27:16,635 [INFO] __main__: Application initialized successfully
+2025-07-11 00:27:26,584 [INFO] apps.app.gui.main_window: 打开项目: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:27:31,915 [INFO] apps.app.gui.image_list_dock: Successfully added image to list: C:\Users\BoHuYeShan\Downloads\MVIMG_20250709_141155_1.jpg
+2025-07-11 00:27:32,947 [INFO] apps.app.gui.image_viewer_dock: Successfully loaded image: C:\Users\BoHuYeShan\Downloads\MVIMG_20250709_141155_1.jpg
+2025-07-11 00:27:33,196 [INFO] apps.app.gui.main_window: Successfully loaded image: C:\Users\BoHuYeShan\Downloads\MVIMG_20250709_141155_1.jpg
+2025-07-11 00:28:15,758 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:28:15,759 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:29:15,765 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:29:15,765 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:30:15,762 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:30:15,763 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:31:19,386 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:31:19,386 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:32:19,394 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:32:19,395 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:33:19,396 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:33:19,397 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:34:19,383 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:34:19,384 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:35:19,390 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:35:19,391 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:36:19,397 [INFO] apps.app.utils.project_manager: Saved project results: C:/Users/BoHuYeShan/Desktop/123
+2025-07-11 00:36:19,398 [INFO] apps.app.gui.main_window: 保存项目结果: C:/Users/BoHuYeShan/Desktop/123

@@ -19,9 +19,7 @@
     "test:all": "ts-node scripts/test-with-report.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "prepare": "chmod +x scripts/*.ts && chmod +x test.sh test-cn.sh",
-    "postinstall": "npm run prepare"
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -46,7 +44,6 @@
     "@babel/preset-react": "^7.22.0",
     "@babel/preset-typescript": "^7.22.0",
     "@jest/globals": "^29.7.0",
-    "@jest/types": "^29.7.0",
     "@tauri-apps/cli": "^1.5.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",

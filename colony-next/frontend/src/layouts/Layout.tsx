@@ -1,14 +1,14 @@
-import { ReactNode } from 'react';
+import { Outlet } from 'react-router-dom';
 import '../index.css';
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function Layout() {
   return (
     <div className="app-layout">
       <header className="app-header">
         <h1>Colony Analysis</h1>
       </header>
       <main className="app-main">
-        {children}
+        <Outlet />
       </main>
       <footer className="app-footer">
         <nav className="app-nav">

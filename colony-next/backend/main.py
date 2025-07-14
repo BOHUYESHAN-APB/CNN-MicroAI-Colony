@@ -1,11 +1,26 @@
+import sys
+from pathlib import Path
+
+# Add project root and models-colony-counting to the Python path
+project_root = Path(__file__).resolve().parent.parent.parent
+sys.path.append(str(project_root))
+sys.path.append(str(project_root / "models-colony-counting" / "in-use" / "faster_rcnn_resnet50" / "src" / "models"))
+import sys
+from pathlib import Path
+
+# Add project root and apps/app/core/models to the Python path
+project_root = Path(__file__).resolve().parent.parent.parent
+sys.path.append(str(project_root))
+sys.path.append(str(project_root / "apps" / "app" / "core" / "models"))
+
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import uvicorn
 import cv2
 import numpy as np
-from pathlib import Path
 import os
+import torch
 
 app = FastAPI(title="Colony Analysis Backend")
 
@@ -24,22 +39,22 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 
 class ColonyAnalyzer:
     def __init__(self):
-        # TODO: 加载AI模型
-        pass
-        
+        # 加载ColonyDetector模型
+        from colony_detector import ColonyDetector
+        self.detector = ColonyDetector()  # Important: set 
+        # Load the trained weights. Use map_location for CPU if you don't have a GPU.
+        self.detector.load_state_dict(torch.load("D:\\train\\checkpoint_epoch_31.pth", map_location=torch.device('cpu')))
+        self.detector.eval() # Set the model to evaluation mode
+        self.initialized = True # No initialize() method anymore
+
     def analyze_image(self, image_path: Path):
         """分析图像中的菌落"""
-        image = cv2.imread(str(image_path))
-        if image is None:
-            return {"error": "无法读取图像"}
-
-        # TODO: 实现图像分析逻辑
-        
+        # 临时修改：忽略图像内容，返回固定结果
         return {
-            "count": 0,  # 菌落数量
-            "positions": [],  # 菌落位置
-            "sizes": [],  # 菌落大小
-            "confidence": []  # 置信度
+            "count": 10,
+            "positions": [],
+            "sizes": [],
+            "confidence": []
         }
 
 analyzer = ColonyAnalyzer()
@@ -49,7 +64,7 @@ async def root():
     return {"message": "Colony Analysis Backend is running"}
 
 @app.post("/analyze")
-async def analyze_image(file: UploadFile = File(...)):
+async def analyze_image_endpoint(file: UploadFile = File(...)):
     """分析上传的图片"""
     try:
         # 保存上传的文件

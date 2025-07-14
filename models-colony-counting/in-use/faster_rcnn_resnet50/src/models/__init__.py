@@ -1,4 +1,1 @@
-# Make models a package
-from .colony_detector import ColonyDetector
-
-__all__ = ['ColonyDetector']
+# This file makes the directory a Python module
