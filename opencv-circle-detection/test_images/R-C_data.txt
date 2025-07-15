@@ -1,0 +1,14 @@
+=== 检测结果数据 ===
+
+文件名: R-C.jpg
+图像路径: D:/-Users-/Documents/GitHub/CNN-MicroAI-Colony/opencv-circle-detection/test_images/R-C.jpg
+
+培养皿:
+  中心: (554, 440)
+  半径: 378 px
+
+标定比例: 8.40 px/mm
+
+抑菌物质 (0 个):
+
+抑菌圈 (0 个):

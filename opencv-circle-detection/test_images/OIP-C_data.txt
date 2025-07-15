@@ -1,0 +1,14 @@
+=== 检测结果数据 ===
+
+文件名: OIP-C.jpg
+图像路径: D:/-Users-/Documents/GitHub/CNN-MicroAI-Colony/opencv-circle-detection/test_images/OIP-C.jpg
+
+培养皿:
+  中心: (238, 232)
+  半径: 189 px
+
+标定比例: 4.20 px/mm
+
+抑菌物质 (0 个):
+
+抑菌圈 (0 个):

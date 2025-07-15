@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNN-MicroAI-Colony - 微生物智能分析平台</title>
+    <meta name="description" content="基于深度学习和计算机视觉的微生物培养综合分析系统">
+    <meta name="keywords" content="深度学习,计算机视觉,微生物检测,CNN,OpenCV,抑菌圈检测">
+    
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS变量 */
+        :root {
+            --primary-color: #0078d4;
+            --secondary-color: #106ebe;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #333333;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 基础样式 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .nav-brand h1 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* 主要内容 */
+        .main-content {
+            min-height: calc(100vh - 200px);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* 段落样式 */
+        section {
+            padding: 4rem 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .section-intro {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 特性网格 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* 架构图 */
+        .arch-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .arch-block {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .arch-block h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .tech-item {
+            background: var(--bg-secondary);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .arch-connector {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* 应用场景 */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .app-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .app-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .app-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .app-card ul {
+            list-style: none;
+        }
+
+        .app-card li {
+            padding: 0.25rem 0;
+            color: var(--text-secondary);
+        }
+
+        .app-card li:before {
+            content: "✓ ";
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 性能表格 */
+        .performance-table {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .evaluation {
+            background: #fff3cd;
+            color: #856404;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .performance-note {
+            background: #e7f3ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+        }
+
+        /* 演示卡片 */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .demo-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .demo-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .demo-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* 亮点部分 */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .highlight-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .highlight-section ul {
+            list-style: none;
+        }
+
+        .highlight-section li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .highlight-section li strong {
+            color: var(--text-primary);
+        }
+
+        /* 联系部分 */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card ul {
+            list-style: none;
+        }
+
+        .contact-card li {
+            padding: 0.25rem 0;
+        }
+
+        .contact-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 1rem;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .arch-diagram {
+                flex-direction: column;
+            }
+
+            .arch-connector {
+                transform: rotate(90deg);
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1>🧬 CNN-MicroAI-Colony</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="./index.html" class="active">首页</a></li>
+                    <li><a href="./cnn-demo.html">CNN模型</a></li>
+                    <li><a href="./opencv-demo.html">OpenCV系统</a></li>
+                    <li><a href="./tech-comparison.html">技术对比</a></li>
+                    <li><a href="./documentation.html">技术文档</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <!-- 英雄区域 -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">微生物智能分析平台</h1>
+                <p class="hero-subtitle">基于深度学习和计算机视觉的微生物培养综合分析系统</p>
+                <div class="hero-buttons">
+                    <a href="./cnn-demo.html" class="btn btn-primary">🧠 CNN模型演示</a>
+                    <a href="./opencv-demo.html" class="btn btn-secondary">👁️ OpenCV系统</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 平台概述 -->
+        <section class="overview">
+            <div class="container">
+                <h2>🔬 平台概述</h2>
+                <p class="section-intro">CNN-MicroAI-Colony是一个集成了深度学习和传统计算机视觉技术的微生物分析平台，提供从菌落计数到抑菌圈检测的完整解决方案。</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>深度学习驱动</h3>
+                        <p>基于CNN的高精度菌落识别，支持复杂场景下的自动检测</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📏</div>
+                        <h3>精确测量</h3>
+                        <p>OpenCV抑菌圈边界检测和测量，亚像素级测量精度</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🖥️</div>
+                        <h3>友好界面</h3>
+                        <p>现代化GUI和批量处理能力，支持高效的工作流程</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔬</div>
+                        <h3>专业应用</h3>
+                        <p>面向科研、医疗、食品安全等领域的专业检测需求</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技术架构 -->
+        <section class="architecture">
+            <div class="container">
+                <h2>🏗️ 技术架构</h2>
+                <div class="arch-diagram">
+                    <div class="arch-block">
+                        <h3>🧠 深度学习模块</h3>
+                        <div class="tech-list">
+                            <span class="tech-item">Faster R-CNN + ResNet50</span>
+                            <span class="tech-item">YOLO系列模型</span>
+                            <span class="tech-item">DAMO-YOLO</span>
+                            <span class="tech-item">自定义CNN架构</span>
+                        </div>
+                    </div>
+                    <div class="arch-connector">+</div>
+                    <div class="arch-block">
+                        <h3>👁️ 计算机视觉模块</h3>
+                        <div class="tech-list">
+                            <span class="tech-item">霍夫圆检测</span>
+                            <span class="tech-item">形态学操作</span>
+                            <span class="tech-item">精确测量算法</span>
+                            <span class="tech-item">GUI用户界面</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 应用场景 -->
+        <section class="applications">
+            <div class="container">
+                <h2>🎯 应用场景</h2>
+                <div class="apps-grid">
+                    <div class="app-card">
+                        <div class="app-icon">🏥</div>
+                        <h3>医疗诊断</h3>
+                        <ul>
+                            <li>病原菌识别和计数</li>
+                            <li>抗生素敏感性测试</li>
+                            <li>临床样本快速筛查</li>
+                        </ul>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">🍽️</div>
+                        <h3>食品安全</h3>
+                        <ul>
+                            <li>微生物污染检测</li>
+                            <li>食品质量控制</li>
+                            <li>生产线监测</li>
+                        </ul>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">🔬</div>
+                        <h3>科学研究</h3>
+                        <ul>
+                            <li>微生物生长分析</li>
+                            <li>实验数据自动化采集</li>
+                            <li>研究样本批量处理</li>
+                        </ul>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">🏭</div>
+                        <h3>工业应用</h3>
+                        <ul>
+                            <li>发酵过程监控</li>
+                            <li>环境微生物检测</li>
+                            <li>质量保证体系</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 性能指标 -->
+        <section class="performance">
+            <div class="container">
+                <h2>📊 性能指标</h2>
+                <div class="performance-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>功能模块</th>
+                                <th>技术方案</th>
+                                <th>准确率</th>
+                                <th>处理速度</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>菌落计数</td>
+                                <td>CNN深度学习</td>
+                                <td>&gt;95%</td>
+                                <td><span class="evaluation">量化评估中</span></td>
+                            </tr>
+                            <tr>
+                                <td>菌落分类</td>
+                                <td>ResNet50</td>
+                                <td>&gt;93%</td>
+                                <td><span class="evaluation">量化评估中</span></td>
+                            </tr>
+                            <tr>
+                                <td>抑菌圈检测</td>
+                                <td>OpenCV</td>
+                                <td>&gt;90%</td>
+                                <td>&lt;5秒/图</td>
+                            </tr>
+                            <tr>
+                                <td>精确测量</td>
+                                <td>几何算法</td>
+                                <td>像素级</td>
+                                <td>&lt;1秒/测量</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="performance-note">
+                    <strong>性能说明：</strong>CNN模型推理速度正在不同硬件环境下进行量化评估，包括GPU、CPU和移动设备等多种部署场景。OpenCV系统已完成性能测试验证。
+                </div>
+            </div>
+        </section>
+
+        <!-- 快速体验 -->
+        <section class="demo">
+            <div class="container">
+                <h2>🚀 快速体验</h2>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <h3>🧠 CNN菌落计数演示</h3>
+                        <p>体验基于深度学习的高精度菌落识别和计数功能</p>
+                        <a href="./cnn-demo.html" class="btn btn-primary">查看演示</a>
+                    </div>
+                    <div class="demo-card">
+                        <h3>📏 OpenCV抑菌圈检测</h3>
+                        <p>体验精确的抑菌圈边界检测和亚像素级测量</p>
+                        <a href="./opencv-demo.html" class="btn btn-primary">查看演示</a>
+                    </div>
+                    <div class="demo-card">
+                        <h3>📊 技术对比分析</h3>
+                        <p>深入了解两种技术方案的优势和适用场景</p>
+                        <a href="./tech-comparison.html" class="btn btn-primary">技术对比</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技术亮点 -->
+        <section class="highlights">
+            <div class="container">
+                <h2>🏆 技术亮点</h2>
+                <div class="highlights-grid">
+                    <div class="highlight-section">
+                        <h3>🧠 深度学习优势</h3>
+                        <ul>
+                            <li><strong>高准确率：</strong>CNN模型在复杂场景下表现优异</li>
+                            <li><strong>自动学习：</strong>无需手工特征工程</li>
+                            <li><strong>适应性强：</strong>可适应不同培养条件和成像设备</li>
+                            <li><strong>持续改进：</strong>支持模型更新和优化</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-section">
+                        <h3>👁️ 传统CV优势</h3>
+                        <ul>
+                            <li><strong>精确测量：</strong>亚像素级别的几何测量精度</li>
+                            <li><strong>实时处理：</strong>低延迟的实时检测能力</li>
+                            <li><strong>资源高效：</strong>对硬件要求相对较低</li>
+                            <li><strong>可解释性：</strong>算法逻辑清晰，参数可调</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-section">
+                        <h3>🤝 技术融合</h3>
+                        <ul>
+                            <li><strong>优势互补：</strong>结合两种技术的优点</li>
+                            <li><strong>流水线协作：</strong>CNN检测 + OpenCV测量</li>
+                            <li><strong>灵活切换：</strong>根据应用场景选择最佳方案</li>
+                            <li><strong>性能优化：</strong>充分发挥各技术特长</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系和资源 -->
+        <section class="contact">
+            <div class="container">
+                <h2>📞 联系与资源</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>📚 技术文档</h3>
+                        <ul>
+                            <li><a href="./documentation.html">完整技术文档</a></li>
+                            <li><a href="./api-reference.html">API参考手册</a></li>
+                            <li><a href="./tutorials.html">使用教程</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-card">
+                        <h3>🔗 项目资源</h3>
+                        <ul>
+                            <li><a href="#" target="_blank">GitHub仓库</a></li>
+                            <li><a href="#" target="_blank">在线演示</a></li>
+                            <li><a href="#" target="_blank">技术博客</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact-card">
+                        <h3>🤝 合作交流</h3>
+                        <ul>
+                            <li><a href="mailto:contact@example.com">商务合作</a></li>
+                            <li><a href="#" target="_blank">技术交流群</a></li>
+                            <li><a href="#" target="_blank">学术合作</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CNN-MicroAI-Colony</h3>
+                    <p>微生物智能分析平台</p>
+                    <div class="footer-tags">
+                        <span class="tag">深度学习</span>
+                        <span class="tag">计算机视觉</span>
+                        <span class="tag">微生物检测</span>
+                        <span class="tag">医疗AI</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>技术方案</h4>
+                    <ul>
+                        <li><a href="./cnn-demo.html">CNN深度学习</a></li>
+                        <li><a href="./opencv-demo.html">OpenCV传统CV</a></li>
+                        <li><a href="./tech-comparison.html">技术对比</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>文档资源</h4>
+                    <ul>
+                        <li><a href="./documentation.html">技术文档</a></li>
+                        <li><a href="./api-reference.html">API参考</a></li>
+                        <li><a href="./tutorials.html">使用教程</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CNN-MicroAI-Colony. 版本：v2.0</p>
+                <p>最后更新：2025年7月15日 | 性能测试：CNN模型量化评估中</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // 检查本地存储的主题偏好
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
+            } else {
+                body.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            }
+        });
+
+        // 页面加载时应用主题
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-theme');
+            themeToggle.textContent = '☀️';
+        }
+
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 添加页面加载动画
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

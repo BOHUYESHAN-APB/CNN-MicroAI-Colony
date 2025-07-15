@@ -2,7 +2,27 @@ import cv2
 import numpy as np
 from typing import List, Optional, Tuple, Dict
 from enum import Enum
-from .models import Colony, PetriDish, SubstanceTypeEnum
+try:
+    from .models import Colony, PetriDish, SubstanceTypeEnum
+except ImportError:
+    # 如果无法导入，提供基本的替代类
+    class SubstanceTypeEnum:
+        HOLE = "HOLE"
+        FILTER_PAPER = "FILTER_PAPER"
+    
+    class Colony:
+        def __init__(self, center, radius, contour=None, substance_type=None, detection_score=0.5):
+            self.center = center
+            self.radius = radius
+            self.contour = contour
+            self.substance_type = substance_type
+            self.detection_score = detection_score
+    
+    class PetriDish:
+        def __init__(self, center, radius, diameter_mm=90.0):
+            self.center = center
+            self.radius = radius
+            self.diameter_mm = diameter_mm
 from .processor import ImageProcessor
 from utils.logger import get_logger
 
