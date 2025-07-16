@@ -83,6 +83,9 @@ hexo generate
 hexo deploy
 ```
 
+4. **访问博客**
+最终博客地址为：[https://bohuyeshan.top/CNN-MICROAI-COLONY/index.html](https://bohuyeshan.top/CNN-MICROAI-COLONY/index.html)
+
 ### 方法二：作为独立页面部署
 
 1. **上传到任何支持静态HTML的服务器**
@@ -177,7 +180,7 @@ index.html (主页)
 
 ---
 
-*部署指南版本：v1.0*  
+*部署指南版本：v1.1*  
 *创建时间：2025年7月15日*  
 *适用平台：HEXO博客、GitHub Pages、静态网站托管*  
 *兼容性：所有现代浏览器*
@@ -191,4 +194,9 @@ index.html (主页)
 - ✅ 完善的文档导航系统
 - ✅ 适合所有设备的响应式体验
 
+## 🧬 微生物技术补充说明
+
+1. **数据收集状态**：微生物种类识别功能正在开发中，当前处于数据收集阶段
+2. **模型兼容性**：ResNet50/YOLOv11模型需要`models-colony-counting`目录下的模型文件
+3. **标注规范**：新标注方法文档位于`docs/technical/TECHNICAL_SPECS_CN.md`
 **准备部署您的微生物智能分析平台展示网站！** 🚀
