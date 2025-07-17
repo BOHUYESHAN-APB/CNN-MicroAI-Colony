@@ -3,180 +3,658 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>技术对比分析 - CNN vs OpenCV 双引擎架构</title>
-    <meta name="description" content="深度学习与传统计算机视觉在微生物检测领域的全面对比分析">
-    <link rel="stylesheet" href="styles.css">
+    <title>技术方案对比 - CNN-MicroAI-Colony</title>
+    <meta name="description" content="深度学习CNN与传统OpenCV视觉技术在微生物菌落检测中的全面对比分析">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.8;
+        :root {
+            --primary-color: #0078d4;
+            --secondary-color: #e3f2fd;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --text-color: #333;
+            --light-gray: #f9f9f9;
+            --border-color: #ddd;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            --gradient-primary: linear-gradient(135deg, #0078d4 0%, #00bcf2 100%);
+            --gradient-secondary: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            box-sizing: border-box;
         }
-        header, footer {
-            background-color: #0078d4;
-            color: #fff;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            overflow-x: hidden;
+        }
+
+        /* 导航栏样式 */
+        header {
+            background: var(--gradient-primary);
+            color: white;
             padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
-        header h1, footer p {
-            text-align: center;
-            margin: 0;
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
         nav {
-            text-align: center;
-            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
+
         nav a {
-            margin: 0 1rem;
-            color: #fff;
+            color: white;
             text-decoration: none;
-            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.9rem;
         }
+
         nav a:hover {
-            text-decoration: underline;
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
+
+        /* 主要内容样式 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem;
+            padding: 0 2rem;
         }
+
         .hero {
+            background: var(--gradient-secondary);
+            padding: 8rem 0 4rem;
             text-align: center;
-            padding: 2rem 0;
-            background-color: #e3f2fd;
+            margin-top: 60px;
         }
-        .hero h2 {
-            font-size: 2.5rem;
+
+        .hero h1 {
+            font-size: 3rem;
             margin-bottom: 1rem;
+            color: var(--primary-color);
         }
+
         .hero p {
-            font-size: 1.2rem;
-            color: #555;
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 2rem;
         }
-        .grid {
+
+        /* 对比表格 */
+        .comparison {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        .cnn-col {
+            background-color: rgba(0, 120, 212, 0.1);
+        }
+
+        .opencv-col {
+            background-color: rgba(40, 167, 69, 0.1);
+        }
+
+        .highlight {
+            background-color: var(--warning-color);
+            color: var(--text-color);
+            font-weight: bold;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* 优缺点卡片 */
+        .pros-cons {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pros-card, .cons-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .pros-card {
+            border-left: 4px solid var(--success-color);
+        }
+
+        .cons-card {
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .pros-card h3 {
+            color: var(--success-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cons-card h3 {
+            color: var(--warning-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pros-list, .cons-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pros-list li, .cons-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .pros-list li::before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: bold;
+            margin-top: 0.1rem;
+        }
+
+        .cons-list li::before {
+            content: "✗";
+            color: var(--warning-color);
+            font-weight: bold;
+            margin-top: 0.1rem;
+        }
+
+        /* 使用场景 */
+        .scenarios {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .scenario-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
+            margin: 2rem 0;
         }
-        .card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        .scenario-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
         }
-        .card h3 {
+
+        .scenario-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cnn-scenario .scenario-icon {
+            color: var(--primary-color);
+        }
+
+        .opencv-scenario .scenario-icon {
+            color: var(--success-color);
+        }
+
+        .scenario-card h3 {
+            margin-bottom: 1rem;
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
         }
-        .card p {
-            font-size: 1rem;
-            color: #666;
+
+        /* 决策矩阵 */
+        .decision-matrix {
+            padding: 4rem 0;
+            background: var(--light-gray);
         }
-        footer a {
-            color: #ffcc00;
-            text-decoration: none;
+
+        .matrix-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .decision-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .decision-step {
+            background: var(--secondary-color);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .decision-step::after {
+            content: "↓";
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .decision-step:last-child::after {
+            display: none;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .pros-cons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #005a9e;
         }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
     <header>
-        <h1>🧬 CNN-MicroAI-Colony</h1>
-        <nav>
-            <a href="./index.html"><i class="fas fa-home"></i> 首页</a>
-            <a href="./cnn-demo.html"><i class="fas fa-brain"></i> CNN模型</a>
-            <a href="./opencv-demo.html"><i class="fas fa-eye"></i> OpenCV系统</a>
-            <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
-            <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
-        </nav>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-chart-bar"></i>
+                CNN-MicroAI-Colony
+            </div>
+            <nav>
+                <a href="./index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="./cnn-demo.html"><i class="fas fa-brain"></i> CNN模型</a>
+                <a href="./opencv-demo.html"><i class="fas fa-eye"></i> OpenCV系统</a>
+                <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
+                <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
+                <a href="./architecture-visualization.html"><i class="fas fa-project-diagram"></i> 架构可视化</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- 英雄栏 -->
-    <section class="hero">
-        <div class="container">
-            <h2>技术对比分析</h2>
-            <p>深度学习与传统计算机视觉在微生物检测领域的全面对比分析，帮助您选择最佳解决方案。</p>
-        </div>
-    </section>
+    <!-- 主要内容 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="fade-in">技术方案对比</h1>
+                <p class="fade-in">深度学习CNN与传统OpenCV视觉技术在微生物菌落检测中的全面对比分析，帮助您选择最适合的技术方案。</p>
+            </div>
+        </section>
 
-    <!-- 核心技术对比 -->
-    <section class="comparison">
-        <div class="container">
-            <h2>核心技术对比</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3><i class="fas fa-brain"></i> 深度学习 (CNN)</h3>
-                    <p>采用卷积神经网络，适用于复杂场景和多类别菌落检测。</p>
-                    <ul>
-                        <li>数据需求：大量标注数据</li>
-                        <li>开发周期：较长</li>
-                        <li>泛化能力：强</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-eye"></i> 传统计算机视觉 (OpenCV)</h3>
-                    <p>基于传统图像处理算法，适用于快速原型和低成本部署。</p>
-                    <ul>
-                        <li>数据需求：少量或无标注</li>
-                        <li>开发周期：较短</li>
-                        <li>泛化能力：中等</li>
-                    </ul>
+        <!-- 详细对比表格 -->
+        <section class="comparison">
+            <div class="container">
+                <h2 class="section-title">详细技术对比</h2>
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>对比维度</th>
+                                <th class="cnn-col">CNN深度学习</th>
+                                <th class="opencv-col">OpenCV传统视觉</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>检测精度</strong></td>
+                                <td class="cnn-col">96.8-99.2% <span class="highlight">高精度</span></td>
+                                <td class="opencv-col">90-100% <span class="highlight">场景依赖</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>处理速度</strong></td>
+                                <td class="cnn-col">1-5秒/张 <span class="highlight">GPU加速</span></td>
+                                <td class="opencv-col">2-4秒/张 <span class="highlight">CPU优化</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>数据需求</strong></td>
+                                <td class="cnn-col">大量标注数据 <span class="highlight">5000+样本</span></td>
+                                <td class="opencv-col">少量或无标注 <span class="highlight">即装即用</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>部署复杂度</strong></td>
+                                <td class="cnn-col">高 <span class="highlight">需要GPU</span></td>
+                                <td class="opencv-col">低 <span class="highlight">CPU即可</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>维护成本</strong></td>
+                                <td class="cnn-col">高 <span class="highlight">持续训练</span></td>
+                                <td class="opencv-col">低 <span class="highlight">参数调优</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>算法透明度</strong></td>
+                                <td class="cnn-col">低 <span class="highlight">黑盒模型</span></td>
+                                <td class="opencv-col">高 <span class="highlight">白盒算法</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>泛化能力</strong></td>
+                                <td class="cnn-col">强 <span class="highlight">适应复杂场景</span></td>
+                                <td class="opencv-col">弱 <span class="highlight">依赖标准化</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>硬件要求</strong></td>
+                                <td class="cnn-col">GPU + 大内存 <span class="highlight">8GB+</span></td>
+                                <td class="opencv-col">普通CPU <span class="highlight">4GB即可</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>开发周期</strong></td>
+                                <td class="cnn-col">2-4个月 <span class="highlight">含训练</span></td>
+                                <td class="opencv-col">1-2周 <span class="highlight">快速部署</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>适用场景</strong></td>
+                                <td class="cnn-col">复杂环境、多类别</td>
+                                <td class="opencv-col">标准化、单一类别</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 检测性能对比 -->
-    <section class="performance">
-        <div class="container">
-            <h2>检测性能对比</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>技术</th>
-                        <th>检测准确率</th>
-                        <th>处理速度</th>
-                        <th>适用场景</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>CNN (深度学习)</td>
-                        <td>96.8%</td>
-                        <td>待测定</td>
-                        <td>复杂场景</td>
-                    </tr>
-                    <tr>
-                        <td>OpenCV (传统视觉)</td>
-                        <td>90%</td>
-                        <td>2-4秒/张</td>
-                        <td>简单场景</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+        <!-- 优缺点分析 -->
+        <section class="pros-cons">
+            <div class="container">
+                <h2 class="section-title">优缺点分析</h2>
+                <div class="pros-cons-grid">
+                    <div class="pros-card">
+                        <h3><i class="fas fa-thumbs-up"></i> CNN深度学习优势</h3>
+                        <ul class="pros-list">
+                            <li>检测精度高，适应复杂场景</li>
+                            <li>支持多类别菌落识别</li>
+                            <li>端到端学习，减少人工特征工程</li>
+                            <li>持续学习，性能可提升</li>
+                            <li>支持实时检测和批量处理</li>
+                            <li>可扩展至其他检测任务</li>
+                        </ul>
+                    </div>
+                    <div class="cons-card">
+                        <h3><i class="fas fa-thumbs-down"></i> CNN深度学习劣势</h3>
+                        <ul class="cons-list">
+                            <li>需要大量标注训练数据</li>
+                            <li>计算资源需求高，需要GPU</li>
+                            <li>模型训练时间长，成本高</li>
+                            <li>算法黑盒，可解释性差</li>
+                            <li>对数据质量敏感</li>
+                            <li>部署和维护复杂</li>
+                        </ul>
+                    </div>
+                    <div class="pros-card">
+                        <h3><i class="fas fa-thumbs-up"></i> OpenCV传统视觉优势</h3>
+                        <ul class="pros-list">
+                            <li>无需训练数据，即装即用</li>
+                            <li>算法透明，易于理解和调试</li>
+                            <li>计算资源需求低，CPU即可运行</li>
+                            <li>部署简单，维护成本低</li>
+                            <li>处理速度快，适合实时应用</li>
+                            <li>成熟稳定，可靠性高</li>
+                        </ul>
+                    </div>
+                    <div class="cons-card">
+                        <h3><i class="fas fa-thumbs-down"></i> OpenCV传统视觉劣势</h3>
+                        <ul class="cons-list">
+                            <li>精度受场景影响大</li>
+                            <li>需要人工调参，泛化能力弱</li>
+                            <li>难以处理复杂背景和光照变化</li>
+                            <li>不支持多类别识别</li>
+                            <li>对图像质量要求高</li>
+                            <li>扩展性有限</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- 融合策略 -->
-    <section class="about">
-        <div class="container">
-            <h2><i class="fas fa-project-diagram"></i> 融合策略</h2>
-            <p>结合深度学习和传统视觉的优势，提供灵活的双引擎架构：</p>
-            <ul>
-                <li><strong>深度学习：</strong>适用于高精度需求和复杂场景。</li>
-                <li><strong>传统视觉：</strong>适用于快速原型和低成本部署。</li>
-                <li><strong>融合应用：</strong>根据场景自动切换算法，提升整体性能。</li>
-            </ul>
-        </div>
-    </section>
+        <!-- 使用场景 -->
+        <section class="scenarios">
+            <div class="container">
+                <h2 class="section-title">推荐使用场景</h2>
+                <div class="scenario-grid">
+                    <div class="scenario-card cnn-scenario">
+                        <div class="scenario-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>CNN深度学习适用</h3>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>• 复杂背景下的菌落检测</li>
+                            <li>• 多类别微生物识别</li>
+                            <li>• 高精度科研应用</li>
+                            <li>• 大规模数据处理</li>
+                            <li>• 需要持续学习的场景</li>
+                            <li>• 商业化产品开发</li>
+                        </ul>
+                    </div>
+                    <div class="scenario-card opencv-scenario">
+                        <div class="scenario-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>OpenCV传统视觉适用</h3>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>• 标准化实验室环境</li>
+                            <li>• 教学演示和培训</li>
+                            <li>• 快速原型验证</li>
+                            <li>• 低成本部署需求</li>
+                            <li>• 资源受限环境</li>
+                            <li>• 单一类别检测</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 决策矩阵 -->
+        <section class="decision-matrix">
+            <div class="container">
+                <h2 class="section-title">技术选择决策矩阵</h2>
+                <div class="matrix-container">
+                    <div class="decision-flow">
+                        <div class="decision-step">
+                            <strong>步骤1：评估数据量</strong>
+                            <p>是否有足够的标注数据（>1000张）？</p>
+                        </div>
+                        <div class="decision-step">
+                            <strong>步骤2：评估精度需求</strong>
+                            <p>是否需要>95%的检测精度？</p>
+                        </div>
+                        <div class="decision-step">
+                            <strong>步骤3：评估资源限制</strong>
+                            <p>是否有GPU和足够的计算资源？</p>
+                        </div>
+                        <div class="decision-step">
+                            <strong>步骤4：评估时间要求</strong>
+                            <p>是否有2-4个月的开发周期？</p>
+                        </div>
+                        <div class="decision-step" style="background: var(--success-color); color: white;">
+                            <strong>最终决策</strong>
+                            <p>根据以上评估，选择最适合的技术方案</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- 页脚 -->
     <footer>
-        <p>&copy; 2025 CNN-MicroAI-Colony | 本项目基于 <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0</a> 开源协议发布。</p>
+        <div class="container">
+            <p>&copy; 2025 CNN-MicroAI-Colony | 本项目基于 <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0</a> 开源协议发布。</p>
+        </div>
     </footer>
+
+    <script>
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.pros-card, .cons-card, .scenario-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

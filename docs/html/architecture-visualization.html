@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型架构可视化 - CNN-MicroAI-Colony</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        .architecture-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .model-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .model-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .architecture-svg {
+            width: 100%;
+            height: 400px;
+            margin: 2rem 0;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .layer-node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .layer-node:hover {
+            filter: brightness(1.2);
+        }
+
+        .connection-line {
+            stroke-width: 2;
+            stroke-dasharray: 5,5;
+            animation: dash 2s linear infinite;
+        }
+
+        @keyframes dash {
+            to { stroke-dashoffset: -10; }
+        }
+
+        .parameter-tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .performance-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chart-card {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .animated-counter {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-table th {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .interactive-controls {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 0.5rem 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: var(--accent-hover);
+            transform: scale(1.05);
+        }
+
+        .architecture-legend {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .flow-diagram {
+            position: relative;
+            height: 500px;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .flow-node {
+            position: absolute;
+            padding: 1rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .flow-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .flow-arrow {
+            position: absolute;
+            width: 2px;
+            background: var(--accent-color);
+            transform-origin: top;
+            animation: flowAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes flowAnimation {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .architecture-container {
+                padding: 1rem;
+            }
+            
+            .model-section {
+                padding: 1rem;
+                margin: 1.5rem 0;
+            }
+            
+            .interactive-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>🧬 CNN-MicroAI-Colony</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="documentation.html">文档</a></li>
+                <li><a href="architecture-visualization.html" class="active">架构可视化</a></li>
+                <li><a href="cnn-demo.html">CNN演示</a></li>
+                <li><a href="opencv-demo.html">OpenCV演示</a></li>
+                <li><a href="tech-comparison.html">技术对比</a></li>
+            </ul>
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="切换主题">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="architecture-container">
+        <header class="page-header">
+            <h1>🎯 模型架构可视化中心</h1>
+            <p>深入探索CNN-MicroAI-Colony的深度学习架构与OpenCV检测系统</p>
+        </header>
+
+        <!-- 快速导航 -->
+        <div class="interactive-controls">
+            <button class="control-btn" onclick="showModel('faster-rcnn')">Faster R-CNN架构</button>
+            <button class="control-btn" onclick="showModel('opencv')">OpenCV检测流程</button>
+            <button class="control-btn" onclick="showModel('comparison')">性能对比</button>
+            <button class="control-btn" onclick="animateAll()">播放动画</button>
+        </div>
+
+        <!-- Faster R-CNN架构可视化 -->
+        <section id="faster-rcnn-section" class="model-section">
+            <h2>🚀 Faster R-CNN ResNet50 架构</h2>
+            <div class="architecture-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff6b6b;"></div>
+                    <span>输入层</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #4ecdc4;"></div>
+                    <span>卷积层</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #45b7d1;"></div>
+                    <span>FPN层</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #96ceb4;"></div>
+                    <span>RPN层</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #feca57;"></div>
+                    <span>RoI Heads</span>
+                </div>
+            </div>
+            <svg id="faster-rcnn-svg" class="architecture-svg"></svg>
+            
+            <div class="responsive-grid">
+                <div class="chart-card">
+                    <h3>网络参数统计</h3>
+                    <div class="animated-counter" data-target="23500000">0</div>
+                    <p>总参数量</p>
+                </div>
+                <div class="chart-card">
+                    <h3>特征维度</h3>
+                    <div class="animated-counter" data-target="256">0</div>
+                    <p>FPN输出通道</p>
+                </div>
+                <div class="chart-card">
+                    <h3>锚框配置</h3>
+                    <div class="animated-counter" data-target="12">0</div>
+                    <p>每位置锚框数</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- OpenCV检测流程 -->
+        <section id="opencv-section" class="model-section" style="display: none;">
+            <h2>🔍 OpenCV圆检测系统</h2>
+            <div class="flow-diagram" id="opencv-flow">
+                <div class="flow-node" style="top: 50px; left: 50px;" data-step="1">
+                    <strong>图像输入</strong><br>512×512 RGB
+                </div>
+                <div class="flow-node" style="top: 50px; left: 250px;" data-step="2">
+                    <strong>预处理</strong><br>灰度化+滤波
+                </div>
+                <div class="flow-node" style="top: 50px; left: 450px;" data-step="3">
+                    <strong>边缘检测</strong><br>Canny算子
+                </div>
+                <div class="flow-node" style="top: 200px; left: 450px;" data-step="4">
+                    <strong>圆检测</strong><br>Hough变换
+                </div>
+                <div class="flow-node" style="top: 200px; left: 250px;" data-step="5">
+                    <strong>尺寸标定</strong><br>像素→毫米
+                </div>
+                <div class="flow-node" style="top: 200px; left: 50px;" data-step="6">
+                    <strong>结果输出</strong><br>坐标+半径
+                </div>
+            </div>
+            
+            <div class="responsive-grid">
+                <div class="chart-card">
+                    <h3>检测精度</h3>
+                    <div class="animated-counter" data-target="87">0</div>
+                    <p>% 平均精度</p>
+                </div>
+                <div class="chart-card">
+                    <h3>处理速度</h3>
+                    <div class="animated-counter" data-target="50">0</div>
+                    <p>ms/图像</p>
+                </div>
+                <div class="chart-card">
+                    <h3>内存占用</h3>
+                    <div class="animated-counter" data-target="100">0</div>
+                    <p>MB RAM</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 性能对比 -->
+        <section id="comparison-section" class="model-section" style="display: none;">
+            <h2>📊 模型性能对比</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>Faster R-CNN</th>
+                        <th>OpenCV</th>
+                        <th>主模型</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>检测精度</td>
+                        <td class="animated-counter" data-target="96.8">0</td>
+                        <td class="animated-counter" data-target="87">0</td>
+                        <td class="animated-counter" data-target="96.8">0</td>
+                    </tr>
+                    <tr>
+                        <td>处理速度(ms)</td>
+                        <td class="animated-counter" data-target="200">0</td>
+                        <td class="animated-counter" data-target="50">0</td>
+                        <td class="animated-counter" data-target="180">0</td>
+                    </tr>
+                    <tr>
+                        <td>最小检测尺寸(px)</td>
+                        <td>16×16</td>
+                        <td>5×5</td>
+                        <td>16×16</td>
+                    </tr>
+                    <tr>
+                        <td>多尺度支持</td>
+                        <td>✅ FPN</td>
+                        <td>❌ 固定</td>
+                        <td>✅ FPN</td>
+                    </tr>
+                    <tr>
+                        <td>GPU内存(GB)</td>
+                        <td>2</td>
+                        <td>-</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>旋转不变性</td>
+                        <td>✅ 增强</td>
+                        <td>❌ 需处理</td>
+                        <td>✅ 增强</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 技术细节面板 -->
+        <section class="model-section">
+            <h2>🔧 技术细节面板</h2>
+            <div class="responsive-grid">
+                <div class="chart-card">
+                    <h3>ResNet50层级结构</h3>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 5px; font-size: 12px;">
+Conv1: 7×7, 64, stride=2
+MaxPool: 3×3, stride=2
+Layer1: [1×1,64; 3×3,64; 1×1,256]×3
+Layer2: [1×1,128; 3×3,128; 1×1,512]×4
+Layer3: [1×1,256; 3×3,256; 1×1,1024]×6
+Layer4: [1×1,512; 3×3,512; 1×1,2048]×3
+                    </pre>
+                </div>
+                <div class="chart-card">
+                    <h3>FPN特征融合</h3>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 5px; font-size: 12px;">
+P6: MaxPool(P5)
+P5: 1×1 conv(2048→256)
+P4: 1×1 conv(1024→256) + upsample
+P3: 1×1 conv(512→256) + upsample
+P2: 1×1 conv(256→256) + upsample
+                    </pre>
+                </div>
+                <div class="chart-card">
+                    <h3>训练配置</h3>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 5px; font-size: 12px;">
+优化器: AdamW
+学习率: 0.0001
+权重衰减: 0.05
+梯度裁剪: L2=35
+混合精度: FP16
+训练周期: 12 epochs
+                    </pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CNN-MicroAI-Colony. 基于深度学习的微生物菌落检测系统</p>
+            <div class="footer-links">
+                <a href="documentation.html">技术文档</a>
+                <a href="https://github.com/your-repo">GitHub</a>
+                <a href="mailto:contact@example.com">联系我们</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 主题切换
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        });
+
+        // 模型切换
+        function showModel(modelType) {
+            const sections = ['faster-rcnn-section', 'opencv-section', 'comparison-section'];
+            sections.forEach(section => {
+                document.getElementById(section).style.display = 'none';
+            });
+            
+            if (modelType === 'faster-rcnn') {
+                document.getElementById('faster-rcnn-section').style.display = 'block';
+                drawFasterRCNN();
+            } else if (modelType === 'opencv') {
+                document.getElementById('opencv-section').style.display = 'block';
+                animateOpenCVFlow();
+            } else if (modelType === 'comparison') {
+                document.getElementById('comparison-section').style.display = 'block';
+                animateCounters();
+            }
+        }
+
+        // 绘制Faster R-CNN架构图
+        function drawFasterRCNN() {
+            const svg = d3.select('#faster-rcnn-svg');
+            svg.selectAll('*').remove();
+
+            const width = 800;
+            const height = 400;
+            svg.attr('viewBox', `0 0 ${width} ${height}`);
+
+            // 定义层级
+            const layers = [
+                { name: 'Input', x: 50, y: 200, color: '#ff6b6b', params: '512×1024×3' },
+                { name: 'Conv1', x: 150, y: 200, color: '#4ecdc4', params: '7×7, 64' },
+                { name: 'Layer1', x: 250, y: 200, color: '#4ecdc4', params: '256×64×64' },
+                { name: 'Layer2', x: 350, y: 200, color: '#4ecdc4', params: '512×32×32' },
+                { name: 'Layer3', x: 450, y: 200, color: '#4ecdc4', params: '1024×16×16' },
+                { name: 'Layer4', x: 550, y: 200, color: '#4ecdc4', params: '2048×8×8' },
+                { name: 'FPN', x: 450, y: 100, color: '#45b7d1', params: '256×5 levels' },
+                { name: 'RPN', x: 350, y: 100, color: '#96ceb4', params: '12 anchors' },
+                { name: 'RoI Heads', x: 550, y: 100, color: '#feca57', params: '7×7×256' }
+            ];
+
+            // 绘制节点
+            const nodes = svg.selectAll('.layer-node')
+                .data(layers)
+                .enter()
+                .append('g')
+                .attr('class', 'layer-node')
+                .attr('transform', d => `translate(${d.x}, ${d.y})`);
+
+            nodes.append('circle')
+                .attr('r', 30)
+                .attr('fill', d => d.color)
+                .attr('opacity', 0.8);
+
+            nodes.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', 5)
+                .attr('fill', 'white')
+                .attr('font-size', '10px')
+                .text(d => d.name);
+
+            // 绘制连接线
+            const connections = [
+                [0, 1], [1, 2], [2, 3], [3, 4], [4, 5],
+                [2, 6], [3, 6], [4, 6], [5, 6],
+                [6, 7], [7, 8], [6, 8]
+            ];
+
+            connections.forEach(([from, to]) => {
+                svg.append('line')
+                    .attr('x1', layers[from].x)
+                    .attr('y1', layers[from].y)
+                    .attr('x2', layers[to].x)
+                    .attr('y2', layers[to].y)
+                    .attr('stroke', '#666')
+                    .attr('stroke-width', 2)
+                    .attr('class', 'connection-line');
+            });
+
+            // 添加交互提示
+            nodes.on('mouseover', function(event, d) {
+                const tooltip = d3.select('body').append('div')
+                    .attr('class', 'parameter-tooltip')
+                    .style('left', (event.pageX + 10) + 'px')
+                    .style('top', (event.pageY - 10) + 'px')
+                    .html(`<strong>${d.name}</strong><br>${d.params}`);
+                
+                d3.select(this).select('circle')
+                    .transition()
+                    .duration(200)
+                    .attr('r', 35);
+            })
+            .on('mouseout', function() {
+                d3.selectAll('.parameter-tooltip').remove();
+                d3.select(this).select('circle')
+                    .transition()
+                    .duration(200)
+                    .attr('r', 30);
+            });
+
+            // 动画效果
+            nodes.style('opacity', 0)
+                .transition()
+                .duration(1000)
+                .delay((d, i) => i * 100)
+                .style('opacity', 1);
+        }
+
+        // OpenCV流程动画
+        function animateOpenCVFlow() {
+            const nodes = document.querySelectorAll('.flow-node');
+            const arrows = document.querySelectorAll('.flow-arrow');
+            
+            // 清除现有箭头
+            document.querySelectorAll('.flow-arrow').forEach(arrow => arrow.remove());
+            
+            // 创建连接箭头
+            const connections = [
+                {from: 1, to: 2}, {from: 2, to: 3}, {from: 3, to: 4},
+                {from: 4, to: 5}, {from: 5, to: 6}, {from: 6, to: 1}
+            ];
+            
+            connections.forEach((conn, index) => {
+                setTimeout(() => {
+                    const fromNode = nodes[conn.from - 1];
+                    const toNode = nodes[conn.to - 1];
+                    
+                    const arrow = document.createElement('div');
+                    arrow.className = 'flow-arrow';
+                    arrow.style.left = (fromNode.offsetLeft + 50) + 'px';
+                    arrow.style.top = (fromNode.offsetTop + 25) + 'px';
+                    arrow.style.height = '50px';
+                    arrow.style.transform = 'rotate(45deg)';
+                    
+                    document.getElementById('opencv-flow').appendChild(arrow);
+                }, index * 500);
+            });
+
+            // 节点动画
+            nodes.forEach((node, index) => {
+                gsap.fromTo(node, 
+                    { scale: 0, opacity: 0 },
+                    { scale: 1, opacity: 1, duration: 0.5, delay: index * 0.2 }
+                );
+            });
+        }
+
+        // 数字计数动画
+        function animateCounters() {
+            const counters = document.querySelectorAll('.animated-counter');
+            
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (target % 1 === 0) {
+                        counter.textContent = Math.floor(current);
+                    } else {
+                        counter.textContent = current.toFixed(1);
+                    }
+                }, 16);
+            });
+        }
+
+        // 全局动画控制
+        function animateAll() {
+            animateCounters();
+            if (document.getElementById('faster-rcnn-section').style.display !== 'none') {
+                drawFasterRCNN();
+            }
+            if (document.getElementById('opencv-section').style.display !== 'none') {
+                animateOpenCVFlow();
+            }
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            showModel('faster-rcnn');
+            animateCounters();
+        });
+
+        // 响应式处理
+        window.addEventListener('resize', () => {
+            if (document.getElementById('faster-rcnn-section').style.display !== 'none') {
+                setTimeout(drawFasterRCNN, 100);
+            }
+        });
+    </script>
+</body>
+</html>
