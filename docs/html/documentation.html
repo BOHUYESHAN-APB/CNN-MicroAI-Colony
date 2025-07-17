@@ -1,92 +1,147 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <!-- ...原有head内容保持不变... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术文档中心 - CNN-MicroAI-Colony</title>
+    <meta name="description" content="CNN-MicroAI-Colony微生物智能分析平台的完整技术文档集合">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header, footer {
+            background-color: #0078d4;
+            color: #fff;
+            padding: 1rem 0;
+        }
+        header h1, footer p {
+            text-align: center;
+            margin: 0;
+        }
+        nav {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        nav a {
+            margin: 0 1rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #e3f2fd;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            font-size: 1rem;
+            color: #666;
+        }
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <!-- ...导航栏、英雄区域等内容保持不变... -->
-    <main class="main-content">
+    <!-- 导航栏 -->
+    <header>
+        <h1>🧬 CNN-MicroAI-Colony</h1>
+        <nav>
+            <a href="./index.html"><i class="fas fa-home"></i> 首页</a>
+            <a href="./cnn-demo.html"><i class="fas fa-brain"></i> CNN模型</a>
+            <a href="./opencv-demo.html"><i class="fas fa-eye"></i> OpenCV系统</a>
+            <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
+            <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
+        </nav>
+    </header>
+
+    <!-- 英雄栏 -->
+    <section class="hero">
         <div class="container">
-            <!-- ...前置内容保持不变... -->
-            <section>
-                <h2>📋 文档分类导航</h2>
-                <div class="docs-grid">
-                    <!-- 用户文档 ... -->
-                    <!-- 技术文档 -->
-                    <div class="doc-category" id="tech-docs">
-                        <div class="category-header">
-                            <div class="category-icon">🔬</div>
-                            <h3>技术文档</h3>
-                            <p style="margin: 0; opacity: 0.9; font-size: 0.9rem;">面向技术人员的架构和原理</p>
-                        </div>
-                        <div class="category-content">
-                            <ul class="doc-list">
-                                <li>
-                                    <a href="#architecture">
-                                        🏗️ 技术架构文档
-                                        <span class="doc-status status-completed">已完成</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#algorithms">
-                                        🧮 算法原理说明
-                                        <span class="doc-status status-completed">已完成</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#performance">
-                                        📊 性能基准测试
-                                        <span class="doc-status status-planned">待创建</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#patent-comparison">
-                                        🆚 专利技术对比
-                                        <span class="doc-status status-completed">已完成</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <p><strong>目标读者：</strong>技术开发者、系统集成商</p>
-                            <p><strong>技术难度：</strong>⭐⭐⭐⭐☆</p>
-                            <div class="note" style="margin-top:1rem;">
-                                <strong>核心技术细节补充：</strong>
-                                <ul>
-                                    <li>抑菌圈检测支持滤纸片与透明圈两种类型，参数自适应，亮度/标准差/圆度多重验证。</li>
-                                    <li>滤纸片检测采用高斯模糊+霍夫圆+亮度/标准差阈值，透明圈检测采用反色+低阈值+圆度判别。</li>
-                                    <li>完整流程包括培养皿检测、物质类型判别、虚拟中心点补偿、抑菌圈ROI提取与圆形拟合。</li>
-                                    <li>小数据集模型采用骨干冻结、anchor缩放、数据增强等策略提升泛化。</li>
-                                    <li>大数据集模型支持FP16混合精度与分布式训练，提升效率与精度。</li>
-                                    <li>所有核心部件均基于Apache 2.0协议，依赖PyTorch、OpenCV、MMDetection等主流开源组件。</li>
-                                </ul>
-                                <p style="margin-top:0.5rem;">
-                                    <strong>最佳实践：</strong>根据场景自动选择检测器，避免过度复杂的边缘检测，优先保证参数调优与场景适配。
-                                </p>
-                                <p style="margin-top:0.5rem;">
-                                    <strong>专利对比与待补充内容：</strong>
-                                    <span class="doc-status status-planned">待添加</span>
-                                    <ul>
-                                        <li>专利文档详细内容尚未补充，后续将对比现有检测流程与专利技术的异同，标注创新点与待完善环节。</li>
-                                    </ul>
-                                </p>
-                                <p style="margin-top:0.5rem;">
-                                    <strong>模型速率量化：</strong>
-                                    <span class="doc-status status-planned">待测定，准备进行量化评估</span>
-                                </p>
-                                <p style="margin-top:0.5rem;">
-                                    <strong>项目仓库：</strong>
-                                    <a href="https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony" target="_blank">https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony</a>
-                                    <br>
-                                    <a href="https://gitee.com/xingzhishengluo/CNN-MicroAI-Colony" target="_blank">https://gitee.com/xingzhishengluo/CNN-MicroAI-Colony（国内镜像）</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ...其余文档分类保持不变... -->
-                </div>
-            </section>
-            <!-- ...后续内容保持不变... -->
+            <h2>技术文档中心</h2>
+            <p>全面的技术文档集合，涵盖架构设计、算法原理、性能测试等内容，助力开发与集成。</p>
         </div>
-    </main>
-    <!-- ...页脚与脚本保持不变... -->
+    </section>
+
+    <!-- 专利目标展示 -->
+    <section class="patent-progress">
+        <div class="container">
+            <h2><i class="fas fa-award"></i> 专利目标进展</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3><i class="fas fa-check-circle"></i> 已完成的专利目标</h3>
+                    <ul>
+                        <li>实现菌落计数模块，支持多种培养基类型。</li>
+                        <li>完成抑菌圈检测与药敏分析功能。</li>
+                        <li>支持新菌种的识别与记忆功能。</li>
+                        <li>优化图像预处理算法，提高识别准确性。</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-tasks"></i> 待完善的专利目标</h3>
+                    <ul>
+                        <li>扩展对荧光染色菌落的识别能力。</li>
+                        <li>增加对紫外光和红外光图像的分析支持。</li>
+                        <li>优化对不规则菌落的粘连分割算法。</li>
+                        <li>提升对复杂背景的鲁棒性。</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-lightbulb"></i> 专利技术亮点</h3>
+                    <ul>
+                        <li>集成菌落计数、药敏分析和菌种鉴定三大功能。</li>
+                        <li>采用卷积神经网络（CNN）模型，显著提高识别准确性。</li>
+                        <li>支持多种培养基和菌落类型的适配分析。</li>
+                        <li>自动化流程，减少人工干预，满足高通量实验需求。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 CNN-MicroAI-Colony | 本项目基于 <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0</a> 开源协议发布。</p>
+    </footer>
 </body>
 </html>

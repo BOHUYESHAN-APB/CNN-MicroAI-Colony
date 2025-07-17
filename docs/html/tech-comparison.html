@@ -1,102 +1,182 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <!-- ...原有head内容保持不变... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术对比分析 - CNN vs OpenCV 双引擎架构</title>
+    <meta name="description" content="深度学习与传统计算机视觉在微生物检测领域的全面对比分析">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header, footer {
+            background-color: #0078d4;
+            color: #fff;
+            padding: 1rem 0;
+        }
+        header h1, footer p {
+            text-align: center;
+            margin: 0;
+        }
+        nav {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        nav a {
+            margin: 0 1rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #e3f2fd;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            font-size: 1rem;
+            color: #666;
+        }
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <!-- ...导航栏、英雄区域等内容保持不变... -->
-    <main class="main-content">
-        <div class="container">
-            <!-- ...前置内容保持不变... -->
-            <section>
-                <h2>🔍 算法原理深度对比</h2>
-                <div class="code-comparison">
-                  <div class="code-block">
-                    <h4>🧠 CNN深度学习方法</h4>
-                    <pre>
-# 小数据集优化策略
-class SmallDatasetColonyDetector(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.backbone = ResNet50(pretrained=True)
-        # 冻结部分骨干层，仅训练高层
-        for name, param in self.backbone.named_parameters():
-            if "layer1" in name or "layer2" in name:
-                param.requires_grad = False
-        # Anchor尺寸缩小，适配小目标
-        self.rpn = RegionProposalNetwork(anchor_sizes=[16, 32, 64])
-        # 数据增强：旋转、缩放、光照扰动
-        self.aug = MicrobialAugmentation()
-        self.head = DetectionHead(num_classes=12)
-    def forward(self, images):
-        images = self.aug(images)
-        features = self.backbone(images)
-        proposals = self.rpn(features)
-        return self.head(features, proposals)
+    <!-- 导航栏 -->
+    <header>
+        <h1>🧬 CNN-MicroAI-Colony</h1>
+        <nav>
+            <a href="./index.html"><i class="fas fa-home"></i> 首页</a>
+            <a href="./cnn-demo.html"><i class="fas fa-brain"></i> CNN模型</a>
+            <a href="./opencv-demo.html"><i class="fas fa-eye"></i> OpenCV系统</a>
+            <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
+            <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
+        </nav>
+    </header>
 
-# 大数据集分布式训练
-class LargeDatasetTrainer:
-    def __init__(self, config):
-        self.model = build_detector(config.model)
-        self.fp16 = config.fp16
-    def train(self, dataset):
-        if self.fp16:
-            wrap_fp16_model(self.model)
-        # 支持多GPU分布式训练
-        train_detector(self.model, dataset, distributed=True)
-                    </pre>
-                  </div>
-                  <div class="code-block">
-                    <h4>👁️ OpenCV传统方法</h4>
-                    <pre>
-class OpenCVDetector:
-    """OpenCV检测器"""
-    def detect_petri_dish(self, image):
-        # 霍夫圆检测培养皿
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        blurred = cv2.GaussianBlur(gray, (9, 9), 2)
-        circles = cv2.HoughCircles(
-            blurred, cv2.HOUGH_GRADIENT,
-            dp=1, minDist=400, param1=50, param2=35,
-            minRadius=100, maxRadius=300
-        )
-        return self.validate_circles(circles)
-    def detect_inhibition_zones(self, image, substances):
-        # 多策略抑菌圈检测
-        zones = []
-        for substance in substances:
-            roi = self.extract_roi(image, substance)
-            # 滤纸片：亮度阈值+标准差验证
-            if substance.type == "filter_paper":
-                mask = self.create_mask(roi)
-                mean = np.mean(roi[mask])
-                std = np.std(roi[mask])
-                if mean > 120 and std < 25:
-                    zones.append(self.fit_circle(roi))
-            # 透明圈：反色+低阈值+圆度判别
-            elif substance.type == "hole":
-                inv = cv2.bitwise_not(roi)
-                edges = cv2.Canny(inv, 40, 120)
-                contours = cv2.findContours(edges, ...)
-                for cnt in contours:
-                    if self.is_circular(cnt):
-                        zones.append(self.fit_circle(cnt))
-        return zones
-                    </pre>
-                  </div>
-                </div>
-                <div class="note">
-                  <strong>工程细节：</strong>
-                  <ul>
-                    <li>抑菌圈检测支持滤纸片与透明圈两种类型，参数自适应，亮度/标准差/圆度多重验证。</li>
-                    <li>小数据集模型采用骨干冻结、anchor缩放、数据增强等策略提升泛化。</li>
-                    <li>大数据集模型支持FP16混合精度与分布式训练，提升效率与精度。</li>
-                  </ul>
-                </div>
-            </section>
-            <!-- ...后续内容保持不变... -->
+    <!-- 英雄栏 -->
+    <section class="hero">
+        <div class="container">
+            <h2>技术对比分析</h2>
+            <p>深度学习与传统计算机视觉在微生物检测领域的全面对比分析，帮助您选择最佳解决方案。</p>
         </div>
-    </main>
-    <!-- ...页脚与脚本保持不变... -->
+    </section>
+
+    <!-- 核心技术对比 -->
+    <section class="comparison">
+        <div class="container">
+            <h2>核心技术对比</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3><i class="fas fa-brain"></i> 深度学习 (CNN)</h3>
+                    <p>采用卷积神经网络，适用于复杂场景和多类别菌落检测。</p>
+                    <ul>
+                        <li>数据需求：大量标注数据</li>
+                        <li>开发周期：较长</li>
+                        <li>泛化能力：强</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-eye"></i> 传统计算机视觉 (OpenCV)</h3>
+                    <p>基于传统图像处理算法，适用于快速原型和低成本部署。</p>
+                    <ul>
+                        <li>数据需求：少量或无标注</li>
+                        <li>开发周期：较短</li>
+                        <li>泛化能力：中等</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 检测性能对比 -->
+    <section class="performance">
+        <div class="container">
+            <h2>检测性能对比</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>技术</th>
+                        <th>检测准确率</th>
+                        <th>处理速度</th>
+                        <th>适用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CNN (深度学习)</td>
+                        <td>96.8%</td>
+                        <td>待测定</td>
+                        <td>复杂场景</td>
+                    </tr>
+                    <tr>
+                        <td>OpenCV (传统视觉)</td>
+                        <td>90%</td>
+                        <td>2-4秒/张</td>
+                        <td>简单场景</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 融合策略 -->
+    <section class="about">
+        <div class="container">
+            <h2><i class="fas fa-project-diagram"></i> 融合策略</h2>
+            <p>结合深度学习和传统视觉的优势，提供灵活的双引擎架构：</p>
+            <ul>
+                <li><strong>深度学习：</strong>适用于高精度需求和复杂场景。</li>
+                <li><strong>传统视觉：</strong>适用于快速原型和低成本部署。</li>
+                <li><strong>融合应用：</strong>根据场景自动切换算法，提升整体性能。</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 CNN-MicroAI-Colony | 本项目基于 <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0</a> 开源协议发布。</p>
+    </footer>
 </body>
 </html>

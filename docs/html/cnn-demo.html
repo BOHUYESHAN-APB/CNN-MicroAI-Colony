@@ -5,122 +5,172 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNN深度学习模型 - 菌落智能识别系统</title>
     <meta name="description" content="基于卷积神经网络的高精度微生物菌落检测和计数解决方案">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ...样式内容保持不变... */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header, footer {
+            background-color: #0078d4;
+            color: #fff;
+            padding: 1rem 0;
+        }
+        header h1, footer p {
+            text-align: center;
+            margin: 0;
+        }
+        nav {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        nav a {
+            margin: 0 1rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #e3f2fd;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            font-size: 1rem;
+            color: #666;
+        }
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
-    <!-- ...导航栏内容保持不变... -->
+    <header>
+        <h1>🧬 CNN-MicroAI-Colony</h1>
+        <nav>
+            <a href="./index.html"><i class="fas fa-home"></i> 首页</a>
+            <a href="./cnn-demo.html"><i class="fas fa-brain"></i> CNN模型</a>
+            <a href="./opencv-demo.html"><i class="fas fa-eye"></i> OpenCV系统</a>
+            <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
+            <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
+        </nav>
+    </header>
 
-    <!-- 英雄区域 -->
-    <!-- ...英雄区域内容保持不变... -->
-
-    <!-- 主要内容 -->
-    <main class="main-content">
+    <!-- 英雄栏 -->
+    <section class="hero">
         <div class="container">
-            <!-- 模型概述 -->
-            <!-- ...模型概述内容保持不变... -->
-
-            <!-- 模型架构 -->
-            <!-- ...模型架构内容保持不变... -->
-
-            <!-- 性能指标 -->
-            <section>
-                <h2>📊 性能指标</h2>
-                <div class="performance-grid">
-                    <div class="performance-card">
-                        <h3>检测精度</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>模型版本</th>
-                                    <th>mAP@0.5</th>
-                                    <th>准确率</th>
-                                    <th>召回率</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Faster R-CNN + ResNet50</td>
-                                    <td>96.8%</td>
-                                    <td>95.2%</td>
-                                    <td>97.1%</td>
-                                </tr>
-                                <tr>
-                                    <td>YOLOv8-Medium</td>
-                                    <td>95.4%</td>
-                                    <td>94.8%</td>
-                                    <td>96.3%</td>
-                                </tr>
-                                <tr>
-                                    <td>EfficientDet-D3</td>
-                                    <td>94.9%</td>
-                                    <td>93.9%</td>
-                                    <td>95.7%</td>
-                                </tr>
-                                <tr>
-                                    <td>自定义CNN</td>
-                                    <td>93.7%</td>
-                                    <td>92.4%</td>
-                                    <td>94.8%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="performance-card">
-                        <h3>处理速度</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>模型版本</th>
-                                    <th>推理速度</th>
-                                    <th>模型大小</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Faster R-CNN</td>
-                                    <td>25 FPS</td>
-                                    <td>158 MB</td>
-                                </tr>
-                                <tr>
-                                    <td>YOLOv8-Medium</td>
-                                    <td>30 FPS</td>
-                                    <td>52 MB</td>
-                                </tr>
-                                <tr>
-                                    <td>EfficientDet</td>
-                                    <td>28 FPS</td>
-                                    <td>42 MB</td>
-                                </tr>
-                                <tr>
-                                    <td>轻量级版本</td>
-                                    <td>35 FPS</td>
-                                    <td>18 MB</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="note">
-                            <strong>性能测试说明：</strong>模型推理速度正在不同硬件环境下进行量化评估，包括GPU、CPU和移动设备等多种部署场景。具体测试结果将在完成后更新。
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 其他内容保持不变... -->
+            <h2>CNN深度学习模型</h2>
+            <p>本系统采用Faster R-CNN、YOLOv8等主流深度学习目标检测框架，结合微生物领域专用数据增强与小样本优化策略，实现高精度菌落检测与抑菌圈自动计数。</p>
         </div>
-    </main>
+    </section>
+
+    <!-- 模型特点 -->
+    <section class="features">
+        <div class="container">
+            <h2>模型特点</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3><i class="fas fa-microscope"></i> 高精度检测</h3>
+                    <p>支持多类别菌落识别，复杂场景适应性强。</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-tools"></i> 优化策略</h3>
+                    <p>采用小样本优化、数据增强等技术，提升模型泛化能力。</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-cogs"></i> 端到端处理</h3>
+                    <p>从图像预处理到结果输出，全流程自动化。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 性能指标 -->
+    <section class="performance">
+        <div class="container">
+            <h2>性能指标</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>模型版本</th>
+                        <th>mAP@0.5</th>
+                        <th>准确率</th>
+                        <th>召回率</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Faster R-CNN + ResNet50</td>
+                        <td>96.8%</td>
+                        <td>95.2%</td>
+                        <td>97.1%</td>
+                    </tr>
+                    <tr>
+                        <td>YOLOv8-Medium</td>
+                        <td>95.4%</td>
+                        <td>94.8%</td>
+                        <td>96.3%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 技术架构 -->
+    <section class="about">
+        <div class="container">
+            <h2><i class="fas fa-project-diagram"></i> 技术架构</h2>
+            <p>系统采用模块化设计，分为前端、后端和AI模型三大部分：</p>
+            <ul>
+                <li><strong>前端：</strong>基于React和Tauri，提供用户友好的交互界面。</li>
+                <li><strong>后端：</strong>使用FastAPI实现高效的API服务。</li>
+                <li><strong>AI模型：</strong>支持多种深度学习框架，灵活扩展。</li>
+            </ul>
+        </div>
+    </section>
 
     <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 CNN-MicroAI-Colony | 模型版本：v2.1 | 性能测试：量化评估进行中</p>
-            <p>本项目基于 <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0</a> 开源协议发布。</p>
-        </div>
+    <footer>
+        <p>&copy; 2025 CNN-MicroAI-Colony | 本项目基于 <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0</a> 开源协议发布。</p>
     </footer>
-    <script>
-        // ...脚本内容保持不变...
-    </script>
 </body>
 </html>
