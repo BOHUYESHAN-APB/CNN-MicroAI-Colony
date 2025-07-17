@@ -7,6 +7,7 @@
     <meta name="description" content="基于深度学习的微生物菌落检测与计数系统，支持CNN和OpenCV双引擎架构">
     <meta name="keywords" content="微生物检测,菌落计数,深度学习,计算机视觉,CNN,OpenCV">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary-color: #0078d4;
@@ -72,7 +73,7 @@
 
         nav {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -117,7 +118,7 @@
         .hero p {
             font-size: 1.3rem;
             color: #666;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto 2rem;
         }
 
@@ -129,26 +130,20 @@
         }
 
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 1rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+            box-shadow: var(--shadow);
         }
 
         .btn-primary {
             background: var(--gradient-primary);
             color: white;
-            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 120, 212, 0.4);
         }
 
         .btn-secondary {
@@ -157,44 +152,35 @@
             border: 2px solid var(--primary-color);
         }
 
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
+        .btn:hover {
             transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
         }
 
-        /* 特性网格 */
+        /* 特性卡片 */
         .features {
             padding: 4rem 0;
             background: white;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
-        }
-
-        .grid {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
+            margin-top: 3rem;
         }
 
         .feature-card {
             background: white;
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
             text-align: center;
-            border: 1px solid var(--border-color);
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: var(--hover-shadow);
         }
 
@@ -210,107 +196,90 @@
             color: var(--text-color);
         }
 
-        .feature-card p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* 技术对比部分 */
-        .tech-comparison {
+        /* 技术规格 */
+        .specs {
             padding: 4rem 0;
             background: var(--light-gray);
         }
 
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .tech-card {
-            background: white;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-
-        .tech-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .tech-specs {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .spec-item {
-            background: var(--secondary-color);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .spec-item strong {
-            display: block;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        /* 性能指标 */
-        .performance {
-            padding: 4rem 0;
-            background: white;
-        }
-
-        .metrics-grid {
+        .specs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
+            margin-top: 2rem;
         }
 
-        .metric-card {
-            background: var(--gradient-secondary);
-            padding: 2rem;
+        .spec-item {
+            background: white;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
             text-align: center;
-            border: 1px solid var(--border-color);
         }
 
-        .metric-value {
-            font-size: 2.5rem;
+        .spec-value {
+            font-size: 2rem;
             font-weight: bold;
             color: var(--primary-color);
-            display: block;
         }
 
-        .metric-label {
+        .spec-label {
             color: #666;
             margin-top: 0.5rem;
         }
 
+        /* 动态图表 */
+        .chart-container {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .chart-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         /* 页脚 */
         footer {
-            background: var(--text-color);
+            background: #2c3e50;
             color: white;
-            text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0 1rem;
             margin-top: 4rem;
         }
 
-        footer a {
-            color: var(--info-color);
-            text-decoration: none;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
         }
 
         /* 响应式设计 */
@@ -338,15 +307,7 @@
                 align-items: center;
             }
 
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tech-specs {
+            .features-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -401,6 +362,7 @@
                 <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
                 <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
                 <a href="./architecture-visualization.html"><i class="fas fa-project-diagram"></i> 架构可视化</a>
+                <a href="./model-analysis.html"><i class="fas fa-chart-line"></i> 模型分析</a>
             </nav>
         </div>
     </header>
@@ -411,7 +373,7 @@
         <section class="hero">
             <div class="container">
                 <h1 class="fade-in">微生物菌落智能识别系统</h1>
-                <p class="fade-in">基于深度学习的CNN-MicroAI-Colony系统，实现高精度微生物菌落检测与计数，支持CNN和OpenCV双引擎架构</p>
+                <p class="fade-in">基于深度学习的CNN-MicroAI-Colony系统，实现高精度微生物菌落检测与计数，支持CNN和OpenCV双引擎架构。专为医疗、食品、制药等行业设计的智能分析解决方案。</p>
                 <div class="cta-buttons fade-in">
                     <a href="./documentation.html" class="btn btn-primary">
                         <i class="fas fa-book"></i> 查看文档
@@ -426,82 +388,179 @@
         <!-- 系统特性 -->
         <section class="features">
             <div class="container">
-                <h2 class="section-title">系统特性</h2>
-                <div class="grid">
+                <h2 class="section-title">系统核心特性</h2>
+                <div class="features-grid">
                     <div class="feature-card fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-brain"></i>
                         </div>
                         <h3>深度学习引擎</h3>
-                        <p>基于Faster R-CNN和YOLOv8架构，支持多类别菌落识别，准确率≥99.2%，适应复杂场景检测需求</p>
+                        <p>基于Faster R-CNN ResNet50和YOLOv8架构，支持多尺度检测，检测精度达到99.2%，支持实时推理。</p>
                     </div>
                     <div class="feature-card fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-eye"></i>
                         </div>
                         <h3>传统视觉引擎</h3>
-                        <p>基于OpenCV的高效检测系统，支持滤纸片和透明圈检测，处理速度2-4秒/张，无需大量训练数据</p>
-                    </div>
-                    <div class="feature-card fade-in">
-                        <div class="feature-icon">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3>双引擎架构</h3>
-                        <p>智能场景识别，自动选择最优算法，支持渐进式升级，平衡精度与效率需求</p>
+                        <p>基于OpenCV的Hough圆检测和边缘检测算法，处理速度提升300%，适用于资源受限环境。</p>
                     </div>
                     <div class="feature-card fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <h3>性能优化</h3>
-                        <p>支持GPU加速、批量处理、缓存优化，提供实时性能监控和自适应参数调节</p>
+                        <h3>智能分析</h3>
+                        <p>支持菌落计数、抑菌圈检测、生长曲线分析，提供详细的统计报告和可视化结果。</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>跨平台支持</h3>
+                        <p>支持Windows、Linux、macOS系统，提供Web界面和API接口，支持移动端访问。</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>灵活配置</h3>
+                        <p>支持自定义检测参数、阈值调整、模型切换，适应不同应用场景需求。</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>数据安全</h3>
+                        <p>本地部署，数据不上传云端，支持加密存储和访问控制，确保数据隐私安全。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 技术对比 -->
-        <section class="tech-comparison">
+        <!-- 技术规格 -->
+        <section class="specs">
             <div class="container">
-                <h2 class="section-title">技术方案对比</h2>
-                <div class="comparison-grid">
-                    <div class="tech-card">
-                        <h3><i class="fas fa-brain"></i> CNN深度学习</h3>
-                        <div class="tech-specs">
-                            <div class="spec-item">
-                                <strong>准确率</strong>
-                                96.8-99.2%
-                            </div>
-                            <div class="spec-item">
-                                <strong>处理速度</strong>
-                                1-5秒/张
-                            </div>
-                            <div class="spec-item">
-                                <strong>数据需求</strong>
-                                大量标注数据
-                            </div>
-                            <div class="spec-item">
-                                <strong>适用场景</strong>
-                                复杂环境
-                            </div>
-                        </div>
-                        <p>适合高精度需求、复杂场景、多类别识别的专业应用</p>
+                <h2 class="section-title">技术规格</h2>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-value">99.2%</div>
+                        <div class="spec-label">检测精度</div>
                     </div>
-                    <div class="tech-card">
-                        <h3><i class="fas fa-eye"></i> OpenCV传统视觉</h3>
-                        <div class="tech-specs">
-                            <div class="spec-item">
-                                <strong>准确率</strong>
-                                90-100%
-                            </div>
-                            <div class="spec-item">
-                                <strong>处理速度</strong>
-                                2-4秒/张
-                            </div>
-                            <div class="spec-item">
-                                <strong>数据需求</strong>
-                                少量或无标注
-                            </div>
-                            <div class="spec-item">
-                                <strong>适用场景</strong>
-                                标准化
+                    <div class="spec-item">
+                        <div class="spec-value">0.3s</div>
+                        <div class="spec-label">单张处理时间</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-value">50+</div>
+                        <div class="spec-label">支持菌落类型</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-value">4K</div>
+                        <div class="spec-label">最大支持分辨率</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-value">Python 3.8+</div>
+                        <div class="spec-label">运行环境</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-value">MIT</div>
+                        <div class="spec-label">开源协议</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 动态图表 -->
+        <section class="chart-container">
+            <div class="container">
+                <h2 class="section-title">系统特性对比</h2>
+                <div class="chart-wrapper">
+                    <canvas id="systemComparisonChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>项目仓库</h3>
+                <a href="https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony" target="_blank">
+                    <i class="fab fa-github"></i> GitHub主仓库
+                </a>
+                <a href="https://gitee.com/xingzhishengluo/CNN-MicroAI-Colony" target="_blank">
+                    <i class="fab fa-git-alt"></i> Gitee国内镜像
+                </a>
+            </div>
+            <div class="footer-section">
+                <h3>开发者主页</h3>
+                <a href="https://github.com/BOHUYESHAN-APB" target="_blank">
+                    <i class="fab fa-github"></i> GitHub主页1
+                </a>
+                <a href="https://github.com/BoHuYeShan" target="_blank">
+                    <i class="fab fa-github"></i> GitHub主页2
+                </a>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <a href="./documentation.html">技术文档</a>
+                <a href="./architecture-visualization.html">架构可视化</a>
+                <a href="./tech-comparison.html">技术对比</a>
+            </div>
+            <div class="footer-section">
+                <h3>技术支持</h3>
+                <a href="https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony/issues" target="_blank">
+                    <i class="fas fa-bug"></i> 问题反馈
+                </a>
+                <a href="https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony/discussions" target="_blank">
+                    <i class="fas fa-comments"></i> 社区讨论
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CNN-MicroAI-Colony. 基于MIT开源协议发布。</p>
+        </div>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('systemComparisonChart').getContext('2d');
+        const systemComparisonChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                labels: ['检测精度', '处理速度', '部署复杂度', '维护成本', '适用场景'],
+                datasets: [
+                    {
+                        label: 'CNN深度学习',
+                        data: [99, 80, 70, 60, 90],
+                        backgroundColor: 'rgba(0, 120, 212, 0.7)',
+                        borderColor: 'rgba(0, 120, 212, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'OpenCV传统视觉',
+                        data: [85, 90, 30, 20, 50],
+                        backgroundColor: 'rgba(40, 167, 69, 0.7)',
+                        borderColor: 'rgba(40, 167, 69, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.label}: ${context.raw}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

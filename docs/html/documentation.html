@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>技术文档中心 - CNN-MicroAI-Colony</title>
     <meta name="description" content="CNN-MicroAI-Colony微生物智能分析平台的完整技术文档集合">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary-color: #0078d4;
@@ -19,269 +19,257 @@
             --border-color: #ddd;
             --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             --hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            --gradient-primary: linear-gradient(135deg, #0078d4 0%, #00bcf2 100%);
+            --gradient-secondary: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.8;
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: var(--light-gray);
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
             color: var(--text-color);
+            background-color: var(--light-gray);
+            overflow-x: hidden;
         }
-        header, footer {
-            background-color: var(--primary-color);
-            color: #fff;
+
+        /* 导航栏样式 */
+        header {
+            background: var(--gradient-primary);
+            color: white;
             padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
-        header h1, footer p {
-            text-align: center;
-            margin: 0;
-        }
-        nav {
-            text-align: center;
-            margin-top: 1rem;
-        }
-        nav a {
-            margin: 0 1rem;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #ffcc00;
-            text-decoration: none;
-        }
-        .container {
+
+        .header-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        .hero {
-            text-align: center;
-            padding: 3rem 0;
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #bbdefb 100%);
-        }
-        .hero h2 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        .hero p {
-            font-size: 1.3rem;
-            color: #555;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        .card {
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
-        }
-        .card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        .card ul {
-            padding-left: 1.5rem;
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        .card li {
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-        }
-        .card strong {
-            color: var(--text-color);
-        }
-        .btn {
-            display: inline-block;
+
+        nav a {
+            color: white;
+            text-decoration: none;
             padding: 0.5rem 1rem;
-            background-color: var(--primary-color);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background-color 0.3s;
+            border-radius: 25px;
+            transition: var(--transition);
+            font-weight: 500;
         }
-        .btn:hover {
-            background-color: #005a9e;
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
-        .btn.primary {
-            background-color: var(--success-color);
+
+        /* 主要内容样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-        .btn.primary:hover {
-            background-color: #1e7e34;
+
+        .hero {
+            background: var(--gradient-secondary);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            margin-top: 60px;
         }
-        .patent-progress, .doc-nav, .quick-start {
-            padding: 3rem 0;
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
-        .patent-progress {
-            background-color: #fff;
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 2rem;
         }
-        .doc-nav {
-            background-color: var(--secondary-color);
+
+        /* 动态图表 */
+        .chart-container {
+            padding: 4rem 0;
+            background: white;
         }
-        .quick-start {
-            background-color: #f8f9fa;
+
+        .chart-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .quick-start ol {
-            padding-left: 1.5rem;
-        }
-        .quick-start li {
-            margin-bottom: 0.8rem;
-        }
-        code {
-            background-color: #f1f3f4;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'Consolas', monospace;
-        }
-        footer a {
-            color: #ffcc00;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        footer a:hover {
-            color: #fff;
-        }
+
+        /* 响应式设计 */
         @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2.2rem;
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
             }
+
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
             .hero p {
                 font-size: 1.1rem;
             }
-            .grid {
-                grid-template-columns: 1fr;
+
+            .chart-wrapper {
+                max-width: 100%;
             }
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #005a9e;
         }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
     <header>
-        <h1>🧬 CNN-MicroAI-Colony</h1>
-        <nav>
-            <a href="./architecture-visualization.html"><i class="fas fa-project-diagram"></i> 架构可视化</a>
-            <a href="./index.html"><i class="fas fa-home"></i> 首页</a>
-            <a href="./cnn-demo.html"><i class="fas fa-brain"></i> CNN模型</a>
-            <a href="./opencv-demo.html"><i class="fas fa-eye"></i> OpenCV系统</a>
-            <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
-            <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
-        </nav>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-book"></i>
+                CNN-MicroAI-Colony
+            </div>
+            <nav>
+                <a href="./index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="./cnn-demo.html"><i class="fas fa-brain"></i> CNN模型</a>
+                <a href="./opencv-demo.html"><i class="fas fa-eye"></i> OpenCV系统</a>
+                <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
+                <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
+                <a href="./architecture-visualization.html"><i class="fas fa-project-diagram"></i> 架构可视化</a>
+                <a href="./model-analysis.html"><i class="fas fa-chart-line"></i> 模型分析</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- 英雄栏 -->
-    <section class="hero">
-        <div class="container">
-            <h2>技术文档中心</h2>
-            <p>全面的技术文档集合，涵盖架构设计、算法原理、性能测试等内容，助力开发与集成。</p>
-        </div>
-    </section>
+    <!-- 主要内容 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="fade-in">技术文档中心</h1>
+                <p class="fade-in">全面的技术文档集合，涵盖架构设计、算法原理、性能测试等内容，助力开发与集成。</p>
+            </div>
+        </section>
 
-    <!-- 专利目标展示 -->
-    <section class="patent-progress">
-        <div class="container">
-            <h2><i class="fas fa-award"></i> 专利目标进展</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3><i class="fas fa-check-circle" style="color:#28a745;"></i> 已完成的专利目标</h3>
-                    <ul>
-                        <li><strong>菌落计数模块</strong>：支持血平板、麦康凯、沙氏等培养基，准确率≥99.2%。</li>
-                        <li><strong>抑菌圈检测</strong>：自动测量抑菌圈直径，支持K-B法与MIC法，误差≤0.5 mm。</li>
-                        <li><strong>菌种识别</strong>：内置常见菌种库，支持用户自定义训练，识别时间<1 s。</li>
-                        <li><strong>图像预处理</strong>：自适应光照校正、边缘增强、噪声抑制，提升低对比度样本识别率。</li>
-                        <li><strong>高通量支持</strong>：单批次可处理≥100张图片，支持24/7无人值守运行。</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-tasks" style="color:#ffc107;"></i> 待完善的专利目标</h3>
-                    <ul>
-                        <li><strong>荧光染色菌落</strong>：整合GFP/RFP荧光通道，预计Q3完成。</li>
-                        <li><strong>多光谱分析</strong>：增加365 nm紫外与850 nm红外成像模块，硬件适配中。</li>
-                        <li><strong>粘连分割算法</strong>：基于分水岭+深度学习的混合模型，当前mIoU=0.91，目标≥0.95。</li>
-                        <li><strong>复杂背景鲁棒性</strong>：针对血琼脂气泡、结晶等干扰，计划引入注意力机制。</li>
-                        <li><strong>移动端适配</strong>：开发Android/iOS轻量版，模型量化至<50 MB。</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-lightbulb" style="color:#17a2b8;"></i> 专利技术亮点</h3>
-                    <ul>
-                        <li><strong>三合一集成</strong>：首创菌落计数-药敏分析-菌种鉴定一体化流程，减少90%人工操作。</li>
-                        <li><strong>自适应CNN架构</strong>：动态调整感受野，对小菌落（<0.1 mm）检测精度提升40%。</li>
-                        <li><strong>多培养基适配</strong>：通过风格迁移网络，新培养基标注数据需求降低至传统方法的1/5。</li>
-                        <li><strong>实时反馈系统</strong>：异常样本自动标记，人工复核效率提升3倍。</li>
-                        <li><strong>边缘计算优化</strong>：支持NPU/GPU加速，Jetson Nano实时处理速度≥15 FPS。</li>
-                    </ul>
+        <!-- 动态图表 -->
+        <section class="chart-container">
+            <div class="container">
+                <h2 class="section-title">专利目标进展</h2>
+                <div class="chart-wrapper">
+                    <canvas id="patentProgressChart"></canvas>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- 技术文档导航 -->
-    <section class="doc-nav">
-        <div class="container">
-            <h2><i class="fas fa-map-signs"></i> 技术文档导航</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3><i class="fas fa-book"></i> 架构设计</h3>
-                    <p>系统整体架构、模块划分、数据流设计</p>
-                    <a href="#architecture" class="btn">查看详情</a>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-cogs"></i> 算法原理</h3>
-                    <p>CNN模型结构、训练策略、优化技巧</p>
-                    <a href="#algorithms" class="btn">查看详情</a>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-chart-line"></i> 性能测试</h3>
-                    <p>准确率、速度、内存占用等关键指标</p>
-                    <a href="#performance" class="btn">查看详情</a>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-tools"></i> API文档</h3>
-                    <p>RESTful API接口说明、SDK使用指南</p>
-                    <a href="#api" class="btn">查看详情</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 快速开始 -->
-    <section class="quick-start">
-        <div class="container">
-            <h2><i class="fas fa-rocket"></i> 快速开始</h2>
-            <div class="card">
-                <h3>5分钟上手</h3>
-                <ol>
-                    <li>克隆仓库：<code>git clone https://github.com/your-repo/CNN-MicroAI-Colony.git</code></li>
-                    <li>安装依赖：<code>pip install -r requirements.txt</code></li>
-                    <li>运行演示：<code>python main.py --demo</code></li>
-                    <li>上传图片：拖拽图片到界面或调用API</li>
-                    <li>查看结果：实时显示计数、抑菌圈、菌种信息</li>
-                </ol>
-                <a href="https://github.com/your-repo/CNN-MicroAI-Colony" class="btn primary">GitHub仓库</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer>
-        <p>&copy; 2025 CNN-MicroAI-Colony | 本项目基于 <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0</a> 开源协议发布。</p>
-    </footer>
+    <script>
+        const ctx = document.getElementById('patentProgressChart').getContext('2d');
+        const patentProgressChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['已完成', '进行中', '待规划'],
+                datasets: [
+                    {
+                        label: '专利目标进展',
+                        data: [60, 30, 10],
+                        backgroundColor: [
+                            'rgba(40, 167, 69, 0.7)',
+                            'rgba(255, 193, 7, 0.7)',
+                            'rgba(220, 53, 69, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(40, 167, 69, 1)',
+                            'rgba(255, 193, 7, 1)',
+                            'rgba(220, 53, 69, 1)'
+                        ],
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

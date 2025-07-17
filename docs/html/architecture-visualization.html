@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>模型架构可视化 - CNN-MicroAI-Colony</title>
+    <title>架构可视化 - CNN-MicroAI-Colony</title>
+    <meta name="description" content="CNN-MicroAI-Colony系统架构的交互式可视化展示，包含深度学习与传统视觉模块">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
         :root {
             --primary-color: #0078d4;
@@ -21,10 +24,6 @@
             --gradient-secondary: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             --border-radius: 12px;
             --transition: all 0.3s ease;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --accent-color: #0078d4;
-            --accent-hover: #0056b3;
         }
 
         * {
@@ -86,7 +85,6 @@
             border-radius: 25px;
             transition: var(--transition);
             font-weight: 500;
-            font-size: 0.9rem;
         }
 
         nav a:hover {
@@ -121,202 +119,16 @@
             margin: 0 auto 2rem;
         }
 
-        /* 架构容器 */
+        /* 架构图 */
         .architecture-container {
-            max-width: 1400px;
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .architecture-wrapper {
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 2rem;
         }
-
-        .model-section {
-            margin: 3rem 0;
-            padding: 2rem;
-            background: var(--bg-primary);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .model-section:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            text-align: center;
-        }
-
-        /* 架构图样式 */
-        .architecture-svg {
-            width: 100%;
-            height: 600px;
-            margin: 2rem 0;
-            border-radius: var(--border-radius);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .layer-node {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .layer-node:hover {
-            filter: brightness(1.2);
-            transform: scale(1.1);
-        }
-
-        .connection-line {
-            stroke-width: 2;
-            stroke-dasharray: 5,5;
-            animation: dash 2s linear infinite;
-        }
-
-        @keyframes dash {
-            to { stroke-dashoffset: -10; }
-        }
-
-        /* 详细架构卡片 */
-        .architecture-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .architecture-card {
-            background: var(--bg-primary);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .architecture-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .parameter-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
-
-        .parameter-table th,
-        .parameter-table td {
-            padding: 0.5rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .parameter-table th {
-            background: var(--secondary-color);
-            font-weight: 600;
-        }
-
-        /* 交互控制 */
-        .interactive-controls {
-            display: flex;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .control-btn {
-            padding: 0.75rem 1.5rem;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-        }
-
-        .control-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .control-btn.active {
-            background: var(--success-color);
-        }
-
-        /* 详细参数展示 */
-        .detailed-params {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            margin: 2rem 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            overflow-x: auto;
-        }
-
-        /* 性能指标 */
-        .performance-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .metric-card {
-            background: var(--bg-primary);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .metric-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* 网络层可视化 */
-        .network-layer {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            margin: 0.25rem;
-            border-radius: 5px;
-            color: white;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-align: center;
-            min-width: 80px;
-        }
-
-        .input-layer { background: #ff6b6b; }
-        .conv-layer { background: #4ecdc4; }
-        .pool-layer { background: #45b7d1; }
-        .fc-layer { background: #96ceb4; }
-        .output-layer { background: #feca57; }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
@@ -334,17 +146,12 @@
                 font-size: 2.5rem;
             }
 
-            .architecture-container {
-                padding: 1rem;
+            .hero p {
+                font-size: 1.1rem;
             }
 
-            .model-section {
-                padding: 1rem;
-            }
-
-            .interactive-controls {
-                flex-direction: column;
-                align-items: center;
+            .architecture-wrapper {
+                max-width: 100%;
             }
         }
 
@@ -364,60 +171,75 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
-        /* 代码块样式 */
-        .code-block {
-            background: #f8f9fa;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin: 1rem 0;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .code-block pre {
-            margin: 0;
-            white-space: pre-wrap;
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
         }
 
-        /* 隐藏/显示控制 */
-        .section-content {
-            display: none;
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
         }
 
-        .section-content.active {
-            display: block;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #005a9e;
         }
     </style>
 </head>
 <body>
+    <!-- 导航栏 -->
     <header>
         <div class="header-content">
             <div class="logo">
-                <i class="fas fa-brain"></i>
-                <span>CNN-MicroAI-Colony</span>
+                <i class="fas fa-project-diagram"></i>
+                CNN-MicroAI-Colony
             </div>
             <nav>
-                <a href="index.html">首页</a>
-                <a href="documentation.html">文档</a>
-                <a href="architecture-visualization.html" class="active">架构可视化</a>
-                <a href="cnn-demo.html">CNN演示</a>
-                <a href="opencv-demo.html">OpenCV演示</a>
-                <a href="tech-comparison.html">技术对比</a>
+                <a href="./index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="./cnn-demo.html"><i class="fas fa-brain"></i> CNN模型</a>
+                <a href="./opencv-demo.html"><i class="fas fa-eye"></i> OpenCV系统</a>
+                <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
+                <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
+                <a href="./architecture-visualization.html"><i class="fas fa-project-diagram"></i> 架构可视化</a>
             </nav>
         </div>
     </header>
 
+    <!-- 主要内容 -->
     <main>
-        <div class="hero">
-            <h1>🎯 模型架构可视化中心</h1>
-            <p>深入探索CNN-MicroAI-Colony的深度学习架构与OpenCV检测系统的完整技术细节</p>
-        </div>
+        <!-- 英雄区域 -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="fade-in">架构可视化</h1>
+                <p class="fade-in">交互式展示CNN-MicroAI-Colony系统的整体架构，包括深度学习与传统视觉模块。</p>
+            </div>
+        </section>
 
-        <div class="container">
-            <!-- 交互控制 -->
-            <div class="interactive-controls">
-                <button class="control-btn active" onclick="showSection('faster-rcnn')">Faster R-CNN完整架构</button>
-                <button class="control-btn" onclick="showSection
+        <!-- 架构图 -->
+        <section class="architecture-container">
+            <div class="container">
+                <h2 class="section-title">系统架构图</h2>
+                <div class="architecture-wrapper">
+                    <div class="mermaid">
+                        graph TD
+                        A[输入图像] --> B[预处理模块]
+                        B --> C{引擎选择}
+                        C -->|深度学习| D[CNN模型 (Faster R-CNN / YOLOv8)]
+                        C -->|传统视觉| E[OpenCV算法]
+                        D --> F[检测结果]
+                        E --> F[检测结果]
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
