@@ -1,0 +1,26 @@
+# YOLOv8 训练配置
+
+model:
+  architecture: yolov8n.pt  # 基础模型架构
+  num_classes: 85           # 菌落类别数
+
+data:
+  path: /merged_dataset     # COCO格式数据集路径
+  img_size: [640, 2048]  # 多尺度训练范围(640为主)  # 多尺度训练范围             # 输入图像尺寸
+  train: train/             # 训练集路径
+  val: valid/               # 验证集路径
+  test: test/               # 测试集路径
+
+train:
+  epochs: 100               # 训练轮数
+  batch_size: 16            # 批次大小
+  device: 0                 # 使用GPU 0
+  workers: 8                # 数据加载线程数
+  lr0: 0.01                 # 初始学习率
+  lrf: 0.1                  # 最终学习率
+  momentum: 0.937           # SGD动量
+  weight_decay: 0.0005      # 权重衰减
+
+output:
+  path: ./model_output      # 输出目录
+  save_period: 10           # 每隔多少轮保存一次

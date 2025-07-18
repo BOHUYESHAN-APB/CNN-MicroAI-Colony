@@ -1,0 +1,23 @@
+# PP-YOLO 训练配置
+
+model:
+  architecture: ppyolo_r50vd_dcn  # 基础模型架构
+  num_classes: 85                # 菌落类别数
+
+data:
+  path: /merged_dataset         # COCO格式数据集路径
+  img_size: [640, 2048]         # 多尺度训练范围(640为主)
+  train: train/                 # 训练集路径
+  val: valid/                   # 验证集路径
+  test: test/                   # 测试集路径
+
+train:
+  epochs: 100                   # 训练轮数
+  batch_size: 16                # 批次大小
+  device: gpu                   # 使用GPU
+  learning_rate: 0.001          # 学习率
+  warmup_iters: 1000            # 热身迭代数
+
+output:
+  path: ./model_output          # 输出目录
+  save_interval: 10             # 保存间隔

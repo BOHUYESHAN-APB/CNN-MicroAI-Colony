@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<![CDATA[<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +6,6 @@
     <title>架构可视化 - CNN-MicroAI-Colony</title>
     <meta name="description" content="CNN-MicroAI-Colony系统架构的交互式可视化展示，包含深度学习与传统视觉模块">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
         :root {
             --primary-color: #0078d4;
@@ -40,7 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* 导航栏样式 */
         header {
             background: var(--gradient-primary);
             color: white;
@@ -92,7 +89,6 @@
             transform: translateY(-2px);
         }
 
-        /* 主要内容样式 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -119,7 +115,6 @@
             margin: 0 auto 2rem;
         }
 
-        /* 架构图 */
         .architecture-container {
             padding: 4rem 0;
             background: white;
@@ -128,9 +123,30 @@
         .architecture-wrapper {
             max-width: 1000px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
         }
 
-        /* 响应式设计 */
+        .node {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -154,40 +170,6 @@
                 max-width: 100%;
             }
         }
-
-        /* 动画效果 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* 滚动条样式 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--light-gray);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #005a9e;
-        }
     </style>
 </head>
 <body>
@@ -204,7 +186,7 @@
                 <a href="./opencv-demo.html"><i class="fas fa-eye"></i> OpenCV系统</a>
                 <a href="./tech-comparison.html"><i class="fas fa-chart-bar"></i> 技术对比</a>
                 <a href="./documentation.html"><i class="fas fa-book"></i> 技术文档</a>
-                <a href="./architecture-visualization.html"><i class="fas fa-project-diagram"></i> 架构可视化</a>
+                <a href="./model-analysis.html"><i class="fas fa-chart-line"></i> 模型分析</a>
             </nav>
         </div>
     </header>
@@ -224,22 +206,20 @@
             <div class="container">
                 <h2 class="section-title">系统架构图</h2>
                 <div class="architecture-wrapper">
-                    <div class="mermaid">
-                        graph TD
-                        A[输入图像] --> B[预处理模块]
-                        B --> C{引擎选择}
-                        C -->|深度学习| D[CNN模型 (Faster R-CNN / YOLOv8)]
-                        C -->|传统视觉| E[OpenCV算法]
-                        D --> F[检测结果]
-                        E --> F[检测结果]
-                    </div>
+                    <div class="node">输入图像</div>
+                    <div class="arrow">↓</div>
+                    <div class="node">预处理模块</div>
+                    <div class="arrow">↓</div>
+                    <div class="node">引擎选择</div>
+                    <div class="arrow">↓</div>
+                    <div class="node">深度学习引擎 (CNN - 菌落计数)</div>
+                    <div class="arrow">↓</div>
+                    <div class="node">传统视觉引擎 (OpenCV - 抑菌圈检测)</div>
+                    <div class="arrow">↓</div>
+                    <div class="node">检测结果</div>
                 </div>
             </div>
         </section>
     </main>
-
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script>
 </body>
-</html>
+</html>]]>
