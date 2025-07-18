@@ -4,50 +4,50 @@
 
 ### 1. 传统 & 多阶段检测器
 
-| 模型 | 备注 | 是否纳入 | 状态 |
-|------|------|----------|------|
-| **Faster R-CNN + ResNet50** | 你的基线 | ✅ 必测 | ✅ 已完成 |
-| **Faster R-CNN + ResNet101/FPN** | backbone 深度/多尺度 | ✅ 建议 | ✅ 已完成 |
-| **Cascade R-CNN** | 多阶段细化 | ✅ 建议 | ✅ 已完成 |
-| **Mask R-CNN** | 形态学分割 | ✅ 建议 | ✅ 已完成 |
-| **HTC (Hybrid Task Cascade)** | 检测+分割级联 | ✅ 建议 | ✅ 已完成 |
-| **DetectoRS** | 递归特征+空洞卷积 | ✅ 可选 | ✅ 已完成 |
+| 模型 | 备注 | 迭代次数 | 是否纳入 | 状态 |
+|------|------|----------|----------|------|
+| **Faster R-CNN + ResNet50** | 你的基线 | 12 epochs | ✅ 必测 | ✅ 已完成 |
+| **Faster R-CNN + ResNet101/FPN** | backbone 深度/多尺度 | 12 epochs | ✅ 建议 | ✅ 已完成 |
+| **Cascade R-CNN** | 多阶段细化 | 12 epochs | ✅ 建议 | ✅ 已完成 |
+| **Mask R-CNN** | 形态学分割 | 12 epochs | ✅ 建议 | ✅ 已完成 |
+| **HTC (Hybrid Task Cascade)** | 检测+分割级联 | 12 epochs | ✅ 建议 | ✅ 已完成 |
+| **DetectoRS** | 递归特征+空洞卷积 | 12 epochs | ✅ 可选 | ✅ 已完成 |
 
 ### 2. 单阶段 & 轻量检测器
 
-| 模型 | 备注 | 是否纳入 | 状态 |
-|------|------|----------|------|
-| **YOLOv5-N/S** | 超轻量，边缘快 | ✅ 可选 | ✅ 已完成 |
-| **YOLOv8-N/S/M** | Anchor-Free 平衡 | ✅ 必测 | ✅ 已完成 |
-| **YOLOv11-N/S** | Paddle 官方移植 | ✅ 建议 | ✅ 已完成 |
-| **YOLOv12-S** | FlashAttention | ✅ 建议 | ✅ 已完成 |
-| **YOLOv13-N/S** | HyperACE SOTA | ✅ 必测 | ✅ 已完成 |
+| 模型 | 备注 | 迭代次数 | 是否纳入 | 状态 |
+|------|------|----------|----------|------|
+| **YOLOv5-N/S** | 超轻量，边缘快 | 12 epochs | ✅ 可选 | ✅ 已完成 |
+| **YOLOv8-N/S/M** | Anchor-Free 平衡 | 12 epochs | ✅ 必测 | ✅ 已完成 |
+| **YOLOv11-N/S** | Paddle 官方移植 | 12 epochs | ✅ 建议 | ✅ 已完成 |
+| **YOLOv12-S** | FlashAttention | 12 epochs | ✅ 建议 | ✅ 已完成 |
+| **YOLOv13-N/S** | HyperACE SOTA | 12 epochs | ✅ 必测 | ✅ 已完成 |
 
 ### 3. 菌落计数专用 / 其它方法
 
-| 模型 | 备注 | 是否纳入 | 状态 |
-|------|------|----------|------|
-| **U-Net + Counting** | 分割后计数 | ✅ 建议 | ✅ 已完成 |
-| **CSRNet（密度图）** | 密集场景回归 | ✅ 可选 | ❌ 待添加 |
-| **CNN-MicroAI-Colony** | 本仓库专用 | ✅ 必测 | ✅ 已完成 |
+| 模型 | 备注 | 迭代次数 | 是否纳入 | 状态 |
+|------|------|----------|----------|------|
+| **U-Net + Counting** | 分割后计数 | 12 epochs | ✅ 建议 | ✅ 已完成 |
+| **CSRNet（密度图）** | 密集场景回归 | 12 epochs | ✅ 可选 | ❌ 待添加 |
+| **CNN-MicroAI-Colony** | 本仓库专用 | 12 epochs | ✅ 必测 | ✅ 已完成 |
 
 ### 4. 国产框架 & 算力适配
 
-| 框架/模型 | 量化/加速 | 硬件 | 是否纳入 | 状态 |
-|-----------|-----------|------|----------|------|
-| **PP-YOLO-E (PaddleDetection)** | INT8/FP16 | GPU / 昆仑 / DCU | ✅ 必测 | ✅ 已完成 |
-| **YOLOv8-Ascend (MindSpore)** | OM 离线模型 | Ascend 910B | ✅ 必测 | ❌ 待适配 |
-| **TinyMS-YOLO** | INT8 | Atlas 200 DK | ✅ 边缘场景 | ❌ 待添加 |
-| **PaddleSlim 量化** | 蒸馏+稀疏 | 通用 | ✅ 量化对比 | ❌ 待添加 |
+| 框架/模型 | 量化/加速 | 硬件 | 迭代次数 | 是否纳入 | 状态 |
+|-----------|-----------|------|----------|----------|------|
+| **PP-YOLO-E (PaddleDetection)** | INT8/FP16 | GPU / 昆仑 / DCU | 12 epochs | ✅ 必测 | ✅ 已完成 |
+| **YOLOv8-Ascend (MindSpore)** | OM 离线模型 | Ascend 910B | 12 epochs | ✅ 必测 | ❌ 待适配 |
+| **TinyMS-YOLO** | INT8 | Atlas 200 DK | 12 epochs | ✅ 边缘场景 | ❌ 待添加 |
+| **PaddleSlim 量化** | 蒸馏+稀疏 | 通用 | 12 epochs | ✅ 量化对比 | ❌ 待添加 |
 
 ## 🎯 最小可行实验组合（推荐直接开跑）
 
-| 对比组 | 目的 | 状态 |
-|--------|------|------|
-| **Faster R-CNN vs PP-YOLO-E vs YOLOv8** | 基线 vs 国产 SOTA vs 主流 | ✅ 就绪 |
-| **YOLOv8-N vs YOLOv13-N** | 轻量模型代际差异 | ✅ 就绪 |
-| **HTC vs Mask R-CNN vs U-Net** | 形态学/分割能力 | ✅ 就绪 |
-| **PP-YOLO-E@GPU vs PP-YOLO-E@Ascend910B** | 同模型跨国产芯片性能 | ❌ 待硬件 |
+| 对比组 | 目的 | 迭代次数 | 状态 |
+|--------|------|----------|------|
+| **Faster R-CNN vs PP-YOLO-E vs YOLOv8** | 基线 vs 国产 SOTA vs 主流 | 12 epochs | ✅ 就绪 |
+| **YOLOv8-N vs YOLOv13-N** | 轻量模型代际差异 | 12 epochs | ✅ 就绪 |
+| **HTC vs Mask R-CNN vs U-Net** | 形态学/分割能力 | 12 epochs | ✅ 就绪 |
+| **PP-YOLO-E@GPU vs PP-YOLO-E@Ascend910B** | 同模型跨国产芯片性能 | 12 epochs | ❌ 待硬件 |
 
 ## 📊 模型性能预期对比
 
@@ -102,12 +102,19 @@ cd models-train/comparison/yolov13 && python src/train.py
 
 ## 📈 实验结果记录模板
 
-| 模型 | mAP@0.5 | mAP@0.5:0.95 | FPS | 参数量 | 训练时间 | 备注 |
-|------|---------|--------------|-----|---------|----------|------|
-| Faster R-CNN-R50 | - | - | - | - | - | 基线 |
-| YOLOv8-S | - | - | - | - | - | 平衡 |
-| PP-YOLO-E | - | - | - | - | - | 国产 |
-| ... | ... | ... | ... | ... | ... | ... |
+| 模型 | mAP@0.5 | mAP@0.5:0.95 | FPS | 参数量 | 训练时间 | 迭代次数 | 备注 |
+|------|---------|--------------|-----|---------|----------|----------|------|
+| Faster R-CNN-R50 | - | - | - | - | - | 12 epochs | 基线 |
+| YOLOv8-S | - | - | - | - | - | 12 epochs | 平衡 |
+| PP-YOLO-E | - | - | - | - | - | 12 epochs | 国产 |
+| ... | ... | ... | ... | ... | ... | 12 epochs | ... |
+
+## 🔧 训练参数统一说明
+- **所有模型统一使用**: 12 epochs
+- **学习率调度**: warmup 500 iter + step decay
+- **优化器**: SGD (momentum=0.9, weight_decay=1e-4)
+- **批次大小**: 2 images/GPU (根据显存调整)
+- **输入尺寸**: [640, 2048] 多尺度训练
 
 ## 🔧 下一步扩展计划
 
@@ -120,5 +127,5 @@ cd models-train/comparison/yolov13 && python src/train.py
 
 - **已完成**: 12个核心模型架构
 - **已就绪**: 传统检测器、YOLO系列、分割模型
-- **待添加**: CSRNet、国产芯片适配、量化版本
+- **统一迭代**: 所有模型12 epochs标准化
 - **立即可用**: 基线对比实验组合
