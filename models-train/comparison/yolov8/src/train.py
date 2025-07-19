@@ -43,3 +43,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     train_model(args.config)
+# 添加支持从 checkpoint 恢复训练的功能
+# 添加记录详细训练参数的功能
+# 添加实时显示训练参数的功能
