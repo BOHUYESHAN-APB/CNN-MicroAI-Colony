@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import logging
 
 class DoubleConv(nn.Module):
     """(convolution => [BN] => ReLU) * 2"""
@@ -83,3 +84,22 @@ class UNet(nn.Module):
         x = self.up4(x, x1)
         logits = self.outc(x)
         return logits
+
+def train_unet(model, dataloader, optimizer, device, num_epochs=12, checkpoint_dir="checkpoints"):
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+    os.makedirs(checkpoint_dir, exist_ok=True)
+    model.to(device)
+    for epoch in range(num_epochs):
+        model.train()
+        epoch_loss = 0
+        for batch in dataloader:
+            inputs, labels = batch
+            inputs, labels = inputs.to(device), labels.to(device)
+            optimizer.zero_grad()
+            outputs = model(inputs)
+            loss = nn.CrossEntropyLoss()(outputs, labels)
+            loss.backward()
+            optimizer.step()
+            epoch_loss += loss.item()
+        logging.info(f"Epoch {epoch + 1}/{num_epochs}, Loss: {epoch_loss:.4f}")
+        torch.save(model.state_dict(), os.path.join(checkpoint_dir, f"unet_epoch_{epoch + 1}.pth"))

@@ -67,7 +67,7 @@ def train_model(config_path, resume_from=None):
     # 训练参数
     train_args = {
         'data': data_yaml,
-        'epochs': config['train']['epochs'],
+        'epochs': 12,  # 修改为统一的训练轮数
         'imgsz': config['data']['img_size'][0],
         'batch': config['train']['batch_size'],
         'device': config['train']['device'],
@@ -76,7 +76,7 @@ def train_model(config_path, resume_from=None):
         'lrf': config['train']['lrf'],
         'momentum': config['train']['momentum'],
         'weight_decay': config['train']['weight_decay'],
-        'save_period': config['output']['save_interval'],
+        'save_period': 1,  # 每轮保存一次
         'project': config['output']['path'],
         'name': 'yolov13_training'
     }
@@ -102,5 +102,3 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     train_model(args.config, args.resume)
-# 添加记录详细训练参数的功能
-# 添加实时显示训练参数的功能

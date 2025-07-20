@@ -12,7 +12,7 @@ data:
   test: test/                   # 测试集路径
 
 train:
-  epochs: 100                   # 训练轮数
+  epochs: 12                    # 修改为统一的训练轮数
   batch_size: 16                # 批次大小
   device: gpu                   # 使用GPU
   learning_rate: 0.001          # 学习率
@@ -20,4 +20,4 @@ train:
 
 output:
   path: ./model_output          # 输出目录
-  save_interval: 10             # 保存间隔
+  save_interval: 1              # 每轮保存一次

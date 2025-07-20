@@ -93,7 +93,7 @@ def create_config(args):
     cfg.model.roi_head.bbox_head[2].num_classes = 85
     
     # 设置训练参数
-    cfg.total_epochs = 12
+    cfg.total_epochs = 12  # 修改为统一的训练轮数
     cfg.checkpoint_config.interval = 1
     cfg.log_config.interval = 50
     

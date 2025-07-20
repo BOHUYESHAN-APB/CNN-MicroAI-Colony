@@ -27,7 +27,7 @@ def main():
     parser.add_argument('config', help='train config file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument('--resume-from', help='the checkpoint file to resume from')
-    parser.add_argument('--epochs', type=int, default=50)
+    parser.add_argument('--epochs', type=int, default=12)  # 修改为统一的训练轮数
     parser.add_argument('--gpu-ids', type=int, nargs='+', default=[0])
     
     args = parser.parse_args()
@@ -75,5 +75,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-# 添加记录详细训练参数的功能
-# 添加实时显示训练参数的功能

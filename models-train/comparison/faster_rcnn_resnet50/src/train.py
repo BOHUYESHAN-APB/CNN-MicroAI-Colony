@@ -4,18 +4,34 @@ import torch
 from torch.utils.data import DataLoader
 from src.data.dataset import ColonyDataset
 from src.models.colony_detector import ColonyDetector
+import logging
+
+def setup_logging(log_file):
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(log_file),
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
 
 def main():
     # 初始化配置
     config = {
         'batch_size': 4,
-        'num_epochs': 50,
+        'num_epochs': 12,  # 修改为统一的迭代次数
         'learning_rate': 0.001,
         'data_path': 'data/images',
         'checkpoint_dir': 'checkpoints',
         'model_output_dir': 'model_output',
-        'resume_checkpoint': None  # 设置为 checkpoint 路径以恢复训练
+        'resume_checkpoint': None,  # 设置为 checkpoint 路径以恢复训练
+        'log_file': 'training.log'  # 日志文件路径
     }
+
+    # 设置日志记录
+    setup_logging(config['log_file'])
+    logging.info("训练配置: %s", config)
 
     # 创建目录
     os.makedirs(config['checkpoint_dir'], exist_ok=True)
@@ -33,7 +49,7 @@ def main():
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         start_epoch = checkpoint['epoch'] + 1
-        print(f"从 checkpoint 恢复训练，起始 epoch: {start_epoch}")
+        logging.info(f"从 checkpoint 恢复训练，起始 epoch: {start_epoch}")
 
     dataset = ColonyDataset(config['data_path'])
     dataloader = DataLoader(dataset, batch_size=config['batch_size'], shuffle=True)
@@ -65,7 +81,7 @@ def main():
         }, checkpoint_path)
 
         # 输出训练信息
-        print(f"Epoch [{epoch}/{config['num_epochs']}], Loss: {epoch_loss:.4f}")
+        logging.info(f"Epoch [{epoch}/{config['num_epochs']}], Loss: {epoch_loss:.4f}")
 
     # 保存最终模型
     torch.save(model.state_dict(),
@@ -73,5 +89,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-# 添加记录详细训练参数的功能
-# 添加实时显示训练参数的功能
