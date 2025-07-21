@@ -1,0 +1,87 @@
+# YOLOv12 配置文件
+# 用于COCO数据集
+
+train: ../src/train.py
+val: ../src/val.py
+
+# 模型配置
+model:
+  type: YOLOv12
+  backbone:
+    type: CSPDarknet
+    depth_multiple: 1.0
+    width_multiple: 1.0
+  neck:
+    type: PAN
+    in_channels: [256, 512, 1024]
+    out_channels: 256
+  head:
+    type: YOLOHead
+    anchors: [[10,13, 16,30, 33,23], [30,61, 62,45, 59,119], [116,90, 156,198, 373,326]]
+    num_classes: 80
+
+# 数据集配置
+dataset:
+  train:
+    img_dir: /merged_dataset/train/
+    ann_file: /merged_dataset/annotations/instances_train.json
+  val:
+    img_dir: /merged_dataset/val/
+    ann_file: /merged_dataset/annotations/instances_val.json
+  test:
+    img_dir: /merged_dataset/test/
+    ann_file: /merged_dataset/annotations/instances_test.json
+
+  img_size: 640
+  batch_size: 16
+  workers: 8
+
+# 训练配置
+train_cfg:
+  epochs: 300
+  lr0: 0.01
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  warmup_momentum: 0.8
+  warmup_bias_lr: 0.1
+  box: 0.05
+  cls: 0.5
+  cls_pw: 1.0
+  obj: 1.0
+  obj_pw: 1.0
+  iou_t: 0.2
+  anchor_t: 4.0
+  fl_gamma: 0.0
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.0
+
+# 验证配置
+val_cfg:
+  batch_size: 32
+  conf_thres: 0.001
+  iou_thres: 0.6
+  task: val
+  single_cls: false
+
+# 评估配置
+eval:
+  metrics: ['bbox']
+  save_json: false
+  save_hybrid: false
+  conf_thres: 0.01
+  iou_thres: 0.6
+
+# 工作目录
+work_dir: ./work_dirs/yolov12
