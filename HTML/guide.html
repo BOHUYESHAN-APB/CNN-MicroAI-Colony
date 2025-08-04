@@ -3,184 +3,672 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>使用指南 - 智能菌落分析系统</title>
+    <title>使用指南 - CNN-MicroAI-Colony</title>
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --primary-color: #007aff;
-            --secondary-color: #34c759;
-            --border-color: #e5e5ea;
-            --card-bg: #f8f8f8;
+            --primary-color: #007AFF;
+            --secondary-color: #5856D6;
+            --success-color: #34C759;
+            --warning-color: #FF9500;
+            --danger-color: #FF3B30;
+            --background-color: #FFFFFF;
+            --surface-color: #F2F2F7;
+            --card-color: #FFFFFF;
+            --text-primary: #000000;
+            --text-secondary: #8E8E93;
+            --border-color: #E5E5EA;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --code-bg: #F2F2F7;
         }
 
         [data-theme="dark"] {
-            --bg-color: #1c1c1e;
-            --text-color: #f2f2f7;
-            --primary-color: #0a84ff;
-            --secondary-color: #30d158;
-            --border-color: #2c2c2e;
-            --card-bg: #2c2c2e;
+            --background-color: #000000;
+            --surface-color: #1C1C1E;
+            --card-color: #2C2C2E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #8E8E93;
+            --border-color: #38383A;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --gradient-bg: linear-gradient(135deg, #434343 0%, #000000 100%);
+            --code-bg: #1C1C1E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
             transition: all 0.3s ease;
         }
 
-        header {
-            padding: 1rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            padding: 1rem;
-            background-color: var(--card-bg);
-        }
-
-        nav a {
-            margin: 0 1rem;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        main {
-            padding: 2rem;
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
         }
 
-        .guide-section {
-            margin-bottom: 2rem;
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
         }
 
-        .guide-section h3 {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
 
         .theme-toggle {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            top: 20px;
+            right: 20px;
+            background: var(--card-color);
+            border: none;
+            border-radius: 50%;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             cursor: pointer;
-            border: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .guide-card {
+            background: var(--card-color);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            margin-bottom: 40px;
+        }
+
+        .step-container {
+            display: grid;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .step-card {
+            background: var(--card-color);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            border-left: 5px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateX(10px);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .step-content {
+            margin-left: 55px;
+            color: var(--text-secondary);
+        }
+
+        .code-block {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, var(--success-color) 0%, transparent 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .requirement-card {
+            background: var(--card-color);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .requirement-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .requirement-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .requirement-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .workflow-diagram {
+            background: var(--surface-color);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .workflow-step {
+            background: var(--card-color);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .workflow-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .workflow-step::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+        }
+
+        .workflow-step:last-child::after {
+            display: none;
+        }
+
+        .workflow-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .workflow-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .troubleshooting {
+            background: var(--warning-color);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .troubleshooting h4 {
+            margin-bottom: 10px;
+        }
+
+        .troubleshooting ul {
+            margin-left: 20px;
+        }
+
+        .example-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .example-card {
+            background: var(--card-color);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .example-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .example-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            background: var(--card-color);
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .repo-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--surface-color);
+            border-radius: 25px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .repo-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .workflow-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .workflow-step::after {
+                content: '↓';
+                right: 50%;
+                bottom: -20px;
+                top: auto;
+                transform: translateX(50%);
+            }
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span>
+    </button>
+
     <header>
+        <a href="index.html" class="back-btn">← 返回首页</a>
         <h1>使用指南</h1>
+        <p class="subtitle">详细的使用说明和最佳实践</p>
     </header>
-    
-    <nav>
-        <a href="index.html">首页</a>
-        <a href="models.html">模型介绍</a>
-        <a href="guide.html">使用指南</a>
-        <a href="about.html">关于</a>
-    </nav>
 
-    <main>
-        <div class="card">
-            <div class="guide-section">
-                <h3>基本操作</h3>
-                <h4>图像导入</h4>
-                <ol>
-                    <li>拖放文件到主窗口</li>
-                    <li>使用"打开文件"按钮</li>
-                    <li>从剪贴板粘贴</li>
-                </ol>
-            </div>
+    <div class="container">
+        <div class="content">
+            <section class="section">
+                <div class="guide-card">
+                    <h2 class="section-title">系统要求</h2>
+                    <div class="requirements-grid">
+                        <div class="requirement-card">
+                            <div class="requirement-icon">🖥️</div>
+                            <div class="requirement-title">硬件要求</div>
+                            <div class="requirement-desc">
+                                CPU: Intel i5 或 AMD Ryzen 5<br>
+                                RAM: 8GB 或更高<br>
+                                GPU: NVIDIA GTX 1060 或更高
+                            </div>
+                        </div>
+                        <div class="requirement-card">
+                            <div class="requirement-icon">🐍</div>
+                            <div class="requirement-title">软件环境</div>
+                            <div class="requirement-desc">
+                                Python 3.7+<br>
+                                PyTorch 1.8+<br>
+                                OpenCV 4.5+
+                            </div>
+                        </div>
+                        <div class="requirement-card">
+                            <div class="requirement-icon">📸</div>
+                            <div class="requirement-title">图像要求</div>
+                            <div class="requirement-desc">
+                                格式: JPG, PNG, TIFF<br>
+                                分辨率: 512×512 或更高<br>
+                                光照: 均匀照明
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="guide-section">
-                <h3>分析模式</h3>
-                <ul>
-                    <li><strong>单图分析</strong>: 逐张处理</li>
-                    <li><strong>批量分析</strong>: 多图同时处理</li>
-                    <li><strong>实时分析</strong>: 摄像头实时处理</li>
-                </ul>
-            </div>
+            <section class="section">
+                <h2 class="section-title">快速开始</h2>
+                <div class="step-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-title">环境安装</div>
+                        <div class="step-content">
+                            <p>安装必要的依赖包：</p>
+                            <div class="code-block">
+pip install torch torchvision opencv-python numpy pandas matplotlib scikit-learn
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="guide-section">
-                <h3>结果查看</h3>
-                <ul>
-                    <li>图表可视化</li>
-                    <li>数据表格</li>
-                    <li>统计信息</li>
-                    <li>对比分析</li>
-                </ul>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-title">下载模型</div>
+                        <div class="step-content">
+                            <p>从GitHub或Gitee仓库下载预训练模型：</p>
+                            <div class="code-block">
+# 克隆仓库
+git clone https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony.git
+cd CNN-MicroAI-Colony
+
+# 下载预训练模型
+python download_models.py
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-title">准备图像</div>
+                        <div class="step-content">
+                            <p>将待分析的菌落图像放入指定目录：</p>
+                            <div class="code-block">
+# 创建输入目录
+mkdir input_images
+# 将图像文件放入该目录
+# 支持格式: .jpg, .png, .tiff
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-title">运行分析</div>
+                        <div class="step-content">
+                            <p>执行菌落分析：</p>
+                            <div class="code-block">
+python analyze_colonies.py --input_dir ./input_images --output_dir ./results
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">5</div>
+                        <div class="step-title">查看结果</div>
+                        <div class="step-content">
+                            <p>分析完成后，结果将保存在 <span class="highlight">./results</span> 目录中：</p>
+                            <ul>
+                                <li>count_results.csv - 菌落计数结果</li>
+                                <li>classification_results.csv - 菌落分类结果</li>
+                                <li>visualizations/ - 可视化图像</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">工作流程</h2>
+                <div class="workflow-diagram">
+                    <h3>完整分析流程</h3>
+                    <div class="workflow-steps">
+                        <div class="workflow-step">
+                            <div class="workflow-icon">📸</div>
+                            <div class="workflow-title">图像采集</div>
+                            <p>使用标准培养皿拍摄菌落图像</p>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="workflow-icon">🔄</div>
+                            <div class="workflow-title">预处理</div>
+                            <p>图像增强、标准化和分割</p>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="workflow-icon">🧠</div>
+                            <div class="workflow-title">AI分析</div>
+                            <p>CNN模型识别和分类菌落</p>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="workflow-icon">📊</div>
+                            <div class="workflow-title">结果输出</div>
+                            <p>生成报告和可视化图表</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">高级配置</h2>
+                <div class="guide-card">
+                    <h3>自定义参数</h3>
+                    <p>根据您的具体需求调整分析参数：</p>
+                    
+                    <div class="code-block">
+# 配置文件 config.yaml
+model:
+  confidence_threshold: 0.8
+  min_colony_size: 10
+  max_colony_size: 1000
+  
+processing:
+  batch_size: 32
+  num_workers: 4
+  device: 'cuda'  # 或 'cpu'
+  
+output:
+  save_images: true
+  save_csv: true
+  generate_report: true
+                    </div>
+
+                    <div class="troubleshooting">
+                        <h4>常见问题解决</h4>
+                        <ul>
+                            <li><strong>内存不足：</strong> 减小batch_size或使用CPU模式</li>
+                            <li><strong>识别不准确：</strong> 调整confidence_threshold参数</li>
+                            <li><strong>处理速度慢：</strong> 启用GPU加速或减少图像分辨率</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">使用示例</h2>
+                <div class="example-gallery">
+                    <div class="example-card">
+                        <div class="example-title">批量处理</div>
+                        <div class="example-desc">处理整个文件夹的菌落图像</div>
+                        <div class="code-block">
+python batch_process.py --input_folder ./samples --output_folder ./results
+                        </div>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-title">实时分析</div>
+                        <div class="example-desc">连接显微镜进行实时分析</div>
+                        <div class="code-block">
+python real_time_analysis.py --camera_id 0 --display True
+                        </div>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-title">API调用</div>
+                        <div class="example-desc">通过REST API集成到其他系统</div>
+                        <div class="code-block">
+curl -X POST "http://localhost:8000/analyze" \
+  -F "file=@sample.jpg"
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">性能优化</h2>
+                <div class="guide-card">
+                    <h3>优化建议</h3>
+                    <div class="requirements-grid">
+                        <div class="requirement-card">
+                            <div class="requirement-icon">⚡</div>
+                            <div class="requirement-title">GPU加速</div>
+                            <div class="requirement-desc">
+                                使用NVIDIA GPU可提升<br>
+                                处理速度5-10倍
+                            </div>
+                        </div>
+                        <div class="requirement-card">
+                            <div class="requirement-icon">🎯</div>
+                            <div class="requirement-title">批量处理</div>
+                            <div class="requirement-desc">
+                                批量处理比单张处理<br>
+                                效率提升3-5倍
+                            </div>
+                        </div>
+                        <div class="requirement-card">
+                            <div class="requirement-icon">🔧</div>
+                            <div class="requirement-title">参数调优</div>
+                            <div class="requirement-desc">
+                                根据硬件配置调整<br>
+                                batch_size和workers
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <h3>开源仓库</h3>
+            <p>获取完整代码、训练脚本和数据集：</p>
+            <div class="repo-links">
+                <a href="https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony" class="repo-link" target="_blank">
+                    <span>🔗</span>
+                    <span>GitHub - 国际镜像</span>
+                </a>
+                <a href="https://gitee.com/xingzhishengluo/CNN-MicroAI-Colony" class="repo-link" target="_blank">
+                    <span>🔗</span>
+                    <span>Gitee - 国内镜像</span>
+                </a>
             </div>
         </div>
-
-        <div class="card">
-            <div class="guide-section">
-                <h3>高级功能</h3>
-                <h4>分析设置</h4>
-                <ul>
-                    <li>检测阈值调整</li>
-                    <li>处理参数配置</li>
-                    <li>批量处理设置</li>
-                </ul>
-            </div>
-
-            <div class="guide-section">
-                <h3>故障排除</h3>
-                <h4>常见问题</h4>
-                <ol>
-                    <li>启动失败</li>
-                    <li>检测异常</li>
-                    <li>导出错误</li>
-                    <li>性能问题</li>
-                </ol>
-            </div>
-        </div>
-    </main>
-
-    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    </footer>
 
     <script>
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            if (currentTheme === 'dark') {
-                html.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const icon = document.getElementById('theme-icon');
+            icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
         }
 
-        // 检查本地存储中的主题设置
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        // 初始化主题
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.getElementById('theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        // 动画效果
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.step-card, .requirement-card, .example-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
