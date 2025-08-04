@@ -2,8 +2,17 @@ import argparse
 import os
 import yaml
 import torch
-from ultralytics import YOLO
-from src.data.dataset import ColonyDataset
+import sys
+
+# 添加当前目录到 Python 路径
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+try:
+    from ultralytics import YOLO
+except ImportError as e:
+    print(f"导入错误: {e}")
+    print("ultralytics 库可能未安装，在测试模式下将模拟其功能")
+
 import logging
 from datetime import datetime
 import json
@@ -37,17 +46,33 @@ def load_checkpoint(model, checkpoint_path):
     model.load_state_dict(checkpoint['model_state_dict'])
     return checkpoint['epoch'], checkpoint.get('metrics', None)
 
-def train_model(config_path, resume_from=None):
+def train_model(config_path, resume_from=None, test_mode=False):
     # 加载配置
-    with open(config_path) as f:
-        config = yaml.safe_load(f)
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+    except FileNotFoundError:
+        print(f"错误：配置文件 {config_path} 不存在")
+        return None
+    except Exception as e:
+        print(f"加载配置文件时出错: {e}")
+        return None
+    
+    if test_mode:
+        print(f"测试模式：将使用配置文件 {config_path} 进行训练")
+        print(f"配置信息: {config}")
+        return "测试模式下的模拟结果"
     
     # 创建输出目录
     os.makedirs(config['output']['path'], exist_ok=True)
     logger = setup_logging(config['output']['path'])
     
     # 初始化模型
-    model = YOLO(config['model']['architecture'])
+    try:
+        model = YOLO(config['model']['architecture'])
+    except Exception as e:
+        print(f"初始化模型时出错: {e}")
+        return None
     
     # 数据集配置
     data_config = {
@@ -99,6 +124,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=str, required=True, help='Path to config file')
     parser.add_argument('--resume', type=str, help='Path to checkpoint to resume from')
+    parser.add_argument('--test-mode', action='store_true', help='Run in test mode without actual training')
     args = parser.parse_args()
     
-    train_model(args.config, args.resume)
+    try:
+        print(f"配置文件路径: {args.config}")
+        print(f"测试模式: {args.test_mode}")
+        
+        result = train_model(args.config, args.resume, args.test_mode)
+        if result is None:
+            print("训练失败")
+            sys.exit(1)
+    except Exception as e:
+        print(f"运行时出错: {e}")
+        sys.exit(1)

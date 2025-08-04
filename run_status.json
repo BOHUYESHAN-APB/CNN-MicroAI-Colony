@@ -1,0 +1,38 @@
+{
+    "faster_rcnn_resnet50": {
+        "completed": false
+    },
+    "cascade_rcnn": {
+        "completed": false
+    },
+    "detectors": {
+        "completed": false
+    },
+    "faster_rcnn_resnet101": {
+        "completed": false
+    },
+    "htc": {
+        "completed": false
+    },
+    "mask_rcnn": {
+        "completed": false
+    },
+    "ppyolo": {
+        "completed": false
+    },
+    "unet": {
+        "completed": false
+    },
+    "yolov12": {
+        "completed": true
+    },
+    "yolov13": {
+        "completed": true
+    },
+    "yolov5": {
+        "completed": true
+    },
+    "yolov8": {
+        "completed": true
+    }
+}

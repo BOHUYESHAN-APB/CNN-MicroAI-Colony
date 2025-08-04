@@ -1,0 +1,10 @@
+names:
+- person
+- bicycle
+- car
+- '...'
+nc: 80
+path: ./test_data
+test: test/images
+train: train/images
+val: val/images
