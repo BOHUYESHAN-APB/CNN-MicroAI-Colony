@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型介绍 - 智能菌落分析系统</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --primary-color: #007aff;
+            --secondary-color: #34c759;
+            --border-color: #e5e5ea;
+            --card-bg: #f8f8f8;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1c1c1e;
+            --text-color: #f2f2f7;
+            --primary-color: #0a84ff;
+            --secondary-color: #30d158;
+            --border-color: #2c2c2e;
+            --card-bg: #2c2c2e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        header {
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            background-color: var(--card-bg);
+        }
+
+        nav a {
+            margin: 0 1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .model-detail {
+            margin-bottom: 1.5rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        pre {
+            background-color: var(--bg-color);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>菌落检测模型介绍</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="models.html">模型介绍</a>
+        <a href="guide.html">使用指南</a>
+        <a href="about.html">关于</a>
+    </nav>
+
+    <main>
+        <div class="card">
+            <h2>模型训练流程</h2>
+            <div class="model-detail">
+                <p>基于深度学习的菌落检测模型训练脚本，使用PyTorch框架实现。</p>
+                <pre># 训练主函数
+def main():
+    args = parse_args()
+    
+    # 加载配置
+    cfg = Config.fromfile(args.config)
+    
+    # 设置工作目录
+    if args.work_dir is not None:
+        cfg.work_dir = args.work_dir
+    elif cfg.get('work_dir', None) is None:
+        cfg.work_dir = os.path.join('./work_dirs',
+                                  os.path.splitext(os.path.basename(args.config))[0])
+    os.makedirs(cfg.work_dir, exist_ok=True)
+    
+    # 训练模型
+    train_detector(
+        model,
+        datasets[0],
+        cfg,
+        distributed=False,
+        validate=(not args.no_validate),
+        timestamp=timestamp,
+        meta=dict(
+            mmdet_version=mmdet.__version__ + get_git_hash()[:7],
+            config=cfg.pretty_text
+        ))</pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>模型特点</h2>
+            <ul>
+                <li>基于Faster R-CNN架构</li>
+                <li>支持ResNet50/101等骨干网络</li>
+                <li>支持FP16混合精度训练</li>
+                <li>支持从检查点恢复训练</li>
+                <li>支持多GPU训练</li>
+            </ul>
+        </div>
+    </main>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // 检查本地存储中的主题设置
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>
