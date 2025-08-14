@@ -1,15 +1,12 @@
-# YOLOv13 训练配置
+# YOLOv13 训练配置 - 简化版
 
 model:
   architecture: yolov13n.pt  # YOLOv13基础模型
   num_classes: 85           # 菌落类别数
 
 data:
-  path: /merged_dataset     # COCO格式数据集路径
-  img_size: [640, 2048]     # 多尺度训练范围
-  train: train/             # 训练集路径
-  val: valid/               # 验证集路径
-  test: test/               # 测试集路径
+  path: ../../../../merged_dataset     # COCO格式数据集路径
+  img_size: 640     # 图像大小
 
 train:
   epochs: 100               # 训练轮数
@@ -22,6 +19,7 @@ train:
   weight_decay: 0.0005      # 权重衰减
   warmup_epochs: 3          # 热身轮数
   cos_lr: true              # 余弦退火学习率
+  resume: false             # 默认不从断点续训
 
 output:
   path: ./model_output      # 输出目录

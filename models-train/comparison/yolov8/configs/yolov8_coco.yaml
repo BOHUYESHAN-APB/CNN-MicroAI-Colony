@@ -5,7 +5,7 @@ model:
   num_classes: 85           # 菌落类别数
 
 data:
-  path: /merged_dataset     # COCO格式数据集路径
+  path: ../../../../merged_dataset     # COCO格式数据集路径
   img_size: [640, 2048]     # 多尺度训练范围(640为主)
   train: train/             # 训练集路径
   val: valid/               # 验证集路径

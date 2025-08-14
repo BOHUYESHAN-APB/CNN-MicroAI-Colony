@@ -2,8 +2,6 @@ import argparse
 import os
 import yaml
 from ultralytics import YOLO
-# 在测试模式下不需要 ColonyDataset
-# from data.dataset import ColonyDataset
 
 def train_model(config_path, test_mode=False):
     # 在测试模式下，只打印信息，不实际执行训练
@@ -21,30 +19,35 @@ def train_model(config_path, test_mode=False):
         return
 
     # 初始化模型
+    model_name = config['model']['type'] + '.pt'
     try:
-        model = YOLO(config['model']['architecture'])
+        model = YOLO(model_name)
+    except FileNotFoundError:
+        print(f"警告: 未找到 '{model_name}'。将回退到 'yolov8n.pt'。")
+        try:
+            model = YOLO('yolov8n.pt')
+        except ConnectionError as e:
+            print(f"下载预训练模型时出错: {e}")
+            print("请检查您的网络连接，或手动下载 'yolov8n.pt' 模型。")
+            return
+        except Exception as e:
+            print(f"初始化备用模型时出错: {e}")
+            return
     except ConnectionError as e:
         print(f"下载预训练模型时出错: {e}")
-        print("请检查您的网络连接，或手动下载 'yolov8n.pt' 模型。")
+        print(f"请检查您的网络连接，或手动下载 '{model_name}' 模型。")
         return
     except Exception as e:
         print(f"初始化模型时出错: {e}")
         return
     
-    # 准备数据集
-    # dataset = ColonyDataset(
-    #     data_dir=config['data']['path'],
-    #     img_size=config['data']['img_size'],
-    #     batch_size=config['train']['batch_size']
-    # )
-    
     # 训练配置
     train_args = {
-        'data': config['data']['path'],
-        'epochs': config['train']['epochs'],
-        'imgsz': config['data']['img_size'][0] if isinstance(config['data']['img_size'], list) else config['data']['img_size'],
-        'batch': config['train']['batch_size'],
-        'device': config['train']['device']
+        'data': config['dataset']['train']['ann_file'],
+        'epochs': config['train_cfg']['epochs'],
+        'imgsz': config['dataset']['img_size'],
+        'batch': config['dataset']['batch_size'],
+        'device': 0
     }
     
     if test_mode:
@@ -59,7 +62,7 @@ def train_model(config_path, test_mode=False):
         return
 
     # 保存最佳模型
-    output_path = config['output']['path']
+    output_path = config['work_dir']
     os.makedirs(output_path, exist_ok=True)
     model.save(os.path.join(output_path, 'best.pt'))
     
@@ -74,6 +77,3 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     train_model(args.config, args.test_mode)
-# 添加支持从 checkpoint 恢复训练的功能
-# 添加记录详细训练参数的功能
-# 添加实时显示训练参数的功能

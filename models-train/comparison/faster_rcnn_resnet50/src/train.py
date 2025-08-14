@@ -1,91 +1,93 @@
+import argparse
 import os
 import sys
 import torch
-from torch.utils.data import DataLoader
-from src.data.dataset import ColonyDataset
-from src.models.colony_detector import ColonyDetector
-import logging
+from mmcv import Config
+from mmdet.apis import train_detector
+from mmdet.datasets import build_dataset
+from mmdet.models import build_detector
+from mmdet.utils import get_root_logger, collect_env
 
-def setup_logging(log_file):
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(log_file),
-            logging.StreamHandler(sys.stdout)
-        ]
-    )
+def parse_args():
+    """解析命令行参数"""
+    parser = argparse.ArgumentParser(description='Train Faster R-CNN for colony detection')
+    parser.add_argument('--config', default='../configs/faster_rcnn_resnet50_coco.py',
+                        help='训练配置文件路径')
+    parser.add_argument('--work-dir',
+                        help='工作目录，用于保存日志和模型')
+    parser.add_argument('--resume-from', help='从指定checkpoint恢复训练')
+    parser.add_argument('--no-validate', action='store_true',
+                        help='训练时不验证')
+    parser.add_argument('--gpus', type=int, default=1,
+                        help='使用的GPU数量')
+    parser.add_argument('--seed', type=int, default=42,
+                        help='随机种子')
+    parser.add_argument('--deterministic', action='store_true',
+                        help='确定性训练')
+    parser.add_argument('--local_rank', type=int, default=0)
+    
+    return parser.parse_args()
+
 
 def main():
-    # 初始化配置
-    config = {
-        'batch_size': 4,
-        'num_epochs': 12,  # 修改为统一的迭代次数
-        'learning_rate': 0.001,
-        'data_path': 'data/images',
-        'checkpoint_dir': 'checkpoints',
-        'model_output_dir': 'model_output',
-        'resume_checkpoint': None,  # 设置为 checkpoint 路径以恢复训练
-        'log_file': 'training.log'  # 日志文件路径
-    }
+    """主训练函数"""
+    args = parse_args()
+    
+    cfg = Config.fromfile(args.config)
 
-    # 设置日志记录
-    setup_logging(config['log_file'])
-    logging.info("训练配置: %s", config)
+    # 设置工作目录
+    if args.work_dir is not None:
+        cfg.work_dir = args.work_dir
+    elif cfg.get('work_dir', None) is None:
+        cfg.work_dir = os.path.join('./work_dirs',
+                                  os.path.splitext(os.path.basename(args.config))[0])
+    os.makedirs(cfg.work_dir, exist_ok=True)
 
-    # 创建目录
-    os.makedirs(config['checkpoint_dir'], exist_ok=True)
-    os.makedirs(config['model_output_dir'], exist_ok=True)
+    # 创建日志记录器
+    timestamp = torch.utils.tensorboard.SummaryWriter().get_logdir().split('/')[-1]
+    log_file = os.path.join(cfg.work_dir, f'{timestamp}.log')
+    logger = get_root_logger(log_file=log_file, log_level=cfg.log_level)
 
-    # 初始化模型和数据
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = ColonyDetector().to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=config['learning_rate'])
-    start_epoch = 0
+    # 记录环境信息
+    env_info_dict = collect_env()
+    env_info = '\n'.join([f'{k}: {v}' for k, v in env_info_dict.items()])
+    dash_line = '-' * 60 + '\n'
+    logger.info('Environment info:\n' + dash_line + env_info + '\n' +
+                dash_line)
 
-    # 恢复训练
-    if config['resume_checkpoint']:
-        checkpoint = torch.load(config['resume_checkpoint'])
-        model.load_state_dict(checkpoint['model_state_dict'])
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        start_epoch = checkpoint['epoch'] + 1
-        logging.info(f"从 checkpoint 恢复训练，起始 epoch: {start_epoch}")
+    # 记录配置信息
+    logger.info(f'Config:\n{cfg.pretty_text}')
 
-    dataset = ColonyDataset(config['data_path'])
-    dataloader = DataLoader(dataset, batch_size=config['batch_size'], shuffle=True)
+    # 设置随机种子
+    if args.seed is not None:
+        logger.info(f'Set random seed to {args.seed}')
+        torch.manual_seed(args.seed)
+        torch.cuda.manual_seed_all(args.seed)
 
-    # 训练循环
-    for epoch in range(start_epoch, config['num_epochs']):
-        model.train()
-        epoch_loss = 0
-        for batch in dataloader:
-            # 假设 batch 包括输入和标签
-            inputs, labels = batch
-            inputs, labels = inputs.to(device), labels.to(device)
+    # 构建数据集
+    datasets = [build_dataset(cfg.data.train)]
+    
+    # 构建模型
+    model = build_detector(
+        cfg.model,
+        train_cfg=cfg.get('train_cfg'),
+        test_cfg=cfg.get('test_cfg'))
+    
+    # 添加类别信息
+    model.CLASSES = datasets[0].CLASSES
+    
+    # 开始训练
+    train_detector(
+        model,
+        datasets,
+        cfg,
+        distributed=False,
+        validate=not args.no_validate,
+        timestamp=timestamp,
+        meta=dict())
+    
+    print("训练完成！")
 
-            optimizer.zero_grad()
-            outputs = model(inputs)
-            loss = torch.nn.functional.cross_entropy(outputs, labels)
-            loss.backward()
-            optimizer.step()
-
-            epoch_loss += loss.item()
-
-        # 保存 checkpoint
-        checkpoint_path = os.path.join(config['checkpoint_dir'], f'checkpoint_epoch_{epoch}.pth')
-        torch.save({
-            'epoch': epoch,
-            'model_state_dict': model.state_dict(),
-            'optimizer_state_dict': optimizer.state_dict(),
-            'loss': epoch_loss
-        }, checkpoint_path)
-
-        # 输出训练信息
-        logging.info(f"Epoch [{epoch}/{config['num_epochs']}], Loss: {epoch_loss:.4f}")
-
-    # 保存最终模型
-    torch.save(model.state_dict(),
-               os.path.join(config['model_output_dir'], 'final_model.pth'))
 
 if __name__ == '__main__':
     main()

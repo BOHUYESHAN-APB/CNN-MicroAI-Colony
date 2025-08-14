@@ -6,7 +6,7 @@ model:
 
 # 数据配置
 data:
-  path: /merged_dataset/  # 数据集根目录
+  path: ../../../../merged_dataset/  # 数据集根目录
   img_size: 640  # 图像大小
 
 # 训练配置

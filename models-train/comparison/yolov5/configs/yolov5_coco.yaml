@@ -4,9 +4,9 @@ model:
   num_classes: 1
 
 data:
-  train_path: /merged_dataset/train
-  val_path: /merged_dataset/val
-  test_path: /merged_dataset/test
+  train_path: ../../../../merged_dataset/train
+  val_path: ../../../../merged_dataset/val
+  test_path: ../../../../merged_dataset/test
   img_size: [640, 2048]
 
 optimizer:

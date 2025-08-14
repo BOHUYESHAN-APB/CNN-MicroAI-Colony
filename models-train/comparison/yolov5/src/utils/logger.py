@@ -3,15 +3,19 @@ import logging
 from datetime import datetime
 
 class Logger:
-    def __init__(self, log_dir, name="yolov5"):
-        self.log_dir = log_dir
+    def __init__(self, config, name="yolov5"):
+        self.log_dir = config['log_dir']
+        self.checkpoint_dir = config['checkpoint_dir']
+        self.model_output_dir = config['model_output']
         
-        # 创建日志目录
-        os.makedirs(log_dir, exist_ok=True)
+        # 创建目录
+        os.makedirs(self.log_dir, exist_ok=True)
+        os.makedirs(self.checkpoint_dir, exist_ok=True)
+        os.makedirs(self.model_output_dir, exist_ok=True)
         
         # 设置日志文件名
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        log_file = os.path.join(log_dir, f"{name}_{timestamp}.log")
+        log_file = os.path.join(self.log_dir, f"{name}_{timestamp}.log")
         
         # 配置日志记录器
         self.logger = logging.getLogger(name)
@@ -33,6 +37,9 @@ class Logger:
         # 添加处理器
         self.logger.addHandler(file_handler)
         self.logger.addHandler(console_handler)
+    
+    def log(self, message):
+        self.logger.info(message)
     
     def info(self, message):
         self.logger.info(message)

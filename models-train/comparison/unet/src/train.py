@@ -1,5 +1,12 @@
-import argparse
+import sys
 import os
+
+# Add the 'unet' model directory to the Python path to resolve module imports
+unet_model_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if unet_model_root not in sys.path:
+    sys.path.insert(0, unet_model_root)
+
+import argparse
 import json
 import logging
 import torch
@@ -13,11 +20,12 @@ from datetime import datetime
 
 def setup_logging(save_dir):
     """配置日志记录"""
+    log_file = os.path.join(save_dir, 'training.log')
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s',
         handlers=[
-            logging.FileHandler(os.path.join(save_dir, 'training.log')),
+            logging.FileHandler(log_file),
             logging.StreamHandler()
         ]
     )
@@ -42,7 +50,7 @@ def load_checkpoint(model, optimizer, checkpoint_path, device):
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
     return checkpoint['epoch'], checkpoint.get('metrics', None)
 
-def train_epoch(model, dataloader, criterion, optimizer, device):
+def train_epoch(model, dataloader, criterion, optimizer, device, logger):
     """训练一个epoch"""
     model.train()
     total_loss = 0
@@ -59,7 +67,7 @@ def train_epoch(model, dataloader, criterion, optimizer, device):
         
         # 可视化进度
         if batch_idx % 10 == 0:
-            logging.info(f'Batch {batch_idx}/{len(dataloader)}, Loss: {loss.item():.4f}')
+            logger.info(f'Batch {batch_idx}/{len(dataloader)}, Loss: {loss.item():.4f}')
     
     return total_loss / len(dataloader)
 
@@ -77,26 +85,36 @@ def validate(model, dataloader, criterion, device):
 
 def main():
     parser = argparse.ArgumentParser(description='Train U-Net for colony segmentation')
-    parser.add_argument('--config', required=True, help='config file path')
+    parser.add_argument('--config', default='../configs/unet_config.json', help='config file path')
     parser.add_argument('--resume', help='checkpoint to resume from')
-    parser.add_argument('--epochs', type=int, default=100)
-    parser.add_argument('--batch-size', type=int, default=8)
-    parser.add_argument('--lr', type=float, default=0.001)
-    parser.add_argument('--save-interval', type=int, default=5)
     
     args = parser.parse_args()
     
     # 加载配置
-    with open(args.config) as f:
+    config_path = args.config
+    script_dir = os.path.dirname(__file__)
+    if not os.path.isabs(config_path):
+        config_path = os.path.join(script_dir, config_path)
+
+    with open(config_path) as f:
         config = json.load(f)
     
+    # 将data_dir转换为绝对路径
+    if not os.path.isabs(config['data_dir']):
+        config['data_dir'] = os.path.abspath(os.path.join(os.path.dirname(config_path), config['data_dir']))
+
     # 设备配置
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     # 创建输出目录
-    os.makedirs(config['output_dir'], exist_ok=True)
-    logger = setup_logging(config['output_dir'])
+    output_dir = config['output_dir']
+    if not os.path.isabs(output_dir):
+        output_dir = os.path.join(script_dir, output_dir)
+    os.makedirs(output_dir, exist_ok=True)
+    logger = setup_logging(output_dir)
     
+    logger.info(f"Config: {json.dumps(config, indent=4)}")
+
     # 数据集
     train_dataset = ColonyDataset(
         data_dir=config['data_dir'],
@@ -109,15 +127,19 @@ def main():
         img_size=config['img_size']
     )
     
-    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
-    val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False)
+    if len(train_dataset) == 0:
+        logger.warning("Training dataset is empty. Please check your data and configuration. Exiting.")
+        return
+
+    train_loader = DataLoader(train_dataset, batch_size=config['batch_size'], shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=config['batch_size'], shuffle=False)
     
     # 模型
     model = UNet(n_channels=3, n_classes=config['num_classes'])
     model = model.to(device)
     
     # 优化器和损失函数
-    optimizer = optim.Adam(model.parameters(), lr=args.lr)
+    optimizer = optim.Adam(model.parameters(), lr=config['lr'])
     criterion = nn.BCEWithLogitsLoss()
     
     # 恢复训练
@@ -128,23 +150,21 @@ def main():
     
     # 训练循环
     try:
-        for epoch in range(start_epoch, args.epochs):
-            train_loss = train_epoch(model, train_loader, criterion, optimizer, device)
+        for epoch in range(start_epoch, config['epochs']):
+            train_loss = train_epoch(model, train_loader, criterion, optimizer, device, logger)
             val_loss = validate(model, val_loader, criterion, device)
             
-            logger.info(f'Epoch {epoch+1}/{args.epochs} - Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}')
+            logger.info(f"Epoch {epoch+1}/{config['epochs']} - Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}")
             
             # 保存检查点
-            if (epoch + 1) % args.save_interval == 0:
+            if (epoch + 1) % config['save_interval'] == 0:
                 metrics = {'train_loss': train_loss, 'val_loss': val_loss}
-                save_checkpoint(model, optimizer, epoch + 1, config['output_dir'], metrics)
+                save_checkpoint(model, optimizer, epoch + 1, output_dir, metrics)
                 
     except KeyboardInterrupt:
         logger.info("Training interrupted by user")
-        save_checkpoint(model, optimizer, epoch + 1, config['output_dir'])
+        save_checkpoint(model, optimizer, epoch + 1, output_dir)
         logger.info(f"Saved checkpoint before exiting at epoch {epoch + 1}")
 
 if __name__ == '__main__':
     main()
-# 添加记录详细训练参数的功能
-# 添加实时显示训练参数的功能

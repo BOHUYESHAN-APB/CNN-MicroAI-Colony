@@ -109,7 +109,7 @@ model = dict(
 
 # 数据集配置
 dataset_type = 'CocoDataset'
-data_root = '/merged_dataset/'
+data_root = '../../../../merged_dataset/'
 classes = ('colony',)
 
 # 训练数据配置

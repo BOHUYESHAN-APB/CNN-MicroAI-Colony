@@ -1,106 +1,102 @@
-import argparse
-import json
-import os
 import sys
+import os
+
+# Add the 'yolov5' model directory to the Python path to resolve module imports
+yolov5_model_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if yolov5_model_root not in sys.path:
+    sys.path.insert(0, yolov5_model_root)
+
+import argparse
 import yaml
+import os
 import torch
+import torch.optim as optim
 from torch.utils.data import DataLoader
-
-# 添加当前目录到 Python 路径
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-# 修改导入路径
-try:
-    from models.yolov5 import YOLOv5
-    from data.dataset import ColonyDataset
-    from utils.logger import Logger
-except ImportError as e:
-    print(f"导入错误: {e}")
-    print(f"当前 Python 路径: {sys.path}")
-    print(f"当前工作目录: {os.getcwd()}")
-    print(f"脚本目录: {os.path.dirname(os.path.abspath(__file__))}")
-    sys.exit(1)
+from src.models.yolov5 import YOLOv5
+from src.data.dataset import ColonyDataset
+from src.utils.logger import Logger
 
 def train(config_path, test_mode=False):
-    # 在测试模式下，只打印信息，不实际执行训练
-    if test_mode:
-        print(f"测试模式：将使用配置文件 {config_path} 进行训练")
-        return
-        
-    # 加载配置文件
-    with open(config_path) as f:
-        config = yaml.safe_load(f)
-    
-    # 初始化模型
-    model = YOLOv5(config['model'])
-    
-    # 数据加载
-    dataset = ColonyDataset(config['data'])
-    dataloader = DataLoader(dataset, batch_size=config['training']['batch_size'], shuffle=True)
-    
-    # 训练设置
-    optimizer = torch.optim.Adam(model.parameters(), lr=config['optimizer']['lr'], weight_decay=config['optimizer']['weight_decay'])
-    logger = Logger(os.path.join('logs', 'yolov5'))
-    
-    # 断点恢复
-    start_epoch = 0
-    if 'resume' in config.get('training', {}) and config['training']['resume']:
-        checkpoint_path = config['training'].get('checkpoint', '')
-        if os.path.exists(checkpoint_path):
-            checkpoint = torch.load(checkpoint_path)
-            model.load_state_dict(checkpoint['model'])
-            optimizer.load_state_dict(checkpoint['optimizer'])
-            start_epoch = checkpoint['epoch'] + 1
-    
-    # 训练循环
-    for epoch in range(start_epoch, config['training']['epochs']):
-        for batch_idx, (images, targets) in enumerate(dataloader):
-            # 前向传播
-            loss = model(images, targets)
-            
-            # 反向传播
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-            
-            # 记录日志
-            logger.log({
-                'epoch': epoch,
-                'batch': batch_idx,
-                'loss': loss.item(),
-                'lr': optimizer.param_groups[0]['lr']
-            })
-            
-            # 定期保存检查点
-            if batch_idx % config['training']['save_interval'] == 0:
-                torch.save({
-                    'model': model.state_dict(),
-                    'optimizer': optimizer.state_dict(),
-                    'epoch': epoch
-                }, os.path.join('checkpoints', f'checkpoint_{epoch}_{batch_idx}.pth'))
-    
-    # 保存最终模型
-    torch.save(model.state_dict(), os.path.join('model_output', 'final_model.pth'))
+    """
+    训练YOLOv5模型。
 
-# 此处已删除重复的 train 函数定义
+    Args:
+        config_path (str): 配置文件路径。
+        test_mode (bool): 是否为测试模式。
+    """
+    print(f"配置文件路径: {config_path}")
+    print(f"测试模式: {test_mode}")
+
+    try:
+        # 加载配置文件
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+
+        # 初始化日志记录器
+        logger = Logger(config['logging'])
+
+        # 设备配置
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+        # 数据加载
+        train_dataset = ColonyDataset(config['data']['train_path'])
+        train_loader = DataLoader(train_dataset, batch_size=config['training']['batch_size'], shuffle=True)
+
+        # 模型、优化器、损失函数
+        model = YOLOv5(num_classes=int(config['model']['num_classes'])).to(device)
+        optimizer = optim.Adam(model.parameters(), lr=config['optimizer']['lr'])
+        criterion = torch.nn.CrossEntropyLoss()
+
+        # 恢复训练
+        if config['training']['resume']:
+            checkpoint = torch.load(config['training']['checkpoint'])
+            model.load_state_dict(checkpoint['model_state_dict'])
+            optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            start_epoch = checkpoint['epoch']
+            logger.log(f"从 epoch {start_epoch} 恢复训练。")
+        else:
+            start_epoch = 0
+
+        # 训练循环
+        for epoch in range(start_epoch, config['training']['epochs']):
+            for images, labels in train_loader:
+                images, labels = images.to(device), labels.to(device)
+
+                # 前向传播
+                outputs = model(images)
+                loss = criterion(outputs, labels)
+
+                # 反向传播和优化
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+
+            # 记录日志
+            logger.log(f"Epoch [{epoch+1}/{config['training']['epochs']}], Loss: {loss.item():.4f}")
+
+            # 保存模型
+            if (epoch + 1) % config['training']['save_interval'] == 0:
+                checkpoint_path = os.path.join(logger.checkpoint_dir, f'yolov5_epoch_{epoch+1}.pth')
+                torch.save({
+                    'epoch': epoch + 1,
+                    'model_state_dict': model.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'loss': loss,
+                }, checkpoint_path)
+
+        # 保存最终模型
+        final_model_path = os.path.join(logger.model_output_dir, 'yolov5_final.pth')
+        model.save(final_model_path)
+        logger.log(f"训练完成，最终模型保存在: {final_model_path}")
+
+    except Exception as e:
+        print(f"发生错误: {e}")
+        import traceback
+        traceback.print_exc()
 
 if __name__ == '__main__':
-    try:
-        parser = argparse.ArgumentParser()
-        parser.add_argument('--config', type=str, required=True, help='Path to config file')
-        parser.add_argument('--test-mode', action='store_true', help='Run in test mode')
-        args = parser.parse_args()
-        
-        print(f"配置文件路径: {args.config}")
-        print(f"测试模式: {args.test_mode}")
-        
-        if not os.path.exists(args.config):
-            print(f"错误: 配置文件 {args.config} 不存在")
-            sys.exit(1)
-            
-        train(args.config, args.test_mode)
-    except Exception as e:
-        import traceback
-        print(f"发生错误: {e}")
-        print(traceback.format_exc())
-        sys.exit(1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', type=str, required=True, help='配置文件路径')
+    parser.add_argument('--test-mode', action='store_true', help='是否在测试模式下运行')
+    args = parser.parse_args()
+    train(args.config, args.test_mode)

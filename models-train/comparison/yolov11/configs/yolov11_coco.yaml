@@ -23,14 +23,14 @@ model:
 # 数据集配置
 dataset:
   train:
-    img_dir: /merged_dataset/train/
-    ann_file: /merged_dataset/annotations/instances_train.json
+    img_dir: ../../../../merged_dataset/train/
+    ann_file: ../../../../merged_dataset/annotations/instances_train.json
   val:
-    img_dir: /merged_dataset/val/
-    ann_file: /merged_dataset/annotations/instances_val.json
+    img_dir: ../../../../merged_dataset/val/
+    ann_file: ../../../../merged_dataset/annotations/instances_val.json
   test:
-    img_dir: /merged_dataset/test/
-    ann_file: /merged_dataset/annotations/instances_test.json
+    img_dir: ../../../../merged_dataset/test/
+    ann_file: ../../../../merged_dataset/annotations/instances_test.json
 
   img_size: 640
   batch_size: 16

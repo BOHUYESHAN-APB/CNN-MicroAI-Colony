@@ -12,7 +12,7 @@ from mmcv import Config
 from mmdet.apis import train_detector
 from mmdet.datasets import build_dataset
 from mmdet.models import build_detector
-from mmdet.utils import get_device
+from mmdet.utils import get_device, get_root_logger, collect_env
 
 # 添加项目根目录到Python路径
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +27,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Train DetectoRS for colony detection')
     parser.add_argument('--config', default='configs/detectors_coco.py',
                         help='训练配置文件路径')
-    parser.add_argument('--work-dir', default='./work_dirs',
+    parser.add_argument('--work-dir',
                         help='工作目录，用于保存日志和模型')
     parser.add_argument('--resume-from', help='从指定checkpoint恢复训练')
     parser.add_argument('--no-validate', action='store_true',
@@ -43,82 +43,41 @@ def parse_args():
     return parser.parse_args()
 
 
-def setup_environment():
-    """设置训练环境"""
-    # 设置CUDA环境
-    if torch.cuda.is_available():
-        torch.backends.cudnn.benchmark = True
-        print(f"使用GPU: {torch.cuda.get_device_name(0)}")
-    else:
-        print("警告: 未检测到GPU，将使用CPU训练")
-    
-    # 创建工作目录
-    os.makedirs('work_dirs', exist_ok=True)
-    os.makedirs('checkpoints', exist_ok=True)
-
-
-def create_config(args):
-    """创建训练配置"""
-    cfg = Config.fromfile(args.config)
-    
-    # 设置工作目录
-    cfg.work_dir = args.work_dir
-    
-    # 设置GPU数量
-    cfg.gpu_ids = list(range(args.gpus))
-    
-    # 设置随机种子
-    cfg.seed = args.seed
-    
-    # 设置确定性训练
-    if args.deterministic:
-        cfg.deterministic = True
-    
-    # 设置恢复训练
-    if args.resume_from:
-        cfg.resume_from = args.resume_from
-    
-    # 设置数据集路径
-    cfg.data_root = '/merged_dataset/'
-    cfg.data.train.ann_file = cfg.data_root + 'annotations/instances_train.json'
-    cfg.data.train.img_prefix = cfg.data_root + 'train/'
-    cfg.data.val.ann_file = cfg.data_root + 'annotations/instances_val.json'
-    cfg.data.val.img_prefix = cfg.data_root + 'val/'
-    cfg.data.test.ann_file = cfg.data_root + 'annotations/instances_test.json'
-    cfg.data.test.img_prefix = cfg.data_root + 'test/'
-    
-    # 设置类别数
-    cfg.model.roi_head.bbox_head[0].num_classes = 85
-    cfg.model.roi_head.bbox_head[1].num_classes = 85
-    cfg.model.roi_head.bbox_head[2].num_classes = 85
-    
-    # 设置训练参数
-    cfg.total_epochs = 12  # 修改为统一的训练轮数
-    cfg.checkpoint_config.interval = 1
-    cfg.log_config.interval = 50
-    
-    return cfg
-
-
 def main():
     """主训练函数"""
     args = parse_args()
     
-    # 设置环境
-    setup_environment()
-    
-    # 创建配置
-    cfg = create_config(args)
-    
-    print("=" * 60)
-    print("DetectoRS 菌落检测训练")
-    print("=" * 60)
-    print(f"配置文件: {args.config}")
-    print(f"工作目录: {cfg.work_dir}")
-    print(f"GPU数量: {args.gpus}")
-    print(f"训练周期: {cfg.total_epochs}")
-    print("=" * 60)
-    
+    cfg = Config.fromfile(args.config)
+
+    # 设置工作目录
+    if args.work_dir is not None:
+        cfg.work_dir = args.work_dir
+    elif cfg.get('work_dir', None) is None:
+        cfg.work_dir = os.path.join('./work_dirs',
+                                  os.path.splitext(os.path.basename(args.config))[0])
+    os.makedirs(cfg.work_dir, exist_ok=True)
+
+    # 创建日志记录器
+    timestamp = torch.utils.tensorboard.SummaryWriter().get_logdir().split('/')[-1]
+    log_file = os.path.join(cfg.work_dir, f'{timestamp}.log')
+    logger = get_root_logger(log_file=log_file, log_level=cfg.log_level)
+
+    # 记录环境信息
+    env_info_dict = collect_env()
+    env_info = '\n'.join([f'{k}: {v}' for k, v in env_info_dict.items()])
+    dash_line = '-' * 60 + '\n'
+    logger.info('Environment info:\n' + dash_line + env_info + '\n' +
+                dash_line)
+
+    # 记录配置信息
+    logger.info(f'Config:\n{cfg.pretty_text}')
+
+    # 设置随机种子
+    if args.seed is not None:
+        logger.info(f'Set random seed to {args.seed}')
+        torch.manual_seed(args.seed)
+        torch.cuda.manual_seed_all(args.seed)
+
     # 构建数据集
     datasets = [build_dataset(cfg.data.train)]
     
@@ -138,7 +97,7 @@ def main():
         cfg,
         distributed=False,
         validate=not args.no_validate,
-        timestamp=None,
+        timestamp=timestamp,
         meta=dict())
     
     print("训练完成！")
