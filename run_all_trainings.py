@@ -4,14 +4,20 @@ import subprocess
 import glob
 import re
 
+# 获取脚本所在的目录
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # 状态文件的路径
-STATE_FILE = 'training_state.json'
+STATE_FILE = os.path.join(SCRIPT_DIR, 'training_state.json')
 
 # 模型训练根目录
-MODELS_BASE_DIR = 'models-train/comparison'
+MODELS_BASE_DIR = os.path.join(SCRIPT_DIR, 'models-train', 'comparison')
 
 def get_models_to_train():
     """获取所有需要训练的模型目录列表"""
+    if not os.path.exists(MODELS_BASE_DIR):
+        print(f"错误: 模型目录 '{MODELS_BASE_DIR}' 不存在。请确保脚本位于项目根目录。")
+        return []
     return [d for d in os.listdir(MODELS_BASE_DIR) if os.path.isdir(os.path.join(MODELS_BASE_DIR, d))]
 
 def load_state():
@@ -59,10 +65,17 @@ def run():
     state = load_state()
     all_models = sorted(get_models_to_train())
     
+    if not all_models:
+        return # 如果没有找到模型目录，则退出
+
     start_index = 0
     if state['last_completed_model'] in all_models:
         start_index = all_models.index(state['last_completed_model']) + 1
-        print(f"上次训练完成到 '{state['last_completed_model']}'。从 '{all_models[start_index]}' 开始继续。")
+        if start_index < len(all_models):
+            print(f"上次训练完成到 '{state['last_completed_model']}'。从 '{all_models[start_index]}' 开始继续。")
+        else:
+            print("所有模型都已训练完成。")
+            return
 
     if start_index >= len(all_models):
         print("所有模型都已训练完成。")
@@ -80,35 +93,31 @@ def run():
         checkpoint_path = find_latest_checkpoint(model_dir)
         
         # 根据模型类型构建命令
-        if model_name.startswith('yolo'):
-            script = os.path.join(model_dir, 'src', 'train.py')
-            config = os.path.join(model_dir, 'configs', f'{model_name}_coco.yaml')
-            command = ['python', script, '--config', config]
-            if checkpoint_path:
-                # ultralytics 的 resume 是通过 'resume=path/to/last.pt' 实现的，但YOLO()构造函数会自动处理
-                # 我们只需要确保配置文件中的 resume: true
-                print(f"检测到 YOLO 检查点，将尝试从 '{checkpoint_path}' 恢复。")
-                # 注意：我们假设训练脚本会处理 resume 逻辑
-        elif model_name == 'ppyolo':
+        if model_name == 'ppyolo':
             script = os.path.join(model_dir, 'tools', 'train.py')
             config = os.path.join(model_dir, 'configs', 'ppyolo_coco.yaml')
             command = ['python', script, '-c', config]
             if checkpoint_path:
                 command.extend(['-r', checkpoint_path])
-        elif model_name == 'unet':
+        else: # 所有其他模型
             script = os.path.join(model_dir, 'src', 'train.py')
-            config = os.path.join(model_dir, 'configs', 'unet_config.json')
-            command = ['python', script, '--config', config]
-            # unet 脚本需要自行实现 resume 逻辑
-        else: # 默认为 mmdetection 框架
-            script = os.path.join(model_dir, 'tools', 'train.py')
-            config_file = next(glob.iglob(os.path.join(model_dir, 'configs', '*.py')), None)
-            if config_file:
-                command = ['python', script, config_file]
+            
+            # 查找配置文件
+            config_file = next(glob.iglob(os.path.join(model_dir, 'configs', '*.*')), None)
+            
+            if os.path.exists(script) and config_file:
+                if model_name.startswith('yolo') or model_name == 'unet':
+                    command = ['python', script, '--config', config_file]
+                else: # mmdetection 系列
+                    command = ['python', script, config_file]
+                
                 if checkpoint_path:
-                    command.append(f'--resume-from {checkpoint_path}')
+                    if not model_name.startswith('yolo'): # YOLO 的 resume 由脚本内部处理
+                         command.append(f'--resume-from {checkpoint_path}')
+                    else:
+                        print(f"检测到 YOLO 检查点，将尝试从 '{checkpoint_path}' 恢复。")
             else:
-                print(f"警告: 在 '{model_dir}' 中未找到 .py 配置文件。")
+                print(f"警告: 在 '{model_dir}' 中未找到训练脚本或配置文件。")
                 continue
 
         if not command:
