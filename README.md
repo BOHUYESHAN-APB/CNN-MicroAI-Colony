@@ -6,14 +6,16 @@
 
 ## 项目简介
 
-新一代智能菌落分析和抑菌圈检测系统，基于深度学习和计算机视觉技术，实现高精度菌落计数、抑菌圈测量和形态分析。系统支持多平台部署，提供现代化的用户界面和丰富的分析功能。
+新一代智能菌落分析和抑菌圈检测系统，基于百度PP-YOLO深度学习框架进行优化，实现高精度菌落计数、抑菌圈测量和形态分析。系统专注于PP-YOLO算法的改进和应用，提供现代化的用户界面和丰富的分析功能。
+
+**重要说明**：本项目已停止多模型性能比较工作，专注于百度PP-YOLO框架的优化和应用。
 
 ## 功能特点
 
 ### 菌落分析
 - 高精度菌落检测和计数
 - 实时相机预览和图像采集
-- 多种检测算法支持
+- 基于PP-YOLO的优化检测算法
 - 批量处理功能
 
 ### 抑菌圈检测
@@ -112,11 +114,7 @@ python main.py
 - [用户指南](docs/guides/USER_GUIDE.md)
 - [开发文档](docs/development/DEVELOPMENT_GUIDE.md)
 - [技术规格](docs/technical/TECHNICAL_SPECS.md)
-- [检测分析报告](opencv-circle-detection/DETECTION_ANALYSIS_SUMMARY.md)
-
-- [用户指南](docs/guides/USER_GUIDE.md)
-- [开发文档](docs/development/DEVELOPMENT_GUIDE.md)
-- [技术规格](docs/technical/TECHNICAL_SPECS.md)
+- [PP-YOLO优化文档](docs/technical/PPYOLO_OPTIMIZATION.md)
 - [历史版本](README_OLD.md)
 
 ## 许可证
