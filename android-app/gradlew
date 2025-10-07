@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+
+##############################################################################
+## Gradle start script for POSIX systems.
+##############################################################################
+
+# Determine the Java command to use to start the JVM.
+if [ -n "$JAVA_HOME" ] ; then
+    if [ -x "$JAVA_HOME/bin/java" ] ; then
+        JAVA_CMD="$JAVA_HOME/bin/java"
+    else
+        echo "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME" >&2
+        exit 1
+    fi
+else
+    JAVA_CMD="java"
+fi
+
+# Determine the directory of this script.
+PRG="$0"
+while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+        PRG="$link"
+    else
+        PRG=`dirname "$PRG"`"/$link"
+    fi
+done
+SAVED="`pwd`"
+cd "`dirname "$PRG"`" > /dev/null
+APP_HOME="`pwd -P`"
+cd "$SAVED" > /dev/null
+
+# Load JVM options from gradle.properties, if present.
+GRADLE_OPTS="$GRADLE_OPTS"
+
+# Prepare CLASSPATH to include the gradle-wrapper.jar
+CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
+
+# Prepare command line arguments.
+GRADLE_ARGS="-Dorg.gradle.appname=gradlew" "$@"
+
+# Execute Gradle
+exec "$JAVA_CMD" $GRADLE_OPTS -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain $GRADLE_ARGS

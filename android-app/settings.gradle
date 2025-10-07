@@ -1,1 +1,22 @@
-include ':app'
+pluginManagement {
+	repositories {
+		google()
+		maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+		maven { url 'https://maven.aliyun.com/repository/google' }
+		maven { url 'https://maven.aliyun.com/repository/public' }
+		gradlePluginPortal()
+	}
+}
+
+dependencyResolutionManagement {
+	repositoriesMode.set(org.gradle.api.initialization.resolve.RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	repositories {
+		google()
+		maven { url 'https://maven.aliyun.com/repository/google' }
+		maven { url 'https://maven.aliyun.com/repository/central' }
+		maven { url 'https://maven.aliyun.com/repository/public' }
+	}
+}
+
+rootProject.name = "android-app"
+include(":app")

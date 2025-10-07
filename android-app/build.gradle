@@ -1,5 +1,16 @@
-// Top-level build file
 buildscript {
-    repositories { google(); mavenCentral() }
+    repositories {
+        google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.5.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22'
+    }
 }
-allprojects { repositories { google(); mavenCentral() } }
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

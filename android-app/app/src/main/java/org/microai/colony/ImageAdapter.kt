@@ -1,6 +1,5 @@
 package org.microai.colony
 
-import android.content.Context
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import java.io.File
 
-class ImageAdapter(private val ctx: Context) : RecyclerView.Adapter<ImageAdapter.VH>() {
+class ImageAdapter(private val onClick: (File) -> Unit) : RecyclerView.Adapter<ImageAdapter.VH>() {
     private var items: List<File> = emptyList()
     fun submitList(list: List<File>) { items = list; notifyDataSetChanged() }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -21,6 +20,7 @@ class ImageAdapter(private val ctx: Context) : RecyclerView.Adapter<ImageAdapter
         val f = items[position]
         val bmp = BitmapFactory.decodeFile(f.absolutePath)
         holder.img.setImageBitmap(bmp)
+        holder.itemView.setOnClickListener { onClick(f) }
     }
     class VH(v: View) : RecyclerView.ViewHolder(v) { val img: ImageView = v.findViewById(org.microai.colony.R.id.item_image) }
 }

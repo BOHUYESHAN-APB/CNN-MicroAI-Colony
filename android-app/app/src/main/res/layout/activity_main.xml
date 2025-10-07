@@ -2,5 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
     <Button android:id="@+id/btn_take" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Take Photo" />
+    <TextView
+        android:id="@+id/tv_last_path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last saved:"
+        android:textSize="14sp"
+        android:padding="8dp" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="8dp">
+        <TextView android:id="@+id/tv_threshold_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Score threshold: 0.45" />
+        <SeekBar android:id="@+id/seek_threshold" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="100" android:progress="45" />
+        <TextView android:id="@+id/tv_nms_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="NMS IoU: 0.30" android:paddingTop="8dp" />
+        <SeekBar android:id="@+id/seek_nms" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="100" android:progress="30" />
+        <TextView android:id="@+id/tv_timing" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Last inference: -- ms | Avg: -- ms" android:paddingTop="8dp" />
+        <ProgressBar android:id="@+id/prog_infer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminate="true" android:visibility="gone" android:layout_gravity="center_horizontal" android:paddingTop="8dp" />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView android:id="@+id/rv_gallery" android:layout_width="match_parent" android:layout_height="match_parent" />
 </LinearLayout>
