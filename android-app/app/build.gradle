@@ -1,0 +1,30 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'org.microai.colony'
+    compileSdk 33
+    defaultConfig {
+        applicationId 'org.microai.colony'
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName '0.1'
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_11; targetCompatibility JavaVersion.VERSION_11 }
+    kotlinOptions { jvmTarget = '11' }
+}
+
+repositories { mavenCentral(); google() }
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    // ONNX Runtime Android AAR (choose matching version)
+    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.15.1'
+}

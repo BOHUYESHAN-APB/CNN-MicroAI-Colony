@@ -109,6 +109,27 @@ python main.py
    - 导出测量数据
    - 生成PDF报告
 
+## Android 部署（已选用模型与说明）
+
+我们已挑选并验证了一个可直接用于移动端的 ONNX 模型（经量化处理）。建议 Android 团队优先基于以下资源开始集成与开发：
+
+### 已量化并推荐用于 Android 的模型（路径）
+
+- `onnx model/checkpoint_epoch_31.static_qdq.onnx`  （静态 QDQ 量化，推荐）
+- 备用：`onnx model/checkpoint_epoch_31.quant.onnx`（动态量化，若在某些设备上更兼容可尝试）
+
+### 推荐的推理后处理（在 Android 端实现）
+
+- 输入：resize 到 800x800，归一化（/255），mean [0.485,0.456,0.406]，std [0.229,0.224,0.225]，NCHW 格式。
+- 输出：ONNX 返回 (boxes, labels, scores, num_detections)。对 scores 使用阈值（推荐 0.45），对保留框运行 NMS（IoU=0.3）。
+
+### 参考文档
+
+- `docs/ANDROID_INTEGRATION.md`（ONNX Runtime Mobile 集成、依赖、预处理/后处理示例）
+- `docs/MMDET_CONVERSION_NOTE.md`（记录 MMDetection 模型转换的限制与后续建议）
+
+如果量化后模型在你们目标设备上表现良好（精度与速度在可接受范围内），就可以立即把该 ONNX 放入 Android 项目并开始开发 UI 与推理流水线。
+
 ## 文档
 
 - [用户指南](docs/guides/USER_GUIDE.md)
