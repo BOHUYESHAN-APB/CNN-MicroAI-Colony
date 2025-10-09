@@ -1,22 +1,378 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
-    <Button android:id="@+id/btn_take" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Take Photo" />
-    <TextView
-        android:id="@+id/tv_last_path"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surfaceContainer"
+    tools:context="com.bohuyshan.microai.colony.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/top_panel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:strokeColor="@color/colorSurfaceVariant"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_panel_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/main_title"
+                        android:textColor="@color/colorOnSurface"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_engine_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:text="@string/main_engine_placeholder"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="12sp" />
+
+                    <ImageButton
+                        android:id="@+id/btn_settings"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/main_open_settings"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_settings"
+                        app:tint="@color/colorOnSurface" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_timing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/main_timing_placeholder"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_tuning_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/main_tuning_title"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_threshold_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_threshold_label"
+                            android:textColor="@color/colorOnSurface"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <SeekBar
+                            android:id="@+id/seek_threshold"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:max="100"
+                            android:progress="50" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_nms_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_nms_label"
+                            android:textColor="@color/colorOnSurface"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <SeekBar
+                            android:id="@+id/seek_nms"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:max="100"
+                            android:progress="30" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <FrameLayout
+            android:id="@+id/preview_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="180dp"
+            app:layout_constraintTop_toBottomOf="@id/top_panel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="3:4">
+
+            <androidx.camera.view.PreviewView
+                android:id="@+id/camera_preview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/black" />
+
+            <com.bohuyshan.microai.colony.ui.SquareOverlayView
+                android:id="@+id/square_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress_capture"
+                style="@style/Widget.MaterialComponents.CircularProgressIndicator"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Last saved:"
-        android:textSize="14sp"
-        android:padding="8dp" />
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardElevation="16dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_fitToContents="true"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
+        app:strokeColor="@color/colorSurfaceVariant"
+        app:strokeWidth="1dp">
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="8dp">
-        <TextView android:id="@+id/tv_threshold_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Score threshold: 0.45" />
-        <SeekBar android:id="@+id/seek_threshold" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="100" android:progress="45" />
-        <TextView android:id="@+id/tv_nms_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="NMS IoU: 0.30" android:paddingTop="8dp" />
-        <SeekBar android:id="@+id/seek_nms" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="100" android:progress="30" />
-        <TextView android:id="@+id/tv_timing" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Last inference: -- ms | Avg: -- ms" android:paddingTop="8dp" />
-        <ProgressBar android:id="@+id/prog_infer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminate="true" android:visibility="gone" android:layout_gravity="center_horizontal" android:paddingTop="8dp" />
-    </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/rv_gallery" android:layout_width="match_parent" android:layout_height="match_parent" />
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/sheet_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="12dp">
+
+                <ImageButton
+                    android:id="@+id/btn_sheet_toggle"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/main_sheet_toggle_content_description"
+                    android:src="@drawable/ic_chevron_up"
+                    app:tint="@color/colorOnSurface" />
+
+                <TextView
+                    android:id="@+id/tv_last_path"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="@string/main_recent_result_placeholder"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="12sp" />
+
+                <ImageButton
+                    android:id="@+id/btn_open_gallery"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/main_open_gallery"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_gallery"
+                    app:tint="@color/colorOnSurface" />
+
+                <ImageButton
+                    android:id="@+id/btn_manage_project"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/main_manage_project"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_projects"
+                    app:tint="@color/colorOnSurface" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.3"
+                android:background="@color/colorSurfaceVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:id="@+id/tv_preset_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_detection_preset_title"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/group_detection_preset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_preset_precision"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/main_preset_precision" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_preset_balanced"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/main_preset_balanced" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_preset_recall"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/main_preset_recall" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_last_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:strokeColor="@color/colorSurfaceVariant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/tv_detection_stats"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/main_detection_result_placeholder"
+                            android:textColor="@color/colorOnSurface"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:id="@+id/img_last_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone"
+                            tools:src="@drawable/ic_gallery" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <ProgressBar
+                    android:id="@+id/prog_infer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_take"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/main_take_photo"
+        android:src="@android:drawable/ic_menu_camera"
+        android:layout_marginTop="-32dp"
+        app:layout_anchor="@id/bottom_sheet"
+        app:layout_anchorGravity="top|center_horizontal"
+        app:fabSize="normal"
+        app:tint="@android:color/white" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

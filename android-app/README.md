@@ -2,7 +2,7 @@ Android app skeleton for MicroAI Colony detector
 
 How to use
 
-1. 拷贝移动端 ONNX 模型到 `app/src/main/assets/model.onnx`（例如 `onnx model/checkpoint_epoch_31.static_qdq.onnx`）。
+1. 默认会在构建前自动将仓库根目录中的 `onnx model/checkpoint_epoch_31.onnx` 拷贝到 `app/src/main/assets/model.onnx`。如需更换模型，请将目标文件放在同一目录并调整文件名或修改 `app/build.gradle` 中的拷贝任务。
 2. 在 Android Studio 中打开 `android-app`，等待 Gradle 同步完成。
 3. 如果运行按钮提示 `Module not specified`，在 Run/Debug Configurations 中选择 `Android App` → `app` 模块，或直接点击工具栏的绿色运行图标让 Studio 自动创建配置。
 4. 连接真实设备并点击运行，授予相机权限。
@@ -17,5 +17,4 @@ Notes
 
 图库支持点按图片进入全屏预览，并可一键分享。预览界面位于 `ImagePreviewActivity`。
 
-应用会在 “Take Photo” 下方显示最近保存带注释图片的绝对路径，方便你在设备上定位该文件。
 应用会在 “Take Photo” 下方显示最近保存带注释图片的绝对路径，方便你在设备上定位该文件。

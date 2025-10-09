@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主界面 -->
+    <string name="main_title">MicroAI Colony</string>
+    <string name="main_engine_placeholder">当前推理引擎：--</string>
+    <string name="main_open_settings">打开设置</string>
+    <string name="main_timing_placeholder">平均推理耗时：-- 毫秒</string>
+    <string name="main_tuning_title">推理参数调节</string>
+    <string name="main_threshold_label">置信度阈值</string>
+    <string name="main_nms_label">NMS IoU</string>
+    <string name="main_recent_result_placeholder">最近结果：--</string>
+    <string name="main_sheet_toggle_content_description">展开或收起检测面板</string>
+    <string name="main_open_gallery">打开图库</string>
+    <string name="main_manage_project">项目管理</string>
+    <string name="main_detection_preset_title">检测预设</string>
+    <string name="main_preset_precision">高精度</string>
+    <string name="main_preset_balanced">均衡</string>
+    <string name="main_preset_recall">高召回</string>
+    <string name="main_detection_result_placeholder">检测结果将在这里显示</string>
+    <string name="main_take_photo">拍照</string>
+    <string name="main_panel_title">%1$s · 图片数：%2$s</string>
+    <string name="main_engine_not_ready">Engine: 未就绪</string>
+    <string name="main_detection_full_image_suffix"> · 已改用全图</string>
+    <string name="main_inference_no_detection">推理完成，但未检测到目标。</string>
+    <string name="main_inference_with_detection">推理完成，检测到 %1$d 个目标。</string>
+    <string name="main_recent_result_value">最近结果：%1$s</string>
+    <string name="main_detection_summary_empty">未检测到目标</string>
+    <string name="main_detection_summary_with_scores">检测到 %1$d 个目标 · 置信度 %2$s</string>
+    <string name="main_timing_stats">最新推理：%1$d 毫秒 | 平均：%2$d 毫秒</string>
+    <string name="main_threshold_value">置信度阈值：%1$.2f</string>
+    <string name="main_nms_value">NMS IoU：%1$.2f</string>
+    <string name="main_init_failed_message">推理环境初始化失败，请导出日志反馈问题。</string>
+    <string name="main_camera_permission_required">需要相机权限。</string>
+    <string name="main_camera_start_failed">相机启动失败。</string>
+    <string name="main_camera_init_failed">相机初始化失败。</string>
+    <string name="main_model_not_ready">模型尚未就绪。</string>
+    <string name="main_camera_not_ready">相机未准备就绪。</string>
+    <string name="main_error_copied">错误信息已复制</string>
+    <string name="main_error_fatal_intro">应用在启动过程中遇到致命错误，无法继续运行。</string>
+    <string name="main_error_fatal_type">异常类型：%1$s</string>
+    <string name="main_error_fatal_message">异常信息：%1$s</string>
+    <string name="main_error_fatal_message_empty">(无)</string>
+    <string name="main_error_fatal_stack">堆栈：</string>
+    <string name="main_error_fatal_title">启动失败</string>
+    <string name="main_error_fatal_copy_close">复制并关闭</string>
+    <string name="main_error_fatal_close">关闭</string>
+    <string name="main_capture_failed">拍照失败</string>
+    <string name="main_save_raw_failed">保存原始图片失败</string>
+    <string name="main_read_image_failed">无法读取选中的图片</string>
+    <string name="main_import_failed">导入图片失败</string>
+    <string name="main_inference_failed">推理失败</string>
+
+    <!-- 设置界面 -->
+    <string name="settings_title">参数设置</string>
+    <string name="settings_engine_priority_title">优先使用的推理引擎</string>
+    <string name="settings_engine_gpu">GPU</string>
+    <string name="settings_engine_npu">NPU</string>
+    <string name="settings_engine_cpu">CPU</string>
+    <string name="settings_allowed_backends_title">允许的推理后端</string>
+    <string name="settings_allow_gpu">允许使用 GPU 后端</string>
+    <string name="settings_allow_npu">允许使用 NPU 后端</string>
+    <string name="settings_allow_cpu">允许使用 CPU / Vulkan 后端</string>
+    <string name="settings_other_title">其他设置</string>
+    <string name="settings_other_placeholder">更多参数即将上线。</string>
+    <string name="settings_advanced_title">高级工具</string>
+    <string name="settings_advanced_description">提供导出与诊断类开发者功能</string>
+    <string name="settings_action_export_log">导出推理日志</string>
+    <string name="settings_action_export_pdf">导出 PDF 报告</string>
+    <string name="settings_action_export_table">导出 CSV 表格</string>
+    <string name="settings_action_clear_log">清空当前日志</string>
+    <string name="settings_clear_log_success">已清空当前日志</string>
+    <string name="settings_no_log_to_export">当前暂无可导出的日志</string>
+    <string name="settings_export_pdf_in_progress">正在生成 PDF 报告…</string>
+    <string name="settings_export_pdf_failed">生成 PDF 失败或暂无检测记录</string>
+    <string name="settings_export_table_in_progress">正在生成表格…</string>
+    <string name="settings_export_table_failed">生成表格失败或暂无检测记录</string>
+    <string name="settings_about_content_description">打开关于页面</string>
+    <string name="settings_about_title">关于 MicroAI Colony</string>
+    <string name="settings_about_description">查看开源许可和反馈渠道</string>
+    <string name="settings_about_chevron_content_description">进入关于页面</string>
+
+    <!-- 通用操作 -->
+    <string name="common_cancel">取消</string>
+    <string name="common_save">保存</string>
+    <string name="common_delete">删除</string>
+
+    <!-- 项目管理 -->
+    <string name="project_switched_message">已切换到项目：%1$s</string>
+    <string name="project_created_message">已创建项目：%1$s</string>
+    <string name="project_delete_blocked">当前项目无法删除</string>
+    <string name="project_default_name">默认项目</string>
+    <string name="project_name_hint">项目名称</string>
+    <string name="project_add_title">新增项目</string>
+    <string name="project_name_empty_error">名称不能为空</string>
+    <string name="project_delete_title">删除项目</string>
+    <string name="project_delete_message">确定要删除“%1$s”吗？对应文件夹将一并删除。</string>
+    <string name="project_item_created_at">创建于 %1$s</string>
+    <string name="project_item_created_placeholder">创建于 --</string>
+    <string name="project_item_set_current">设为当前</string>
+    <string name="project_item_current">当前项目</string>
+    <string name="project_item_delete_content_description">删除项目</string>
+
+    <!-- 导出 -->
+    <string name="export_pdf_project_title">项目：%1$s</string>
+    <string name="export_pdf_source_image">原始图片：%1$s</string>
+    <string name="export_pdf_annotated_image">标注文件：%1$s</string>
+    <string name="export_pdf_detected_at">检测时间：%1$s</string>
+    <string name="export_pdf_detection_count">检测数量：%1$d</string>
+    <string name="export_pdf_threshold_nms">阈值：%1$.2f · NMS：%2$.2f</string>
+    <string name="export_pdf_used_full_image">使用全图作为推理输入</string>
+    <string name="export_pdf_used_cropped">使用裁剪图作为推理输入</string>
+    <string name="export_pdf_warn_decode">警告：无法解码标注图 %1$s</string>
+    <string name="export_pdf_warn_missing">警告：找不到标注图 %1$s</string>
+    <string name="export_pdf_detections_heading">检测框（格式：分数 x1,y1,x2,y2）</string>
+    <string name="export_pdf_detections_omitted">其余 %1$d 个检测已省略</string>
+
+    <!-- 通用 -->
+    <string name="about_version_format">版本 %1$s</string>
+</resources>

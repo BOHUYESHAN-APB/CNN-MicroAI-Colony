@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main screen -->
+    <string name="main_title">MicroAI Colony</string>
+    <string name="main_engine_placeholder">Engine: --</string>
+    <string name="main_open_settings">Open settings</string>
+    <string name="main_timing_placeholder">Average inference: -- ms</string>
+    <string name="main_tuning_title">Tuning</string>
+    <string name="main_threshold_label">Score threshold</string>
+    <string name="main_nms_label">NMS IoU</string>
+    <string name="main_recent_result_placeholder">Last result: --</string>
+    <string name="main_sheet_toggle_content_description">Expand or collapse detection panel</string>
+    <string name="main_open_gallery">Open gallery</string>
+    <string name="main_manage_project">Manage projects</string>
+    <string name="main_detection_preset_title">Detection presets</string>
+    <string name="main_preset_precision">Precision</string>
+    <string name="main_preset_balanced">Balanced</string>
+    <string name="main_preset_recall">Recall</string>
+    <string name="main_detection_result_placeholder">Detection results will appear here</string>
+    <string name="main_take_photo">Capture photo</string>
+    <string name="main_panel_title">%1$s · Images: %2$s</string>
+    <string name="main_engine_not_ready">Engine: not ready</string>
+    <string name="main_detection_full_image_suffix"> · Switched to full-image inference</string>
+    <string name="main_inference_no_detection">Inference finished, no detections.</string>
+    <string name="main_inference_with_detection">Inference finished, %1$d detections found.</string>
+    <string name="main_recent_result_value">Last result: %1$s</string>
+    <string name="main_detection_summary_empty">No detections found</string>
+    <string name="main_detection_summary_with_scores">Detections: %1$d · Confidence %2$s</string>
+    <string name="main_timing_stats">Last inference: %1$d ms | Avg: %2$d ms</string>
+    <string name="main_threshold_value">Score threshold: %1$.2f</string>
+    <string name="main_nms_value">NMS IoU: %1$.2f</string>
+    <string name="main_init_failed_message">Inference environment failed to initialize. Please export logs and report the issue.</string>
+    <string name="main_camera_permission_required">Camera permission is required.</string>
+    <string name="main_camera_start_failed">Failed to start camera.</string>
+    <string name="main_camera_init_failed">Camera initialization failed.</string>
+    <string name="main_model_not_ready">Model isn’t ready yet.</string>
+    <string name="main_camera_not_ready">Camera isn’t ready.</string>
+    <string name="main_error_copied">Error copied to clipboard</string>
+    <string name="main_error_fatal_intro">A fatal error occurred during app startup and the app cannot continue.</string>
+    <string name="main_error_fatal_type">Type: %1$s</string>
+    <string name="main_error_fatal_message">Message: %1$s</string>
+    <string name="main_error_fatal_message_empty">(none)</string>
+    <string name="main_error_fatal_stack">Stack trace:</string>
+    <string name="main_error_fatal_title">Start-up failure</string>
+    <string name="main_error_fatal_copy_close">Copy and close</string>
+    <string name="main_error_fatal_close">Close</string>
+    <string name="main_capture_failed">Capture failed</string>
+    <string name="main_save_raw_failed">Failed to save original image</string>
+    <string name="main_read_image_failed">Unable to read the selected image</string>
+    <string name="main_import_failed">Failed to import image</string>
+    <string name="main_inference_failed">Inference failed</string>
+
+    <!-- Settings screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_engine_priority_title">Preferred inference engine</string>
+    <string name="settings_engine_gpu">GPU</string>
+    <string name="settings_engine_npu">NPU</string>
+    <string name="settings_engine_cpu">CPU</string>
+    <string name="settings_allowed_backends_title">Allowed inference backends</string>
+    <string name="settings_allow_gpu">Enable GPU backend</string>
+    <string name="settings_allow_npu">Enable NPU backend</string>
+    <string name="settings_allow_cpu">Enable CPU / Vulkan backend</string>
+    <string name="settings_other_title">Other settings</string>
+    <string name="settings_other_placeholder">More controls coming soon.</string>
+    <string name="settings_advanced_title">Advanced tools</string>
+    <string name="settings_advanced_description">Developer utilities for exporting and diagnostics</string>
+    <string name="settings_action_export_log">Export inference log</string>
+    <string name="settings_action_export_pdf">Export PDF report</string>
+    <string name="settings_action_export_table">Export CSV table</string>
+    <string name="settings_action_clear_log">Clear current log</string>
+    <string name="settings_clear_log_success">Log cleared</string>
+    <string name="settings_no_log_to_export">No log available right now</string>
+    <string name="settings_export_pdf_in_progress">Generating PDF report…</string>
+    <string name="settings_export_pdf_failed">Failed to generate PDF or no detections yet</string>
+    <string name="settings_export_table_in_progress">Generating CSV table…</string>
+    <string name="settings_export_table_failed">Failed to export CSV or no detections yet</string>
+    <string name="settings_about_content_description">Open about screen</string>
+    <string name="settings_about_title">About MicroAI Colony</string>
+    <string name="settings_about_description">View licenses and feedback channels</string>
+    <string name="settings_about_chevron_content_description">Navigate to about</string>
+
+    <!-- Shared common actions -->
+    <string name="common_cancel">Cancel</string>
+    <string name="common_save">Save</string>
+    <string name="common_delete">Delete</string>
+
+    <!-- Project manager -->
+    <string name="project_switched_message">Switched to project: %1$s</string>
+    <string name="project_created_message">Created project: %1$s</string>
+    <string name="project_delete_blocked">Current project can’t be deleted</string>
+    <string name="project_default_name">Default Project</string>
+    <string name="project_name_hint">Project name</string>
+    <string name="project_add_title">Add project</string>
+    <string name="project_name_empty_error">Name can’t be empty</string>
+    <string name="project_delete_title">Delete project</string>
+    <string name="project_delete_message">Delete “%1$s”? The folder will be removed as well.</string>
+    <string name="project_item_created_at">Created on %1$s</string>
+    <string name="project_item_created_placeholder">Created on --</string>
+    <string name="project_item_set_current">Set as current</string>
+    <string name="project_item_current">Current project</string>
+    <string name="project_item_delete_content_description">Delete project</string>
+
+    <!-- Export -->
+    <string name="export_pdf_project_title">Project: %1$s</string>
+    <string name="export_pdf_source_image">Source image: %1$s</string>
+    <string name="export_pdf_annotated_image">Annotated image: %1$s</string>
+    <string name="export_pdf_detected_at">Detected at: %1$s</string>
+    <string name="export_pdf_detection_count">Detections: %1$d</string>
+    <string name="export_pdf_threshold_nms">Threshold: %1$.2f · NMS: %2$.2f</string>
+    <string name="export_pdf_used_full_image">Used full image as inference input</string>
+    <string name="export_pdf_used_cropped">Used cropped image as inference input</string>
+    <string name="export_pdf_warn_decode">Warning: can’t decode annotated image %1$s</string>
+    <string name="export_pdf_warn_missing">Warning: annotated image %1$s not found</string>
+    <string name="export_pdf_detections_heading">Detections (score x1,y1,x2,y2)</string>
+    <string name="export_pdf_detections_omitted">%1$d more detections omitted</string>
+
+    <!-- Shared -->
+    <string name="about_version_format">Version %1$s</string>
+</resources>

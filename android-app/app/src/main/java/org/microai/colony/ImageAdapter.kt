@@ -1,4 +1,4 @@
-package org.microai.colony
+package com.bohuyshan.microai.colony
 
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ class ImageAdapter(private val onClick: (File) -> Unit) : RecyclerView.Adapter<I
     private var items: List<File> = emptyList()
     fun submitList(list: List<File>) { items = list; notifyDataSetChanged() }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val v = LayoutInflater.from(parent.context).inflate(org.microai.colony.R.layout.item_image, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_image, parent, false)
         return VH(v)
     }
     override fun getItemCount(): Int = items.size
@@ -22,5 +22,5 @@ class ImageAdapter(private val onClick: (File) -> Unit) : RecyclerView.Adapter<I
         holder.img.setImageBitmap(bmp)
         holder.itemView.setOnClickListener { onClick(f) }
     }
-    class VH(v: View) : RecyclerView.ViewHolder(v) { val img: ImageView = v.findViewById(org.microai.colony.R.id.item_image) }
+    class VH(v: View) : RecyclerView.ViewHolder(v) { val img: ImageView = v.findViewById(R.id.item_image) }
 }

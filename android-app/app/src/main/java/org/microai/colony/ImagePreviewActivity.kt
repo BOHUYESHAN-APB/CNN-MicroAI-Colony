@@ -1,4 +1,4 @@
-package org.microai.colony
+package com.bohuyshan.microai.colony
 
 import android.content.Intent
 import android.os.Bundle

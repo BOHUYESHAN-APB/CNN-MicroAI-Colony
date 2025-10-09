@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MicroAIColony" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:statusBarColor">@color/colorBackground</item>
+        <item name="android:navigationBarColor">@color/colorBackground</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="materialCardViewStyle">@style/MicroAI.Card</item>
+        <item name="switchStyle">@style/MicroAI.Switch</item>
+    </style>
+
+    <style name="MicroAI.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="android:clipToPadding">false</item>
+        <item name="cardBackgroundColor">@color/colorSurface</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">6dp</item>
+        <item name="strokeColor">@color/colorSurfaceVariant</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="MicroAI.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="android:thumbTint">@color/colorPrimary</item>
+        <item name="android:trackTint">@color/colorSurfaceVariant</item>
+    </style>
+
+    <style name="MicroAI.FilledTonalButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorSecondary</item>
+        <item name="android:textColor">@color/colorOnSecondary</item>
+        <item name="iconTint">@color/colorOnSecondary</item>
+    </style>
+</resources>
