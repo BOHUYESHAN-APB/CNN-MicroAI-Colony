@@ -130,6 +130,32 @@ python main.py
 
 如果量化后模型在你们目标设备上表现良好（精度与速度在可接受范围内），就可以立即把该 ONNX 放入 Android 项目并开始开发 UI 与推理流水线。
 
+### Android 应用特性概览
+
+最新版移动端应用专注于拍照推理流程，并对界面与设置做了全面升级：
+
+- **主界面（`activity_main.xml`）**：保留实时相机取景与拍照入口，新增「Detection presets」快速切换（Precision/Balanced/Recall），并在底部面板展示“Last/Avg”耗时以及最近一次推理结果。
+- **调参与检测摘要**：阈值、NMS 滑杆与推理结果摘要全部使用资源化文案，能以中英文呈现；识别到的目标数与置信区间会即时刷新。
+- **拍照与历史**：拍照成功后自动保存标注结果，最近一次结果会显示图片文件名，历史记录同步写入 `DetectionHistory` 方便导出。
+- **容错与提示**：若启动阶段发生不可恢复的异常，应用会弹出可复制的致命错误弹窗（含异常类型、堆栈）。
+
+### 设置与开发者工具
+
+- **集中入口**：高级导出与日志相关按钮已全部迁移到设置页的 “Advanced tools” 卡片（`activity_settings.xml`）。
+- **导出能力**：支持一键导出推理日志、PDF 报告和 CSV 表格。PDF/CSV 生成过程有明确的进行中和失败提示。
+- **日志维护**：可随时清空当前推理日志，并通过共享面板将日志发出。
+
+### 国际化支持
+
+- 所有界面文字、Toast、导出文案都统一整理到 `values/strings.xml` 与 `values-zh/strings.xml`，当前默认提供英文与简体中文双语。
+- 若需扩展其他语言，可仿照现有结构新增 `values-xx/strings.xml`，应用代码已经完全通过资源引用取文案。
+
+### 构建与运行提示
+
+- 首次构建前请确保模型文件已按自动任务放置到 `app/src/main/assets/model.onnx`。
+- 推荐直接在 Android Studio 中打开 `android-app` 目录，Gradle 同步完成后即可连接实机运行。
+- 更详细的构建、调试、图库预览分享等说明见 [`android-app/README.md`](android-app/README.md)。
+
 ## 文档
 
 - [用户指南](docs/guides/USER_GUIDE.md)
@@ -145,12 +171,14 @@ python main.py
 ## 贡献指南
 
 我们欢迎任何形式的贡献，包括但不限于：
+
 - 代码改进
 - 文档完善
 - 问题报告
 - 功能建议
 
 请通过以下方式参与项目：
+
 1. Fork 本仓库
 2. 创建您的特性分支
 3. 提交您的改动
@@ -159,5 +187,5 @@ python main.py
 
 ## 联系方式
 
-- 问题反馈：GitHub Issues
-- 技术支持：project@example.com
+- 问题反馈：[GitHub Issues](https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony/issues)
+- 技术支持：[project@example.com](mailto:project@example.com)
