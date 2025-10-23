@@ -31,12 +31,21 @@ class ColonyConfig:
     
     # 位置限制
     max_distance_ratio: float = 0.9  # 到培养皿中心的最大距离与培养皿半径的比例
+    # Hough 默认搜索参数（若 px/mm 可用，会基于直径换算）
+    hough_dp: float = 1.2
+    hough_minDist_factor: float = 1.8  # 与预期半径的乘子来作为 minDist
+    # 对于未标定情况的像素范围回退
+    fallback_min_radius_px: int = 8
+    fallback_max_radius_px: int = 40
 
 @dataclass
 class InhibitionZoneConfig:
     """抑菌圈检测相关配置"""
     # 标准滤纸片尺寸（毫米）
     filter_paper_diameter_mm: float = 6.0
+    # 主抑菌圈半径至少应是滤纸或孔洞半径的多少倍 / 像素下限
+    primary_zone_min_ratio: float = 1.6
+    primary_zone_min_radius_px: int = 16
     
     # 搜索范围
     max_radius_multiplier: float = 5.0  # 相对于菌落半径的最大搜索半径倍数
@@ -55,6 +64,23 @@ class InhibitionZoneConfig:
             'low': 70,
             'high': 150
         }
+        # Hough/验证的默认值针对滤纸片和孔洞
+        self.default_for_filter_paper = {
+            'hough_param1': 60,
+            'hough_param2': 28,
+            'brightness_threshold': 120,
+            'max_std_dev': 25.0,
+            'radius_factor_min': 0.85,
+            'radius_factor_max': 1.15
+        }
+        self.default_for_hole = {
+            'hough_param1': 40,
+            'hough_param2': 12,
+            'brightness_threshold': 90,
+            'max_std_dev': 35.0,
+            'radius_factor_min': 0.8,
+            'radius_factor_max': 1.2
+        }
 
 @dataclass
 class ImageProcessingConfig:
@@ -70,6 +96,8 @@ class ImageProcessingConfig:
     # 形态学处理参数
     morph_kernel_small: Tuple[int, int] = (3, 3)
     morph_kernel_large: Tuple[int, int] = (5, 5)
+    # 顶帽／闭运算内核，用于增强微弱边缘
+    tophat_kernel: Tuple[int, int] = (15, 15)
 
 @dataclass
 class VisualizationConfig:
@@ -96,6 +124,17 @@ class Config:
         self.inhibition_zone = InhibitionZoneConfig()
         self.image_processing = ImageProcessingConfig()
         self.visualization = VisualizationConfig()
+        # Tuned profiles for special cases
+        self.profiles = {
+            'dark_blob': {
+                'tophat_kernel': (7, 7),
+                'clahe_clip': 1.0,
+                'minArea': 20,
+                'maxArea': 4000,
+                'minCircularity': 0.12,
+                'minInertiaRatio': 0.05
+            }
+        }
         
     @classmethod
     def default(cls) -> 'Config':

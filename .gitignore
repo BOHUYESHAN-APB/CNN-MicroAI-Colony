@@ -20,6 +20,7 @@ wheels/
 .installed.cfg
 *.egg
 *.pth
+.pytest_cache/
 
 # Virtual Environment
 .env
@@ -98,3 +99,7 @@ coverage/
 #乱七八糟的内容
 zhuanli.html
 checkpoints/
+*.html
+opencv-circle-detection/test_outputs/
+opencv-circle-detection/test-images/
+opencv-circle-detection/tools/tune_blob_grid_outputs/

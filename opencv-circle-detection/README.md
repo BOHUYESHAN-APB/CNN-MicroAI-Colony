@@ -84,6 +84,33 @@ python test_accuracy_validation.py
 - **错误处理**：自动跳过有问题的文件，记录错误信息
 - **结果统计**：生成详细的批量处理报告
 
+### 配置与调优（暗底 / 透明孔洞）
+
+在暗背景或透明挖孔（例如 OIP-C）场景下，默认的霍夫圆检测容易失效。项目提供一个调优好的参数集 `profiles.dark_blob`，用于增强预处理和基于 blob 的候选证据提取，以作为 Hough 的稳健备选。
+
+默认配置位置：`opencv-circle-detection/utils/config.py` 中的 `Config().profiles['dark_blob']`。
+
+默认参数示例：
+
+- `tophat_kernel`: (7, 7)
+- `clahe_clip`: 1.0
+- `minArea`: 20
+- `maxArea`: 4000
+- `minCircularity`: 0.12
+- `minInertiaRatio`: 0.05
+
+如何使用与调优：
+- 直接编辑 `opencv-circle-detection/utils/config.py` 中的 `profiles['dark_blob']` 并保存。
+- 在命令行模式下运行检测（系统会在检测到暗底或 HOLE 类型时自动应用该 profile）：
+
+```bash
+python main.py --image <path/to/image.jpg> --output <path/to/out.jpg>
+```
+
+- 若需系统化调优，请参考 `tools/tune_blob_grid.py`：该脚本会对若干预处理与 blob 参数做网格扫描，生成 overlay 可视化结果和 `tools/tune_blob_grid_results.csv` 供人工确认；确认后将选定参数写回 `utils/config.py`。
+
+注意：在实用判定中，建议结合环带内的 keypoint 密度（ring-density）与径向灰度剖面（radial profile）共同决策，以减少噪声导致的误判。
+
 ## 🏗️ 项目架构
 
 ### 目录结构

@@ -25,6 +25,15 @@
 - 标准测量和校准
 - 手动标注功能
 
+快速运行（无需 GUI，命令行模式）：
+
+```powershell
+cd opencv-circle-detection
+python main.py --image "test_images/OIP-C.jpg" --output "out_OIP-C.jpg"
+```
+
+详尽参数与调参建议见： `docs/opencv-circle-detection/QUICKSTART_PARAMS.md`
+
 ### 数据分析
 - 自动生成分析报告
 - 多种数据可视化方式

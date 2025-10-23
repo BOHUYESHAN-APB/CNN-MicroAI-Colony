@@ -46,6 +46,40 @@ class ImageProcessor:
         
         logger.info("预处理完成")
         return enhanced
+
+    def preprocess_for_hole(self, image: np.ndarray, tophat_kernel: Tuple[int, int] = (15, 15)) -> np.ndarray:
+        """
+        专门用于透明孔/挖空目标的预处理：结合顶帽增强、拉普拉斯增强和 CLAHE。
+        该流程能提升对比度弱的透明边界。
+        """
+        logger.info("开始用于孔洞的专用预处理")
+        # 确保灰度
+        if len(image.shape) > 2:
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        else:
+            gray = image.copy()
+
+        # 轻度去噪
+        denoised = cv2.GaussianBlur(gray, self.gaussian_kernel_size, self.gaussian_sigma)
+
+        # 顶帽增强以突出亮度突变的小结构
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, tophat_kernel)
+        tophat = cv2.morphologyEx(denoised, cv2.MORPH_TOPHAT, kernel)
+
+        # Laplacian增强边缘
+        lap = cv2.Laplacian(denoised, cv2.CV_64F, ksize=3)
+        lap_normalized = cv2.normalize(lap, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
+
+        # 组合：以一定权重将原图、tophat和laplacian融合
+        combined = cv2.addWeighted(denoised, 0.6, tophat, 0.2, 0)
+        combined = cv2.addWeighted(combined, 0.7, lap_normalized, 0.3, 0)
+
+        # CLAHE 增强对比
+        clahe = cv2.createCLAHE(clipLimit=self.clahe_clip_limit, tileGridSize=self.clahe_grid_size)
+        enhanced = clahe.apply(combined)
+
+        logger.info("孔洞专用预处理完成")
+        return enhanced
     
     def enhance_details(self, image: np.ndarray) -> np.ndarray:
         """增强图像细节"""
