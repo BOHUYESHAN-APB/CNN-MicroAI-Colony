@@ -165,6 +165,52 @@ python main.py
 - 推荐直接在 Android Studio 中打开 `android-app` 目录，Gradle 同步完成后即可连接实机运行。
 - 更详细的构建、调试、图库预览分享等说明见 [`android-app/README.md`](android-app/README.md)。
 
+## 树莓派工程化 CTk 版本（本次更新）
+
+本次新增了一个面向仪器化场景的本地工程版应用，路径：`apps/pi_ctk/`，用于单可见光摄像头阶段的展示与落地验证。
+
+### 已实现能力
+
+- 实时相机预览、拍照推理、单图导入、USB 批量导入
+- ONNX 推理（CPU）+ 两级置信度标注：
+  - A 类（高置信度，绿色框）
+  - B 类（常规置信度，橙色框）
+- 标注图右侧自动生成文字报告区（总数、A/B 计数、Top/Avg 置信度、参数、目标明细）
+- 按菌种/批次组织数据，支持批次级历史记录
+- 一键导出 `CSV 统计报表 + ZIP 全量打包`
+- 一键打开 3D HTML 演示页（用于设备介绍/演示）
+
+### 命名与目录规范
+
+- 文件名：`<PREFIX>_<strain>_<batch>_<timefmt>_<ms>.<ext>`
+- 前缀：
+  - `RAW` 原始采集图
+  - `IMP` 导入图
+  - `ANN` 标注结果图
+  - `REPORT` 批次统计表
+- 批次目录：
+
+```text
+~/.cnn_microai_pi/
+  batches/
+    <strain_name>/
+      <batch_id>/
+        captures/
+        imports/
+        results/
+        history/history.jsonl
+        exports/
+```
+
+### 快速运行
+
+```bash
+pip install -r apps/pi_ctk/requirements.txt
+python -m apps.pi_ctk.main
+```
+
+详细架构说明见：`docs/development/PI_CTK_MVP_ARCHITECTURE.md`
+
 ## 文档
 
 - [用户指南](docs/guides/USER_GUIDE.md)
