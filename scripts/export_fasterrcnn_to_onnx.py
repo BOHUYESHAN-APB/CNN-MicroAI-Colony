@@ -21,6 +21,7 @@ Usage examples:
     --device cpu
 
 """
+
 import argparse
 import torch
 import torchvision
@@ -29,31 +30,52 @@ import os
 
 def build_model(num_classes=2):
     # Build a fresh model with the right number of classes (including background)
-    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights=None, num_classes=num_classes)
+    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(
+        weights=None, weights_backbone=None, num_classes=num_classes
+    )
     model.eval()
     return model
 
 
-def load_checkpoint_into_model(model, ckpt_path, map_location='cpu'):
-    data = torch.load(ckpt_path, map_location=map_location)
-    # checkpoint might be a state_dict or a dict with 'model'/'state_dict'
+def load_checkpoint_into_model(model, ckpt_path, map_location="cpu"):
+    data = torch.load(ckpt_path, map_location=map_location, weights_only=False)
+    # checkpoint might be a state_dict or a dict with wrapped state dict
     if isinstance(data, dict):
-        if 'model' in data:
-            state = data['model']
-        elif 'state_dict' in data:
-            state = data['state_dict']
+        if "model_state_dict" in data:
+            state = data["model_state_dict"]
+        elif "model" in data:
+            state = data["model"]
+        elif "state_dict" in data:
+            state = data["state_dict"]
         else:
             # assume it's the state_dict directly
             state = data
     else:
         state = data
 
-    # try to load state dict leniently
-    model.load_state_dict(state, strict=False)
+    # remove common distributed-training prefixes
+    cleaned_state = {}
+    for k, v in state.items():
+        nk = k
+        if nk.startswith("module."):
+            nk = nk[len("module.") :]
+        if nk.startswith("model."):
+            nk = nk[len("model.") :]
+        cleaned_state[nk] = v
+
+    # try to load state dict leniently and print diagnostics
+    missing, unexpected = model.load_state_dict(cleaned_state, strict=False)
+    print(
+        f"Loaded checkpoint with missing={len(missing)}, unexpected={len(unexpected)}"
+    )
+    if missing:
+        print("Missing keys sample:", missing[:10])
+    if unexpected:
+        print("Unexpected keys sample:", unexpected[:10])
     return model
 
 
-def export_onnx(model, output_path, device='cpu', opset=12, max_detections=100):
+def export_onnx(model, output_path, device="cpu", opset=12, max_detections=100):
     model.to(device)
 
     # Create a dummy input: list[Tensor] for torchvision detection models
@@ -85,21 +107,28 @@ def export_onnx(model, output_path, device='cpu', opset=12, max_detections=100):
             scores = []
             num = []
             for out in outputs:
-                b = out['boxes']
-                l = out['labels']
-                s = out['scores']
+                b = out["boxes"]
+                l = out["labels"]
+                s = out["scores"]
                 n = b.shape[0]
                 num.append(torch.tensor([n], dtype=torch.int64))
                 # pad to max_det
                 if n < self.max_det:
                     pad = self.max_det - n
-                    b = torch.cat([b, torch.zeros((pad, 4), device=b.device, dtype=b.dtype)], dim=0)
-                    l = torch.cat([l, torch.zeros((pad,), device=l.device, dtype=l.dtype)], dim=0)
-                    s = torch.cat([s, torch.zeros((pad,), device=s.device, dtype=s.dtype)], dim=0)
+                    b = torch.cat(
+                        [b, torch.zeros((pad, 4), device=b.device, dtype=b.dtype)],
+                        dim=0,
+                    )
+                    l = torch.cat(
+                        [l, torch.zeros((pad,), device=l.device, dtype=l.dtype)], dim=0
+                    )
+                    s = torch.cat(
+                        [s, torch.zeros((pad,), device=s.device, dtype=s.dtype)], dim=0
+                    )
                 else:
-                    b = b[:self.max_det]
-                    l = l[:self.max_det]
-                    s = s[:self.max_det]
+                    b = b[: self.max_det]
+                    l = l[: self.max_det]
+                    s = s[: self.max_det]
                 boxes.append(b.unsqueeze(0))
                 labels.append(l.unsqueeze(0))
                 scores.append(s.unsqueeze(0))
@@ -116,20 +145,20 @@ def export_onnx(model, output_path, device='cpu', opset=12, max_detections=100):
     # example batch size 1
     batch_example = torch.randn(1, 3, 800, 800, device=device)
 
-    input_names = ['images']
-    output_names = ['boxes', 'labels', 'scores', 'num_detections']
+    input_names = ["images"]
+    output_names = ["boxes", "labels", "scores", "num_detections"]
     dynamic_axes = {
-        'images': {0: 'batch', 2: 'height', 3: 'width'},
-        'boxes': {0: 'batch', 1: 'num_detections'},
-        'labels': {0: 'batch', 1: 'num_detections'},
-        'scores': {0: 'batch', 1: 'num_detections'},
-        'num_detections': {0: 'batch'}
+        "images": {0: "batch", 2: "height", 3: "width"},
+        "boxes": {0: "batch", 1: "num_detections"},
+        "labels": {0: "batch", 1: "num_detections"},
+        "scores": {0: "batch", 1: "num_detections"},
+        "num_detections": {0: "batch"},
     }
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     torch.onnx.export(
         wrapper,
-        batch_example,
+        (batch_example,),
         output_path,
         verbose=False,
         opset_version=opset,
@@ -144,12 +173,22 @@ def export_onnx(model, output_path, device='cpu', opset=12, max_detections=100):
 
 def parse_args():
     p = argparse.ArgumentParser(description="Export Faster R-CNN checkpoint to ONNX")
-    p.add_argument('--checkpoint', required=True, help='Path to .pth checkpoint')
-    p.add_argument('--output', required=True, help='Output .onnx path')
-    p.add_argument('--device', default='cpu', choices=['cpu', 'cuda'], help='Device')
-    p.add_argument('--opset', type=int, default=12, help='ONNX opset version')
-    p.add_argument('--max-detections', type=int, default=100, help='Max detections to pad/truncate to')
-    p.add_argument('--num-classes', type=int, default=2, help='Number of classes (including background)')
+    p.add_argument("--checkpoint", required=True, help="Path to .pth checkpoint")
+    p.add_argument("--output", required=True, help="Output .onnx path")
+    p.add_argument("--device", default="cpu", choices=["cpu", "cuda"], help="Device")
+    p.add_argument("--opset", type=int, default=12, help="ONNX opset version")
+    p.add_argument(
+        "--max-detections",
+        type=int,
+        default=100,
+        help="Max detections to pad/truncate to",
+    )
+    p.add_argument(
+        "--num-classes",
+        type=int,
+        default=2,
+        help="Number of classes (including background)",
+    )
     return p.parse_args()
 
 
@@ -160,8 +199,14 @@ def main():
     model = build_model(num_classes=args.num_classes)
     print(f"Loading checkpoint: {args.checkpoint}")
     model = load_checkpoint_into_model(model, args.checkpoint, map_location=device)
-    export_onnx(model, args.output, device=device, opset=args.opset, max_detections=args.max_detections)
+    export_onnx(
+        model,
+        args.output,
+        device=device,
+        opset=args.opset,
+        max_detections=args.max_detections,
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

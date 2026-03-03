@@ -84,6 +84,12 @@ results/
 *.pth
 *.onnx
 *.tflite
+*.pt
+
+# Local eval outputs
+test_outputs/pi_remote/
+test_outputs/saureus_eval/
+test_outputs/*_report.csv
 
 # Rust
 target/
