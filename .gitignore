@@ -103,12 +103,9 @@ coverage/
 
 
 # OpenI archive (zip extraction)
-# openi-archive/
-# 允许训练脚本被追踪
+# 允许ultralytics-YOLO11目录被追踪
 openi-archive/*
 !openi-archive/ultralytics-YOLO11/
-openi-archive/ultralytics-YOLO11/*
-!openi-archive/ultralytics-YOLO11/*.py
 
 # Temp work area (datasets, checkpoints, local validation)
 temp/
