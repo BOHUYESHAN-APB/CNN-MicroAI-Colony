@@ -102,6 +102,16 @@ coverage/
 .nyc_output/
 
 
+# OpenI archive (zip extraction)
+openi-archive/
+!openi-archive/ultralytics-YOLO11/*.py
+
+# Temp work area (datasets, checkpoints, local validation)
+temp/
+
+# SSH keys (local only, never commit)
+.ssh/
+
 #乱七八糟的内容
 zhuanli.html
 checkpoints/
