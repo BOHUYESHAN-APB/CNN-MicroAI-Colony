@@ -2,12 +2,14 @@
 YOLO11训练脚本 - 双数据集版本
 支持同时训练基础版(5类)和完整版(7类)
 """
+import subprocess
 import sys
 from pathlib import Path
 import yaml
 
-# 添加ultralytics到路径
-sys.path.insert(0, str(Path(__file__).parent))
+# 安装ultralytics
+print("安装ultralytics...")
+subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "ultralytics"])
 
 from ultralytics import YOLO
 
