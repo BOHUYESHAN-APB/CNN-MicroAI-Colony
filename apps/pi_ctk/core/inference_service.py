@@ -44,12 +44,16 @@ class InferenceResult:
 
 def preprocess_image(image_bgr: np.ndarray, size: int = 800) -> np.ndarray:
     rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
-    img = cv2.resize(rgb, (size, size)).astype("float32") / 255.0
-    mean = np.array([0.485, 0.456, 0.406], dtype=np.float32)
-    std = np.array([0.229, 0.224, 0.225], dtype=np.float32)
-    img = (img - mean) / std
+    resized = cv2.resize(rgb, (size, size), interpolation=cv2.INTER_LINEAR)
+
+    # 合并归一化操作，减少中间数组分配
+    img = resized.astype(np.float32)
+    img *= 1.0 / 255.0
+    img -= np.array([0.485, 0.456, 0.406], dtype=np.float32)
+    img /= np.array([0.229, 0.224, 0.225], dtype=np.float32)
+
     img = np.transpose(img, (2, 0, 1))
-    return img[np.newaxis, ...].astype("float32")
+    return np.expand_dims(img, axis=0)
 
 
 def iou(a: np.ndarray, b: np.ndarray) -> float:
@@ -72,18 +76,23 @@ def nms_indices(
     idx = np.where(scores >= score_thr)[0]
     if idx.size == 0:
         return np.array([], dtype=np.int64)
-    idx = idx[np.argsort(scores[idx])[::-1]]
-    keep = []
-    while idx.size > 0:
-        cur = idx[0]
-        keep.append(int(cur))
-        rest = idx[1:]
-        filtered = []
-        for j in rest:
-            if iou(boxes[cur], boxes[j]) <= iou_thr:
-                filtered.append(int(j))
-        idx = np.array(filtered, dtype=np.int64)
-    return np.array(keep, dtype=np.int64)
+
+    # 使用OpenCV NMS替代纯Python实现
+    filtered_boxes = boxes[idx]
+    filtered_scores = scores[idx]
+
+    # 转换为xyxy格式的列表
+    boxes_list = filtered_boxes.tolist()
+    scores_list = filtered_scores.tolist()
+
+    # OpenCV NMS
+    indices = cv2.dnn.NMSBoxes(
+        boxes_list, scores_list, score_thr, iou_thr
+    )
+
+    if len(indices) > 0:
+        return idx[indices.flatten()]
+    return np.array([], dtype=np.int64)
 
 
 def draw_annotated_with_panel(
@@ -217,6 +226,11 @@ class InferenceService:
             so.intra_op_num_threads = self.intra_threads
         if self.inter_threads > 0:
             so.inter_op_num_threads = self.inter_threads
+
+        # 添加图优化和执行模式配置
+        so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+        so.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
+
         self._sess = ort.InferenceSession(
             self.model_path, sess_options=so, providers=["CPUExecutionProvider"]
         )
