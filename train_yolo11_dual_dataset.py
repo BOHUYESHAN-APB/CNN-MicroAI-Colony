@@ -175,19 +175,10 @@ def train_model(dataset_name, model_name, nc, class_names, epochs):
 
 def main():
     print("=" * 60)
-    print("YOLO11 双数据集训练")
+    print("YOLO11 训练 - MIC-all数据集")
     print("=" * 60)
 
-    # 训练基础版 (5类) - 小数据集，更多轮次
-    train_model(
-        dataset_name='MIC-basic',
-        model_name='yolo11n_basic',
-        nc=5,
-        class_names=['B-subtilis', 'C-albicans', 'E-coli', 'P-aeruginosa', 'S-aureus'],
-        epochs=150
-    )
-
-    # 训练完整版 (7类) - 大数据集
+    # 训练完整版 (7类)
     train_model(
         dataset_name='MIC-all',
         model_name='yolo11n_advanced',
@@ -197,8 +188,7 @@ def main():
     )
 
     print("\n" + "=" * 60)
-    print("✓ 所有训练完成！")
-    print("预计总时间: ~8-10小时")
+    print("✓ 训练完成！")
     print("=" * 60)
 
 
