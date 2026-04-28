@@ -1,35 +1,68 @@
-"""
-YOLO11训练脚本 - MIC-all数据集
-"""
-import sys
+"""YOLO11 training entrypoint for OpenI."""
+
+import argparse
 import importlib
+import subprocess
+import sys
 from pathlib import Path
+
 import yaml
 
-# 添加ultralytics到路径（使用仓库中的代码）
-sys.path.insert(0, str(Path(__file__).parent))
 
-from ultralytics import YOLO
+def _bootstrap_ultralytics():
+    repo_root = Path(__file__).resolve().parent
+    candidate_roots = [
+        repo_root / "openi-archive" / "ultralytics-YOLO11",
+        repo_root,
+    ]
+
+    for candidate in candidate_roots:
+        package_init = candidate / "ultralytics" / "__init__.py"
+        if not package_init.exists():
+            continue
+        sys.path.insert(0, str(candidate))
+        print(f"使用仓库内ultralytics: {candidate}")
+        break
+
+    try:
+        from ultralytics import YOLO as _YOLO
+    except ModuleNotFoundError as ex:
+        if ex.name != "ultralytics":
+            raise
+        print("未找到ultralytics包，回退到 pip install ultralytics")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "ultralytics"])
+        from ultralytics import YOLO as _YOLO
+
+    return _YOLO
 
 
-def find_dataset_yaml(dataset_name='MIC-all'):
-    """查找数据集配置文件 - 使用c2net.context"""
-    search_paths = []
+YOLO = _bootstrap_ultralytics()
 
-    # 使用c2net.context获取数据集路径
+
+def _prepare_c2net_context():
     try:
         context_mod = importlib.import_module("c2net.context")
         prepare_fn = getattr(context_mod, "prepare", None)
         if callable(prepare_fn):
             ctx = prepare_fn()
-            dataset_path = getattr(ctx, "dataset_path", "")
-            if dataset_path:
-                search_paths.append(Path(str(dataset_path)))
-                print(f"c2net数据集路径: {dataset_path}")
-    except Exception as e:
-        print(f"c2net.context加载失败: {e}")
+            print(f"c2net code_path: {getattr(ctx, 'code_path', '')}")
+            print(f"c2net dataset_path: {getattr(ctx, 'dataset_path', '')}")
+            print(f"c2net output_path: {getattr(ctx, 'output_path', '')}")
+            return ctx
+    except Exception as ex:
+        print(f"c2net.context加载失败: {ex}")
+    return None
 
-    # 备用搜索路径
+
+def find_dataset_yaml(dataset_name='MIC-all', ctx=None):
+    """Find data.yaml from OpenI mounted datasets."""
+    search_paths = []
+
+    dataset_path = getattr(ctx, "dataset_path", "") if ctx is not None else ""
+    if dataset_path:
+        search_paths.append(Path(str(dataset_path)))
+        print(f"c2net数据集路径: {dataset_path}")
+
     search_paths.extend([
         Path("/tmp/dataset"),
         Path("/cache/dataset"),
@@ -43,7 +76,11 @@ def find_dataset_yaml(dataset_name='MIC-all'):
             continue
         print(f"  检查路径: {base_path}")
 
-        # 在子目录中查找
+        direct_yaml = base_path / "data.yaml"
+        if direct_yaml.exists():
+            print(f"OK 找到数据集配置: {direct_yaml}")
+            return direct_yaml
+
         for subdir in base_path.iterdir():
             if not subdir.is_dir():
                 continue
@@ -54,18 +91,38 @@ def find_dataset_yaml(dataset_name='MIC-all'):
                     print(f"OK 找到数据集配置: {yaml_path}")
                     return yaml_path
 
+            nested_yaml = subdir / "data.yaml"
+            if nested_yaml.exists() and dataset_name in {subdir.name, "", None}:
+                print(f"OK 找到数据集配置: {nested_yaml}")
+                return nested_yaml
+
+            try:
+                for subsubdir in subdir.iterdir():
+                    if not subsubdir.is_dir():
+                        continue
+                    print(f"      检查二级子目录: {subdir.name}/{subsubdir.name}")
+                    yaml_path = subsubdir / "data.yaml"
+                    if not yaml_path.exists():
+                        continue
+                    if dataset_name and subsubdir.name != dataset_name:
+                        continue
+                    print(f"OK 找到数据集配置: {yaml_path}")
+                    return yaml_path
+            except Exception:
+                continue
+
     raise FileNotFoundError(f"未找到数据集 {dataset_name}")
 
 
-def train_model(dataset_name, model_name, nc, class_names, epochs):
-    """训练单个模型"""
+def train_model(dataset_name, model_name, nc, class_names, epochs, ctx=None):
+    """Train a single YOLO model."""
     print("\n" + "=" * 60)
     print(f"开始训练: {model_name}")
     print(f"数据集: {dataset_name}, 类别数: {nc}, 训练轮数: {epochs}")
     print("=" * 60)
 
     # 查找数据集
-    data_yaml_path = find_dataset_yaml(dataset_name)
+    data_yaml_path = find_dataset_yaml(dataset_name, ctx=ctx)
 
     # 修正data.yaml路径
     with open(data_yaml_path, 'r', encoding='utf-8') as f:
@@ -125,87 +182,89 @@ def train_model(dataset_name, model_name, nc, class_names, epochs):
     print(f"\n导出{model_name} ONNX...")
     model.export(format='onnx', imgsz=640, simplify=True)
 
-    # 复制到输出目录
-    try:
-        context_mod = importlib.import_module("c2net.context")
-        prepare_fn = getattr(context_mod, "prepare", None)
-        if callable(prepare_fn):
-            ctx = prepare_fn()
-            output_path = getattr(ctx, "output_path", None)
-            if output_path:
-                import shutil
-                output_dir = Path(output_path) / model_name
-                output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = getattr(ctx, "output_path", None) if ctx is not None else None
+    if output_path:
+        try:
+            import shutil
 
-                weights_dir = Path(model.trainer.best).parent
+            output_dir = Path(output_path) / model_name
+            output_dir.mkdir(parents=True, exist_ok=True)
 
-                # 复制所有checkpoint
-                for ckpt in weights_dir.glob('*.pt'):
-                    if ckpt.name not in ['best.pt', 'last.pt']:
-                        shutil.copy2(ckpt, output_dir / ckpt.name)
+            weights_dir = Path(model.trainer.best).parent
 
-                # 复制best和last模型
-                shutil.copy2(weights_dir / 'best.pt', output_dir / 'best.pt')
-                shutil.copy2(weights_dir / 'best.onnx', output_dir / 'best.onnx')
-                if (weights_dir / 'last.pt').exists():
-                    shutil.copy2(weights_dir / 'last.pt', output_dir / 'last.pt')
+            for ckpt in weights_dir.glob('*.pt'):
+                if ckpt.name not in ['best.pt', 'last.pt']:
+                    shutil.copy2(ckpt, output_dir / ckpt.name)
 
-                # 导出last模型为ONNX
-                if (weights_dir / 'last.pt').exists():
-                    last_model = YOLO(str(weights_dir / 'last.pt'))
-                    last_model.export(format='onnx', imgsz=640, simplify=True)
-                    shutil.copy2(weights_dir / 'last.onnx', output_dir / 'last.onnx')
+            shutil.copy2(weights_dir / 'best.pt', output_dir / 'best.pt')
+            shutil.copy2(weights_dir / 'best.onnx', output_dir / 'best.onnx')
+            if (weights_dir / 'last.pt').exists():
+                shutil.copy2(weights_dir / 'last.pt', output_dir / 'last.pt')
 
-                # 复制训练结果和配置
-                results_csv = weights_dir.parent / 'results.csv'
-                if results_csv.exists():
-                    shutil.copy2(results_csv, output_dir / 'results.csv')
+            if (weights_dir / 'last.pt').exists():
+                last_model = YOLO(str(weights_dir / 'last.pt'))
+                last_model.export(format='onnx', imgsz=640, simplify=True)
+                shutil.copy2(weights_dir / 'last.onnx', output_dir / 'last.onnx')
 
-                args_yaml = weights_dir.parent / 'args.yaml'
-                if args_yaml.exists():
-                    shutil.copy2(args_yaml, output_dir / 'args.yaml')
+            results_csv = weights_dir.parent / 'results.csv'
+            if results_csv.exists():
+                shutil.copy2(results_csv, output_dir / 'results.csv')
 
-                # 保存模型信息
-                config_info = {
-                    'model_name': model_name,
-                    'dataset': dataset_name,
-                    'nc': nc,
-                    'names': class_names,
-                    'epochs': epochs,
-                    'batch_size': 16,
-                    'imgsz': 640,
-                    'mAP50': float(results.results_dict.get('metrics/mAP50(B)', 0)),
-                    'mAP50-95': float(results.results_dict.get('metrics/mAP50-95(B)', 0)),
-                    'best_epoch': model.trainer.best_epoch if hasattr(model.trainer, 'best_epoch') else 'N/A',
-                }
-                with open(output_dir / 'model_info.yaml', 'w') as f:
-                    yaml.dump(config_info, f)
+            args_yaml = weights_dir.parent / 'args.yaml'
+            if args_yaml.exists():
+                shutil.copy2(args_yaml, output_dir / 'args.yaml')
 
-                print(f"\n✓ {model_name} 已保存到: {output_dir}")
-                print(f"  - 所有checkpoint (epoch_*.pt)")
-                print(f"  - best.pt + best.onnx (最佳模型)")
-                print(f"  - last.pt + last.onnx (最后一轮)")
-                print(f"  - results.csv (训练曲线)")
-                print(f"  - args.yaml (训练参数)")
-                print(f"  - model_info.yaml (模型信息+类别映射)")
-    except Exception as e:
-        print(f"保存到输出目录失败: {e}")
+            config_info = {
+                'model_name': model_name,
+                'dataset': dataset_name,
+                'nc': nc,
+                'names': class_names,
+                'epochs': epochs,
+                'batch_size': 16,
+                'imgsz': 640,
+                'mAP50': float(results.results_dict.get('metrics/mAP50(B)', 0)),
+                'mAP50-95': float(results.results_dict.get('metrics/mAP50-95(B)', 0)),
+                'best_epoch': model.trainer.best_epoch if hasattr(model.trainer, 'best_epoch') else 'N/A',
+            }
+            with open(output_dir / 'model_info.yaml', 'w', encoding='utf-8') as f:
+                yaml.dump(config_info, f, allow_unicode=True)
+
+            print(f"\n✓ {model_name} 已保存到: {output_dir}")
+            print("  - 所有checkpoint (epoch_*.pt)")
+            print("  - best.pt + best.onnx (最佳模型)")
+            print("  - last.pt + last.onnx (最后一轮)")
+            print("  - results.csv (训练曲线)")
+            print("  - args.yaml (训练参数)")
+            print("  - model_info.yaml (模型信息+类别映射)")
+        except Exception as ex:
+            print(f"保存到输出目录失败: {ex}")
 
     return results
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dataset-name', type=str, default='MIC-all', help='数据集文件夹名称')
+    parser.add_argument('--epochs', type=int, default=120, help='训练轮数')
+    args, unknown = parser.parse_known_args()
+
+    if unknown:
+        print(f"忽略平台注入的额外参数: {unknown}")
+
+    ctx = _prepare_c2net_context()
+
     print("=" * 60)
     print("YOLO11 训练 - MIC-all数据集")
     print("=" * 60)
 
     # 训练完整版 (7类)
     train_model(
-        dataset_name='MIC-all',
+        dataset_name=args.dataset_name,
         model_name='yolo11n_advanced',
         nc=7,
         class_names=['B-subtilis', 'C-albicans', 'Contamination', 'Defect', 'E-coli', 'P-aeruginosa', 'S-aureus'],
-        epochs=120
+        epochs=args.epochs,
+        ctx=ctx,
     )
 
     print("\n" + "=" * 60)

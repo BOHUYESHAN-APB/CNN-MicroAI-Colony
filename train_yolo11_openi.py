@@ -1,41 +1,68 @@
 #!/usr/bin/env python3
 """YOLO11训练脚本 - 适配启智平台数据集挂载"""
-import os
-import sys
+
 import argparse
 import importlib
+import os
+import subprocess
+import sys
 from pathlib import Path
 
-# 添加ultralytics到路径（仓库根目录，不是ultralytics子目录）
-sys.path.insert(0, str(Path(__file__).parent))
 
-try:
-    from ultralytics import YOLO
-except ImportError as e:
-    print(f"导入ultralytics失败: {e}")
-    print(f"Python路径: {sys.path}")
-    print(f"当前目录: {Path.cwd()}")
-    print(f"脚本目录: {Path(__file__).parent}")
-    raise
+def _bootstrap_ultralytics():
+    repo_root = Path(__file__).resolve().parent
+    candidate_roots = [
+        repo_root / "openi-archive" / "ultralytics-YOLO11",
+        repo_root,
+    ]
+
+    for candidate in candidate_roots:
+        package_init = candidate / "ultralytics" / "__init__.py"
+        if not package_init.exists():
+            continue
+        sys.path.insert(0, str(candidate))
+        print(f"使用仓库内ultralytics: {candidate}")
+        break
+
+    try:
+        from ultralytics import YOLO as _YOLO
+    except ModuleNotFoundError as ex:
+        if ex.name != "ultralytics":
+            raise
+        print("未找到ultralytics包，回退到 pip install ultralytics")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "ultralytics"])
+        from ultralytics import YOLO as _YOLO
+
+    return _YOLO
 
 
-def find_dataset_yaml(dataset_name=None):
-    """查找数据集配置文件 - 适配启智平台挂载路径"""
+YOLO = _bootstrap_ultralytics()
 
-    search_paths = []
 
-    # 使用c2net.context获取数据集路径
+def _prepare_c2net_context():
     try:
         context_mod = importlib.import_module("c2net.context")
         prepare_fn = getattr(context_mod, "prepare", None)
         if callable(prepare_fn):
             ctx = prepare_fn()
-            dataset_path = getattr(ctx, "dataset_path", "")
-            if dataset_path:
-                search_paths.append(Path(str(dataset_path)))
-                print(f"c2net数据集路径: {dataset_path}")
-    except Exception as e:
-        print(f"c2net.context加载失败: {e}")
+            print(f"c2net code_path: {getattr(ctx, 'code_path', '')}")
+            print(f"c2net dataset_path: {getattr(ctx, 'dataset_path', '')}")
+            print(f"c2net output_path: {getattr(ctx, 'output_path', '')}")
+            return ctx
+    except Exception as ex:
+        print(f"c2net.context加载失败: {ex}")
+    return None
+
+
+def find_dataset_yaml(dataset_name=None, ctx=None):
+    """查找数据集配置文件 - 适配启智平台挂载路径"""
+
+    search_paths = []
+
+    dataset_path = getattr(ctx, "dataset_path", "") if ctx is not None else ""
+    if dataset_path:
+        search_paths.append(Path(str(dataset_path)))
+        print(f"c2net数据集路径: {dataset_path}")
 
     # 环境变量指定的路径
     if "OPENI_DATASET_PATH" in os.environ:
@@ -112,10 +139,15 @@ def find_dataset_yaml(dataset_name=None):
 
 
 def main():
+    ctx = _prepare_c2net_context()
+
     try:
         parser = argparse.ArgumentParser()
         parser.add_argument('--dataset-name', type=str, default=None, help='数据集文件夹名称')
-        args = parser.parse_args()
+        args, unknown = parser.parse_known_args()
+
+        if unknown:
+            print(f"忽略平台注入的额外参数: {unknown}")
 
         print("=" * 60)
         print("YOLO11 训练 - 启智平台")
@@ -125,7 +157,7 @@ def main():
         os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 
         # 查找数据集
-        data_yaml = find_dataset_yaml(args.dataset_name)
+        data_yaml = find_dataset_yaml(args.dataset_name, ctx=ctx)
     except Exception as e:
         print(f"初始化失败: {e}")
         import traceback
@@ -229,9 +261,10 @@ def main():
     print("✓ ONNX模型已导出")
 
     # 复制模型到输出目录
-    if c2net_context.output_path:
+    output_path = getattr(ctx, 'output_path', None) if ctx is not None else None
+    if output_path:
         import shutil
-        output_dir = Path(c2net_context.output_path)
+        output_dir = Path(output_path)
         output_dir.mkdir(parents=True, exist_ok=True)
 
         best_pt = Path(model.trainer.best)
