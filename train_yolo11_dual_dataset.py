@@ -2,6 +2,8 @@
 
 import argparse
 import importlib
+import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -37,6 +39,70 @@ def _bootstrap_ultralytics():
 
 
 YOLO = _bootstrap_ultralytics()
+
+
+def _prepare_offline_ultralytics_fonts():
+    """Avoid network font downloads in offline OpenI containers."""
+    try:
+        from matplotlib import font_manager
+        from ultralytics.utils import USER_CONFIG_DIR
+        from ultralytics.utils import checks as checks_mod
+
+        font_dir = Path(USER_CONFIG_DIR)
+        font_dir.mkdir(parents=True, exist_ok=True)
+
+        system_fonts = [Path(p) for p in font_manager.findSystemFonts()]
+        preferred_names = [
+            "Arial.ttf",
+            "Arial Unicode.ttf",
+            "Arial Unicode MS.ttf",
+            "DejaVuSans.ttf",
+            "LiberationSans-Regular.ttf",
+            "NotoSans-Regular.ttf",
+            "NotoSansCJK-Regular.ttc",
+            "NotoSansCJK-Regular.otf",
+        ]
+
+        source_font = None
+        for preferred in preferred_names:
+            source_font = next((p for p in system_fonts if p.name == preferred), None)
+            if source_font is not None:
+                break
+
+        def _offline_check_font(font="Arial.ttf"):
+            name = Path(font).name
+            target = font_dir / name
+            if target.exists():
+                return target
+
+            direct_match = next((p for p in system_fonts if p.name == name), None)
+            if direct_match is not None:
+                return direct_match
+
+            if source_font is not None:
+                if not target.exists():
+                    shutil.copy2(source_font, target)
+                    print(f"离线字体兜底: {source_font.name} -> {target}")
+                return target
+
+            fallback = Path(font_manager.findfont(font_manager.FontProperties(family="DejaVu Sans")))
+            if fallback.exists():
+                return fallback
+            return target
+
+        for target_name in ("Arial.ttf", "Arial.Unicode.ttf"):
+            prepared = _offline_check_font(target_name)
+            print(f"字体检查: {target_name} -> {prepared}")
+
+        checks_mod.check_font = _offline_check_font
+        try:
+            import ultralytics.data.utils as data_utils_mod
+
+            data_utils_mod.check_font = _offline_check_font
+        except Exception as ex:
+            print(f"补丁 data.utils.check_font 失败: {ex}")
+    except Exception as ex:
+        print(f"离线字体准备失败: {ex}")
 
 
 def _prepare_c2net_context():
@@ -243,6 +309,9 @@ def train_model(dataset_name, model_name, nc, class_names, epochs, ctx=None):
 
 
 def main():
+    os.environ.setdefault("YOLO_OFFLINE", "true")
+    _prepare_offline_ultralytics_fonts()
+
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset-name', type=str, default='MIC-all', help='数据集文件夹名称')
     parser.add_argument('--epochs', type=int, default=120, help='训练轮数')
