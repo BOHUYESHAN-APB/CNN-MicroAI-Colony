@@ -69,8 +69,7 @@ def install_deps(ssh: paramiko.SSHClient, base: str) -> None:
 
 def deploy_and_test(host: str, user: str, repo_root: Path, dry_run: bool) -> None:
     local_models = [
-        repo_root / "onnx model" / "checkpoint_epoch_31.onnx",
-        repo_root / "onnx model" / "checkpoint_epoch_31.static_qdq.onnx",
+        repo_root / "temp" / "openi_yolo11_eval" / "yolo11n_advanced" / "best.onnx",
     ]
     local_images = sorted((repo_root / "test-pic").glob("*.jpg"))
     local_runner = repo_root / "scripts" / "pi_infer_onnx.py"
@@ -111,28 +110,16 @@ def deploy_and_test(host: str, user: str, repo_root: Path, dry_run: bool) -> Non
         finally:
             sftp.close()
 
-        # Run FP32 baseline
+        # Run current YOLO11 model
         fp32_cmd = (
             f"{remote_base}/.venv/bin/python {remote_base}/scripts/pi_infer_onnx.py "
-            f"--model {remote_base}/models/checkpoint_epoch_31.onnx "
+            f"--model {remote_base}/models/best.onnx "
             f"--image-dir {remote_base}/images --threshold 0.45 "
             f"--out-csv {remote_base}/reports/fp32_report.csv"
         )
         code, out, err = run_remote(ssh, fp32_cmd)
         if code != 0:
             raise RuntimeError(f"FP32 inference failed: {err or out}")
-        print(out)
-
-        # Run static quantized
-        qdq_cmd = (
-            f"{remote_base}/.venv/bin/python {remote_base}/scripts/pi_infer_onnx.py "
-            f"--model {remote_base}/models/checkpoint_epoch_31.static_qdq.onnx "
-            f"--image-dir {remote_base}/images --threshold 0.45 "
-            f"--out-csv {remote_base}/reports/static_qdq_report.csv"
-        )
-        code, out, err = run_remote(ssh, qdq_cmd)
-        if code != 0:
-            raise RuntimeError(f"Static QDQ inference failed: {err or out}")
         print(out)
 
         mem_cmd = "free -m && uname -a"
@@ -144,7 +131,6 @@ def deploy_and_test(host: str, user: str, repo_root: Path, dry_run: bool) -> Non
 
         print("Remote reports:")
         print(f"  {remote_base}/reports/fp32_report.csv")
-        print(f"  {remote_base}/reports/static_qdq_report.csv")
     finally:
         ssh.close()
 
@@ -154,7 +140,7 @@ def parse_args() -> argparse.Namespace:
         description="Deploy ONNX to Raspberry Pi and run inference checks"
     )
     p.add_argument("--host", default="192.168.11.239", help="Raspberry Pi host")
-    p.add_argument("--user", default="pi", help="SSH username")
+    p.add_argument("--user", default="bhys", help="SSH username")
     p.add_argument(
         "--repo-root",
         default=str(Path(__file__).resolve().parents[1]),
