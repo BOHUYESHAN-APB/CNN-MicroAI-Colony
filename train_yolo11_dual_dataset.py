@@ -219,6 +219,7 @@ def train_model(dataset_name, model_name, nc, class_names, epochs, ctx=None):
         imgsz=640,
         batch=16,
         device=0,
+        amp=False,
         optimizer='AdamW',
         lr0=0.001,
         lrf=0.01,

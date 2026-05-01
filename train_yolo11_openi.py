@@ -280,6 +280,7 @@ def main():
         imgsz=640,              # 输入尺寸
         batch=16,               # 批次大小（根据GPU调整）
         device=0,               # 使用GPU 0
+        amp=False,              # 禁用AMP，避免OpenI离线环境触发自检样例依赖
 
         # 优化器配置
         optimizer='AdamW',
