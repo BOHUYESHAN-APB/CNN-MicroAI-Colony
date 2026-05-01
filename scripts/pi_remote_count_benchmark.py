@@ -7,7 +7,7 @@ Outputs:
   - Local JSON with p50/p90/p99/mean/std latency, memory info, model metadata
 
 Relationship to existing scripts:
-  - scripts/pi_remote_deploy_and_test.py: deployment + FP32/QDQ comparison
+  - scripts/pi_remote_deploy_and_test.py: deployment + smoke test
   - scripts/pi_remote_count_benchmark.py (this file): focused latency benchmark
   - scripts/eval_count_onnx_subset.py: local accuracy evaluation
 
@@ -20,13 +20,13 @@ Usage:
     --warmup 5 --iters 50 ^
     --out-json reports\pi_bench_fp32.json
 
-  # Benchmark QDQ quantized model
+  # Override input size manually when a model uses dynamic input shape
   python scripts/pi_remote_count_benchmark.py ^
     --host 192.168.11.239 ^
     --user bhys ^
-    --model "onnx model\checkpoint_epoch_31.static_qdq.onnx" ^
-    --warmup 5 --iters 50 ^
-    --out-json reports\pi_bench_qdq.json
+    --model "some\dynamic_model.onnx" ^
+    --input-size 640 --warmup 5 --iters 50 ^
+    --out-json reports\pi_bench_dynamic.json
 """
 
 import argparse
@@ -78,6 +78,19 @@ def run_remote(ssh: paramiko.SSHClient, cmd: str) -> tuple[int, str, str]:
 
 def sftp_put(sftp: paramiko.SFTPClient, local_path: Path, remote_path: str) -> None:
     sftp.put(str(local_path), remote_path)
+
+
+def ensure_remote_runtime(ssh: paramiko.SSHClient, remote_base: str) -> str:
+    setup_cmd = (
+        f"mkdir -p {remote_base}/models {remote_base}/reports && "
+        f"python3 -m venv {remote_base}/.venv && "
+        f"{remote_base}/.venv/bin/python -m pip install --upgrade pip && "
+        f"{remote_base}/.venv/bin/pip install onnxruntime numpy"
+    )
+    code, out, err = run_remote(ssh, setup_cmd)
+    if code != 0:
+        raise RuntimeError(f"Failed to prepare Pi runtime: {err or out}")
+    return f"{remote_base}/.venv/bin/python"
 
 
 # Benchmark script to run on the Pi
@@ -199,17 +212,8 @@ def main() -> None:
 
     remote_base = f"/home/{args.user}/cnn-bench"
     try:
-        # Setup
-        run_remote(ssh, f"mkdir -p {remote_base}/models {remote_base}/reports")
-
-        # Install deps if needed
-        code, out, _ = run_remote(ssh, "python3 -c 'import onnxruntime'")
-        if code != 0:
-            print("Installing onnxruntime on Pi...")
-            run_remote(
-                ssh,
-                f"python3 -m pip install --user onnxruntime numpy 2>&1 || true",
-            )
+        print("Preparing runtime on Pi...")
+        remote_python = ensure_remote_runtime(ssh, remote_base)
 
         # Upload model + benchmark script
         sftp = ssh.open_sftp()
@@ -227,7 +231,7 @@ def main() -> None:
         # Run benchmark
         remote_json = f"{remote_base}/reports/bench_result.json"
         cmd = (
-            f"python3 {remote_script} "
+            f"{remote_python} {remote_script} "
             f"{remote_model} {args.warmup} {args.iters} {args.input_size} {remote_json}"
         )
         print(f"Running benchmark on Pi...")
