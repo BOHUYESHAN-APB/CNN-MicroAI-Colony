@@ -42,11 +42,10 @@ class InferenceResult:
     error: Optional[str]
 
 
-def preprocess_image(image_bgr: np.ndarray, size: int = 800) -> np.ndarray:
+def preprocess_image(image_bgr: np.ndarray, size: int) -> np.ndarray:
     rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
     resized = cv2.resize(rgb, (size, size), interpolation=cv2.INTER_LINEAR)
 
-    # 合并归一化操作，减少中间数组分配
     img = resized.astype(np.float32)
     img *= 1.0 / 255.0
     img -= np.array([0.485, 0.456, 0.406], dtype=np.float32)
@@ -56,50 +55,132 @@ def preprocess_image(image_bgr: np.ndarray, size: int = 800) -> np.ndarray:
     return np.expand_dims(img, axis=0)
 
 
-def iou(a: np.ndarray, b: np.ndarray) -> float:
-    x1 = max(float(a[0]), float(b[0]))
-    y1 = max(float(a[1]), float(b[1]))
-    x2 = min(float(a[2]), float(b[2]))
-    y2 = min(float(a[3]), float(b[3]))
-    iw = max(0.0, x2 - x1)
-    ih = max(0.0, y2 - y1)
-    inter = iw * ih
-    area_a = max(0.0, float(a[2] - a[0])) * max(0.0, float(a[3] - a[1]))
-    area_b = max(0.0, float(b[2] - b[0])) * max(0.0, float(b[3] - b[1]))
-    denom = area_a + area_b - inter
-    return inter / denom if denom > 0 else 0.0
+def resolve_input_size(session: ort.InferenceSession) -> int:
+    shape = session.get_inputs()[0].shape
+    if len(shape) >= 4:
+        h = shape[-2]
+        w = shape[-1]
+        if isinstance(h, int) and isinstance(w, int) and h > 0 and h == w:
+            return int(h)
+    raise RuntimeError(f"无法从模型输入形状推断尺寸: {shape}")
 
 
-def nms_indices(
-    boxes: np.ndarray, scores: np.ndarray, score_thr: float, iou_thr: float
+def squeeze_batch(arr: np.ndarray) -> np.ndarray:
+    if arr.ndim >= 1 and arr.shape[0] == 1:
+        return arr[0]
+    return arr
+
+
+def xywh_to_xyxy(boxes_xywh: np.ndarray) -> np.ndarray:
+    boxes = boxes_xywh.astype(np.float32, copy=True)
+    cx = boxes[:, 0]
+    cy = boxes[:, 1]
+    w = boxes[:, 2]
+    h = boxes[:, 3]
+    boxes[:, 0] = cx - (w / 2.0)
+    boxes[:, 1] = cy - (h / 2.0)
+    boxes[:, 2] = cx + (w / 2.0)
+    boxes[:, 3] = cy + (h / 2.0)
+    return boxes
+
+
+def nms_xyxy(boxes: np.ndarray, scores: np.ndarray, iou_thr: float) -> np.ndarray:
+    if boxes.size == 0 or scores.size == 0:
+        return np.zeros((0,), dtype=np.int64)
+
+    x1 = boxes[:, 0]
+    y1 = boxes[:, 1]
+    x2 = boxes[:, 2]
+    y2 = boxes[:, 3]
+    areas = np.maximum(0.0, x2 - x1) * np.maximum(0.0, y2 - y1)
+    order = scores.argsort()[::-1]
+    keep: list[int] = []
+
+    while order.size > 0:
+        i = int(order[0])
+        keep.append(i)
+        if order.size == 1:
+            break
+
+        rest = order[1:]
+        xx1 = np.maximum(x1[i], x1[rest])
+        yy1 = np.maximum(y1[i], y1[rest])
+        xx2 = np.minimum(x2[i], x2[rest])
+        yy2 = np.minimum(y2[i], y2[rest])
+
+        inter_w = np.maximum(0.0, xx2 - xx1)
+        inter_h = np.maximum(0.0, yy2 - yy1)
+        inter = inter_w * inter_h
+        union = areas[i] + areas[rest] - inter
+        iou = np.divide(inter, union, out=np.zeros_like(inter), where=union > 0)
+        order = rest[iou <= iou_thr]
+
+    return np.asarray(keep, dtype=np.int64)
+
+
+def scale_boxes_to_source(
+    boxes: np.ndarray, src_w: int, src_h: int, input_size: int
 ) -> np.ndarray:
-    idx = np.where(scores >= score_thr)[0]
-    if idx.size == 0:
-        return np.array([], dtype=np.int64)
+    scaled = boxes.astype(np.float32, copy=True)
+    scaled[:, [0, 2]] *= src_w / float(input_size)
+    scaled[:, [1, 3]] *= src_h / float(input_size)
+    scaled[:, [0, 2]] = np.clip(scaled[:, [0, 2]], 0, max(src_w - 1, 0))
+    scaled[:, [1, 3]] = np.clip(scaled[:, [1, 3]], 0, max(src_h - 1, 0))
+    return scaled
 
-    # 使用OpenCV NMS替代纯Python实现
-    filtered_boxes = boxes[idx]
-    filtered_scores = scores[idx]
 
-    # 转换为xyxy格式的列表
-    boxes_list = filtered_boxes.tolist()
-    scores_list = filtered_scores.tolist()
+def parse_yolo_outputs(
+    outputs: list[np.ndarray], score_thr: float, nms_iou: float
+) -> tuple[np.ndarray, np.ndarray]:
+    pred = np.asarray(outputs[0], dtype=np.float32)
+    pred = squeeze_batch(pred)
+    if pred.ndim != 2:
+        raise RuntimeError(f"不支持的YOLO输出形状: {outputs[0].shape}")
 
-    # OpenCV NMS
-    indices = cv2.dnn.NMSBoxes(
-        boxes_list, scores_list, score_thr, iou_thr
-    )
+    if pred.shape[0] < pred.shape[1]:
+        pred = pred.T
 
-    if len(indices) > 0:
-        return idx[indices.flatten()]
-    return np.array([], dtype=np.int64)
+    if pred.shape[1] < 5:
+        raise RuntimeError(f"YOLO输出通道不足: {pred.shape}")
+
+    boxes = xywh_to_xyxy(pred[:, :4])
+    class_scores = pred[:, 4:]
+    scores = class_scores.max(axis=1).astype(np.float32)
+
+    keep = scores >= score_thr
+    boxes = boxes[keep]
+    scores = scores[keep]
+    if boxes.size == 0:
+        return boxes.reshape(0, 4), scores
+
+    keep_nms = nms_xyxy(boxes, scores, nms_iou)
+    return boxes[keep_nms], scores[keep_nms]
+
+
+def parse_fasterrcnn_outputs(
+    outputs: list[np.ndarray], score_thr: float
+) -> tuple[np.ndarray, np.ndarray]:
+    if len(outputs) < 3:
+        raise RuntimeError(f"不支持的检测输出数量: {len(outputs)}")
+
+    boxes = np.asarray(squeeze_batch(np.asarray(outputs[0])), dtype=np.float32)
+    scores = np.asarray(squeeze_batch(np.asarray(outputs[2])), dtype=np.float32)
+    keep = scores >= score_thr
+    return boxes[keep], scores[keep]
+
+
+def parse_model_outputs(
+    outputs: list[np.ndarray], score_thr: float, nms_iou: float
+) -> tuple[np.ndarray, np.ndarray]:
+    if len(outputs) == 1:
+        return parse_yolo_outputs(outputs, score_thr=score_thr, nms_iou=nms_iou)
+    return parse_fasterrcnn_outputs(outputs, score_thr=score_thr)
 
 
 def draw_annotated_with_panel(
     src_bgr: np.ndarray,
-    boxes_800: np.ndarray,
+    boxes_xyxy: np.ndarray,
     scores: np.ndarray,
-    keep: np.ndarray,
     high_conf_thr: float,
     model_name: str,
     score_thr: float,
@@ -112,13 +193,12 @@ def draw_annotated_with_panel(
     high_count = 0
     low_count = 0
 
-    for i in keep:
-        b = boxes_800[i]
+    for i, box in enumerate(boxes_xyxy):
         s = float(scores[i])
-        x1 = int(b[0] * (w / 800.0))
-        y1 = int(b[1] * (h / 800.0))
-        x2 = int(b[2] * (w / 800.0))
-        y2 = int(b[3] * (h / 800.0))
+        x1 = int(max(0, min(w - 1, box[0])))
+        y1 = int(max(0, min(h - 1, box[1])))
+        x2 = int(max(0, min(w - 1, box[2])))
+        y2 = int(max(0, min(h - 1, box[3])))
 
         if s >= high_conf_thr:
             level = "A"
@@ -148,7 +228,7 @@ def draw_annotated_with_panel(
             }
         )
 
-    avg_score = float(np.mean(scores[keep])) if keep.size > 0 else 0.0
+    avg_score = float(np.mean(scores)) if scores.size > 0 else 0.0
 
     panel_w = 460
     canvas = np.full((h, w + panel_w, 3), 255, dtype=np.uint8)
@@ -161,7 +241,7 @@ def draw_annotated_with_panel(
         f"Threshold: {score_thr:.2f}",
         f"NMS IoU: {nms_iou:.2f}",
         "",
-        f"Total Colonies: {int(keep.size)}",
+        f"Total Colonies: {int(scores.size)}",
         f"A (high confidence): {high_count}",
         f"B (regular confidence): {low_count}",
         f"Top score: {float(scores.max() if scores.size > 0 else 0.0):.3f}",
@@ -198,7 +278,7 @@ def draw_annotated_with_panel(
             break
 
     summary_text = (
-        f"count={int(keep.size)}, A={high_count}, B={low_count}, "
+        f"count={int(scores.size)}, A={high_count}, B={low_count}, "
         f"top={float(scores.max() if scores.size > 0 else 0.0):.3f}, avg={avg_score:.3f}"
     )
     return canvas, high_count, low_count, avg_score, details, summary_text
@@ -215,6 +295,7 @@ class InferenceService:
         self._thread: Optional[threading.Thread] = None
         self._sess: Optional[ort.InferenceSession] = None
         self._input_name: Optional[str] = None
+        self._input_size: Optional[int] = None
 
     def start(self) -> bool:
         if self._running:
@@ -227,7 +308,6 @@ class InferenceService:
         if self.inter_threads > 0:
             so.inter_op_num_threads = self.inter_threads
 
-        # 添加图优化和执行模式配置
         so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
         so.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
 
@@ -235,6 +315,7 @@ class InferenceService:
             self.model_path, sess_options=so, providers=["CPUExecutionProvider"]
         )
         self._input_name = self._sess.get_inputs()[0].name
+        self._input_size = resolve_input_size(self._sess)
         self._running = True
         self._thread = threading.Thread(
             target=self._loop, name="inference-loop", daemon=True
@@ -249,6 +330,7 @@ class InferenceService:
             self._thread = None
         self._sess = None
         self._input_name = None
+        self._input_size = None
 
     def submit(self, req: InferenceRequest) -> bool:
         if not self._running:
@@ -268,6 +350,7 @@ class InferenceService:
     def _loop(self) -> None:
         assert self._sess is not None
         assert self._input_name is not None
+        assert self._input_size is not None
         while self._running:
             try:
                 req = self._requests.get(timeout=0.1)
@@ -275,19 +358,22 @@ class InferenceService:
                 continue
             t0 = time.perf_counter()
             try:
-                inp = preprocess_image(req.source_bgr)
+                inp = preprocess_image(req.source_bgr, size=self._input_size)
                 outs = cast(
                     list[np.ndarray], self._sess.run(None, {self._input_name: inp})
                 )
-                boxes = outs[0][0]
-                scores = outs[2][0]
-                keep = nms_indices(boxes, scores, req.threshold, req.nms_iou)
+                boxes, scores = parse_model_outputs(
+                    outs, score_thr=req.threshold, nms_iou=req.nms_iou
+                )
+                h, w = req.source_bgr.shape[:2]
+                boxes = scale_boxes_to_source(
+                    boxes, src_w=w, src_h=h, input_size=self._input_size
+                )
                 annotated, high_count, low_count, avg_score, details, summary_text = (
                     draw_annotated_with_panel(
                         src_bgr=req.source_bgr,
-                        boxes_800=boxes,
+                        boxes_xyxy=boxes,
                         scores=scores,
-                        keep=keep,
                         high_conf_thr=req.high_conf_thr,
                         model_name=req.model_name,
                         score_thr=req.threshold,
@@ -295,6 +381,7 @@ class InferenceService:
                     )
                 )
                 latency_ms = (time.perf_counter() - t0) * 1000.0
+                kept_indices = np.arange(scores.shape[0], dtype=np.int64)
                 result = InferenceResult(
                     request_id=req.request_id,
                     source_path=req.source_path,
@@ -302,12 +389,12 @@ class InferenceService:
                     annotated_bgr=annotated,
                     boxes=boxes,
                     scores=scores,
-                    kept_indices=keep,
+                    kept_indices=kept_indices,
                     high_count=high_count,
                     low_count=low_count,
                     top_score=float(scores.max() if scores.size > 0 else 0.0),
                     avg_score=avg_score,
-                    count=int(keep.size),
+                    count=int(scores.shape[0]),
                     details=details,
                     latency_ms=latency_ms,
                     summary_text=summary_text,
