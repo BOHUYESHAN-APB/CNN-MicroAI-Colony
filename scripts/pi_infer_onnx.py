@@ -12,9 +12,6 @@ import onnxruntime as ort
 def preprocess_image(image_bgr: np.ndarray, size: int) -> np.ndarray:
     rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
     img = cv2.resize(rgb, (size, size)).astype("float32") / 255.0
-    mean = np.array([0.485, 0.456, 0.406], dtype=np.float32)
-    std = np.array([0.229, 0.224, 0.225], dtype=np.float32)
-    img = (img - mean) / std
     img = np.transpose(img, (2, 0, 1))
     return img[np.newaxis, ...].astype("float32")
 
@@ -44,10 +41,10 @@ def squeeze_batch(arr: np.ndarray) -> np.ndarray:
 
 def xywh_to_xyxy(boxes_xywh: np.ndarray) -> np.ndarray:
     boxes = boxes_xywh.astype(np.float32, copy=True)
-    cx = boxes[:, 0]
-    cy = boxes[:, 1]
-    w = boxes[:, 2]
-    h = boxes[:, 3]
+    cx = boxes[:, 0].copy()
+    cy = boxes[:, 1].copy()
+    w = boxes[:, 2].copy()
+    h = boxes[:, 3].copy()
     boxes[:, 0] = cx - (w / 2.0)
     boxes[:, 1] = cy - (h / 2.0)
     boxes[:, 2] = cx + (w / 2.0)

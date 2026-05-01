@@ -48,9 +48,6 @@ def preprocess_image(image_bgr: np.ndarray, size: int) -> np.ndarray:
 
     img = resized.astype(np.float32)
     img *= 1.0 / 255.0
-    img -= np.array([0.485, 0.456, 0.406], dtype=np.float32)
-    img /= np.array([0.229, 0.224, 0.225], dtype=np.float32)
-
     img = np.transpose(img, (2, 0, 1))
     return np.expand_dims(img, axis=0)
 
@@ -73,10 +70,10 @@ def squeeze_batch(arr: np.ndarray) -> np.ndarray:
 
 def xywh_to_xyxy(boxes_xywh: np.ndarray) -> np.ndarray:
     boxes = boxes_xywh.astype(np.float32, copy=True)
-    cx = boxes[:, 0]
-    cy = boxes[:, 1]
-    w = boxes[:, 2]
-    h = boxes[:, 3]
+    cx = boxes[:, 0].copy()
+    cy = boxes[:, 1].copy()
+    w = boxes[:, 2].copy()
+    h = boxes[:, 3].copy()
     boxes[:, 0] = cx - (w / 2.0)
     boxes[:, 1] = cy - (h / 2.0)
     boxes[:, 2] = cx + (w / 2.0)
