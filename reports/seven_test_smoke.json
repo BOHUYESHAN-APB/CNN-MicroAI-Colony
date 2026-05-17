@@ -1,0 +1,92 @@
+{
+  "dataset_root": "G:\\train\\new colony.v1i.coco-mmdetection",
+  "dataset_mode": "roboflow_coco",
+  "split": "test",
+  "model": "temp\\openi_yolo11_eval\\yolo11n_advanced\\best.onnx",
+  "data_yaml": "G:\\train\\yolo11_new_colony\\data.yaml",
+  "class_names": [
+    "B-subtilis",
+    "C-albicans",
+    "Contamination",
+    "Defect",
+    "E-coli",
+    "P-aeruginosa",
+    "S-aureus"
+  ],
+  "num_images_evaluated": 10,
+  "input_size": 640,
+  "score_thr": 0.45,
+  "nms_iou": 0.45,
+  "match_iou": 0.5,
+  "total_tp": 6,
+  "total_fp": 1026,
+  "total_fn": 1,
+  "global_precision": 0.005814,
+  "global_recall": 0.857143,
+  "global_f1": 0.01155,
+  "count_mae": 102.5,
+  "count_rmse": 169.16353,
+  "count_exact_accuracy": 0.4,
+  "latency_ms_mean": 51.8281,
+  "latency_ms_p50": 49.6627,
+  "latency_ms_p90": 55.8406,
+  "mean_match_iou": 0.856718,
+  "per_class": {
+    "B-subtilis": {
+      "class_id": 0,
+      "gt": 4,
+      "pred": 446,
+      "tp": 4,
+      "fp": 442,
+      "fn": 0,
+      "precision": 0.008969,
+      "recall": 1.0,
+      "f1": 0.017778
+    },
+    "C-albicans": {
+      "class_id": 1,
+      "gt": 0,
+      "pred": 175,
+      "tp": 0,
+      "fp": 175,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "E-coli": {
+      "class_id": 4,
+      "gt": 0,
+      "pred": 307,
+      "tp": 0,
+      "fp": 307,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "P-aeruginosa": {
+      "class_id": 5,
+      "gt": 3,
+      "pred": 98,
+      "tp": 2,
+      "fp": 96,
+      "fn": 1,
+      "precision": 0.020408,
+      "recall": 0.666667,
+      "f1": 0.039604
+    },
+    "S-aureus": {
+      "class_id": 6,
+      "gt": 0,
+      "pred": 6,
+      "tp": 0,
+      "fp": 6,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "out_csv": "reports\\seven_test_smoke.csv"
+}

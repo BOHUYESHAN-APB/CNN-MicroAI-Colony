@@ -120,3 +120,21 @@ checkpoints/
 opencv-circle-detection/test_outputs/
 opencv-circle-detection/test-images/
 opencv-circle-detection/tools/tune_blob_grid_outputs/
+
+# IDE工具配置
+.claude/
+.opencode/
+
+# 结题报告与交接文档
+*.docx
+docs/handoff/
+docs/dataset_strategy.md
+docs/improvement_plan_advanced.md
+docs/improvement_plan_quick.md
+微生物菌落计数项目_完整交接_重建版.md
+
+# Gradle构建缓存
+android-app/.gradle/
+
+# Windows batch upload helper
+scripts/upload_dataset_after_repo_created.bat

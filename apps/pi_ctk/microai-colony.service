@@ -1,0 +1,16 @@
+[Unit]
+Description=MicroAI Colony Counter Service
+After=graphical.target
+
+[Service]
+Type=simple
+User=pi
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+WorkingDirectory=/home/pi/CNN-MicroAI-Colony
+ExecStart=/usr/bin/python3 -m apps.pi_ctk.main
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=graphical.target

@@ -2,6 +2,7 @@ import os
 import threading
 import time
 import uuid
+import webbrowser
 from pathlib import Path
 from tkinter import filedialog, messagebox
 
@@ -19,6 +20,9 @@ from ..core.camera_service import CameraService
 from ..core.demo_service import DemoService
 from ..core.inference_service import InferenceRequest, InferenceService
 from ..core.storage_service import StorageService, StoredRecord
+from ..core.inhibition_zone_service import InhibitionZoneService
+from ..core.blue_white_service import BlueWhiteColonyService
+from ..core.contamination_detector import ContaminationDetector
 
 
 def repo_root() -> Path:
@@ -44,17 +48,33 @@ def default_demo_path() -> str:
 class PiCtkMvpApp(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("MicroAI Pi MVP - Engineering Edition")
+        self.title("MicroAI Colony Counter - Professional Edition")
         self.geometry("1460x860")
+
+        # 全屏模式标志
+        self._is_fullscreen = False
+        self.bind("<F11>", self._toggle_fullscreen)
+        self.bind("<Escape>", self._exit_fullscreen)
 
         self.storage = StorageService()
         self.camera = CameraService()
+
+        # 模型路径（支持切换）
+        self._current_model = "basic"  # basic 或 advanced
         self.inference = InferenceService(
             model_path=default_model_path(),
             intra_threads=4,
             inter_threads=1,
         )
         self.demo = DemoService(default_demo_path())
+
+        # 新增功能服务
+        self.inhibition_zone = InhibitionZoneService()
+        self.blue_white = BlueWhiteColonyService()
+        self.contamination = ContaminationDetector()
+
+        # 检测模式
+        self._detection_mode = "colony"  # colony, inhibition_zone, blue_white, contamination
 
         self._preview_image = None
         self._running = True
@@ -65,15 +85,75 @@ class PiCtkMvpApp(ctk.CTk):
         self.after(33, self._tick_preview)
         self.after(80, self._tick_inference_result)
 
+    def _toggle_fullscreen(self, event=None):
+        self._is_fullscreen = not self._is_fullscreen
+        self.attributes("-fullscreen", self._is_fullscreen)
+
+    def _exit_fullscreen(self, event=None):
+        if self._is_fullscreen:
+            self._is_fullscreen = False
+            self.attributes("-fullscreen", False)
+
     def _build_ui(self) -> None:
+        # 顶部工具栏
+        toolbar = ctk.CTkFrame(self, height=50)
+        toolbar.grid(row=0, column=0, columnspan=2, sticky="ew", padx=10, pady=(10, 0))
+        toolbar.grid_columnconfigure(1, weight=1)
+
+        # 左侧：状态指示灯
+        status_frame = ctk.CTkFrame(toolbar)
+        status_frame.grid(row=0, column=0, padx=8, pady=8, sticky="w")
+
+        self.camera_status = ctk.CTkLabel(status_frame, text="● 相机", text_color="gray")
+        self.camera_status.grid(row=0, column=0, padx=8)
+
+        self.model_status = ctk.CTkLabel(status_frame, text="● 模型", text_color="gray")
+        self.model_status.grid(row=0, column=1, padx=8)
+
+        # 中间：标题
+        title_label = ctk.CTkLabel(toolbar, text="MicroAI Colony Counter",
+                                   font=ctk.CTkFont(size=18, weight="bold"))
+        title_label.grid(row=0, column=1, padx=8)
+
+        # 右侧：功能按钮
+        btn_frame = ctk.CTkFrame(toolbar)
+        btn_frame.grid(row=0, column=2, padx=8, pady=8, sticky="e")
+
+        self.mode_switch = ctk.CTkSegmentedButton(
+            btn_frame, values=["菌落计数", "抑菌圈", "蓝白斑", "污染检测"],
+            command=self._on_mode_switch
+        )
+        self.mode_switch.set("菌落计数")
+        self.mode_switch.grid(row=0, column=0, padx=4)
+
+        self.model_switch = ctk.CTkSegmentedButton(
+            btn_frame, values=["基础模型", "高级模型"],
+            command=self._on_model_switch
+        )
+        self.model_switch.set("基础模型")
+        self.model_switch.grid(row=0, column=1, padx=4)
+
+        self.btn_settings = ctk.CTkButton(btn_frame, text="⚙ 设置", width=80,
+                                         command=self._on_settings)
+        self.btn_settings.grid(row=0, column=2, padx=4)
+
+        self.btn_feedback = ctk.CTkButton(btn_frame, text="💬 反馈", width=80,
+                                         command=self._on_feedback)
+        self.btn_feedback.grid(row=0, column=3, padx=4)
+
+        self.btn_about = ctk.CTkButton(btn_frame, text="ℹ 关于", width=80,
+                                      command=self._on_about)
+        self.btn_about.grid(row=0, column=4, padx=4)
+
+        # 主内容区域
         self.grid_columnconfigure(0, weight=2)
         self.grid_columnconfigure(1, weight=1)
-        self.grid_rowconfigure(0, weight=1)
+        self.grid_rowconfigure(1, weight=1)
 
         left = ctk.CTkFrame(self)
         right = ctk.CTkFrame(self)
-        left.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
-        right.grid(row=0, column=1, padx=(0, 10), pady=10, sticky="nsew")
+        left.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
+        right.grid(row=1, column=1, padx=(0, 10), pady=10, sticky="nsew")
 
         left.grid_rowconfigure(0, weight=1)
         left.grid_rowconfigure(1, weight=0)
@@ -181,6 +261,18 @@ class PiCtkMvpApp(ctk.CTk):
     def _start_services(self) -> None:
         cam_ok = self.camera.start()
         inf_ok = self.inference.start()
+
+        # 更新状态指示灯
+        if cam_ok:
+            self.camera_status.configure(text="● 相机", text_color="green")
+        else:
+            self.camera_status.configure(text="● 相机", text_color="red")
+
+        if inf_ok:
+            self.model_status.configure(text="● 模型", text_color="green")
+        else:
+            self.model_status.configure(text="● 模型", text_color="red")
+
         self._set_status(
             f"相机: {'OK' if cam_ok else '失败'} | 推理: {'OK' if inf_ok else '失败'}"
         )
@@ -226,6 +318,25 @@ class PiCtkMvpApp(ctk.CTk):
 
             strain, batch, timefmt = self._req_ctx.pop(result.request_id, self._ctx())
             assert result.annotated_bgr is not None
+
+            # 应用蓝白斑检测和污染检测
+            if self._detection_mode == "blue_white":
+                color_types = self.blue_white.classify_colonies(result.annotated_bgr, result.boxes)
+                result.annotated_bgr = self.blue_white.draw_colored_boxes(
+                    result.annotated_bgr, result.boxes, color_types
+                )
+                stats = self.blue_white.get_statistics(color_types)
+                result.summary_text += f" | 蓝:{stats['blue']} 白:{stats['white']}"
+            elif self._detection_mode == "contamination":
+                contamination_flags = self.contamination.detect_contamination(
+                    result.annotated_bgr, result.boxes, result.scores
+                )
+                result.annotated_bgr = self.contamination.draw_contamination_marks(
+                    result.annotated_bgr, result.boxes, contamination_flags
+                )
+                stats = self.contamination.get_statistics(contamination_flags)
+                result.summary_text += f" | 污染:{stats['contaminated']}"
+
             annot_path = self.storage.save_annotated(
                 result.annotated_bgr, strain, batch, timefmt
             )
@@ -316,7 +427,11 @@ class PiCtkMvpApp(ctk.CTk):
             return
         strain, batch, timefmt = self._ctx()
         p = self.storage.save_capture(pkt.frame_bgr, strain, batch, timefmt)
-        self._submit_inference_from_path(str(p), source_type="capture")
+
+        if self._detection_mode == "inhibition_zone":
+            self._process_inhibition_zone(pkt.frame_bgr, str(p), strain, batch, timefmt)
+        else:
+            self._submit_inference_from_path(str(p), source_type="capture")
 
     def _on_import_image(self) -> None:
         f = filedialog.askopenfilename(
@@ -327,7 +442,13 @@ class PiCtkMvpApp(ctk.CTk):
             return
         strain, batch, timefmt = self._ctx()
         p = self.storage.save_imported_file(f, strain, batch, timefmt)
-        self._submit_inference_from_path(str(p), source_type="import")
+
+        if self._detection_mode == "inhibition_zone":
+            image = cv2.imread(f)
+            if image is not None:
+                self._process_inhibition_zone(image, str(p), strain, batch, timefmt)
+        else:
+            self._submit_inference_from_path(str(p), source_type="import")
 
     def _on_import_usb(self) -> None:
         initialdir = None
@@ -389,6 +510,147 @@ class PiCtkMvpApp(ctk.CTk):
                 f"summary={r.get('summary_text')}\n\n"
             )
             self.history_box.insert("end", line)
+
+    def _on_model_switch(self, value: str):
+        """切换模型（基础/高级）"""
+        if value == "基础模型":
+            self._current_model = "basic"
+            model_path = default_model_path()
+        else:
+            self._current_model = "advanced"
+            # 高级模型路径（包含污染检测）
+            model_path = str(repo_root() / "onnx model" / "checkpoint_advanced.onnx")
+
+        self.entry_model.delete(0, "end")
+        self.entry_model.insert(0, model_path)
+        self._set_status(f"已切换到{value}，请点击'重载模型'生效")
+
+    def _on_settings(self):
+        """打开设置窗口"""
+        settings_win = ctk.CTkToplevel(self)
+        settings_win.title("设置")
+        settings_win.geometry("600x400")
+        settings_win.transient(self)
+        settings_win.grab_set()
+
+        ctk.CTkLabel(settings_win, text="系统设置",
+                    font=ctk.CTkFont(size=16, weight="bold")).pack(pady=20)
+
+        # 自启动设置
+        autostart_frame = ctk.CTkFrame(settings_win)
+        autostart_frame.pack(fill="x", padx=20, pady=10)
+        ctk.CTkLabel(autostart_frame, text="开机自启动:").pack(side="left", padx=10)
+        autostart_switch = ctk.CTkSwitch(autostart_frame, text="启用")
+        autostart_switch.pack(side="left", padx=10)
+
+        # 全屏模式
+        fullscreen_frame = ctk.CTkFrame(settings_win)
+        fullscreen_frame.pack(fill="x", padx=20, pady=10)
+        ctk.CTkLabel(fullscreen_frame, text="启动时全屏:").pack(side="left", padx=10)
+        fullscreen_switch = ctk.CTkSwitch(fullscreen_frame, text="启用")
+        fullscreen_switch.pack(side="left", padx=10)
+
+        ctk.CTkLabel(settings_win, text="提示: 按F11切换全屏，按ESC退出全屏",
+                    text_color="gray").pack(pady=20)
+
+    def _on_feedback(self):
+        """打开GitHub反馈页面"""
+        import webbrowser
+        webbrowser.open("https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony/issues/new")
+        self._set_status("已在浏览器中打开GitHub反馈页面")
+
+    def _on_about(self):
+        """显示关于信息"""
+        about_win = ctk.CTkToplevel(self)
+        about_win.title("关于")
+        about_win.geometry("500x400")
+        about_win.transient(self)
+        about_win.grab_set()
+
+    def _on_mode_switch(self, value: str):
+        """切换检测模式"""
+        mode_map = {
+            "菌落计数": "colony",
+            "抑菌圈": "inhibition_zone",
+            "蓝白斑": "blue_white",
+            "污染检测": "contamination"
+        }
+        self._detection_mode = mode_map.get(value, "colony")
+        self._set_status(f"已切换到{value}模式")
+
+    def _process_inhibition_zone(self, image_bgr, source_path, strain, batch, timefmt):
+        """处理抑菌圈检测"""
+        result = self.inhibition_zone.detect(image_bgr, mode='auto')
+        if result is None:
+            self._set_status("抑菌圈检测失败：未检测到培养皿")
+            return
+
+        annot_path = self.storage.save_annotated(result.annotated_image, strain, batch, timefmt)
+
+        summary = (f"抑菌圈检测 | 模式:{result.mode} | "
+                  f"物质数:{len(result.substances)} | 抑菌圈数:{len(result.zones)}")
+
+        rec = StoredRecord(
+            timestamp=time.time(),
+            strain_name=strain,
+            batch_id=batch,
+            source_type="inhibition_zone",
+            source_path=source_path,
+            annotated_path=str(annot_path),
+            model_path="inhibition_zone_opencv",
+            score_threshold=0.0,
+            nms_iou=0.0,
+            high_conf_threshold=0.0,
+            count=len(result.zones),
+            high_count=len(result.substances),
+            low_count=0,
+            latency_ms=0.0,
+            top_score=0.0,
+            avg_score=0.0,
+            details="",
+            summary_text=summary,
+        )
+        self.storage.append_history(rec)
+        self._set_status(summary)
+        self._refresh_history_box()
+
+    def _on_about(self):
+        """显示关于信息"""
+        about_win = ctk.CTkToplevel(self)
+        about_win.title("关于")
+        about_win.geometry("500x400")
+        about_win.transient(self)
+        about_win.grab_set()
+
+        ctk.CTkLabel(about_win, text="MicroAI Colony Counter",
+                    font=ctk.CTkFont(size=20, weight="bold")).pack(pady=20)
+
+        info_text = """
+        微生物菌落计数系统 - 专业版
+
+        版本: 1.0.0
+        开源协议: MIT License
+
+        功能特性:
+        • 菌落自动计数
+        • 抑菌圈检测
+        • 蓝白斑检测
+        • 污染检测（高级模型）
+        • 数据导出与分析
+
+        GitHub: github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony
+
+        快捷键:
+        F11 - 切换全屏
+        ESC - 退出全屏
+        """
+
+        ctk.CTkLabel(about_win, text=info_text, justify="left").pack(pady=10, padx=20)
+
+        ctk.CTkButton(about_win, text="访问GitHub仓库",
+                     command=lambda: webbrowser.open(
+                         "https://github.com/BOHUYESHAN-APB/CNN-MicroAI-Colony"
+                     )).pack(pady=10)
 
     def on_close(self) -> None:
         self._running = False

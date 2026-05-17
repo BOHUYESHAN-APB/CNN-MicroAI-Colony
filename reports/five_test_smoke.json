@@ -1,0 +1,79 @@
+{
+  "dataset_root": "G:\\train\\Fase.v2i.coco-mmdetection",
+  "dataset_mode": "roboflow_coco",
+  "split": "test",
+  "model": "temp\\openi_yolo11_eval\\yolo11n_advanced\\best.onnx",
+  "data_yaml": "G:\\train\\yolo11_fase_v2\\data.yaml",
+  "class_names": [
+    "CompactDryEC",
+    "E-Coli",
+    "P-Aeruginosa",
+    "PetriDish",
+    "S-Aureus"
+  ],
+  "num_images_evaluated": 10,
+  "input_size": 640,
+  "score_thr": 0.45,
+  "nms_iou": 0.45,
+  "match_iou": 0.5,
+  "total_tp": 39,
+  "total_fp": 1,
+  "total_fn": 14,
+  "global_precision": 0.975,
+  "global_recall": 0.735849,
+  "global_f1": 0.83871,
+  "count_mae": 1.3,
+  "count_rmse": 2.50998,
+  "count_exact_accuracy": 0.6,
+  "latency_ms_mean": 50.4418,
+  "latency_ms_p50": 49.2985,
+  "latency_ms_p90": 56.3367,
+  "mean_match_iou": 0.808198,
+  "per_class": {
+    "E-Coli": {
+      "class_id": 1,
+      "gt": 12,
+      "pred": 12,
+      "tp": 11,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.916667,
+      "recall": 0.916667,
+      "f1": 0.916667
+    },
+    "P-Aeruginosa": {
+      "class_id": 2,
+      "gt": 20,
+      "pred": 17,
+      "tp": 17,
+      "fp": 0,
+      "fn": 3,
+      "precision": 1.0,
+      "recall": 0.85,
+      "f1": 0.918919
+    },
+    "PetriDish": {
+      "class_id": 3,
+      "gt": 10,
+      "pred": 10,
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "S-Aureus": {
+      "class_id": 4,
+      "gt": 11,
+      "pred": 1,
+      "tp": 1,
+      "fp": 0,
+      "fn": 10,
+      "precision": 1.0,
+      "recall": 0.090909,
+      "f1": 0.166667
+    }
+  },
+  "out_csv": "reports\\five_test_smoke.csv"
+}
